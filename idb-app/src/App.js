@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { Button } from 'react-bootstrap'; //Example downloading button
+import { BrowserRouter, Route, Link } from 'react-router-dom' //linker
 
 class App extends Component {
   render() {

@@ -7,7 +7,7 @@ Group Members:
 2. Ramon Perez
 3. Zara Louis
 4. Roshan Dongre
-5. Ricardo Riveron <img src="https://larius11.github.io/cs373-blog/assets/headshot.jpg" style="width: 150;"/>
+5. Ricardo Riveron <img src="https://larius11.github.io/cs373-blog/assets/headshot.jpg" style="width: 150px;"/>
    **Bio:**
     4th year CS student currently working full-time at H-E-B and taking Concurrency, Debugging & Verifying Programs, and Software Engineering. I love to play music, watch netflix, and play videogames when I'm not too busy doing schoolwork or at work.
 **Major Responsibilities:**

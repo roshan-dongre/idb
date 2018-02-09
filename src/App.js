@@ -43,6 +43,7 @@ class App extends Component {
     );
   }
 }
+
 //npm start to start the app on http://localhost:3000/
 //https://www.youtube.com/watch?v=Mn4VLuDpwNw website used
 //Made the button with bsStyle

@@ -1,5 +1,7 @@
 # import the Flask class from the flask module
 from flask import Flask, render_template
+import requests
+import json
 
 # create the application object
 app = Flask(__name__)
@@ -11,7 +13,9 @@ def index():
 
 @app.route('/about')
 def about():
-    return render_template('about.html') 
+	r = requests.get('https://api.github.com/repos/roshan-dongre/idb/stats/contributors')
+	data=json.loads(r.content)
+	return render_template('about.html',firstuser=data[1]['author']['login'])
 
 @app.route('/crime')
 def crime():

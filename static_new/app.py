@@ -67,4 +67,4 @@ def state3():
 
 # start the server with the 'run()' method
 if __name__ == '__main__':
-    app.run(debug=True, port=8080)
+    app.run(host='0.0.0.0', port=80)

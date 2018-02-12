@@ -47,12 +47,12 @@ def about():
 		num_commits[iton(item['author']['login'])] = item['total']
 		total_commits += num_commits[iton(item['author']['login'])]
 
-	r_two = requests.get('https://api.github.com/repos/roshan-dongre/idb/issues')
+	r_two = requests.get('https://api.github.com/repos/roshan-dongre/idb/issues?&state=all')
 	data_issues = json.loads(r_two.content)
 
 	for item in data_issues:
-		num_issues[iton(item['user']['login'])] = item['number']
-		total_issues += num_issues[iton(item['user']['login'])]
+		num_issues[iton(item['user']['login'])] += 1
+		total_issues += 1
 
 	return render_template('about.html',tot_issues=total_issues,tot_commits=total_commits,ram_commits=num_commits[Ramon],ram_issues=num_issues[Ramon],ros_commits=num_commits[Roshan],ros_issues=num_issues[Roshan],zar_commits=num_commits[Zara],zar_issues=num_issues[Zara],kri_commits=num_commits[Krishna],kri_issues=num_issues[Krishna],ric_commits=num_commits[Ricardo],ric_issues=num_issues[Ricardo])
 

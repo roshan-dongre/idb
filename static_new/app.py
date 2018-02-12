@@ -18,7 +18,7 @@ num_commits = [0, 0, 0, 0, 0]
 num_issues = [0, 0, 0, 0, 0]
 
 def iton(GitId):
-	if(GitId=='rp2537'):
+	if(GitId=='rp27537'):
 		return Ramon
 	if(GitId=='zaralouis'):
 		return Zara
@@ -26,7 +26,6 @@ def iton(GitId):
 		return Roshan
 	if(GitId=='larius11'):
 		return Ricardo
-
 	return 0;
 
 # use decorators to link the function to a url
@@ -38,6 +37,9 @@ def index():
 def about():
 	global total_commits
 	global total_issues
+
+	total_commits = 0
+	total_issues = 0
 	r = requests.get('https://api.github.com/repos/roshan-dongre/idb/stats/contributors')
 	data=json.loads(r.content)
 

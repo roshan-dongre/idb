@@ -6,6 +6,29 @@ import json
 # create the application object
 app = Flask(__name__)
 
+Krishna = 0
+Ramon = 1
+Zara = 2
+Roshan = 3
+Ricardo = 4
+total_commits = 0
+total_issues = 0
+
+num_commits = [0, 0, 0, 0, 0]
+num_issues = [0, 0, 0, 0, 0]
+
+def iton(GitId):
+	if(GitId=='rp2537'):
+		return Ramon
+	if(GitId=='zaralouis'):
+		return Zara
+	if(GitId=='roshan-dongre'):
+		return Roshan
+	if(GitId=='larius11'):
+		return Ricardo
+
+	return 0;
+
 # use decorators to link the function to a url
 @app.route('/')
 def index():
@@ -13,9 +36,23 @@ def index():
 
 @app.route('/about')
 def about():
+	global total_commits
+	global total_issues
 	r = requests.get('https://api.github.com/repos/roshan-dongre/idb/stats/contributors')
 	data=json.loads(r.content)
-	return render_template('about.html',firstuser=data[1]['author']['login'])
+
+	for item in data:
+		num_commits[iton(item['author']['login'])] = item['total']
+		total_commits += num_commits[iton(item['author']['login'])]
+
+	r_two = requests.get('https://api.github.com/repos/roshan-dongre/idb/issues')
+	data_issues = json.loads(r_two.content)
+
+	for item in data_issues:
+		num_issues[iton(item['user']['login'])] = item['number']
+		total_issues += num_issues[iton(item['user']['login'])]
+
+	return render_template('about.html',tot_issues=total_issues,tot_commits=total_commits,ram_commits=num_commits[Ramon],ram_issues=num_issues[Ramon],ros_commits=num_commits[Roshan],ros_issues=num_issues[Roshan],zar_commits=num_commits[Zara],zar_issues=num_issues[Zara],kri_commits=num_commits[Krishna],kri_issues=num_issues[Krishna],ric_commits=num_commits[Ricardo],ric_issues=num_issues[Ricardo])
 
 @app.route('/crime')
 def crime():

@@ -37,7 +37,6 @@ def index():
 def about():
 	global total_commits
 	global total_issues
-
 	total_commits = 0
 	total_issues = 0
 	r = requests.get('https://api.github.com/repos/roshan-dongre/idb/stats/contributors')

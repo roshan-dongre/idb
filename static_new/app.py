@@ -9,7 +9,7 @@ app = Flask(__name__)
 # use decorators to link the function to a url
 @app.route('/')
 def index():
-    return render_template('index.html')  
+    return render_template('index.html')
 
 @app.route('/about')
 def about():
@@ -19,7 +19,7 @@ def about():
 
 @app.route('/crime')
 def crime():
-    return render_template('crime.html') 
+    return render_template('crime.html')
 
 @app.route('/criminal')
 def criminal():
@@ -27,20 +27,44 @@ def criminal():
 
 @app.route('/state')
 def state():
-    return render_template('state.html') 
+    return render_template('state.html')
 
-@app.route('/crime1')
+@app.route('/arson')
 def crime1():
     return render_template('crime1.html')
 
-@app.route('/criminal1')
+@app.route('/kidnapping')
+def crime2():
+    return render_template('crime2.html')
+
+@app.route('/child')
+def crime3():
+    return render_template('crime3.html')
+
+@app.route('/joseph')
 def criminal1():
     return render_template('criminal1.html')
 
-@app.route('/state1')
+@app.route('/hilal')
+def criminal2():
+    return render_template('criminal2.html')
+
+@app.route('/luis')
+def criminal3():
+    return render_template('criminal3.html')
+
+@app.route('/washington')
 def state1():
-    return render_template('state1.html')    
+    return render_template('state1.html')
+
+@app.route('/ohio')
+def state2():
+    return render_template('state2.html')
+
+@app.route('/maryland')
+def state3():
+    return render_template('state3.html')
 
 # start the server with the 'run()' method
 if __name__ == '__main__':
-    app.run(debug=True, port=80)
+    app.run(debug=True, port=8080)

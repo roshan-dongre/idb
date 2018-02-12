@@ -1,5 +1,3 @@
-description of the site, its purpose, its intended users
-explanation of the interesting result of integrating disparate data
 # The Slackers - www.ontherun.me
 --------------------
 

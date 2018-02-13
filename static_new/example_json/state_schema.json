@@ -1,0 +1,25 @@
+{
+  "type": "object",
+  "properties": {
+    "State": {
+      "type": "object",
+      "properties": {
+        "StateID": {
+          "type": "integer"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "Abbreviation": {
+          "type": "string"
+        },
+        "Capital": {
+          "type": "string"
+        },
+        "Population": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}

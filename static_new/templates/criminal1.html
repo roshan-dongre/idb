@@ -61,21 +61,49 @@
       <div class="row">
 
         <div class="col-md-8">
-          <img class="img-fluid" src="http://placehold.it/750x500" alt="">
+          <img class="img-fluid" style="width:500px; height:500px" src="https://www.fbi.gov/wanted/dt/joseph-mahmoud-dibee/dibee_jm2.jpg/@@images/image/large" alt="">
+
+          <h2 class="my-4">Location of Indictment</h2>
+          <div id="map" style="height:500px; width: 100%"></div>
+          <script>
+            function initMap() {
+              var uluru = {lat: 44.039, lng: -123.135};
+              var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 5,
+                center: uluru
+              });
+              var marker = new google.maps.Marker({
+                position: uluru,
+                map: map
+              });
+            }
+          </script>
+          <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkRhH7iB4iZW9dDa-FY7HYb8vpjj19Vsc&callback=initMap">
+          </script>
         </div>
 
         <div class="col-md-4">
-          <h3 class="my-3">Project Description</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.</p>
-          <h3 class="my-3">Project Details</h3>
+          <h3 class="my-3">Date of Birth</h3>
+          <p>November 10, 1967</p>
+          <h3 class="my-3">Place of Birth</h3>
+          <p>Seattle, Washington</p>
+          <h3 class="my-3">Crimes</h3>
+          <p>Conspiracy to Commit Arson of United States Government Property and of Property Used in Interstate Commerce; Conspiracy to Commit Arson and Desctruction of an Energy Facility; Arson of a Building</p>
+          <h3 class="my-3">Details</h3>
+          <p>On January 19, 2006, a federal grand jury in Eugene, Oregon, indicted Joseph Mahmoud Dibee on multiple charges related to his alleged role in a domestic terrorism cell. Dibee was charged with two conspiracy violations related to seventeen incidents and one count of arson. These crimes occurred in Oregon, Washington, California, Colorado, and Wyoming, and date back to 1996. Many of the crimes he is accused of participating in were claimed to be committed by the Earth Liberation Front (ELF) or the Animal Liberation Front (ALF). Dibee may have fled to Syria.</p>
+          <h3 class="my-3">News</h3>
           <ul>
-            <li>Lorem Ipsum</li>
-            <li>Dolor Sit Amet</li>
-            <li>Consectetur</li>
-            <li>Adipiscing Elit</li>
+            <li><a href="https://www.fbi.gov/news/stories/operation-backfire-ten-years-later-two-fugitives-remain">Operation Backfire: Ten Years Later, Two Fugitives Remain</a></li>
+            <li><a href="https://www.cnn.com/2015/04/18/us/domestic-terrorists/index.html">Today's most-wanted domestic terrorists</a></li>
+            <li><a href="http://www.nytimes.com/2009/08/19/us/19license.html">Fugitive Still Licensed to Fly by the F.A.A.</a></li>
+          </ul>
+          <h3 class="my-3">Additional Links</h3>
+          <ul>
+            <li><a href="state1">Oregon</a></li>
+            <li><a href="crime1">Arson</a></li>
           </ul>
         </div>
-
       </div>
 
     </div>

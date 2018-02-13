@@ -1,0 +1,6 @@
+{
+  "WantedFor": {
+    "fk_SuspectID": 1,
+    "fk_CrimeID": 1
+  }
+}

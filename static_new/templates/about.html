@@ -8,124 +8,171 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>On the Run - About</title>
+    <title>The Slackers About Page</title>
 
     <!-- Bootstrap core CSS -->
     <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="static/css/full-slider.css" rel="stylesheet">
+    <link href="static/css/scrolling-nav.css" rel="stylesheet">
 
   </head>
 
-  <body>
+  <body id="page-top">
 
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand"><font color="white">On the Run </font></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+        <a class="navbar-brand js-scroll-trigger"><font color="white">On the Run</font></a>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link" href="about">About
-                <span class="sr-only">(current)</span>
-              </a>
+              <a class="nav-link js-scroll-trigger" href="/">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="criminal">Criminals</a>
+              <a class="nav-link js-scroll-trigger" href="/criminal">Criminals</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="state">States</a>
+              <a class="nav-link js-scroll-trigger" href="/state">States</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="crime">Crimes</a>
+              <a class="nav-link js-scroll-trigger" href="/crimes">Crimes</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
 
-  <h1>The Slackers - <a href="http://www.ontherun.me" rel="nofollow">www.ontherun.me</a></h1>
-  <hr>
-  <h2>Group Members:</h2>
-  <br>
-  <ol>
-    <li>Krishna Ramdeep <img src="" style="width:150px; display: flex;">
-      <strong>Bio:</strong>
-      <p>Fill this out</p>
-      <strong>Major Responsibilities:</strong>
-      <ul>
-        <li>Fill this out</li>
-      </ul>
-      <p><strong>Number of commits:</strong> {{kri_commits}}</p>
-      <p><strong>Number of issues:</strong> {{kri_issues}}</p>
-    </li>
-    <li>Ramon Perez <img src="" style="width:150px; display: flex;">
-      <strong>Bio:</strong>
-      <p>Fill this out</p>
-      <strong>Major Responsibilities:</strong>
-      <ul>
-        <li>Fill this out</li>
-      </ul>
-      <p><strong>Number of commits:</strong> {{ram_commits}}</p>
-      <p><strong>Number of issues:</strong> {{ram_issues}}</p>
-    </li>
-    <li>Zara Louis <img src="" style="width:150px; display: flex;">
-      <strong>Bio:</strong>
-      <p>Fill this out</p>
-      <strong>Major Responsibilities:</strong>
-      <ul>
-        <li>Fill this out</li>
-      </ul>
-      <p><strong>Number of commits:</strong> {{zar_commits}}</p>
-      <p><strong>Number of issues:</strong> {{zar_issues}}</p>
-    </li>
-    <li>Roshan Dongre <img src="" style="width:150px; display: flex;">
-      <strong>Bio:</strong>
-      <p>Fill this out</p>
-      <strong>Major Responsibilities:</strong>
-      <ul>
-        <li>Fill this out</li>
-      </ul>
-      <p><strong>Number of commits:</strong> {{ros_commits}}</p>
-      <p><strong>Number of issues:</strong> {{ros_issues}}</p>
-    </li>
-    <li>Ricardo Riveron <img src="https://camo.githubusercontent.com/1de6c5516fd076a6e757b3e40b7c1623125a1aa3/68747470733a2f2f6c617269757331312e6769746875622e696f2f63733337332d626c6f672f6173736574732f6865616473686f742e6a7067" style="width:150px; display: flex;">
-      <strong>Bio:</strong>
-      <p>4th year CS student currently working full-time at H-E-B and taking Concurrency, Debugging &amp; Verifying Programs, and Software Engineering. I love to play music, watch netflix, and play videogames when I'm not too busy doing schoolwork or at work.</p>
-      <strong>Major Responsibilities:</strong>
-      <p><ul>
-        <li>Set up flask</li>
-        <li>Set up project board</li>
-        <li>Set up Git book for API documentation</li>
-        <li>Add and organize issues in the repo</li>
-      </ul></p>
-      <p><strong>Number of commits:</strong> {{ric_commits}}</p>
-      <p><strong>Number of issues:</strong> {{ric_issues}}</p>
-    </li>
-  </ol>
-<p><strong>Total number of commits:</strong> {{tot_commits}}</p>
-<p><strong>Total no. of issues:</strong> {{tot_issues}}</p>
-<p><strong>Total no. of unit tests:</strong> 0</p>
-<p>data
-links to the data sources
-description of how each was scraped
-tools
-tools used
-describe their use
-special focus on optional tools that were not required</p>
-<ul>
-<li><a href="https://larius11.gitbooks.io/our-restful-api/content/" rel="nofollow">API</a> Documentation</li>
-<li><a href="https://larius11.gitbooks.io/our-restful-api/content/" rel="nofollow">Technical Report</a></li>
-<li><a href="https://github.com/roshan-dongre/idb">GitHub repository</a></li>
-</ul>
+    <header class="bg-secondary text-white">
+      <div class="container text-center">
+        <h1>The Slackers About Page</h1>
+        <p class="lead"></p>
+      </div>
+    </header>
+
+    <section id="about">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-9 mx-auto">
+            <h2>About our website</h2>
+            <p class="lead">On The Run is a website that allows people to draw interesting connections between the FBI Most Wanted Page and information
+            on different types of crimes as well as information on the states in which these crimes were committed.</p>
+            <ul>
+              <li>Intended Users: Anyone interested in learning about crime/criminals</li>
+              <li>Explanation: This integration of disparate data allows people to not only see specfic information about each criminal, but also a macro look at crime in the states in which they committed their crimes. </li>
+              <li>Group Name: The Slackers</li>
+              <li>Group Members: Ricardo Riveron, Roshan Dongre, Zara Louis, Ramon Perez, Krishna Ramdeep</li>
+              <li>Total Number of Commits: {{tot_commits}}</li>
+              <li>Total Number of Issues: {{tot_issues}}</li>
+              <li>Total Number of Unit Tests: 0</li>
+              <li>Data Sources Used And How They Were Scraped:</li>
+              <ul>
+                <li>CIA Most Wanted API: </li>
+              </ul>
+              <li>Tools Used: Boostrap, Travis CI, Flask, Requests Module</li>
+              <li><a href="https://larius11.gitbooks.io/our-restful-api/content/" rel="nofollow">API</a> Documentation</li>
+              <li><a href="https://larius11.gitbooks.io/our-restful-api/content/" rel="nofollow">Technical Report</a></li>
+              <li><a href="https://github.com/roshan-dongre/idb">GitHub repository</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="ricardo" class="bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-10 mx-auto">
+            <img src="https://larius11.github.io/cs373-blog/assets/headshot.jpg" alt="..."
+            class="img-thumbnail rounded float-right img-responsive img-fluid" style = "height: 250px; width:250px">
+            <h2>Ricardo Riveron</h2>
+            <p>Bio: 4th year CS student currently working full-time at H-E-B and taking Concurrency, Debugging &amp; Verifying Programs, and Software Engineering. I love to play music, watch netflix, and play videogames when I'm not too busy doing schoolwork or at work.</p>
+            <p>Responsibilities:</p>
+            <p>Number of commits: {{ric_commits}}</p>
+            <p>Number of issues: {{ric_issues}}</p>
+            <p>Number of unit tests: 0</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="roshan">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-10 mx-auto">
+            <img src="https://avatars3.githubusercontent.com/u/14967965?s=460&v=4" alt="..."
+            class="img-thumbnail rounded float-right img-responsive img-fluid" style = "height: 250px; width:250px">
+            <h2>Roshan Dongre</h2>
+            <p>Bio:</p>
+            <p>Responsibilities:</p>
+            <p>Number of commits: {{ros_commits}}</p>
+            <p>Number of issues: {{ros_issues}}</p>
+            <p>Number of unit tests: 0</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="zara" class="bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-10 mx-auto">
+            <img src="https://zaralouis.files.wordpress.com/2018/01/headshot1.jpg?w=2048&h=1814" alt="..."
+            class="img-thumbnail rounded float-right img-responsive img-fluid" style = "height: 250px; width:250px">
+            <h2>Zara Louis</h2>
+            <p>Bio:</p>
+            <p>Responsibilities:</p>
+            <p>Number of commits: {{zar_commits}}</p>
+            <p>Number of issues: {{zar_issues}}</p>
+            <p>Number of unit tests: 0</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="ramon">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-10 mx-auto">
+            <img src="https://rp27537cs373sp18.files.wordpress.com/2018/01/why.png" alt="..."
+            class="img-thumbnail rounded float-right img-responsive img-fluid" style = "height: 250px; width:250px">
+            <h2>Ramon Perez</h2>
+            <p>Bio:</p>
+            <p>Responsibilities:</p>
+            <p>Number of commits: {{ram_commits}}</p>
+            <p>Number of issues: {{ram_issues}}</p>
+            <p>Number of unit tests: 0</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="krishna" class="bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-10 mx-auto">
+            <img src="https://ramdeepk2.github.io/ramdeepk2.github.io/cs373/headshot.JPG" alt="..."
+            class="img-thumbnail rounded float-right img-responsive img-fluid" style = "height: 250px; width:250px">
+            <h2>Krishna Ramdeep</h2>
+            <p>Bio:</p>
+            <p>Responsibilities:</p>
+            <p>Number of commits: {{kri_commits}}</p>
+            <p>Number of issues: {{kri_issues}}</p>
+            <p>Number of unit tests: 0</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- Bootstrap core JavaScript -->
     <script src="static/vendor/jquery/jquery.min.js"></script>
     <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="static/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom JavaScript for this theme -->
+    <script src="static/js/scrolling-nav.js"></script>
 
   </body>
 

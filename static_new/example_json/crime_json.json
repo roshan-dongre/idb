@@ -1,0 +1,9 @@
+{
+  "Crime": {
+    "CrimeID": 1,
+    "Name": "Arson",
+    "Count": 13917,
+    "Offenders": 13906,
+    "Victims": 14993
+  }
+}

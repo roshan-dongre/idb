@@ -1,0 +1,25 @@
+{
+  "type": "object",
+  "properties": {
+    "CrimeByState": {
+      "type": "object",
+      "properties": {
+        "fk_StateID": {
+          "type": "integer"
+        },
+        "fk_CrimeID": {
+          "type": "integer"
+        },
+        "Count": {
+          "type": "integer"
+        },
+        "Offenders": {
+          "type": "integer"
+        },
+        "Victims": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}

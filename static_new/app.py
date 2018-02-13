@@ -11,11 +11,6 @@ Ramon = 1
 Zara = 2
 Roshan = 3
 Ricardo = 4
-total_commits = 0
-total_issues = 0
-
-num_commits = [0, 0, 0, 0, 0]
-num_issues = [0, 0, 0, 0, 0]
 
 def iton(GitId):
 	if(GitId=='rp27537'):
@@ -35,11 +30,12 @@ def index():
 
 @app.route('/about')
 def about():
-	global total_commits
-	global total_issues
-
 	total_commits = 0
 	total_issues = 0
+
+	num_commits = [0, 0, 0, 0, 0]
+	num_issues = [0, 0, 0, 0, 0]
+	
 	r = requests.get('https://api.github.com/repos/roshan-dongre/idb/stats/contributors')
 	data=json.loads(r.content)
 

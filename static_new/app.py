@@ -88,7 +88,7 @@ def criminal2():
 def criminal3():
     return render_template('criminal3.html')
 
-@app.route('/washington')
+@app.route('/oregon')
 def state1():
     return render_template('state1.html')
 

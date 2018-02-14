@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Portfolio Item - Start Bootstrap Template</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="static/css/portfolio-item.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand"><font color="white">On The Run</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/about">About
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/criminal">Criminals</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/state">States</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/crime">Crimes</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container"> <font color="black">
+
+      <!-- Portfolio Item Heading -->
+      <h1 class="my-4">Arson</h1>
+
+      <!-- Portfolio Item Row -->
+      <div class="row">
+
+        <div class="col-md-8">
+          <img class="img-fluid" style="width:750px; height:500px" src="https://orig00.deviantart.net/30d1/f/2009/152/4/d/fire__black_and_white_by_colleen721.jpg" alt="">
+
+          <h2 class="my-4">State map</h2>
+          <div id="map" style="height:500px; width: 100%"></div>
+          <script>
+            function initMap() {
+              var uluru = {lat: 44.039, lng: -123.135};
+              var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 5,
+                center: uluru
+              });
+              var marker = new google.maps.Marker({
+                position: uluru,
+                map: map
+              });
+            }
+          </script>
+          <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkRhH7iB4iZW9dDa-FY7HYb8vpjj19Vsc&callback=initMap">
+          </script>
+        </div>
+
+        <div class="col-md-4">
+          <h3 class="my-3">Definition</h3>
+          <p>Arson is a crime of intentionally, deliberately and maliciously setting fire to buildings, wildland areas, abandoned homes, vehicles or other property with the intent to cause damage.</p>
+          <h3 class="my-3">Statistics</h3>
+          <p>There were 156,514 individual arson incidents reported to the FBI in United States between 2006 and 2016 by 7420 law enforcement agencies reporting data.</p>
+          <p>In 2016, there were 13.3 incidents of arson per 100,000 people</p>
+          <h3 class="my-3">News</h3>
+          <ul>
+            <li><a href="http://www.post-gazette.com/local/city/2018/02/13/DA-seek-death-penalty-Martell-Smith-triple-fatal-arson/stories/201802130151">DA to seek death penalty in triple fatal arson</a></li>
+            <li><a href="https://wfirnews.com/news/arson-investigation-at-little-caesars-nabs-suspect">Arson investigation at Little Caesar's nabs suspect</a></li>
+            <li><a href="https://www.williamsnews.com/news/2018/feb/13/arson-suspected-early-morning-blaze-newpac-fibre-m/">Arson suspected in early morning blaze at Newpac Fibre Mill</a></li>
+          </ul>
+          <h3 class="my-3">Additional Links</h3>
+          <ul>
+            <li><a href="/joseph">Joseph Mahmoud Dibee</a></li>
+            <li><a href="/arson">Oregon</a></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="static/vendor/jquery/jquery.min.js"></script>
+    <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  </body>
+
+</html>

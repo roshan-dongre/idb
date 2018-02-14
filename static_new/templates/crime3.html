@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Portfolio Item - Start Bootstrap Template</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="static/css/portfolio-item.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand"><font color="white">On The Run</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/about">About
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/criminal">Criminals</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/state">States</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/crime">Crimes</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container"> <font color="black">
+
+      <!-- Portfolio Item Heading -->
+      <h1 class="my-4">Child pornography</h1>
+
+      <!-- Portfolio Item Row -->
+      <div class="row">
+
+        <div class="col-md-8">
+          <img class="img-fluid" style="width:750px; height:500px" src="http://images.mentalfloss.com/sites/default/files/styles/mf_image_3x2/public/hansen.jpg?itok=7RDitfGV&resize=1100x740" alt="">
+
+          <h2 class="my-4">State map</h2>
+          <div id="map" style="height:500px; width: 100%"></div>
+          <script>
+            function initMap() {
+              var uluru = {lat: 44.039, lng: -123.135};
+              var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 5,
+                center: uluru
+              });
+              var marker = new google.maps.Marker({
+                position: uluru,
+                map: map
+              });
+            }
+          </script>
+          <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkRhH7iB4iZW9dDa-FY7HYb8vpjj19Vsc&callback=initMap">
+          </script>
+        </div>
+
+        <div class="col-md-4">
+          <h3 class="my-3">Definition</h3>
+          <p>Federal law defines child pornography as any visual depiction of sexually explicit conduct involving a minor, and the United States Department of Justice may prosecute offenses occurring across state or international borders and almost any offense involving the Internet.</p>
+          <h3 class="my-3">News</h3>
+          <ul>
+            <li><a href="https://www.bostonglobe.com/metro/2018/02/12/natick-man-charged-with-possession-distribution-child-pornography/aEgKXedrEQOc1EY5K9sfCP/story.html">Natick man charged with possession, distribution of child pornography</a></li>
+            <li><a href="http://fox5sandiego.com/2018/02/13/san-diego-rancher-receives-sentence-for-child-pornography-charges/">San Diego rancher receives sentence for child pornography charges</a></li>
+            <li><a href="http://people.com/crime/former-michigan-doctor-alleged-chid-pornography-sex-vulnerable-patient/">Former U. Michigan Doctor Accused of Child Pornography and Sex With 'Vulnerable' Teen Patient</a></li>
+          </ul>
+          <h3 class="my-3">Additional Links</h3>
+          <ul>
+            <li><a href="/luis">Luis Tejada</a></li>
+            <li><a href="/maryland">Maryland</a></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="static/vendor/jquery/jquery.min.js"></script>
+    <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  </body>
+
+</html>

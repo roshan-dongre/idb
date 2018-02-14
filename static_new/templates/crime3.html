@@ -62,25 +62,6 @@
 
         <div class="col-md-8">
           <img class="img-fluid" style="width:750px; height:500px" src="http://images.mentalfloss.com/sites/default/files/styles/mf_image_3x2/public/hansen.jpg?itok=7RDitfGV&resize=1100x740" alt="">
-
-          <h2 class="my-4">State map</h2>
-          <div id="map" style="height:500px; width: 100%"></div>
-          <script>
-            function initMap() {
-              var uluru = {lat: 44.039, lng: -123.135};
-              var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 5,
-                center: uluru
-              });
-              var marker = new google.maps.Marker({
-                position: uluru,
-                map: map
-              });
-            }
-          </script>
-          <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkRhH7iB4iZW9dDa-FY7HYb8vpjj19Vsc&callback=initMap">
-          </script>
         </div>
 
         <div class="col-md-4">

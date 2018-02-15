@@ -6,21 +6,15 @@ import json
 # create the application object
 app = Flask(__name__)
 
-Krishna = 0
-Ramon = 1
-Zara = 2
-Roshan = 3
-Ricardo = 4
-
 def iton(GitId):
 	if(GitId=='rp27537'):
-		return Ramon
+		return 1
 	if(GitId=='zaralouis'):
-		return Zara
+		return 2
 	if(GitId=='roshan-dongre'):
-		return Roshan
+		return 3
 	if(GitId=='larius11'):
-		return Ricardo
+		return 4
 	return 0;
 
 # use decorators to link the function to a url
@@ -50,7 +44,7 @@ def about():
 		num_issues[iton(item['user']['login'])] += 1
 		total_issues += 1
 
-	return render_template('about.html',tot_issues=total_issues,tot_commits=total_commits,ram_commits=num_commits[Ramon],ram_issues=num_issues[Ramon],ros_commits=num_commits[Roshan],ros_issues=num_issues[Roshan],zar_commits=num_commits[Zara],zar_issues=num_issues[Zara],kri_commits=num_commits[Krishna],kri_issues=num_issues[Krishna],ric_commits=num_commits[Ricardo],ric_issues=num_issues[Ricardo])
+	return render_template('about.html',tot_issues=total_issues,tot_commits=total_commits,ram_commits=num_commits[1],ram_issues=num_issues[1],ros_commits=num_commits[3],ros_issues=num_issues[3],zar_commits=num_commits[2],zar_issues=num_issues[2],kri_commits=num_commits[0],kri_issues=num_issues[0],ric_commits=num_commits[4],ric_issues=num_issues[4])
 
 @app.route('/crime')
 def crime():

@@ -67,7 +67,24 @@
               <li>Total Number of Unit Tests: 0</li>
               <li>Data Sources Used And How They Were Scraped:</li>
               <ul>
-                <li>CIA Most Wanted API: </li>
+                <li><a href="https://crime-data-explorer.fr.cloud.gov/api" rel="nofollow">FBI Crime Stats API</a></li>
+                <ul>
+                  We used the requests module to scrape this data using python. This API provided
+                  useful crime statistics shown on each of our model pages.
+                </ul>
+                <li><a href="https://www.fbi.gov/wanted/api" rel="nofollow">FBI Most Wanted API</a></li>
+                <ul>
+                  We used the requests module to scrape this data using python. This API provided
+                  information on the criminals on our webpage.
+                </ul>
+                <li><a href="https://developers.google.com/maps/" rel="nofollow">Google Maps API</a></li>
+                <ul>
+                  We got an API key from Google Maps and then embedded the code provided in our HTML.
+                  This provided us with maps on our model pages.
+                </ul>
+                <li> We also are going to be using the Google News API, World Bank API, and potentially
+                  other APIs as we further develop the project
+                </li>
               </ul>
               <li>Tools Used: Boostrap, Travis CI, Flask, Requests Module</li>
               <li><a href="https://roshan-dongre.gitbooks.io/api/" rel="nofollow">API</a> Documentation</li>

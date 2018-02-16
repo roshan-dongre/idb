@@ -41,7 +41,7 @@ def about():
 	data_issues = json.loads(r_two.content)
 
 	for item in data_issues:
-		num_issues[iton(item['user']['login'])] += 1
+		num_issues[ int(iton(item['user']['login']))] += 1
 		total_issues += 1
 
 	return render_template('about.html',tot_issues=total_issues,tot_commits=total_commits,ram_commits=num_commits[1],ram_issues=num_issues[1],ros_commits=num_commits[3],ros_issues=num_issues[3],zar_commits=num_commits[2],zar_issues=num_issues[2],kri_commits=num_commits[0],kri_issues=num_issues[0],ric_commits=num_commits[4],ric_issues=num_issues[4])

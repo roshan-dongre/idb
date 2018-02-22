@@ -1,0 +1,46 @@
+{
+  "type": "object",
+  "properties": {
+    "Suspect": {
+      "type": "object",
+      "properties": {
+        "SuspectID": {
+          "type": "integer"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "DoB": {
+          "type": "array"
+        },
+        "Birthplace": {
+          "type": "string"
+        },
+        "HomeCountry": {
+          "type": "string"
+        },
+        "EscapeCountry": {
+          "type": "string"
+        },
+        "Sex": {
+          "type": "string"
+        },
+        "Height": {
+          "type": "integer"
+        },
+        "Weight": {
+          "type": "integer"
+        },
+        "Hair": {
+          "type": "string"
+        },
+        "Eyes": {
+          "type": "string"
+        },
+        "Race": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

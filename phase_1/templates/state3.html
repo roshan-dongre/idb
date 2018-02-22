@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Maryland</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="static/css/portfolio-item.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand"><font color="white">On The Run</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/about">About
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/criminal">Criminals</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/state">States</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/crime">Crimes</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container"> <font color="black">
+
+      <!-- Portfolio Item Heading -->
+      <h1 class="my-4">Maryland</h1>
+
+      <!-- Portfolio Item Row -->
+      <div class="row">
+
+        <div class="col-md-8">
+          <img class="img-fluid" style="width:750px; height:500px" src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Maryland_in_United_States.svg" alt="">
+
+          <h2 class="my-4">State Map</h2>
+          <div id="map" style="height:500px; width: 100%"></div>
+          <script>
+            function initMap() {
+              var uluru = {lat: 39.046, lng: -76.641};
+              var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 5,
+                center: uluru
+              });
+              var marker = new google.maps.Marker({
+                position: uluru,
+                map: map
+              });
+            }
+          </script>
+          <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDkRhH7iB4iZW9dDa-FY7HYb8vpjj19Vsc&callback=initMap">
+          </script>
+        </div>
+
+        <div class="col-md-4">
+          <h3 class="my-3">Capital</h3>
+          <p>Annapolis</p>
+          <h3 class="my-3">Largest City</h3>
+          <p>Baltimore</p>
+          <h3 class="my-3">Property Crime rate in Maryland, 2006-2016</h3>
+          <p>In 2016, Maryland’s property crime rate was 2,284.5 incidents per 100,000 people. The rate for that year was lower than that of the United States.</p>
+          <h3 class="my-3">Violent Crime rate in Maryland, 2006-2016</h3>
+          <p>In 2016, Maryland’s violent crime rate was 472.0 incidents per 100,000 people. The rate for that year was higher than that of the United States.</p>
+          <h3 class="my-3">News</h3>
+          <ul>
+            <li><a href="https://www.usnews.com/news/best-states/maryland/articles/2018-02-13/baltimore-officers-guilty-in-corruption-saga-short-on-heroes">Baltimore Officers Guilty in Corruption Saga Short on Heroes</a></li>
+            <li><a href="http://www.baltimoresun.com/news/maryland/crime/bs-md-ci-homicide-tuesday-20180213-story.html">Man shot dead in Northeast Baltimore, ending 12-day stretch without a homicide in the city</a></li>
+            <li><a href="http://www.baltimoresun.com/news/maryland/crime/bs-md-child-pornography-state-police-20180204-story.html">Maryland State Police helping investigae alleged child pornography video</a></li>
+          </ul>
+          <h3 class="my-3">Top criminals and crimes</h3>
+          <ul>
+            <li><a href="/luis">Luis Tejada</a></li>
+            <li><a href="/child">Crimes Against Children</a></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="static/vendor/jquery/jquery.min.js"></script>
+    <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  </body>
+
+</html>

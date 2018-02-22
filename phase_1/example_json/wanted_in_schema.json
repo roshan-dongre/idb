@@ -1,0 +1,16 @@
+{
+  "type": "object",
+  "properties": {
+    "WantedIn": {
+      "type": "object",
+      "properties": {
+        "fk_SuspectID": {
+          "type": "integer"
+        },
+        "fk_StateID": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}

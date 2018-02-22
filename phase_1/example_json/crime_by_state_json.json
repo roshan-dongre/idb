@@ -1,0 +1,9 @@
+{
+  "CrimeByState": {
+    "fk_StateID": 35,
+    "fk_CrimeID": 1,
+    "Count": 1281,
+    "Offenders": 1263,
+    "Victims": 1359
+  }
+}

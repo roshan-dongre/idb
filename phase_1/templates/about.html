@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>The Slackers About Page</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="static/css/scrolling-nav.css" rel="stylesheet">
+
+  </head>
+
+  <body id="page-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+      <div class="container">
+        <a class="navbar-brand js-scroll-trigger"><font color="white">On the Run</font></a>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="/criminal">Criminals</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="/state">States</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="/crime">Crimes</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <header class="bg-secondary text-white">
+      <div class="container text-center">
+        <h1>The Slackers About Page</h1>
+        <p class="lead"></p>
+      </div>
+    </header>
+
+    <section id="about">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-9 mx-auto">
+            <h2>About our website</h2>
+            <p class="lead">On The Run is a website that allows people to draw interesting connections between the FBI Most Wanted Page and information
+            on different types of crimes as well as information on the states in which these crimes were committed.</p>
+            <ul>
+              <li>Intended Users: Anyone interested in learning about crime/criminals</li>
+              <li>Explanation: This integration of disparate data allows people to not only see specfic information about each criminal, but also a macro look at crime in the states in which they committed their crimes. </li>
+              <li>Group Name: The Slackers</li>
+              <li>Group Members: Ricardo Riveron, Roshan Dongre, Zara Louis, Ramon Perez, Krishna Ramdeep</li>
+              <li>Total Number of Commits: {{tot_commits}}</li>
+              <li>Total Number of Issues: {{tot_issues}}</li>
+              <li>Total Number of Unit Tests: 0</li>
+              <li>Data Sources Used And How They Were Scraped:</li>
+              <ul>
+                <li><a href="https://crime-data-explorer.fr.cloud.gov/api" rel="nofollow">FBI Crime Stats API</a></li>
+                <ul>
+                  We used the requests module to scrape this data using python. This API provided
+                  useful crime statistics shown on each of our model pages.
+                </ul>
+                <li><a href="https://www.fbi.gov/wanted/api" rel="nofollow">FBI Most Wanted API</a></li>
+                <ul>
+                  We used the requests module to scrape this data using python. This API provided
+                  information on the criminals on our webpage.
+                </ul>
+                <li><a href="https://developers.google.com/maps/" rel="nofollow">Google Maps API</a></li>
+                <ul>
+                  We got an API key from Google Maps and then embedded the code provided in our HTML.
+                  This provided us with maps on our model pages.
+                </ul>
+                <li> We also are going to be using the Google News API, World Bank API, and potentially
+                  other APIs as we further develop the project
+                </li>
+              </ul>
+              <li>Tools Used: Flask, Requests, Bootstrap, Travis CI, Postman, Slack, GitHub</li>
+                <ul>
+                  <li> Flask- The core of our project as it handles the API data requests and acts as an interface that communicates with the front-end of our application</li>
+                  <li> Requests- The requests module is what we are using to handle parsing the information from the APIs we are using </li>
+                  <li> Bootstrap- The Bootstrap template is the core of our front-end for this project and is the main framework used by most front-end developers</li>
+                  <li> Travis CI- While we did not use Travis CI directly for this phase of the project, we did set it up as it will be a useful tool during the next phases
+                    as we build out our website and integrate testing. Travis CI is a great continuous integration tool that is very useful in robust applications such as ours</li>
+                  <li> Postman- Postman is a tool that allows one to build and test APIs and we used it for creating our API for this project. While we did not implement
+                    testing for this phase we will be using it extensively in the upcoming phases, notably IDB2 </li>
+                  <li> Slack- Slack is a messaging service that allows software developers to share and discuss code and ideas, with the great feature of GitHub integration. We used Slack
+                    extensively in this phase and it was our primary means of communication </li>
+                  <li> GitHub- GitHub is a open source code sharing platform that we used to store our code and coordinate with each other </li>
+                </ul>
+              <li><a href="https://roshan-dongre.gitbooks.io/api/" rel="nofollow">API Documentation</a></li>
+              <li><a href="https://roshan-dongre.gitbooks.io/report/" rel="nofollow">Technical Report</a></li>
+              <li><a href="https://github.com/roshan-dongre/idb">GitHub Repository</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="ricardo" class="bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-10 mx-auto">
+            <img src="https://larius11.github.io/cs373-blog/assets/headshot.jpg" alt="..."
+            class="img-thumbnail rounded float-right img-responsive img-fluid" style = "height: 250px; width:250px">
+            <h2>Ricardo Riveron</h2>
+            <p>Bio: 4th year CS student currently working full-time at H-E-B and taking Concurrency, Debugging &amp; Verifying Programs, and Software Engineering. I love to play music, watch netflix, and play videogames when I'm not too busy doing schoolwork or at work.</p>
+            <p>Responsibilities:Create a project board, Set up Git book for API documentation, Add a new column for each group member, Add issues to our project as they come up</p>
+            <p>Number of commits: {{ric_commits}}</p>
+            <p>Number of issues: {{ric_issues}}</p>
+            <p>Number of unit tests: 0</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="roshan">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-10 mx-auto">
+            <img src="https://avatars3.githubusercontent.com/u/14967965?s=460&v=4" alt="..."
+            class="img-thumbnail rounded float-right img-responsive img-fluid" style = "height: 250px; width:250px">
+            <h2>Roshan Dongre</h2>
+            <p>Bio: Senior pursuing a double major in Computer Science and Finance. Interested in trading and sports analytics. I enjoy playing tennis, working out, and playing poker. </p>
+            <p>Responsibilities: Wrote technical report, AWS/Namecheap, Front-end model pages, About page, part of Flask integration</p>
+            <p>Number of commits: {{ros_commits}}</p>
+            <p>Number of issues: {{ros_issues}}</p>
+            <p>Number of unit tests: 0</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="zara" class="bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-10 mx-auto">
+            <img src="https://zaralouis.files.wordpress.com/2018/01/headshot1.jpg?w=2048&h=1814" alt="..."
+            class="img-thumbnail rounded float-right img-responsive img-fluid" style = "height: 250px; width:250px">
+            <h2>Zara Louis</h2>
+            <p>Bio: I am a third year CS student from Plano, Texas. I enjoy working out and reading in my spare time.</p>
+            <p>Responsibilities: Focused on designing the front end for the website, including the grid pages and 9 models.</p>
+            <p>Number of commits: {{zar_commits}}</p>
+            <p>Number of issues: {{zar_issues}}</p>
+            <p>Number of unit tests: 0</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="ramon">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-10 mx-auto">
+            <img src="https://rp27537cs373sp18.files.wordpress.com/2018/01/why.png" alt="..."
+            class="img-thumbnail rounded float-right img-responsive img-fluid" style = "height: 250px; width:250px">
+            <h2>Ramon Perez</h2>
+            <p>Bio: CS student hailing from New Braunfels, Texas. This is my third year as part of UTCS, and I'm in the Software Engineering and Artificial Intelligence classes this semester. I enjoy video games, running, and playing with my cats.</p>
+            <p>Responsibilities: Management of the data, including scraping, aggregating, and data modelling.</p>
+            <p>Number of commits: {{ram_commits}}</p>
+            <p>Number of issues: {{ram_issues}}</p>
+            <p>Number of unit tests: 0</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="krishna" class="bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-10 mx-auto">
+            <img src="https://ramdeepk2.github.io/ramdeepk2.github.io/cs373/headshot.JPG" alt="..."
+            class="img-thumbnail rounded float-right img-responsive img-fluid" style = "height: 250px; width:250px">
+            <h2>Krishna Ramdeep</h2>
+            <p>Bio: CS senior taking Computer Vision, Programming for Performance, Software Engineering, and Randomized Algorithms. I like to work out, hike, and read in my free time (which I don't get too much of).</p>
+            <p>Responsibilities: Design 'about' page, Integrate GitHub dynamic data, document API on GitBook, write technical report on Gitbook</p>
+            <p>Number of commits: {{kri_commits}}</p>
+            <p>Number of issues: {{kri_issues}}</p>
+            <p>Number of unit tests: 0</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="static/vendor/jquery/jquery.min.js"></script>
+    <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="static/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom JavaScript for this theme -->
+    <script src="static/js/scrolling-nav.js"></script>
+
+  </body>
+
+</html>

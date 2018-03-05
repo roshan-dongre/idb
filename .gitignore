@@ -1,4 +1,6 @@
 __pycache__
 env
 htmlcov
+node_modules
+node_modules/*
 __snapshots__

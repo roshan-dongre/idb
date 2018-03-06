@@ -1,0 +1,52 @@
+1:Aggravated Assault
+2:All Other Larceny
+3:Animal Cruelty
+4:Arson
+5:Assisting or Promoting Prostitution
+6:Betting/Wagering
+7:Bribery
+8:Burglary/Breaking & Entering
+9:Counterfeiting/Forgery
+10:Credit Card/Automated Teller Machine Fraud
+11:Destruction/Damage/Vandalism of Property
+12:Drug Equipment Violations
+13:Drug/Narcotic Violations
+14:Embezzlement
+15:Extortion/Blackmail
+16:False Pretenses/Swindle/Confidence Game
+17:Fondling
+18:Gambling Equipment Violation
+19:Hacking/Computer Invasion
+20:Human Trafficking, Commercial Sex Acts
+21:Human Trafficking, Involuntary Servitude
+22:Identity Theft
+23:Impersonation
+24:Incest
+25:Intimidation
+26:Justifiable Homicide
+27:Kidnapping/Abduction
+28:Motor Vehicle Theft
+29:Murder and Nonnegligent Manslaughter
+30:Negligent Manslaughter
+31:Operating/Promoting/Assisting Gambling
+32:Pocket-picking
+33:Pornography/Obscene Material
+34:Prostitution
+35:Purchasing Prostitution
+36:Purse-snatching
+37:Rape
+38:Robbery
+39:Sexual Assault With An Object
+40:Shoplifting
+41:Simple Assault
+42:Sodomy
+43:Sports Tampering
+44:Statutory Rape
+45:Stolen Property Offenses
+46:Theft From Building
+47:Theft From Coin-Operated Machine or Device
+48:Theft From Motor Vehicle
+49:Theft of Motor Vehicle Parts or Accessories
+50:Weapon Law Violations
+51:Welfare Fraud
+52:Wire Fraud

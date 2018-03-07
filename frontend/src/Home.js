@@ -20,7 +20,7 @@ class Home extends React.Component {
     render() {
         return (
             <div>
-            
+
                 <Carousel controls={false}>
                     <Carousel.Item>
                         <img className="center-block" alt="900x500"
@@ -41,7 +41,7 @@ class Home extends React.Component {
 
                 <div>
             <h1 style={headerStyle}><b>On The Run</b></h1>
-                    
+
                 </div>
             </div>
         )

@@ -1,10 +1,12 @@
 import os
 import sqlite3
-from flask import Flask, request, session, g, redirect, url_for, abort, \
+from flask import Flask, jsonify, request, session, g, redirect, url_for, abort, \
      render_template, flash
+from flask_cors import CORS
 
 app = Flask(__name__) # create the application instance :)
 app.config.from_object(__name__) # load config from this file , flaskr.py
+CORS(app)
 
 # Load default config and override config from an environment variable
 app.config.update(dict(
@@ -47,7 +49,26 @@ def close_db(error):
     if hasattr(g, 'sqlite_db'):
         g.sqlite_db.close()
 
+tasks = [
+    {
+        'id': 1,
+        'title': u'Buy groceries',
+        'description': u'Milk, Cheese, Pizza, Fruit, Tylenol',
+        'done': False
+    },
+    {
+        'id': 2,
+        'title': u'Learn Python',
+        'description': u'Need to find a good Python tutorial on the web',
+        'done': False
+    }
+]
+
+@app.route('/api', methods=['GET'])
+def get_tasks():
+    return jsonify({'tasks': tasks})
+
 # start the server with the 'run()' method
 if __name__ == '__main__':
-    initdb_command()
+#    initdb_command()
     app.run(host='0.0.0.0', port=5000)

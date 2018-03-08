@@ -8,6 +8,7 @@ import 'react-bootstrap';
 
 const App = () => (
   <div>
+    <Header />
     <Main />
   </div>
 )

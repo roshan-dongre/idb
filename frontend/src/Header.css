@@ -8,15 +8,9 @@ body {
   font-weight: 400;
   background-repeat: no-repeat;
   background: black;
-  margin: 0;
 
 }
 
-html {
-  overflow: hidden;
-  margin: 0;
-  height: 100%;
-}
 
 .panel > .panel-body > .img-responsive{
     border: 0px solid;

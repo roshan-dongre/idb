@@ -4,6 +4,7 @@ from flask import Flask, jsonify, request, session, g, redirect, url_for, abort,
      render_template, flash
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
+import ast
 
 app = Flask(__name__) # create the application instance :)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////mydb.db' # load config from this file , flaskr.py
@@ -29,7 +30,7 @@ class State(db.Model):
     def myjson(self):
         return self.ans
     def __repr__(self):
-        return '{\"id\": %r, \"count\": %r, \"victims\": %r, \"name\": %r, \"per_population\": %r}' % (self.id, self.count, self.victims, self.name, self.per_population)
+        return "{'id': %r, 'count': %r, 'victims': %r, 'name': %r, 'per_population': %r}" % (self.id, self.count, self.victims, self.name, self.per_population)
 
 tasks = [
     {
@@ -49,7 +50,7 @@ tasks = [
 @app.route('/api', methods=['GET'])
 def get_tasks():
     print(State.query.all())
-    return str(State.query.all())
+    return jsonify({'states': ast.literal_eval(str(State.query.all()))})
 
 @app.route('/api/states', methods=['GET'])
 def get_states():

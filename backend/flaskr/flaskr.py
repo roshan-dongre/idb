@@ -3,51 +3,33 @@ import sqlite3
 from flask import Flask, jsonify, request, session, g, redirect, url_for, abort, \
      render_template, flash
 from flask_cors import CORS
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__) # create the application instance :)
-app.config.from_object(__name__) # load config from this file , flaskr.py
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////mydb.db' # load config from this file , flaskr.py
 CORS(app)
+db = SQLAlchemy(app)
 
-# Load default config and override config from an environment variable
-app.config.update(dict(
-    DATABASE=os.path.join(app.root_path, 'flaskr.db'),
-    SECRET_KEY='development key',
-    USERNAME='admin',
-    PASSWORD='default'
-))
-app.config.from_envvar('FLASKR_SETTINGS', silent=True)
+class State(db.Model):
+    id = db.Column(db.Integer,primary_key=True,unique=True)
+    count = db.Column(db.Integer)
+    victims = db.Column(db.Integer)
+    name = db.Column(db.String(80), nullable=False)
+    per_population = db.Column(db.Float)
+    ans = [
+        {
+            'id': id,
+            'count': count,
+            'victims': victims,
+            'name': name,
+            'per_population': per_population
+        }
+    ]
 
-def connect_db():
-    """Connects to the specific database."""
-    rv = sqlite3.connect(app.config['DATABASE'])
-    rv.row_factory = sqlite3.Row
-    return rv
-
-def get_db():
-    """Opens a new database connection if there is none yet for the
-    current application context.
-    """
-    if not hasattr(g, 'sqlite_db'):
-        g.sqlite_db = connect_db()
-    return g.sqlite_db
-
-def init_db():
-    db = get_db()
-    with app.open_resource('schema.sql', mode='r') as f:
-        db.cursor().executescript(f.read())
-    db.commit()
-
-@app.cli.command('initdb')
-def initdb_command():
-    """Initializes the database."""
-    init_db()
-    print('Initialized the database.')
-
-@app.teardown_appcontext
-def close_db(error):
-    """Closes the database again at the end of the request."""
-    if hasattr(g, 'sqlite_db'):
-        g.sqlite_db.close()
+    def myjson(self):
+        return self.ans
+    def __repr__(self):
+        return '{\"id\": %r, \"count\": %r, \"victims\": %r, \"name\": %r, \"per_population\": %r}' % (self.id, self.count, self.victims, self.name, self.per_population)
 
 tasks = [
     {
@@ -66,9 +48,22 @@ tasks = [
 
 @app.route('/api', methods=['GET'])
 def get_tasks():
+    print(State.query.all())
+    return str(State.query.all())
+
+@app.route('/api/states', methods=['GET'])
+def get_states():
     return jsonify({'tasks': tasks})
 
 # start the server with the 'run()' method
 if __name__ == '__main__':
 #    initdb_command()
+    db.reflect()
+    db.drop_all()
+    db.create_all()
+    AK = State(count=1632,victims=973,name="Burglary/Breaking and Entering",per_population=23.5)
+    db.session.add(AK)
+    db.session.commit()
+    print("Created db\n\n\n")
     app.run(host='0.0.0.0', port=5000)
+

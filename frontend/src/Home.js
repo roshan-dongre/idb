@@ -28,7 +28,7 @@ class Home extends React.Component {
       var that = this;
       if (true) {
         fetch('http://ontherun.me:5000/api').then(function (response) {
-          console.log(response.json());
+          //console.log(response.json());
           return response.json();
         });
       }

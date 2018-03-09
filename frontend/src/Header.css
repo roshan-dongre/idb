@@ -2,15 +2,13 @@
 body {
   /* background: radial-gradient(red,black); */
   height: 100%;
-  overflow: hidden;
+  
   color: #848484;
   font-style: bold;
   font-weight: 400;
   background-repeat: no-repeat;
   background: black;
-
 }
-
 
 .panel > .panel-body > .img-responsive{
     border: 0px solid;

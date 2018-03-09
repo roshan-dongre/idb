@@ -27,9 +27,18 @@ class Header extends React.Component {
 
 
             <Navbar.Collapse>
-                <Nav>
+                <Nav pullRight>
                 <LinkContainer to="/about">
                 <NavItem eventKey={1}>About</NavItem>
+                </LinkContainer>
+                <LinkContainer to="/criminals">
+                <NavItem eventKey={1}>Criminals</NavItem>
+                </LinkContainer>
+                <LinkContainer to="/states">
+                <NavItem eventKey={1}>States</NavItem>
+                </LinkContainer>
+                <LinkContainer to="/crimes">
+                <NavItem eventKey={1}>Crimes</NavItem>
                 </LinkContainer>
               </Nav>
             </Navbar.Collapse>

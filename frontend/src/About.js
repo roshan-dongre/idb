@@ -57,7 +57,7 @@ const About = () => (
 
             <div className="container" style={containerStyle}>
                 <div className="row">
-                    <div className="col-sm-4">
+                    <div className="col-sm-5">
 
                         <div className="panel-body"><img src="https://larius11.github.io/cs373-blog/assets/headshot.jpg"
                                                          className="img-circle img-responsive img-center"
@@ -95,7 +95,6 @@ const About = () => (
             <hr></hr>
             <div className="container" style={container2Style}>
                 <div className="row">
-
                     <div className="col-sm-5">
                         <div className="panel-body"><img
                             src="https://zaralouis.files.wordpress.com/2018/01/headshot1.jpg?w=2048&h=1814"

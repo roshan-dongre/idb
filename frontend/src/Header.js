@@ -20,7 +20,7 @@ class Header extends React.Component {
           <Navbar className="navbar-default" inverse collapseOnSelect>
             <Navbar.Header>
               <Navbar.Brand>
-                <a href="/">On The Run</a>
+                <a href="/home">On The Run</a>
               </Navbar.Brand>
               <Navbar.Toggle />
             </Navbar.Header>
@@ -28,8 +28,8 @@ class Header extends React.Component {
 
             <Navbar.Collapse>
                 <Nav>
-                <LinkContainer to="/home">
-                <NavItem eventKey={1}>Home</NavItem>
+                <LinkContainer to="/about">
+                <NavItem eventKey={1}>About</NavItem>
                 </LinkContainer>
               </Nav>
             </Navbar.Collapse>

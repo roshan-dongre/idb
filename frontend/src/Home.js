@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {Carousel, Container, Slide} from 'react-bootstrap'
 import $ from 'jquery'
+import './Home.css'
 
 var imageStyles = {
     height: "637.5px",
@@ -20,12 +21,12 @@ class Home extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { person: []};
+    //this.state = { person: []};
   }
 
 
-  fetchFirst() {
-      var that = this;
+  /*fetchFirst() {
+    var that = this;
       if (true) {
         fetch('http://ontherun.me:5000/api').then(function (response) {
           //console.log(response.json());
@@ -36,37 +37,36 @@ class Home extends React.Component {
 
     componentWillMount() {
         this.fetchFirst();
-    }
+    } */
 
     render() {
         return (
-            <div>
-                <Carousel controls={false}>
+            <div className="admin-bg">
+                <Carousel interval= {2000}>
                     <Carousel.Item>
-                      <Carousel.Caption>
                         <img className="center-block" alt="900x500"
-                             src="http://prospect.rsc.org/blogs/cw/wp-content/uploads/2009/11/crimescene-tape-4559193-ji.jpg"
+                             src="http://getwallpapers.com/wallpaper/full/5/c/9/89804.jpg"
                              style={imageStyles}/>
-                      </Carousel.Caption>
+                        <Carousel.Caption>
+                            <h3>A Life of Crime</h3>
+                            <p>The FBI's Most Wanted Criminals</p>
+                        </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item animateIn>
-                      <Carousel.Caption>
                         <img className="center-block" alt="900x500"
-                             src="http://projects.aljazeera.com/2014/chicago-homicides/images/chicago_homicide_01_crime_scene3.jpg"
+                             src="https://cdn01.theintercept.com/wp-uploads/sites/1/2017/12/fbi-peter-maass-reality-winner-2-1513811184-article-header.jpg"
                              style={imageStyles}/>
-                        <h3> {this.state.person} </h3>
-                      </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item>
                         <img className="center-block" alt="900x500"
-                             src="https://static01.nyt.com/images/2016/04/11/us/11crimebill-02/11crimebill-02-master675.jpg"
+                             src="https://theintercept.imgix.net/wp-uploads/sites/1/2017/12/fbi-interrogation-1513811579.jpg?auto=compress%2Cformat&q=90&w=1024&h=683"
                              style={imageStyles}/>
                     </Carousel.Item>
                 </Carousel>
 
                 <div>
-            <h1 style={headerStyle}><b>On The Run</b></h1>
-
+            <h1 style={headerStyle}><b>MARVELUS</b></h1>
+                    
                 </div>
             </div>
         )

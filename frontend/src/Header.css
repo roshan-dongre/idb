@@ -2,12 +2,12 @@
 body {
   /* background: radial-gradient(red,black); */
   height: 100%;
-  
-  color: #848484;
+  color: #0f0f0f;
   font-style: bold;
   font-weight: 400;
   background-repeat: no-repeat;
   background: black;
+  /* margin-bottom: 60px; */
 }
 
 .panel > .panel-body > .img-responsive{

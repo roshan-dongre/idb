@@ -21,23 +21,7 @@ class Home extends React.Component {
 
   constructor(props) {
     super(props);
-    //this.state = { person: []};
   }
-
-
-  /*fetchFirst() {
-    var that = this;
-      if (true) {
-        fetch('http://ontherun.me:5000/api').then(function (response) {
-          //console.log(response.json());
-          return response.json();
-        });
-      }
-    }
-
-    componentWillMount() {
-        this.fetchFirst();
-    } */
 
     render() {
         return (
@@ -63,11 +47,6 @@ class Home extends React.Component {
                              style={imageStyles}/>
                     </Carousel.Item>
                 </Carousel>
-
-                <div>
-            <h1 style={headerStyle}><b>MARVELUS</b></h1>
-                    
-                </div>
             </div>
         )
     }

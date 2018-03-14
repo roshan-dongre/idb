@@ -80,3 +80,8 @@ body {
 .popover > .arrow{
     color: black;
 }
+
+.navbar-default {
+background-image: none;
+background-color: #070605;
+}

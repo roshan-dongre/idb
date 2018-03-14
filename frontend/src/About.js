@@ -56,21 +56,40 @@ callAPI = () => {
                 console.log(error)
             });
 
-        /*let url_issues = "https://api.github.com/repos/roshan-dongre/idb/issues"
+        let url_issues = "https://api.github.com/repos/roshan-dongre/idb/issues?&state=all"
         axios.get(url_issues)
             .then((res) => {
-                // Set state with result
-                self.setState({ krishnaCommits: res.data[0].total,
-                                ramonCommits: res.data[1].total,
-                                ricardoCommits: res.data[2].total,
-                                zaraCommits: res.data[3].total,
-                                roshanCommits: res.data[4].total,
-                                totalCommits: res.data[0].total + res.data[1].total +res.data[2].total +res.data[3].total +res.data[4].total
+                var krishna = 0
+                var ramon = 0
+                var ricardo = 0
+                var zara = 0
+                var roshan = 0
+
+                for (var i = 0; i<res.data.length; i++) {
+                    if (res.data[i].user.login == "zaralouis")
+                        zara += 1
+                    if (res.data[i].user.login == "larius11")
+                        ricardo += 1
+                    if (res.data[i].user.login == "roshan-dongre")
+                        roshan += 1
+                    if (res.data[i].user.login == "rp27537")
+                        ramon += 1
+                    if (res.data[i].user.login == "ramdeepk2")
+                        krishna += 1               
+                }
+
+                self.setState({ krishnaIssues: krishna,
+                                ramonIssues: ramon,
+                                ricardoIssues: ricardo,
+                                zaraIssues: zara,
+                                roshanIssues: roshan,
+                                totalIssues: krishna + ramon + ricardo + zara + roshan
                 });
+                
             })
             .catch((error) => {
                 console.log(error)
-            }); */
+            });
 }
 
 
@@ -106,7 +125,7 @@ render () {
                                 <p>Bio: 4th year CS student currently working full-time at H-E-B. I love to play music, watch netflix, and play videogames when I'm not too busy doing work.</p>
                                 <p>Responsibilities: Create a project board, Set up Git book for API documentation, Add a new column for each group member, Add issues to our project.</p>
                                 <p>Number of commits: {this.state.ricardoCommits}</p>
-                                <p>Number of issues: TBA</p>
+                                <p>Number of issues: {this.state.ricardoIssues}</p>
                                 <p>Number of unit tests: 0</p>
                             </div>
                         </div>
@@ -118,7 +137,7 @@ render () {
                                 <p>Bio: Senior pursuing a double major in Computer Science and Finance. Interested in trading and sports analytics. I enjoy playing tennis, working out, and playing poker.</p>
                                 <p>Responsibilities: Wrote technical report, AWS/Namecheap, Front-end model pages, About page, part of Flask integration</p>
                                 <p>Number of commits: {this.state.roshanCommits}</p>
-                                <p>Number of issues: TBA</p>
+                                <p>Number of issues: {this.state.roshanIssues}</p>
                                 <p>Number of unit tests: 0</p>
                             </div>
                         </div>
@@ -130,7 +149,7 @@ render () {
                                 <p>Bio: I am a third year CS student from Plano, Texas. I enjoy working out and reading in my spare time.</p>
                                 <p>Responsibilities: Focused on designing the front end for the website, including the grid pages and 9 models.</p>
                                 <p>Number of commits: {this.state.zaraCommits}</p>
-                                <p>Number of issues: TBA</p>
+                                <p>Number of issues: {this.state.zaraIssues}</p>
                                 <p>Number of unit tests: 0</p>
                             </div>
                         </div>
@@ -144,7 +163,7 @@ render () {
                                 <p>Bio: CS student hailing from New Braunfels, Texas. This is my third year as part of UTCS, and I'm in the Software Engineering and Artificial Intelligence classes this semester. I enjoy video games, running, and playing with my cats.</p>
                                 <p>Responsibilities: Data Management: scraping, aggregating, and data modelling.</p>
                                 <p>Number of commits: {this.state.ramonCommits}</p>
-                                <p>Number of issues: TBA</p>
+                                <p>Number of issues: {this.state.ramonIssues}</p>
                                 <p>Number of unit tests: 0</p>
                             </div>
                         </div>
@@ -156,7 +175,7 @@ render () {
                                 <p>Bio: CS senior taking Computer Vision, Programming for Performance, Software Engineering, and Randomized Algorithms. I like to work out, hike, and read in my free time (which I don't get too much of).</p>
                                 <p>Responsibilities: API Report</p>
                                 <p>Number of commits: {this.state.krishnaCommits}</p>
-                                <p>Number of issues: TBA</p>
+                                <p>Number of issues: {this.state.krishnaIssues}</p>
                                 <p>Number of unit tests: 0</p>
                             </div>
                         </div>
@@ -168,7 +187,7 @@ render () {
                                         <h1><u>Stats</u></h1>
                                         <ul>
                                             <li className="text-left"><h4><strong>total no. of commits: {this.state.totalCommits}</strong></h4></li>
-                                            <li className="text-left"><h4><strong>total no. of issues:</strong> TBA</h4></li>
+                                            <li className="text-left"><h4><strong>total no. of issues:</strong> {this.state.totalIssues}</h4></li>
                                             <li className="text-left"><h4><strong>total no. of unit tests:</strong> 0</h4></li>
                                         </ul>
                                     </div>

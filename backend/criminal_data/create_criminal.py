@@ -4,7 +4,7 @@ import json
 import errno
 import sys
 
-columns = ["title", "field_offices", "dates_of_birth_used", "sex", "height_min", "weight_min", "hair", "eyes", "nationality", "race_raw", "caution", "description"]
+columns = ["title", "field_offices", "dates_of_birth_used", "sex", "height_min", "weight_min", "hair", "eyes", "nationality", "race_raw", "images", "caution", "description"]
 
 def writenull(data, id):
     filename = "null_columns/" + str(id)

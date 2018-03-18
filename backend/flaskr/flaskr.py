@@ -32,8 +32,9 @@ poplist = {"AL": 4863300, "AK": 741894, "AZ": 6931071, "AR": 2988248, "CA": 3925
 class State(db.Model):
     id = db.Column(db.Integer,primary_key=True,unique=True)
     population = db.Column(db.Integer)
+    abbreviation = db.Column(db.String(10), nullable=False)
     def __repr__(self):
-        return "{'id': %r, 'population': %r}" % (self.id, self.population)
+        return "{'abbreviation': %r, 'population': %r}" % (self.abbreviation, self.population)
 
 class Criminal(db.Model):
     id = db.Column(db.Integer,primary_key=True,unique=True)
@@ -91,7 +92,7 @@ def get_crimes():
 # /api/crimes/criminals
 # /api/crimes/criminals/<crime_id>
 
-#404 handling for api
+#404 handling for api 
 @app.errorhandler(404)
 def pageNotFound(error):
     return "Display html with API functionality"
@@ -138,16 +139,19 @@ if __name__ == '__main__':
     with open('../crime_data/crime_ids.txt') as fp:
         line = fp.readline()
         while line:
-            line = line.split(":")
-            NewCrime = Crime(name=line[1]) 
+            strLine = str(line).split(":")
+            NewCrime = Crime(name=strLine[1]) 
             db.session.add(NewCrime)
+            line = fp.readline()
 
     with open('../crime_data/population.txt') as fp:
         line = fp.readline()
         while line:
-            line = line.split(" ")
-            NewState = State(population=line[1])
+            strLine = str(line).split(" ")
+            NewState = State(population=strLine[1],
+                            abbreviation=strLine[0])
             db.session.add(NewState)
+            line = fp.readline()
 
     db.session.commit()
     print("Created db\n\n\n")

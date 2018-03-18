@@ -67,10 +67,6 @@ class Criminal(db.Model):
 class Crime(db.Model):
     id = db.Column(db.Integer,primary_key=True,unique=True)
     name = db.Column(db.String(80), nullable=False)
-    count = db.Column(db.String(80), nullable=False)
-    offenders = db.Column(db.String(80), nullable=False)
-    victims = db.Column(db.String(80), nullable=False)
-    per_population = db.Column(db.Float, nullable=False)
 
     def __repr__(self):
         return "{'id': %r, 'name': %r, 'count': %r, 'offenders': %r, 'victims': %r, 'per_population': %r}" % (self.id, self.name, self.count, self.offenders, self.victims, self.per_population)
@@ -99,45 +95,19 @@ def get_crimes():
 # /api/states/crimes/<abr>
 # /api/states/criminals
 # /api/states/criminals/<abr>
-# /api/criminals/
+# /api/criminals/                       //done
 # /api/criminals/info
 # /api/criminals/<id>
-# /api/crimes/
+# /api/crimes/                          //working...
 # /api/crimes/info
 # /api/crimes/criminals
 # /api/crimes/criminals/<crime_id>
 
+#404 handling for api
+@app.errorhandler(404)
+def pageNotFound(error):
+    return "Display html with API functionality"
 
-"""
-States:
-
-    "total": XX
-    "states":
-        "XX":
-            "crime_name":
-            "count":
-            "victims":
-            "population":
-            "per_population":
-        ...
-
-Criminals:
-
-    "total": XX
-    "criminals":
-        "id":
-            "name":
-            "field office":
-            "description":
-            "crime"
-
-Crimes:
-
-    
-
-"""
-
-#if unhandled route
 
 # start the server with the 'run()' method
 if __name__ == '__main__':
@@ -185,12 +155,13 @@ if __name__ == '__main__':
                               crime=NewCrime)
         db.session.add(NewCriminal)
 
+    with open('../crime_data/crime_ids.txt') as fp:
+        line = fp.readline()
+        while line:
+            line = line.split(":")
+            NewCrime = Crime(name=line[1]) 
+            db.session.add(NewCrime)
+
     db.session.commit()
     print("Created db\n\n\n")
     app.run(host='0.0.0.0', port=5000)
-
-    # name = db.Column(db.String(80), nullable=False)
-    # count = db.Column(db.String(80), nullable=False)
-    # offenders = db.Column(db.String(80), nullable=False)
-    # victims = db.Column(db.String(80), nullable=False)
-    # per_population = db.Column(db.Float, nullable=False)

@@ -11,13 +11,14 @@ RUN apt-get install -y python-setuptools python-dev build-essential python-pip
 RUN easy_install pip
 
 #Install pip requirements
-RUN pip install --upgrade pip && \
-    pip --version             && \
-    pip install coverage      && \
-    pip install numpy         && \
-    pip install pylint        && \
-    pip install flask         && \
-    pip install flask_cors    && \
+RUN pip install --upgrade pip    && \
+    pip --version                && \
+    pip install coverage         && \
+    pip install numpy            && \
+    pip install pylint           && \
+    pip install flask            && \
+    pip install flask_cors       && \
+    pip install flask_sqlalchemy && \
     pip install Flask-Restless
 
 COPY . /src

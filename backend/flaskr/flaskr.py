@@ -5,6 +5,7 @@ from flask import Flask, jsonify, request, session, g, redirect, url_for, abort,
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 import ast
+import json
 
 app = Flask(__name__) # create the application instance :)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////mydb.db' # load config from this file , flaskr.py
@@ -73,21 +74,6 @@ class Crime(db.Model):
 
     def __repr__(self):
         return "{'id': %r, 'name': %r, 'count': %r, 'offenders': %r, 'victims': %r, 'per_population': %r}" % (self.id, self.name, self.count, self.offenders, self.victims, self.per_population)
- 
-tasks = [
-    {
-        'id': 1,
-        'title': u'Buy groceries',
-        'description': u'Milk, Cheese, Pizza, Fruit, Tylenol',
-        'done': False
-    },
-    {
-        'id': 2,
-        'title': u'Learn Python',
-        'description': u'Need to find a good Python tutorial on the web',
-        'done': False
-    }
-]
 
 @app.route('/api', methods=['GET'])
 def get_tasks():
@@ -104,7 +90,7 @@ def get_criminals():
 
 @app.route('/api/crimes', methods=['GET'])
 def get_crimes():
-    return jsonify({'crimes': ast.literal_eval(str(Crime.query.all()))})
+    return jsonify({'total_pages': 1},{'crimes': ast.literal_eval(str(Crime.query.all()))})
 
 # /api/states/
 # /api/states/<abr>
@@ -160,25 +146,45 @@ if __name__ == '__main__':
     db.drop_all()
     db.create_all()
     AK = State(count=1632,victims=973,name="Burglary/Breaking and Entering",per_population=23.5)
-    CB = Criminal(name="CARLOS BENITEZ",
-                  field_office="Florida",
-                  height=69,
-                  weight=180,
-                  sex="Male",
-                  hair="Black",
-                  eyes="Brown",
-                  dob="August 3rd, 1961",
-                  race="White (Hispanic)",
-                  nationality="Cuban",
-                  crime="White-Collar Crime")
     FP = Crime(name="False Pretenses",
                count=137341,
                offenders=142122,
                victims=143110,
                per_population=42.5)
     db.session.add(AK)
-    db.session.add(CB)
     db.session.add(FP)
+
+    data = json.load(open('../criminal_data/sus.txt'))
+    
+    for person in data:
+        NewName = person["title"]
+        NewFieldOffice = person["field_offices"]
+        if NewFieldOffice == None:
+            NewFieldOffice = ["None"]
+        NewHeight = person["height_min"]
+        NewWeight = person["weight_min"]
+        NewSex = person["sex"]
+        NewHair = person["hair"]
+        NewEyes = person["eyes"]
+        NewDob = person["dates_of_birth_used"]
+        if NewDob == None:
+            NewDob = ["None"]
+        NewRace = person["race_raw"]
+        NewNationality = person["nationality"]
+        NewCrime = person["caution"]
+        NewCriminal = Criminal(name=NewName,
+                              field_office=NewFieldOffice[0],
+                              height=NewHeight,
+                              weight=NewWeight,
+                              sex=NewSex,
+                              hair=NewHair,
+                              eyes=NewEyes,
+                              dob=NewDob[0],
+                              race=NewRace,
+                              nationality=NewNationality,
+                              crime=NewCrime)
+        db.session.add(NewCriminal)
+
     db.session.commit()
     print("Created db\n\n\n")
     app.run(host='0.0.0.0', port=5000)

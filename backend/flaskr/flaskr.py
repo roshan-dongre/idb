@@ -31,21 +31,9 @@ poplist = {"AL": 4863300, "AK": 741894, "AZ": 6931071, "AR": 2988248, "CA": 3925
 
 class State(db.Model):
     id = db.Column(db.Integer,primary_key=True,unique=True)
-    count = db.Column(db.Integer)
-    victims = db.Column(db.Integer)
-    name = db.Column(db.String(80), nullable=False)
-    per_population = db.Column(db.Float)
-    ans = [
-        {
-            'id': id,
-            'count': count,
-            'victims': victims,
-            'name': name,
-            'per_population': per_population
-        }
-    ]
+    population = db.Column(db.Integer)
     def __repr__(self):
-        return "{'id': %r, 'count': %r, 'victims': %r, 'name': %r, 'per_population': %r}" % (self.id, self.count, self.victims, self.name, self.per_population)
+        return "{'id': %r, 'population': %r}" % (self.id, self.population)
 
 class Criminal(db.Model):
     id = db.Column(db.Integer,primary_key=True,unique=True)
@@ -69,7 +57,7 @@ class Crime(db.Model):
     name = db.Column(db.String(80), nullable=False)
 
     def __repr__(self):
-        return "{'id': %r, 'name': %r, 'count': %r, 'offenders': %r, 'victims': %r, 'per_population': %r}" % (self.id, self.name, self.count, self.offenders, self.victims, self.per_population)
+        return "{'id': %r, 'name': %r}" % (self.id, self.name)
 
 @app.route('/api', methods=['GET'])
 def get_tasks():
@@ -88,7 +76,7 @@ def get_criminals():
 def get_crimes():
     return jsonify({'total_pages': 1},{'crimes': ast.literal_eval(str(Crime.query.all()))})
 
-# /api/states/
+# /api/states/                          //done
 # /api/states/<abr>
 # /api/states/info
 # /api/states/crimes
@@ -98,7 +86,7 @@ def get_crimes():
 # /api/criminals/                       //done
 # /api/criminals/info
 # /api/criminals/<id>
-# /api/crimes/                          //working...
+# /api/crimes/                          //done
 # /api/crimes/info
 # /api/crimes/criminals
 # /api/crimes/criminals/<crime_id>
@@ -115,14 +103,6 @@ if __name__ == '__main__':
     db.reflect()
     db.drop_all()
     db.create_all()
-    AK = State(count=1632,victims=973,name="Burglary/Breaking and Entering",per_population=23.5)
-    FP = Crime(name="False Pretenses",
-               count=137341,
-               offenders=142122,
-               victims=143110,
-               per_population=42.5)
-    db.session.add(AK)
-    db.session.add(FP)
 
     data = json.load(open('../criminal_data/sus.txt'))
     
@@ -161,6 +141,13 @@ if __name__ == '__main__':
             line = line.split(":")
             NewCrime = Crime(name=line[1]) 
             db.session.add(NewCrime)
+
+    with open('../crime_data/population.txt') as fp:
+        line = fp.readline()
+        while line:
+            line = line.split(" ")
+            NewState = State(population=line[1])
+            db.session.add(NewState)
 
     db.session.commit()
     print("Created db\n\n\n")

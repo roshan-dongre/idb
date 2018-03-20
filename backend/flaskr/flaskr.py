@@ -74,7 +74,7 @@ def get_criminals():
 
 @app.route('/crimes', methods=['GET'], subdomain="api")
 def get_crimes():
-    return jsonify('total_pages': 1,{'crimes': ast.literal_eval(str(Crime.query.all()))})
+    return jsonify({'total_pages': '1', "crimes": {ast.literal_eval(str(Crime.query.all()))}})
 
 # /api/states/                          //done
 # /api/states/<abr>

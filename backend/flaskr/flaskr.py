@@ -60,22 +60,21 @@ class Crime(db.Model):
     def __repr__(self):
         return "{'id': %r, 'name': %r}" % (self.id, self.name)
 
-@app.route('/api', methods=['GET'])
-def get_tasks():
-    print(State.query.all())
-    return jsonify({'states': ast.literal_eval(str(State.query.all()))})
+@app.route('/', methods=['GET'], subdomain="api")
+def get_info():
+    return redirect("https://roshan-dongre.gitbooks.io/api/")
 
-@app.route('/api/states', methods=['GET'])
+@app.route('/states', methods=['GET'], subdomain="api")
 def get_states():
     return jsonify({'states': ast.literal_eval(str(State.query.all()))})
 
-@app.route('/api/criminals', methods=['GET'])
+@app.route('/criminals', methods=['GET'], subdomain="api")
 def get_criminals():
     return jsonify({'criminals': ast.literal_eval(str(Criminal.query.all()))})
 
-@app.route('/api/crimes', methods=['GET'])
+@app.route('/crimes', methods=['GET'], subdomain="api")
 def get_crimes():
-    return jsonify({'total_pages': 1},{'crimes': ast.literal_eval(str(Crime.query.all()))})
+    return jsonify('total_pages': 1,{'crimes': ast.literal_eval(str(Crime.query.all()))})
 
 # /api/states/                          //done
 # /api/states/<abr>

@@ -1,217 +1,236 @@
-// import React, {PropTypes} from 'react'
-// import {Link} from 'react-router-dom'
-// import {
-//     Button,
-//     DropdownButton,
-//     Form,
-//     FormControl,
-//     FormGroup,
-//     MenuItem,
-//     OverlayTrigger,
-//     Pagination,
-//     Popover
-// } from 'react-bootstrap'
-// import Highlighter from 'react-highlight-words'
-// import './Header.css'
-// // import styles from './Criminals.css'
-// // import './ModelStyle.css'
+import React, { Component } from 'react';
+import chunk from 'lodash.chunk';
+import axios from 'axios';
 
-// var axios = require('axios');
+import ItemSelector from './ItemSelector';
+import PageSelector from './PageSelector';
 
-// var dropdownStyle = {
-//     margin: '10px',
-//     backgroundColor: '#2b2b2b',
-//     borderColor: '#2b2b2b',
-//     color: 'white',
-// }
 
-// {/* Used to split the actor data so there is 3 per row */
-// }
+export default class States extends Component {
+    constructor (props) {
+        super (props);
+        this.state = {
+            states: [],
+            allCrimes: [],
+            allCriminals: [],
+            selectedCrime: "",
+            selectedCriminal: "",
+            page: 0,
+            numPages: 0,
+            totalCount: 0,
+            pageLimit: 16,
+            sortBy: "",
+            pathname: "/states"
+        }
+        this.apiUrl = 'http://api.ontherun.me:5000/states';
+    }
 
-// function splitarray(input, spacing) {
-//     var output = [];
-//     for (var i = 0; i < input.length; i += spacing) {
-//         output[output.length] = input.slice(i, i + spacing);
-//     }
-//     return output;
-// }
+    /* Mounting
+        These methods are called when an instance of a component is being created and inserted into the DOM:
+            * constructor()
+            * componentWillMount()
+            * render()
+            * componentDidMount()
+     */
 
-// class States extends React.Component {
-//     constructor(props) {
-//         super(props);
-//         // this.handleSelectSort = this.handleSelectSort.bind(this);
-//         // this.handleSelectDirection = this.handleSelectDirection.bind(this);
-//         // this.handleSelect = this.handleSelect.bind(this);
-//         // this.handleSelectFilter = this.handleSelectFilter.bind(this);
-//         // this.handleResetFilter = this.handleResetFilter.bind(this);
-//         // this.handleSearchChange = this.handleSearchChange.bind(this);
-//         // this.updateItems = this.updateItems.bind(this);
+    componentDidMount () {
+        this.callAPI()
+        this.getStatesCriminals()
+    }
 
-//         this.state = this.getInitialState();
-//         this.updateItems();
-//     }
+    handlePageChange = (page, e) => {
+        e.preventDefault()
+        //return <Redirect to={{pathname: this.state.pathname, state: {page: page}}} push={true} />;
+        this.setState({page: page})
+    }
 
-//     getInitialState() {
-//         return {
-//             search_string: '',
-//             actors: [],
-//             actorsGrouped: [],
-//             numPages: 1,
-//             activePage: 1,
-//             resultsPerPage: 40,
-//             orderBy: 'name',
-//             orderDirection: 'asc',
-//             q: {
-//                 'order_by': [{"field": "name", "direction": "asc"}],
-//                 'filters': [{"name": "image", "op": "is_not_null"}]
-//             }
-//         };
-//     }
+    handlePrev = (e) => {
+        e.preventDefault()
+        if (this.state.page > 0) {
+            this.setState({page: this.state.page - 1})
+        }
+    }
 
-//     //* Rerenders/updates the page to get the new data triggered by pagination, sorting, etc */
-//     updateItems() {
-//         var url = 'http://ontherun.me:5000/api ';
-//         var params = {
-//             results_per_page: this.state.resultsPerPage,
-//             page: this.state.activePage,
-//             q: JSON.stringify(this.state.q),
-//         };
-//         if (this.state.search_string.length > 0) {
-//             url = 'http://marvelus.me/api/search/actor';
-//             params['query'] = this.state.search_string;
+    handleNext = (e) => {
+        e.preventDefault()
+        if (this.state.page < this.state.numPages - 1) {
+            this.setState({page: this.state.page + 1})
+        }
+    }
 
-//         }
-//         axios.get(url, {
-//             params: params
-//         }).then(res => {
-//             this.state.numPages = res.data.total_pages;
-//             const actors = res.data.objects.map(actor => actor);
-//             const actorsGrouped = splitarray(actors, 10)
-//             this.setState({actorsGrouped});
-//         });
-//     }
+    handleCriminal = (e) => {
+        this.setState({selectedCriminal: e.target.value})
+    }
 
-//     //* When you select a page in the pagination bar */
-//     handleSelect(eventKey) {
-//         this.state.activePage = eventKey;
-//         this.updateItems();
-//     }
+    handleCrime = (e) => {
+        this.setState({selectedCrime: e.target.value})
+    }
 
-//     //* Select how to sort (what attributes) the actors */
-//     handleSelectSort(eventKey) {
-//         this.state.q.order_by[0].field = eventKey;
-//         this.updateItems()
+    sort = (order) => {
+        this.setState({sortBy: order})
+    }
 
-//     }
+    callAPI = () => {
 
-//     /* Select which way to sort the attributes (asc/desc) */
-//     handleSelectDirection(eventKey) {
-//         this.state.q.order_by[0].direction = eventKey;
-//         this.updateItems();
-//     }
+        // let limit = this.state.pageLimit
+        // let offset = this.state.page * this.state.pageLimit
+        // let limOff = "?limit="+limit+"&offset="+offset
+        
+        let url = "http://api.ontherun.me:5000/states"
 
-//     /* Select which filter to use */
-//     handleSelectFilter(eventKey) {
-//         this.state.q.filters.push({"name": "id", "op": "gt", "val": 9860});
-//         this.updateItems();
-//     }
+        if (this.state.selectedCrime !== "All" && this.state.selectedCrime !== "") {
+            url += "&crime="+this.state.selectedCrime
+        }
+        if (this.state.selectedCriminal !== "All" && this.state.selectedCriminal !== "") {
+            url += "&criminal="+this.state.selectedCriminal
+        }
+        if (this.state.sortBy !== "") {
+            url += "&sort_by="+this.state.sortBy
+        }
 
-//     /* Resets all options to the way when user first came to site */
-//     handleResetFilter() {
-//         this.state.q.filters = [{"name": "image", "op": "is_not_null"}];
-//         this.state.search_string = '';
-//         this.updateItems();
-//     }
+        let self = this
+        axios.get(url)
+            .then((res) => {
+                // Set state with result
+                self.setState({states: res.data.records, totalCount: res.data.totalCount, numPages: Math.ceil(res.data.totalCount/self.state.pageLimit)});
+            })
+            .catch((error) => {
+                console.log(error)
+            });
+    }
 
-//     /* Live change as user types into search bar */
-//     handleSearchChange(eventKey) {
-//         this.state.search_string = eventKey.target.value;
-//         this.updateItems();
-//     }
+    getStatesCriminals = () => {
+        let url = 'http://api.ontherun.me:5000/states';
+        let states = new Set([])
+        let criminals = new Set([])
 
-//     /* Displays the "sort by" dropdown */
-//     renderDropdownButtonSortby(title, i) {
-//         return (
-//             <DropdownButton style={dropdownStyle} title={title} key={"sort"} id={'dropdown-basic-${i}'}
-//                             onSelect={this.handleSelectSort}>
-//                 <MenuItem eventKey="name">Name</MenuItem>
-//                 <MenuItem eventKey="birthday">Birthday</MenuItem>
+        let self = this
+        axios.get(url)
+            .then((res) => {
+                // Set state with names of styles
+                res.data.records.forEach((state) => {
+                    crimes.add(state.crime);
+                    criminals.add(state.criminal)
+                })
+                crimes = ['All',...Array.from(crimes).sort()]
+                criminals = ['All',...Array.from(criminals).sort()]
+                self.setState({allCrimes: crimes, allCriminals: criminals});
+            })
+            .catch((error) => {
+                console.log(error)
+            });
+    }
 
-//             </DropdownButton>
-//         );
-//     }
+    /* Updating
+        An update can be caused by changes to props or state. These methods are called when a component is being re-rendered:
+            * componentWillReceiveProps()
+            * shouldComponentUpdate()
+            * componentWillUpdate()
+            * render()
+            * componentDidUpdate()
+     */
 
-//     /* Displays the "filter" dropdown */
-//     renderDropdownButtonFilter(title, i) {
-//         return (
-//             <DropdownButton style={dropdownStyle} title={title} key={"filter"} id={'dropdown-basic-${i}'}
-//                             onSelect={this.handleSelectFilter}>
-//                 <MenuItem eventKey="movies">Appears In Movie(s)</MenuItem>
-//                 <MenuItem eventKey="tvshows">Appears In TV Show(s)</MenuItem>
-//             </DropdownButton>
-//         );
-//     }
+    componentDidUpdate(prevProps, prevState) {
 
-//     /* Displays the "order" dropdown */
-//     renderDropdownButtonSortDirection(title, i) {
-//         return (
-//             <DropdownButton style={dropdownStyle} title={title} onSelect={this.handleSelectDirection}>
-//                 <MenuItem eventKey="asc">Ascending</MenuItem>
-//                 <MenuItem eventKey="desc">Descending</MenuItem>
-//             </DropdownButton>
-//         );
-//     }
+        if (prevState.selectedCrime !== this.state.selectedCrime ||
+            prevState.selectedCriminal !== this.state.selectedCriminal ||
+            prevState.sortBy !== this.state.sortBy ||
+            prevState.page !== this.state.page)
+        {
+            this.callAPI()
+        }
 
-//     /* Displays the "reset filter" button */
-//     renderResetFilterButton(title) {
-//         return (
-//             <Button style={dropdownStyle} title={title} onClick={this.handleResetFilter}>Reset Filter
-//             </Button>
-//         );
-//     }
+        if (prevState.page !== this.state.page) {
+            window.scrollTo({
+                top: 0,
+                left: 0,
+                behavior: 'smooth'
+            })
+        }
+    }
 
-//     render() {
-//         return (
-//             <div className="container" styles="margin-top:100px;">
-//                 <div className="row">
-//                     {/* Display all sorting, filtering, searching options */}
+    /* Unmounting
+        This method is called when a component is being removed from the DOM:
+            * componentWillUnmount()
+     */
 
-//                     <div className='text-center'>
-//                         <form onSubmit={e => {
-//                             e.preventDefault()
-//                         }}>
-//                             <Form inline>
-//                                 {this.renderDropdownButtonSortby("Sort By: ", "name")}
-//                                 {this.renderDropdownButtonSortDirection("Order", "")}
-//                                 {this.renderDropdownButtonFilter("Filter", "")}
-//                                 {this.renderResetFilterButton("Filter")}
-//                                 <FormGroup controlId="formBasicText">
-//                                     <FormControl
-//                                         type="text"
-//                                         placeholder="Search in Actors..."
-//                                         onChange={this.handleSearchChange}/>
-//                                 </FormGroup>
-//                             </Form>
-//                         </form>
-//                     </div>
-//                 </div>
+    /* More information about the React.Component lifecyle here: https://reactjs.org/docs/react-component.html */
+    render () {
+        let crimeMenu = []
+        let criminalMenu = []
 
-//                 <form>
-//                 </form>
+        // Create an array of X components with 1 for each crime gathered from API call
+        let crimeComponents = this.state.states.map(function(state) {
+                return (
+                    <ItemSelector item={state} navigateTo="/States"/>
+                );
+            })
 
-//                 {/* Go through and display 6 actors per page */}
-//                 {this.state.actorsGrouped.length == 0 || !this.state.actorsGrouped ? null :
-//                     this.state.actorsGrouped.map(actorList =>
-//                         !actorList ? null :
-//                             <div className="row">{actorList.map((actor, i) =>
-//                                 <div className="col-xs-12">
-//                                     <Link to={"/states/" + states.id}>
-//                                         <div className="panel">
-//                                             <div className="panel-heading">
+        if (this.state.allCriminals !== undefined) {
+            crimeMenu = this.state.allStates.map((criminal) => {
+                return (
+                    <option value={criminal}>{criminal}</option>
+                );
+            })
+        }
 
-//                                                 {/* For actor search -- highlights the word found */}
-//                                                 <Highlighter
-//                                                     highlightClassName={styles.Highlight}
+        if (this.state.allCrimes !== undefined) {
+            criminalMenu = this.state.allCriminals.map((crime) => {
+                return (
+                    <option value={crime}>{crime}</option>
+                );
+            })
+        }
+
+        return (
+            <div className="container sub-container">
+                <div className="row">
+                    <div className="col-md-3">
+                        <div className="button btn-group">
+                            <button type="button"
+                                    className={this.state.order === "asc" ? "btn btn-default active" : "btn btn-default"}
+                                    onClick={(e) => this.sort("asc", e)}><i className="fa fa-sort-alpha-asc" aria-hidden="true"/></button>
+                            <button type="button"
+                                    className={this.state.order === "desc" ? "btn btn-default active" : "btn btn-default"}
+                                    onClick={(e) => this.sort("desc", e)}><i className="fa fa-sort-alpha-desc" aria-hidden="true"/></button>
+                        </div>
+                    </div>
+                    <div className="col-md-4">
+                        <label>
+                            <strong>Criminal:  </strong>
+
+                        </label><span> </span>
+                        <select value={this.state.selectedCriminal} onChange={this.handleCriminal}>
+                                {criminalMenu}
+                            </select>
+                    </div>
+                    <div className="col-md-4">
+                        <label>
+                            <strong>Crime:  </strong>
+                        </label><span> </span>
+                        <select value={this.state.selectedCrime} onChange={this.handleState}>
+                                {crimeMenu}
+                            </select>
+                    </div>
+                </div>
+                {/* Break array into separate arrays and wrap each array containing 3 components in a row div */}
+                { chunk(crimeComponents, 4).map(function(row) {
+                    return (
+                        <div className="row">
+                            { row }
+                        </div>
+                    )
+                })}
+                <PageSelector handlePageChange={this.handlePageChange}
+                              handlePrev={this.handlePrev}
+                              handleNext={this.handleNext}
+                              numPages={this.state.numPages}
+                              currentPage={this.state.page}
+                              navigateTo="/States"/>
+            </div>
+        );
+    }
+}                      highlightClassName={styles.Highlight}
 //                                                     searchWords={this.state.search_string.split(" ")}
 //                                                     autoEscape={true}
 //                                                     textToHighlight={actor.name}

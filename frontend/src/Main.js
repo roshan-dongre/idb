@@ -3,8 +3,10 @@ import {Route, Switch, withRouter} from 'react-router-dom'
 import Home from './Home'
 import About from './About'
 import Criminals from './Criminals'
+import Criminal from './Criminal'
 import States from './States'
 import Crimes from './Crimes'
+
 
 // The Main component renders one of the three provided
 // Routes (provided that one matches). Both the /roster
@@ -17,6 +19,7 @@ const Main = () => (
       <Route exact path='/' component={Home}/>
       <Route path='/about' component={About}/>
       <Route path='/criminals' component={Criminals}/>
+      <Route path='/criminals/:criminalsID' component={Criminal}/>
       {/*<Route path='/states' component={States}/>*/}
       <Route path='/crimes' component={Crimes}/>
     </Switch>

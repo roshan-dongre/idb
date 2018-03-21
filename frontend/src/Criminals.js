@@ -1,143 +1,154 @@
-import React, {PropTypes} from 'react'
-import {Link} from 'react-router-dom'
-import 'react-grid-layout/css/styles.css' 
-import 'react-resizable/css/styles.css'
-import {
-    Button,
-    DropdownButton,
-    Form,
-    FormControl,
-    FormGroup,
-    MenuItem,
-    OverlayTrigger,
-    Pagination,
-    Popover
-} from 'react-bootstrap'
-import Highlighter from 'react-highlight-words'
-import './Header.css'
-import _ from "lodash";
-import { Responsive, WidthProvider } from "react-grid-layout";
-const ResponsiveReactGridLayout = WidthProvider(Responsive);
+// import React from 'react'
+// import { Link } from 'react-router-dom'
+// import {Button, Form, FormControl, FormGroup, DropdownButton, MenuItem, Pagination, OverlayTrigger, Popover} from 'react-bootstrap'
+// import Highlighter from 'react-highlight-words'
+// import './Header.css'
+// import styles from './Criminals.css'
+// import './ModelStyle.css'
+    
+// var axios = require('axios');
 
-class Criminals extends React.Component {
-  static defaultProps = {
-    className: "layout",
-    rowHeight: 30,
-    onLayoutChange: function() {},
-    cols: { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 },
-    initialLayout: generateLayout()
-  };
+// {/* Responsible for all styling on the page */}
+// var imageStyles = {
+//     width: '500px',
+//     height: '400px'
+// }
 
-  state = {
-    currentBreakpoint: "lg",
-    compactType: "vertical",
-    mounted: false,
-    layouts: { lg: this.props.initialLayout }
-  };
-
-  componentDidMount() {
-    this.setState({ mounted: true });
-  }
-
-  generateDOM() {
-    return _.map(this.state.layouts.lg, function(l, i) {
-      return (
-        <div key={i} className={l.static ? "static" : ""}>
-          {l.static ? (
-            <span
-              className="text"
-              title="This item is static and cannot be removed or resized."
-            >
-              Static - {i}
-            </span>
-          ) : (
-            <span className="text">{i}</span>
-          )}
-        </div>
-      );
-    });
-  }
-
-  onBreakpointChange = breakpoint => {
-    this.setState({
-      currentBreakpoint: breakpoint
-    });
-  };
-
-  onCompactTypeChange = () => {
-    const { compactType: oldCompactType } = this.state;
-    const compactType =
-      oldCompactType === "horizontal"
-        ? "vertical"
-        : oldCompactType === "vertical" ? null : "horizontal";
-    this.setState({ compactType });
-  };
-
-  onLayoutChange = (layout, layouts) => {
-    this.props.onLayoutChange(layout, layouts);
-  };
-
-  onNewLayout = () => {
-    this.setState({
-      layouts: { lg: generateLayout() }
-    });
-  };
-
-  render() {
-    return (
-      <div>
-        <div>
-          Current Breakpoint: {this.state.currentBreakpoint} ({
-            this.props.cols[this.state.currentBreakpoint]
-          }{" "}
-          columns)
-        </div>
-        <div>
-          Compaction type:{" "}
-          {_.capitalize(this.state.compactType) || "No Compaction"}
-        </div>
-        <button onClick={this.onNewLayout}>Generate New Layout</button>
-        <button onClick={this.onCompactTypeChange}>
-          Change Compaction Type
-        </button>
-        <ResponsiveReactGridLayout
-          {...this.props}
-          layouts={this.state.layouts}
-          onBreakpointChange={this.onBreakpointChange}
-          onLayoutChange={this.onLayoutChange}
-          // WidthProvider option
-          measureBeforeMount={false}
-          // I like to have it animate on mount. If you don't, delete `useCSSTransforms` (it's default `true`)
-          // and set `measureBeforeMount={true}`.
-          useCSSTransforms={this.state.mounted}
-          compactType={this.state.compactType}
-          preventCollision={!this.state.compactType}
-        >
-          {this.generateDOM()}
-        </ResponsiveReactGridLayout>
-      </div>
-    );
-  }
-}
+// var dropdownStyle = {
+//     margin: '10px',
+//     backgroundColor: '#2b2b2b',
+//     borderColor: '#2b2b2b',
+//     color: 'white',
+// }
 
 
+// {/* Used to split the criminal data so there is 3 per row */}
+// function splitarray(input, spacing) {
+//     var output = [];
 
-function generateLayout() {
-  return _.map(_.range(0, 25), function(item, i) {
-    var y = Math.ceil(Math.random() * 4) + 1;
-    return {
-      x: (_.random(0, 5) * 2) % 12,
-      y: Math.floor(i / 6) * y,
-      w: 2,
-      h: y,
-      i: i.toString(),
-      static: Math.random() < 0.05
-    };
-  });
-}
+//     for (var i = 0; i < input.length; i += spacing) {
+//         output[output.length] = input.slice(i, i + spacing);
+//     }
+//     return output;
+// }
 
-if (require.main === module) {
-  require("../test-hook.jsx")(module.exports);
-}
+// class Criminals extends React.Component {
+//     constructor(props) {
+//         super(props);
+//         // this.handleSelectSort = this.handleSelectSort.bind(this);
+//         // this.handleSelectDirection = this.handleSelectDirection.bind(this);
+//         // this.handleSelect = this.handleSelect.bind(this);
+//         // this.handleSelectFilter = this.handleSelectFilter.bind(this);
+//         // this.handleSearchChange = this.handleSearchChange.bind(this);
+//         // this.handleResetFilter = this.handleResetFilter.bind(this);
+//         // this.updateItems = this.updateItems.bind(this);
 
-export default Criminals
+//         this.state = this.getInitialState();
+//         this.updateItems();
+//     }
+
+//     getInitialState() {
+//         return {
+//             search_string: '',
+//             criminals: [],
+//             criminalsGrouped: [],
+//             numPages: 1,
+//             activePage: 1,
+//             resultsPerPage: 6,
+//             orderBy: 'name',
+//             orderDirection: 'asc',
+//             q: {
+//                 'order_by': [{"field": "name", "direction": "asc"}],
+//                 'filters': []
+//             }
+//         };
+//     }
+    
+//     //* Rerenders/updates the page to get the new data triggered by pagination, sorting, etc */
+//     updateItems() {
+//         var url = 'http://ontherun.me:5000/api/criminals';
+//         var params = {
+//             results_per_page: this.state.resultsPerPage,
+//             page: this.state.activePage,
+//             q: JSON.stringify(this.state.q),
+//         };
+//         /*
+//         if (this.state.search_string.length > 0) {
+//             url = 'http://marvelus.me/api/search/criminal';
+//             params['query'] = this.state.search_string;
+//         }*/
+//         axios.get(url, {
+//             params: params
+//         }).then(res => {
+//             this.state.numPages = res.data.total_pages;
+//             console.log(res.data.criminals);
+//             const criminals = res.data.criminals.map(criminal => criminal);
+// 	        const criminalsGrouped = splitarray(criminals, 3)
+// 	        this.setState({criminalsGrouped});
+//         });
+//     }
+
+  
+
+//     render() {
+//         return (    
+//             <div className="container" styles="margin-top:100px;">
+                                   
+//                 {/* Go through and display 6 criminals per page */}
+//                 {this.state.criminalsGrouped.length == 0 || !this.state.criminalsGrouped ? null :
+//                     this.state.criminalsGrouped.map(CriminalsList =>
+//                         !CriminalsList ? null :
+//                         <div className="row">
+//                         {CriminalsList.map((criminal, i) =>
+//                             <div className="col-sm-4">
+//                                 <Link to={"/criminals/" + criminals.id}>
+//                                     <div className="panel">
+
+//                                         <div className="panel-heading">
+//                                             <div>
+//                                                {/* For criminal search -- highlights the word found */}
+//                                                 <Highlighter
+//                                                 highlightClassName={styles.Highlight}
+//                                                 searchWords={this.state.search_string.split(" ")}
+//                                                 autoEscape={true}
+//                                                 textToHighlight={criminal.name}
+//                                                 /> 
+//                                             </div>
+//                                          </div>
+
+                                             
+
+//                                     </div>
+                                   
+//                                 </Link>
+//                             </div>
+//                         )}
+//                         </div>)
+
+//                 }
+
+            
+//             {/* Display the pagination bar */}
+//             <div className='text-center'>
+//                 {!this.state.numPages
+//                     ? null
+//                     : <Pagination
+//                         bsSize='large'
+//                         prev
+//                         next
+//                         first
+//                         last
+//                         ellipsis
+//                         boundaryLinks
+//                         items={this.state.numPages}
+//                         maxButtons={10}
+//                         activePage={this.state.activePage}
+//                         onSelect={this.handleSelect}/>
+//                 }
+//             </div>
+//           </div>
+//         );
+//     }
+// }
+
+// export default Criminals

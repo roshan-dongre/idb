@@ -1,154 +1,131 @@
-// import React from 'react'
-// import { Link } from 'react-router-dom'
-// import {Button, Form, FormControl, FormGroup, DropdownButton, MenuItem, Pagination, OverlayTrigger, Popover} from 'react-bootstrap'
-// import Highlighter from 'react-highlight-words'
-// import './Header.css'
-// import styles from './Criminals.css'
-// import './ModelStyle.css'
-    
-// var axios = require('axios');
+import React, { Component } from 'react';
+import chunk from 'lodash.chunk';
+import axios from 'axios';
+import ItemSelector from './ItemSelector';
+import PageSelector from './PageSelector';
 
-// {/* Responsible for all styling on the page */}
-// var imageStyles = {
-//     width: '500px',
-//     height: '400px'
-// }
+export default class Criminals extends Component {
+    constructor (props) {
+        super (props);
+        this.state = {
+            criminals: [],
+            page: 0,
+            numPages: 0,
+            totalCount: 0,
+            pgSize: 16,
+            pathname: "/Criminals"
+        }
+        this.apiUrl = 'http://api.ontherun.me:5000';
+    }
 
-// var dropdownStyle = {
-//     margin: '10px',
-//     backgroundColor: '#2b2b2b',
-//     borderColor: '#2b2b2b',
-//     color: 'white',
-// }
+    /* Mounting
+        These methods are called when an instance of a component is being created and inserted into the DOM:
+            * constructor()
+            * componentWillMount()
+            * render()
+            * componentDidMount()
+     */
+
+    componentDidMount () {
+        this.callAPI()
+    }
+
+    handlePageChange = (page, e) => {
+        e.preventDefault()
+        this.setState({page: page})
+    }
+
+    handlePrev = (e) => {
+        e.preventDefault()
+        if (this.state.page > 0) {
+            this.setState({page: this.state.page - 1})
+        }
+    }
+
+    handleNext = (e) => {
+        e.preventDefault()
+        if (this.state.page < this.state.numPages - 1) {
+            this.setState({page: this.state.page + 1})
+        }
+    }
+
+    callAPI = () => {
+
+        let limit = this.state.pgSize
+        let offset = this.state.page * this.state.pgSize
+        let limOff = "?limit="+limit+"&offset="+offset
+        let url = "http://api.ontherun.me:5000"+limOff
+
+        let self = this
+        axios.get(url)
+            .then((res) => {
+                // Set state with result
+                self.setState({criminals: res.data.records, totalCount: res.data.totalCount, numPages: Math.ceil(res.data.totalCount/self.state.pgSize)});
+            })
+            .catch((error) => {
+                console.log(error)
+            });
+    }
+
+    /* Updating
+        An update can be caused by changes to props or state. These methods are called when a component is being re-rendered:
+            * componentWillReceiveProps()
+            * shouldComponentUpdate()
+            * componentWillUpdate()
+            * render()
+            * componentDidUpdate()
+     */
+
+    componentDidUpdate(prevProps, prevState) {
+
+        if (prevState.page !== this.state.page) {
+            this.callAPI()
+            window.scrollTo({
+                top: 0,
+                left: 0,
+                behavior: 'smooth'
+            })
+        }
+    }
 
 
-// {/* Used to split the criminal data so there is 3 per row */}
-// function splitarray(input, spacing) {
-//     var output = [];
+    /* Unmounting
+        This method is called when a component is being removed from the DOM:
+            * componentWillUnmount()
+     */
 
-//     for (var i = 0; i < input.length; i += spacing) {
-//         output[output.length] = input.slice(i, i + spacing);
-//     }
-//     return output;
-// }
+    /* More information about the React.Component lifecycle here: https://reactjs.org/docs/react-component.html */
 
-// class Criminals extends React.Component {
-//     constructor(props) {
-//         super(props);
-//         // this.handleSelectSort = this.handleSelectSort.bind(this);
-//         // this.handleSelectDirection = this.handleSelectDirection.bind(this);
-//         // this.handleSelect = this.handleSelect.bind(this);
-//         // this.handleSelectFilter = this.handleSelectFilter.bind(this);
-//         // this.handleSearchChange = this.handleSearchChange.bind(this);
-//         // this.handleResetFilter = this.handleResetFilter.bind(this);
-//         // this.updateItems = this.updateItems.bind(this);
+    render() {
 
-//         this.state = this.getInitialState();
-//         this.updateItems();
-//     }
+        let criminalComponents = []
+        let styleMenu = []
+        if (this.state.criminals !== undefined) {
+            // Create an array of X components with 1 for each beer gathered from API call
+            criminalComponents = this.state.criminals.map((criminal) => {
+                return (
+                    <ItemSelector item={criminal} navigateTo="/Criminal"/>
+                );
+            })
+        }
 
-//     getInitialState() {
-//         return {
-//             search_string: '',
-//             criminals: [],
-//             criminalsGrouped: [],
-//             numPages: 1,
-//             activePage: 1,
-//             resultsPerPage: 6,
-//             orderBy: 'name',
-//             orderDirection: 'asc',
-//             q: {
-//                 'order_by': [{"field": "name", "direction": "asc"}],
-//                 'filters': []
-//             }
-//         };
-//     }
-    
-//     //* Rerenders/updates the page to get the new data triggered by pagination, sorting, etc */
-//     updateItems() {
-//         var url = 'http://ontherun.me:5000/api/criminals';
-//         var params = {
-//             results_per_page: this.state.resultsPerPage,
-//             page: this.state.activePage,
-//             q: JSON.stringify(this.state.q),
-//         };
-//         /*
-//         if (this.state.search_string.length > 0) {
-//             url = 'http://marvelus.me/api/search/criminal';
-//             params['query'] = this.state.search_string;
-//         }*/
-//         axios.get(url, {
-//             params: params
-//         }).then(res => {
-//             this.state.numPages = res.data.total_pages;
-//             console.log(res.data.criminals);
-//             const criminals = res.data.criminals.map(criminal => criminal);
-// 	        const criminalsGrouped = splitarray(criminals, 3)
-// 	        this.setState({criminalsGrouped});
-//         });
-//     }
-
-  
-
-//     render() {
-//         return (    
-//             <div className="container" styles="margin-top:100px;">
-                                   
-//                 {/* Go through and display 6 criminals per page */}
-//                 {this.state.criminalsGrouped.length == 0 || !this.state.criminalsGrouped ? null :
-//                     this.state.criminalsGrouped.map(CriminalsList =>
-//                         !CriminalsList ? null :
-//                         <div className="row">
-//                         {CriminalsList.map((criminal, i) =>
-//                             <div className="col-sm-4">
-//                                 <Link to={"/criminals/" + criminals.id}>
-//                                     <div className="panel">
-
-//                                         <div className="panel-heading">
-//                                             <div>
-//                                                {/* For criminal search -- highlights the word found */}
-//                                                 <Highlighter
-//                                                 highlightClassName={styles.Highlight}
-//                                                 searchWords={this.state.search_string.split(" ")}
-//                                                 autoEscape={true}
-//                                                 textToHighlight={criminal.name}
-//                                                 /> 
-//                                             </div>
-//                                          </div>
-
-                                             
-
-//                                     </div>
-                                   
-//                                 </Link>
-//                             </div>
-//                         )}
-//                         </div>)
-
-//                 }
-
-            
-//             {/* Display the pagination bar */}
-//             <div className='text-center'>
-//                 {!this.state.numPages
-//                     ? null
-//                     : <Pagination
-//                         bsSize='large'
-//                         prev
-//                         next
-//                         first
-//                         last
-//                         ellipsis
-//                         boundaryLinks
-//                         items={this.state.numPages}
-//                         maxButtons={10}
-//                         activePage={this.state.activePage}
-//                         onSelect={this.handleSelect}/>
-//                 }
-//             </div>
-//           </div>
-//         );
-//     }
-// }
-
-// export default Criminals
+        return (
+            <div className="container sub-container">
+                {/* Break array into separate arrays and wrap each array containing 3 components in a row div */}
+                { chunk(criminalComponents, 4).map((row) => {
+                    return (
+                        <div className="row">
+                            { row }
+                        </div>
+                    )
+                })}
+                <PageSelector handlePageChange={this.handlePageChange}
+                              handlePrev={this.handlePrev}
+                              handleNext={this.handleNext}
+                              numPages={this.state.numPages}
+                              currentPage={this.state.page}
+                              navigateTo="/Criminals"/>
+            </div>
+      );
+    }
+}

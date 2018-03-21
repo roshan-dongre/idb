@@ -101,7 +101,7 @@ export default class States extends Component {
 
     getStatesCriminals = () => {
         let url = 'http://api.ontherun.me:5000/states';
-        let states = new Set([])
+        let crimes = new Set([])
         let criminals = new Set([])
 
         let self = this
@@ -167,7 +167,7 @@ export default class States extends Component {
             })
 
         if (this.state.allCriminals !== undefined) {
-            crimeMenu = this.state.allStates.map((criminal) => {
+            crimeMenu = this.state.allCrimes.map((criminal) => {
                 return (
                     <option value={criminal}>{criminal}</option>
                 );

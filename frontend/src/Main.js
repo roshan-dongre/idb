@@ -6,6 +6,7 @@ import Criminals from './Criminals'
 import Criminal from './Criminal'
 import States from './States'
 import Crimes from './Crimes'
+import Crime from './Crime'
 
 
 // The Main component renders one of the three provided
@@ -18,10 +19,11 @@ const Main = () => (
     <Switch>
       <Route exact path='/' component={Home}/>
       <Route path='/about' component={About}/>
-      <Route path='/criminals' component={Criminals}/>
+      {/*<Route path='/criminals' component={Criminals}/>*/}
       <Route path='/criminals/:criminalsID' component={Criminal}/>
       {/*<Route path='/states' component={States}/>*/}
       <Route path='/crimes' component={Crimes}/>
+      <Route path='/crimes/:crimesID' component={Crime}/>
     </Switch>
   </main>
 )

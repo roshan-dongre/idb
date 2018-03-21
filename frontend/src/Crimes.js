@@ -162,7 +162,7 @@ export default class Crimes extends Component {
         // Create an array of X components with 1 for each crime gathered from API call
         let crimeComponents = this.state.crimes.map(function(crime) {
                 return (
-                    <ItemSelector item={crime} navigateTo="/crimes"/>
+                    <ItemSelector item={crime} navigateTo="/Crimes"/>
                 );
             })
 
@@ -226,7 +226,7 @@ export default class Crimes extends Component {
                               handleNext={this.handleNext}
                               numPages={this.state.numPages}
                               currentPage={this.state.page}
-                              navigateTo="/crimes"/>
+                              navigateTo="/Crimes"/>
             </div>
         );
     }

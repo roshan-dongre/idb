@@ -39,7 +39,8 @@ export default class State extends Component {
             center: {
                 lat: 0,
                 lng: 0
-            }
+            },
+            crimes: []
         }
         this.apiUrl = 'http://api.ontherun.me:5000/states';
         console.log(this.state.item.name)
@@ -55,9 +56,9 @@ export default class State extends Component {
      */
 
     componentDidMount () {
-        this.callAPI()
+        //this.callAPI()
         this.getCoor()
-        //this.getReviews()
+        this.getCrimes()
     }
 
     /* Updating
@@ -72,7 +73,7 @@ export default class State extends Component {
     componentDidUpdate(prevProps, prevState) {
         if (prevState.item.name !== this.state.item.name)
         {
-            this.getReviews()
+            this.getStates()
         }
     }
 
@@ -81,20 +82,22 @@ export default class State extends Component {
      * componentWillUnmount()
      */
 
-    getReviews = () => {
-        let url = "http://api.ontherun.me:5000/states/" + this.state.item.id // need to fix this
+    getCrimes = () => {
+        let url = "http://api.ontherun.me:5000/crimestostate/" + this.state.item.abbreviation // need to fix this
         let self = this
         axios.get(url)
             .then((res) => {
                 // Set state with result
-                self.setState({reviews: res.data.records, totalCount: res.data.totalCount});
+                self.setState({crimes: res.data});
             })
             .catch((error) => {
                 console.log(error)
             });
     }
 
-    callAPI = () => {
+
+
+    /*callAPI = () => {
         let url
         if (this.props.location.state.selectedId !== undefined) {
             url = "http://ontherun.me:5000/api/states/"+this.props.location.state.id
@@ -111,15 +114,15 @@ export default class State extends Component {
             .catch((error) => {
                 console.log(error)
             });
-    }
+    }*/
 
-    handleCrimeNavigation = (reviewId, e) => {
+    handleCrimeNavigation = (crimeId, e) => {
         e.preventDefault()
         this.setState({
             navigate: true,
             navigateTo: "/Crime",
-            //selectedId: reviewId,
-            //selectedReview: reviewId
+            selectedId: crimeId,
+            selectedCrime: crimeId
         })
     }
 
@@ -158,21 +161,17 @@ export default class State extends Component {
             return <Redirect to={{pathname: this.state.navigateTo, state: {selectedId: this.state.selectedId}}} push={true} />;
         }
 
-        let beerReviews
-        if (this.state.totalCount > 0) {
-            let self = this
-             beerReviews = this.state.reviews.map((review) => {
-                 review.image = self.state.item.image
-                return (
-                    <tr className="clickable-row" onClick={(e) => self.handleReviewNavigation(review.id, e)}>
-                        <td><strong>{review.rating}</strong></td>
-                        <td>{truncate(review.comment)}</td>
-                    </tr>
-                );
-            })
-        } else {
-            beerReviews = "No news is currently available for this person"
-        }
+        let crimeList
+
+        console.log(this.state.crimes)
+        let self = this
+         crimeList = this.state.crimes.map((crime) => {
+            return (
+                <tr className="clickable-row" onClick={(e) => self.handleCrimeNavigation(crime.crime_id, e)}>
+                    <td><strong>{crime.crime_id}</strong></td>
+                </tr>
+            );
+        })
 
         return (
             <div className="container sub-container">
@@ -228,7 +227,7 @@ export default class State extends Component {
                             </tr>
                             </thead>
                             <tbody>
-                            {beerReviews}
+                            {crimeList}
                             </tbody>
                         </table>
                     </div>

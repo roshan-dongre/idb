@@ -48,9 +48,10 @@ class Crime(db.Model):
     id = db.Column(db.Integer,primary_key=True,unique=True)
     name = db.Column(db.String(80), nullable=False)
     image = db.Column(db.String(600))
+    description = db.Column(db.String(600))
 
     def __repr__(self):
-        return "{'image': %r, 'id': %r, 'name': %r}" % (self.image, self.id, self.name)
+        return "{'image': %r, 'id': %r, 'name': %r, 'description': %r}" % (self.image, self.id, self.name, self.description)
 
 @app.route('/states', methods=['GET'], subdomain="api")
 def get_states():
@@ -62,6 +63,13 @@ def get_states():
         offset = 0
     offset = int(offset)*int(limit)
     return jsonify({'totalCount': db.session.query(State).count(), 'states': ast.literal_eval(str(State.query.filter(State.id>offset).limit(limit).all()))})
+
+@app.route('/states/<string:state_name>', methods=['GET'], subdomain="api")
+def get_state(state_name):
+    if len(state_name) == 2:
+        return jsonify(ast.literal_eval(str(State.query.filter_by(abbreviation=state_name).first())))
+    else:    
+        return jsonify(ast.literal_eval(str(Crime.query.filter_by(name=state_name).first())))
 
 @app.route('/criminals', methods=['GET'], subdomain="api")
 def get_criminals():
@@ -89,16 +97,20 @@ def get_crimes():
     offset = int(offset)*int(limit)
     return jsonify({'totalCount': db.session.query(Crime).count(), 'crimes': ast.literal_eval(str(Crime.query.filter(Crime.id>offset).limit(limit).all()))})
 
+@app.route('/crimes/<int:crim_id>', methods=['GET'], subdomain="api")
+def get_crime(crim_id):
+    return jsonify(ast.literal_eval(str(Crime.query.filter_by(id=crim_id).first())))
+
 # /api/states/                          //done
 # /api/states/<abr>
 # /api/states/info
-# /api/states/crimes
-# /api/states/crimes/<abr>
-# /api/states/criminals
-# /api/states/criminals/<abr>
+# /api/states/crimes                    
+# /api/states/crimes/<id>               
+# /api/states/criminals                 
+# /api/states/criminals/<id>            
 # /api/criminals/                       //done
 # /api/criminals/info
-# /api/criminals/<id>
+# /api/criminals/<id>                   //done
 # /api/crimes/                          //done
 # /api/crimes/info
 # /api/crimes/criminals
@@ -158,7 +170,8 @@ if __name__ == '__main__':
             NewImage = "https://raw.githubusercontent.com/roshan-dongre/idb/master/crimephotos/"+str(i)+".jpg"
             i += 1
             NewCrime = Crime(name=strLine[1],
-                            image=NewImage)
+                            image=NewImage,
+                            description=strLine[2])
             db.session.add(NewCrime)
             line = fp.readline()
 

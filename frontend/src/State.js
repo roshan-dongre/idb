@@ -134,7 +134,11 @@ export default class State extends Component {
 
     getCoor = () => {
         let self = this
-        Geocode.fromAddress(this.state.item.name).then(
+        var temp = this.state.item.name
+        if (temp == "Georgia") {
+            temp = "Georgia USA"
+        }
+        Geocode.fromAddress(temp).then(
           response => {
             const { lat, lng } = response.results[0].geometry.location;
             console.log(lat, lng);

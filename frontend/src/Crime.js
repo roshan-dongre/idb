@@ -52,12 +52,12 @@ export default class Crime extends Component {
 
     /* More information about the React.Component lifecycle here: https://reactjs.org/docs/react-component.html */
 
-    handleCrimeNavigation = (crimeId, e) => {
+    handleCriminalNavigation = (criminalId, e) => {
         e.preventDefault()
         this.setState({
             navigate: true,
             //selectedId: crimeId,
-            navigateTo: "/Crime"
+            navigateTo: "/Criminal"
         })
     }
 
@@ -126,12 +126,8 @@ export default class Crime extends Component {
                             <table className="table table-responsive">
                                 <tbody>
                                 <tr>
-                                    <td><strong>State:</strong></td>
-                                    <td>{this.state.item.state}</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Established:</strong></td>
-                                    <td>{this.state.item.established}</td>
+                                    <td><strong>Description:</strong></td>
+                                    <td>{this.state.item.description}</td>
                                 </tr>
                                 <tr>
                                     <td><strong>Website:</strong></td>

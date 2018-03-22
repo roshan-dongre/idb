@@ -7,6 +7,7 @@ import Criminal from './Criminal'
 import States from './States'
 import Crimes from './Crimes'
 import Crime from './Crime'
+//Need to make a state file here
 
 
 // The Main component renders one of the three provided
@@ -22,6 +23,9 @@ const Main = () => (
       <Route path='/Criminals' component={Criminals}/>
       <Route path='/Crimes' component={Crimes}/>
       <Route path='/States' component={States}/>
+      <Route path='/Criminal' component={Criminal}/>
+      <Route path='/Crime' component={Crime}/>
+  	  {/*<Route path='/State' component={State}/>*/}
     </Switch>
   </main>
 )

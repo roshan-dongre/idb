@@ -55,7 +55,7 @@ export default class ItemSelector extends Component {
         if (this.state.navigate) {
             return <Redirect to={{pathname: this.state.navigateTo, state: {item: this.state.item}}} push={true} />;
         }
-
+        //console.log(this.state.item)
         return (
             <div className="col-md-3 container-thumbnail">
                 <div className="text-center">

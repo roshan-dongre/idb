@@ -10,7 +10,7 @@ import json
 
 app = Flask(__name__) # create the application instance :)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////mydb.db' # load config from this file , flaskr.py
-app.config['SERVER_NAME'] = 'ontherun.me:5000'
+# app.config['SERVER_NAME'] = 'ontherun.me:5000'
 CORS(app)
 db = SQLAlchemy(app)
 
@@ -52,21 +52,28 @@ class Crime(db.Model):
     def __repr__(self):
         return "{'image': %r, 'id': %r, 'name': %r}" % (self.image, self.id, self.name)
 
-@app.route('/states', methods=['GET'], subdomain="api")
+@app.route('/states', methods=['GET'])#, subdomain="api")
 def get_states():
     return jsonify({'states': ast.literal_eval(str(State.query.all()))})
 
-@app.route('/criminals', methods=['GET'], subdomain="api")
+@app.route('/criminals', methods=['GET'])#, subdomain="api")
 def get_criminals():
     print(request.args)
-    return jsonify({'criminals': ast.literal_eval(str(Criminal.query.all()))})
+    limit = request.args.get('limit','')
+    if limit == '':
+        limit = 289
+    offset = request.args.get('offset','')
+    if offset == '':
+        offset = 0
+    offset = int(offset)*int(limit)
+    return jsonify({'criminals': ast.literal_eval(str(Criminal.query.filter(Criminal.id>offset).limit(limit).all()))})
 
-@app.route('/criminals/<int:crim_id>', methods=['GET'], subdomain="api")
+@app.route('/criminals/<int:crim_id>', methods=['GET'])#, subdomain="api")
 def get_criminal(crim_id):
     print(request.args)
     return jsonify(ast.literal_eval(str(Criminal.query.filter_by(id=crim_id).first())))
 
-@app.route('/crimes', methods=['GET'], subdomain="api")
+@app.route('/crimes', methods=['GET'])#, subdomain="api")
 def get_crimes():
     return jsonify({'total_pages': '1', 'crimes': ast.literal_eval(str(Crime.query.all()))})
 

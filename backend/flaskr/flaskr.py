@@ -54,11 +54,6 @@ class Crime(db.Model):
 
 @app.route('/states', methods=['GET'], subdomain="api")
 def get_states():
-    return jsonify({'states': ast.literal_eval(str(State.query.all()))})
-
-@app.route('/criminals', methods=['GET'], subdomain="api")
-def get_criminals():
-    print(request.args)
     limit = request.args.get('limit','')
     if limit == '':
         limit = 289
@@ -66,16 +61,33 @@ def get_criminals():
     if offset == '':
         offset = 0
     offset = int(offset)*int(limit)
-    return jsonify({'criminals': ast.literal_eval(str(Criminal.query.filter(Criminal.id>offset).limit(limit).all()))})
+    return jsonify({'totalCount': db.session.query(State).count(), 'states': ast.literal_eval(str(State.query.filter(State.id>offset).limit(limit).all()))})
+
+@app.route('/criminals', methods=['GET'], subdomain="api")
+def get_criminals():
+    limit = request.args.get('limit','')
+    if limit == '':
+        limit = 289
+    offset = request.args.get('offset','')
+    if offset == '':
+        offset = 0
+    offset = int(offset)*int(limit)
+    return jsonify({'totalCount': db.session.query(Criminal).count(), 'criminals': ast.literal_eval(str(Criminal.query.filter(Criminal.id>offset).limit(limit).all()))})
 
 @app.route('/criminals/<int:crim_id>', methods=['GET'], subdomain="api")
 def get_criminal(crim_id):
-    print(request.args)
     return jsonify(ast.literal_eval(str(Criminal.query.filter_by(id=crim_id).first())))
 
 @app.route('/crimes', methods=['GET'], subdomain="api")
 def get_crimes():
-    return jsonify({'total_pages': '1', 'crimes': ast.literal_eval(str(Crime.query.all()))})
+    limit = request.args.get('limit','')
+    if limit == '':
+        limit = 289
+    offset = request.args.get('offset','')
+    if offset == '':
+        offset = 0
+    offset = int(offset)*int(limit)
+    return jsonify({'totalCount': db.session.query(Crime).count(), 'crimes': ast.literal_eval(str(Crime.query.filter(Crime.id>offset).limit(limit).all()))})
 
 # /api/states/                          //done
 # /api/states/<abr>

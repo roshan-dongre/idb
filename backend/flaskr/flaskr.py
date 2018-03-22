@@ -125,7 +125,7 @@ if __name__ == '__main__':
         i = 1;
         while line:
             strLine = str(line).split(":") 
-            NewImage = "https://github.com/roshan-dongre/idb/blob/master/crimephotos/"+str(i)+".jpg"
+            NewImage = "https://raw.githubusercontent.com/roshan-dongre/idb/master/crimephotos/"+str(i)+".jpg"
             i += 1
             NewCrime = Crime(name=strLine[1],
                             image=NewImage)

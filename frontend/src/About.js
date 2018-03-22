@@ -209,7 +209,7 @@ render () {
                                             <li className="text-left"><h4>Mocha</h4></li>
                                             <li className="text-left"><h4>Selenium</h4></li>
                                             <li className="text-left"><h4>SQLAlchemy</h4></li>
-                                            <li className="text-left"><h4>PostgresSQL</h4></li>
+                                            <li className="text-left"><h4>MySQL</h4></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -218,6 +218,7 @@ render () {
                                         <h1><u>Data</u></h1>
                                         <p><strong>FBI Crime Stats API:</strong> Provided crime stats through GET Requests</p>
                                         <p><strong>FBI Most Wanted API:</strong> Provided information on most wanted criminals</p>
+                                        <p><strong>Google Maps API:</strong> Provided maps for the model pages</p>
                                     </div>
                                 </div>
                                 <div className="col-md-2 container data-thumbnail">
@@ -226,6 +227,23 @@ render () {
                                         <a href="https://roshan-dongre.gitbooks.io/api/" style = {linkStyles}><h4><u>API Documentation</u></h4></a>
                                         <a href="https://roshan-dongre.gitbooks.io/report/" style = {linkStyles}><h4><u>Technical Report</u></h4></a>
                                         <a href="https://github.com/roshan-dongre/idb" style = {linkStyles}><h4><u>GitHub Repository</u></h4></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-md-12 container data-thumbnail">
+                                    <div className="text-left">
+                                        <ul>
+                                            <li className="text-left"><h4><strong>Description: </strong>On The Run is a website that allows people to draw interesting connections between the FBI Most Wanted Page and information
+                                            on different types of crimes as well as information on the states in which these crimes were committed</h4></li>
+                                            <li className="text-left"><h4><strong>Purpose: </strong>To provide information linking criminals, their crimes, and the states they committed crimes in</h4></li>
+                                            <li className="text-left"><h4><strong>Intended Users: </strong> Anyone interested in learning about crime/criminals</h4></li>
+                                            <li className="text-left"><h4><strong>Explanation: </strong> This integration of disparate data allows people to not only see specfic information about each criminal, but also a macro look at crime in the states in which they committed their crimes</h4></li>
+                                            <li className="text-left"><h4><strong>Scraping: </strong> We used the requests module to scrape the two FBI apis, and used React to request from the Google Maps API</h4></li>
+                                            <li className="text-left"><h4><strong>Tools: </strong> We used Slack to communicate, Flask handles the API data requests and acts as an interface that communicates with the front-end, React for the 
+                                            dynamic front-end, Postman for the API testing, Travis CI for the build logs, Mocha for the front-end tests, Selenium for the acceptance tests, and unnitest for the backend tests. SQLAlchemy
+                                            and MySQL are used for the database and GitHub is used to store our code. </h4></li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>

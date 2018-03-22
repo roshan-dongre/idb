@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "babel-preset-airbnb": "^2.4.0",
+    "babel-preset-stage-0": "^6.24.1",
     "bootstrap": "^3.3.7",
     "google-map-react": "^0.34.0",
     "google-maps-react": "^1.1.6",

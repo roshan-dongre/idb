@@ -51,9 +51,9 @@ export default class Criminals extends Component {
 
     callAPI = () => {
 
-        let limit = this.state.pgSize
-        let offset = this.state.page * this.state.pgSize
-        let limOff = "?limit="+limit+"&offset="+offset
+        //let limit = this.state.pgSize
+        //let offset = this.state.page * this.state.pgSize
+        //let limOff = "?limit="+limit+"&offset="+offset
         let url = "http://api.ontherun.me:5000/criminals"
 
         let self = this

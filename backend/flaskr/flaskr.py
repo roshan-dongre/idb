@@ -46,10 +46,6 @@ class Crime(db.Model):
     def __repr__(self):
         return "{'id': %r, 'name': %r}" % (self.id, self.name)
 
-@app.route('/', methods=['GET'], subdomain="api")
-def get_info():
-    return redirect("https://roshan-dongre.gitbooks.io/api/")
-
 @app.route('/states', methods=['GET'], subdomain="api")
 def get_states():
     return jsonify({'states': ast.literal_eval(str(State.query.all()))})
@@ -61,6 +57,10 @@ def get_criminals():
 @app.route('/crimes', methods=['GET'], subdomain="api")
 def get_crimes():
     return jsonify({'total_pages': '1', 'crimes': ast.literal_eval(str(Crime.query.all()))})
+
+@app.route('/', methods=['GET'], subdomain="api")
+def get_info():
+    return redirect("https://roshan-dongre.gitbooks.io/api/")
 
 # /api/states/                          //done
 # /api/states/<abr>

@@ -73,7 +73,7 @@ export default class State extends Component {
     componentDidUpdate(prevProps, prevState) {
         if (prevState.item.name !== this.state.item.name)
         {
-            this.getStates()
+            this.getCrimes()
         }
     }
 
@@ -121,17 +121,16 @@ export default class State extends Component {
         this.setState({
             navigate: true,
             navigateTo: "/Crime",
-            selectedId: crimeId,
-            selectedCrime: crimeId
+            selectedId: crimeId
         })
     }
 
-    handleCriminalNavigation = (e) => {
+    handleCriminalNavigation = (criminalId, e) => {
         e.preventDefault()
         this.setState({
             navigate: true,
             navigateTo: "/Criminal",
-            //selectedId: this.state.item.brewery_id
+            selectedId: criminalId
         })
     }
 
@@ -168,7 +167,7 @@ export default class State extends Component {
          crimeList = this.state.crimes.map((crime) => {
             return (
                 <tr className="clickable-row" onClick={(e) => self.handleCrimeNavigation(crime.crime_id, e)}>
-                    <td><strong>{crime.crime_id}</strong></td>
+                    <td><strong>{crime.crime_name}</strong></td>
                 </tr>
             );
         })

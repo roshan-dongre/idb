@@ -11,7 +11,7 @@ import unicodedata
 
 app = Flask(__name__) # create the application instance :)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////mydb.db' # load config from this file , flaskr.py
-#app.config['SERVER_NAME'] = 'ontherun.me:5000'
+app.config['SERVER_NAME'] = 'ontherun.me:5000'
 CORS(app)
 db = SQLAlchemy(app)
 
@@ -44,8 +44,10 @@ class Criminal(db.Model):
     nationality = db.Column(db.String(80))
     crime = db.Column(db.String(600), nullable=False)
     image = db.Column(db.String(600))
+    state = db.Column(db.String(600))
+
     def __repr__(self):
-        return "{'image': %r, 'id': %r, 'name': %r, 'field_office': %r, 'height': %r, 'weight': %r, 'sex': %r, 'hair': %r, 'eyes': %r, 'dob': %r, 'race': %r, 'nationality': %r, 'crime': %r}" % (self.image, self.id, self.name, self.field_office, self.height, self.weight, self.sex, self.hair, self.eyes, self.dob, self.race, self.nationality, self.crime)
+        return "{'state': %r, 'image': %r, 'id': %r, 'name': %r, 'field_office': %r, 'height': %r, 'weight': %r, 'sex': %r, 'hair': %r, 'eyes': %r, 'dob': %r, 'race': %r, 'nationality': %r, 'crime': %r}" % (self.state, self.image, self.id, self.name, self.field_office, self.height, self.weight, self.sex, self.hair, self.eyes, self.dob, self.race, self.nationality, self.crime)
 
 
 class Crime(db.Model):
@@ -68,7 +70,7 @@ class CrimesState(db.Model):
         return "{'id': %r, 'state_id': %r, 'crime_id': %r}" % (self.id, self.state_id, self.crime_id)
 
 
-@app.route('/states', methods=['GET'])#, subdomain="api")
+@app.route('/states', methods=['GET'], subdomain="api")
 def get_states():
     limit = request.args.get('limit','')
     if limit == '':
@@ -79,14 +81,16 @@ def get_states():
     offset = int(offset)*int(limit)
     return jsonify({'totalCount': db.session.query(State).count(), 'states': ast.literal_eval(str(State.query.filter(State.id>offset).limit(limit).all()))})
 
-@app.route('/states/<string:state_name>', methods=['GET'])#, subdomain="api")
+@app.route('/states/<string:state_name>', methods=['GET'], subdomain="api")
 def get_state(state_name):
+    if(str(state_name).isdigit()):
+        return jsonify(ast.literal_eval(str(State.query.filter_by(id=state_name).first())))
     if len(state_name) == 2:
         return jsonify(ast.literal_eval(str(State.query.filter_by(abbreviation=state_name).first())))
     else:    
         return jsonify(ast.literal_eval(str(Crime.query.filter_by(name=state_name).first())))
 
-@app.route('/criminals', methods=['GET'])#, subdomain="api")
+@app.route('/criminals', methods=['GET'], subdomain="api")
 def get_criminals():
     limit = request.args.get('limit','')
     if limit == '':
@@ -97,11 +101,11 @@ def get_criminals():
     offset = int(offset)*int(limit)
     return jsonify({'totalCount': db.session.query(Criminal).count(), 'criminals': ast.literal_eval(str(Criminal.query.filter(Criminal.id>offset).limit(limit).all()))})
 
-@app.route('/criminals/<int:crim_id>', methods=['GET'])#, subdomain="api")
+@app.route('/criminals/<int:crim_id>', methods=['GET'], subdomain="api")
 def get_criminal(crim_id):
     return jsonify(ast.literal_eval(str(Criminal.query.filter_by(id=crim_id).first())))
 
-@app.route('/crimes', methods=['GET'])#, subdomain="api")
+@app.route('/crimes', methods=['GET'], subdomain="api")
 def get_crimes():
     limit = request.args.get('limit','')
     if limit == '':
@@ -112,11 +116,15 @@ def get_crimes():
     offset = int(offset)*int(limit)
     return jsonify({'totalCount': db.session.query(Crime).count(), 'crimes': ast.literal_eval(str(Crime.query.filter(Crime.id>offset).limit(limit).all()))})
 
-@app.route('/crimes/<int:crim_id>', methods=['GET'])#, subdomain="api")
+@app.route('/crimes/state/<int:stat_id>', methods=['GET'], subdomain="api")
+def get_crimesperstate(stat_id):
+    return jsonify(ast.literal_eval(str(CrimesState.query.filter_by(state_id=stat_id).all())))
+
+@app.route('/crimes/<int:crim_id>', methods=['GET'], subdomain="api")
 def get_crime(crim_id):
     return jsonify(ast.literal_eval(str(Crime.query.filter_by(id=crim_id).first())))
 
-@app.route('/crimestostate', methods=['GET'])#, subdomain="api")
+@app.route('/crimestostate', methods=['GET'], subdomain="api")
 def get_crimetostate():
     return jsonify(ast.literal_eval(str(CrimesState.query.all())))
 
@@ -211,6 +219,7 @@ if __name__ == '__main__':
                             name= NewName)
             db.session.add(NewState)
             line = fp.readline()
+
     for abv in statelist:
         with open('../crime_data/json/'+abv) as fp:
             data = json.loads(fp.readline())

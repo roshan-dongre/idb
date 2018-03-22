@@ -65,9 +65,10 @@ class CrimesState(db.Model):
     id = db.Column(db.Integer,primary_key=True,unique=True)
     state_id = db.Column(db.Integer)
     crime_id = db.Column(db.Integer)
+    crime_name = db.Column(db.String(600))
 
     def __repr__(self):
-        return "{'id': %r, 'state_id': %r, 'crime_id': %r}" % (self.id, self.state_id, self.crime_id)
+        return "{'id': %r, 'state_id': %r, 'crime_id': %r, 'crime_name': %r}" % (self.id, self.state_id, self.crime_id, self.crime_name)
 
 @app.route('/states', methods=['GET'], subdomain="api")
 def get_states():
@@ -133,7 +134,6 @@ def get_crimestostate(id_val):
         return jsonify(ast.literal_eval(str(CrimesState.query.filter_by(crime_id=id_val).all())))
     if len(id_val) == 2:
         TempState = ast.literal_eval(str(State.query.filter_by(abbreviation=id_val).first()))
-        print(TempState)
         return jsonify(ast.literal_eval(str(CrimesState.query.filter_by(state_id=TempState['id']).all())))
     else:    
         return jsonify(ast.literal_eval(str(Crime.query.filter_by(name=id_val).first())))
@@ -242,8 +242,10 @@ if __name__ == '__main__':
                     if x['count'] > 0:
                         NewStateId = x['state_id']
                         NewCrimeId = x['crime_id']
+                        NewCrimeName = ast.literal_eval(str(Crime.query.filter_by(id=NewCrimeId).first()))
                         NewCrimeState = CrimesState(state_id=NewStateId,
-                                                    crime_id=NewCrimeId)
+                                                    crime_id=NewCrimeId,
+                                                    crime_name=NewCrimeName['name'])
                         db.session.add(NewCrimeState)
 
     db.session.commit()

@@ -142,7 +142,8 @@ if __name__ == '__main__':
             NewImage = "https://raw.githubusercontent.com/roshan-dongre/idb/master/stateflags/"+statelist[i]+".png"
             i += 1
             NewState = State(population=strLine[1],
-                            abbreviation=strLine[0])
+                            abbreviation=strLine[0],
+                            image= NewImage)
             db.session.add(NewState)
             line = fp.readline()
 

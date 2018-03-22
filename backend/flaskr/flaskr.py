@@ -15,14 +15,16 @@ CORS(app)
 db = SQLAlchemy(app)
 
 statelist = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "DC", "WV", "WI", "WY"]
+statenames = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachussetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "Washington DC", "West Virginia", "Wisconsin", "Wyoming"]
 
 class State(db.Model):
     id = db.Column(db.Integer,primary_key=True,unique=True)
     population = db.Column(db.Integer)
     abbreviation = db.Column(db.String(10), nullable=False)
     image = db.Column(db.String(600))
+    name = db.Column(db.String(600))
     def __repr__(self):
-        return "{'image': %r, 'abbreviation': %r, 'population': %r}" % (self.image, self.abbreviation, self.population)
+        return "{'name': %r, 'image': %r, 'abbreviation': %r, 'population': %r}" % (self.name, self.image, self.abbreviation, self.population)
 
 class Criminal(db.Model):
     id = db.Column(db.Integer,primary_key=True,unique=True)
@@ -56,10 +58,19 @@ def get_states():
 
 @app.route('/criminals', methods=['GET'], subdomain="api")
 def get_criminals():
-    return jsonify({'criminals': ast.literal_eval(str(Criminal.query.all()))})
+    print(request.args)
+    limit = request.args.get('limit','')
+    if limit == '':
+        limit = 289
+    offset = request.args.get('offset','')
+    if offset == '':
+        offset = 0
+    offset = int(offset)*int(limit)
+    return jsonify({'criminals': ast.literal_eval(str(Criminal.query.filter(Criminal.id>offset).limit(limit).all()))})
 
 @app.route('/criminals/<int:crim_id>', methods=['GET'], subdomain="api")
 def get_criminal(crim_id):
+    print(request.args)
     return jsonify(ast.literal_eval(str(Criminal.query.filter_by(id=crim_id).first())))
 
 @app.route('/crimes', methods=['GET'], subdomain="api")
@@ -145,10 +156,12 @@ if __name__ == '__main__':
         while line:
             strLine = str(line).split(" ") 
             NewImage = "https://raw.githubusercontent.com/roshan-dongre/idb/master/stateflags/"+statelist[i]+".png"
+            NewName = statenames[i]
             i += 1
             NewState = State(population=strLine[1],
                             abbreviation=strLine[0],
-                            image= NewImage)
+                            image= NewImage,
+                            name= NewName)
             db.session.add(NewState)
             line = fp.readline()
 

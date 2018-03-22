@@ -13,13 +13,15 @@ app.config['SERVER_NAME'] = 'ontherun.me:5000'
 CORS(app)
 db = SQLAlchemy(app)
 
+statelist = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "DC", "WV", "WI", "WY"]
+
 class State(db.Model):
     id = db.Column(db.Integer,primary_key=True,unique=True)
     population = db.Column(db.Integer)
     abbreviation = db.Column(db.String(10), nullable=False)
-    picture = db.Column(db.String(150))
+    image = db.Column(db.String(600))
     def __repr__(self):
-        return "{'abbreviation': %r, 'population': %r}" % (self.abbreviation, self.population)
+        return "{'image': %r, 'abbreviation': %r, 'population': %r}" % (self.image, self.abbreviation, self.population)
 
 class Criminal(db.Model):
     id = db.Column(db.Integer,primary_key=True,unique=True)
@@ -134,8 +136,11 @@ if __name__ == '__main__':
 
     with open('../crime_data/population.txt') as fp:
         line = fp.readline()
+        i = 0
         while line:
-            strLine = str(line).split(" ")
+            strLine = str(line).split(" ") 
+            NewImage = "https://raw.githubusercontent.com/roshan-dongre/idb/master/stateflags/"+statelist[i]+".png"
+            i += 1
             NewState = State(population=strLine[1],
                             abbreviation=strLine[0])
             db.session.add(NewState)

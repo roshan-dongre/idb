@@ -9,7 +9,7 @@ import json
 
 app = Flask(__name__) # create the application instance :)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////mydb.db' # load config from this file , flaskr.py
-# app.config['SERVER_NAME'] = 'ontherun.me:5000'
+app.config['SERVER_NAME'] = 'ontherun.me:5000'
 CORS(app)
 db = SQLAlchemy(app)
 
@@ -42,9 +42,10 @@ class Criminal(db.Model):
 class Crime(db.Model):
     id = db.Column(db.Integer,primary_key=True,unique=True)
     name = db.Column(db.String(80), nullable=False)
+    image = db.Column(db.String(600))
 
     def __repr__(self):
-        return "{'id': %r, 'name': %r}" % (self.id, self.name)
+        return "{'image': %r, 'id': %r, 'name': %r}" % (self.image, self.id, self.name)
 
 @app.route('/states', methods=['GET'], subdomain="api")
 def get_states():
@@ -121,9 +122,13 @@ if __name__ == '__main__':
 
     with open('../crime_data/crime_ids.txt') as fp:
         line = fp.readline()
+        i = 1;
         while line:
-            strLine = str(line).split(":")
-            NewCrime = Crime(name=strLine[1]) 
+            strLine = str(line).split(":") 
+            NewImage = "https://github.com/roshan-dongre/idb/blob/master/crimephotos/"+str(i)+".jpg"
+            i += 1
+            NewCrime = Crime(name=strLine[1],
+                            image=NewImage)
             db.session.add(NewCrime)
             line = fp.readline()
 

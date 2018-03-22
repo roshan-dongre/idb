@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import {Redirect} from 'react-router-dom';
 import axios from 'axios';
 
+var imageStyles = {
+    width: '400px',
+    height: '350px'
+}
+
 export default class Crime extends Component {
     constructor (props) {
         super (props);
@@ -47,21 +52,21 @@ export default class Crime extends Component {
 
     /* More information about the React.Component lifecycle here: https://reactjs.org/docs/react-component.html */
 
-    handlecrimeNavigation = (crimeId, e) => {
+    handleCrimeNavigation = (crimeId, e) => {
         e.preventDefault()
         this.setState({
             navigate: true,
-            selectedId: crimeId,
-            navigateTo: "/crime"
+            //selectedId: crimeId,
+            navigateTo: "/Crime"
         })
     }
 
-    handleStyleNavigation = (styleId, e) => {
+    handleStateNavigation = (styleId, e) => {
         e.preventDefault()
         this.setState({
             navigate: true,
-            selectedId: styleId,
-            navigateTo: "/Style"
+            //selectedId: styleId,
+            navigateTo: "/State"
         })
     }
 
@@ -92,7 +97,7 @@ export default class Crime extends Component {
 
         let crimeLinks, styleLinks
         if (this.state.item !== "") {
-            crimeLinks = this.state.item.crimes.map((crime, index) => {
+            /*crimeLinks = this.state.item.crimes.map((crime, index) => {
                 return (
                     <div className="text-center">
                         <button type="button" className="btn btn-link" onClick={(e) => this.handlecrimeNavigation(this.state.item.crime_ids[index], e)}>{crime}</button>
@@ -106,35 +111,23 @@ export default class Crime extends Component {
                         <button type="button" className="btn btn-link" onClick={(e) => this.handleStyleNavigation(this.state.item.style_ids[index], e)}>{style}</button>
                     </div>
                 );
-            })
+            }) */
 
             return (
                 <div className="container sub-container">
                     <div className="row">
                         <div className="col-md-4">
                             <div className="text-center">
-                                <img className="img-thumbnail img-thumbnail-sm" src={this.state.item.image === undefined ? this.state.item.images : this.state.item.image} alt={this.state.item.name}/>
+                                <img className="img-thumbnail img-thumbnail-sm" src={this.state.item.image === undefined ? this.state.item.images : this.state.item.image} alt={this.state.item.name} style = {imageStyles}/>
                             </div>
                         </div>
                         <div className="col-md-8">
                             <h2 className="sub-header text-center">{this.state.item.name}</h2>
-                            <table className="table table-responsive table-striped">
+                            <table className="table table-responsive">
                                 <tbody>
-                                <tr>
-                                    <td><strong>Country:</strong></td>
-                                    <td>{this.state.item.country}</td>
-                                </tr>
                                 <tr>
                                     <td><strong>State:</strong></td>
                                     <td>{this.state.item.state}</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>City:</strong></td>
-                                    <td>{this.state.item.city}</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Description:</strong></td>
-                                    <td>{this.state.item.description ? this.state.item.description : "No Description Available"}</td>
                                 </tr>
                                 <tr>
                                     <td><strong>Established:</strong></td>
@@ -150,7 +143,7 @@ export default class Crime extends Component {
                     </div>
                     <div className="row mt-3">
                         <div className="col-md-6">
-                            <h4 className="sub-header text-center">More crimes from {this.state.item.name}</h4>
+                            <h4 className="sub-header text-center">Criminals from this type of crime {this.state.item.name}</h4>
                             <table className="table table-responsive">
                                 <tbody>
                                 <tr>
@@ -174,7 +167,7 @@ export default class Crime extends Component {
             );
         } else {
             return (
-                <div>loading...</div>
+                <div>Loading...</div>
             )
         }
     }

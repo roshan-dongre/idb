@@ -20,7 +20,8 @@ export default class Crime extends Component {
             item: item,
             selectedId: "",
             navigate: false,
-            navigateTo: ""
+            navigateTo: "",
+            states: []
         }
     }
 
@@ -33,7 +34,15 @@ export default class Crime extends Component {
      */
 
     componentDidMount() {
-        this.callAPI()
+        //this.callAPI()
+        this.getStates()
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.item.name !== this.state.item.name)
+        {
+            this.getStates()
+        }
     }
 
     /* Updating

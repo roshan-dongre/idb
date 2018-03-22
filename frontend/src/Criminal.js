@@ -58,6 +58,7 @@ export default class Criminal extends Component {
 
     componentDidMount () {
         this.callAPI()
+        this.getCoor()
         this.getReviews()
     }
 
@@ -134,7 +135,8 @@ export default class Criminal extends Component {
     }
 
     changeValues = () => {
-        this.state.item.crime = this.state.item.crime.replace(/(<p[^>]+?>|<p>|<\/p>)/img, "")
+        var striptags = require('striptags');
+        this.state.item.crime = striptags(this.state.item.crime)
         this.state.item.eyes = this.state.item.eyes.slice(0,1).toUpperCase() + this.state.item.eyes.slice(1, this.state.item.eyes.length)
         this.state.item.hair = this.state.item.hair.slice(0,1).toUpperCase() + this.state.item.hair.slice(1, this.state.item.hair.length)
     }
@@ -157,7 +159,6 @@ export default class Criminal extends Component {
     /* More information about the React.Component lifecycle here: https://reactjs.org/docs/react-component.html */
 
     render() {
-
         if (this.state.navigate) {
             return <Redirect to={{pathname: this.state.navigateTo, state: {selectedId: this.state.selectedId}}} push={true} />;
         }

@@ -62,7 +62,7 @@ export default class ItemSelector extends Component {
                     <div onClick={() => this.setState({navigate: true})}>
                         <img className="img-thumbnail" src={this.state.item.image} alt={this.state.item.name} title={this.state.item.name} style = {imageStyles}/>
                         <div className="overlay">
-                            <div className="text">{this.state.item.name}</div>
+                            <div className="text">{this.state.item.name.toUpperCase()}</div>
                         </div>
                     </div>
                 </div>

@@ -19,9 +19,11 @@ export default class Criminal extends Component {
             selectedId: "",
             navigate: false,
             navigateTo: "",
-            state: ""
+            state: "",
+            unknown: "Unknown"
         }
         this.apiUrl = 'http://api.ontherun.me:5000/criminals';
+        console.log(this.state.item.crime)
     }
 
     /* Mounting
@@ -95,27 +97,24 @@ export default class Criminal extends Component {
         this.setState({
             navigate: true,
             navigateTo: "/State",
-            selectedId: reviewId,
-            selectedReview: reviewId
+            //selectedId: reviewId,
+            //selectedReview: reviewId
         })
     }
 
-    handleBreweryNavigation = (e) => {
+    handleCrimeNavigation = (e) => {
         e.preventDefault()
         this.setState({
             navigate: true,
-            navigateTo: "/Brewery",
-            selectedId: this.state.item.brewery_id
+            navigateTo: "/Crime",
+            //selectedId: this.state.item.brewery_id
         })
     }
 
-    handleStyleNavigation = (e) => {
-        e.preventDefault()
-        this.setState({
-            navigate: true,
-            navigateTo: "/Style",
-            selectedId: this.state.item.style_id
-        })
+    changeValues = () => {
+        this.state.item.crime = this.state.item.crime.replace(/(<p[^>]+?>|<p>|<\/p>)/img, "")
+        this.state.item.eyes = this.state.item.eyes.slice(0,1).toUpperCase() + this.state.item.eyes.slice(1, this.state.item.eyes.length)
+        this.state.item.hair = this.state.item.hair.slice(0,1).toUpperCase() + this.state.item.hair.slice(1, this.state.item.hair.length)
     }
 
     /* More information about the React.Component lifecycle here: https://reactjs.org/docs/react-component.html */
@@ -147,22 +146,43 @@ export default class Criminal extends Component {
                 <div className="row">
                     <div className="col-md-4">
                         <div className="text-center">
-                            <img   className=" img-thumbnail img-thumbnail-sm" src={this.state.item.image === undefined ? this.state.item.images : this.state.item.image} alt={this.state.item.name} />
+                            <img className=" img-thumbnail img-thumbnail-sm" src={this.state.item.image === undefined ? this.state.item.images : this.state.item.image} alt={this.state.item.name} />
                         </div>
                     </div>
                     <div className="col-md-8">
                         <h2 className="sub-header">{this.state.item.name}</h2>
-                        <table className="table table-responsive table-striped">
+                        <table className="table table-responsive">
                             <tbody>
+                            <div>{this.changeValues()}</div>
                             <tr>
-                                <td><strong>ABV:</strong></td>
-                                <td>{this.state.item.abv}</td>
+                                <td><strong>DOB:</strong></td>
+                                <td>{this.state.item.dob == null ? this.state.unknown : this.state.item.dob}</td>
                             </tr>
                             <tr>
-                                <td><strong>IBU:</strong></td>
-                                <td>{this.state.item.ibu}</td>
+                                <td><strong>Eyes:</strong></td>
+                                <td>{this.state.item.eyes == null ? this.state.unknown : this.state.item.eyes}</td>
                             </tr>
                             <tr>
+                                <td><strong>Hair:</strong></td>
+                                <td>{this.state.item.hair == null ? this.state.unknown : this.state.item.hair}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Height:</strong></td>
+                                <td>{this.state.item.height == null ? this.state.unknown : this.state.item.height}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Race:</strong></td>
+                                <td>{this.state.item.race == null ? this.state.unknown : this.state.item.race}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Nationality:</strong></td>
+                                <td>{this.state.item.nationality == null ? this.state.unknown : this.state.item.nationality}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Description:</strong></td>
+                                <td>{this.state.item.crime}</td>
+                            </tr>
+                            {/*<tr>
                                 <td><strong>Brewery:</strong></td>
                                 <td><button type="button" className="btn btn-link" onClick={this.handleBreweryNavigation}>{this.state.item.brewery}</button></td>
                             </tr>
@@ -173,15 +193,14 @@ export default class Criminal extends Component {
                             <tr>
                                 <td><strong>Organic:</strong></td>
                                 <td>{this.state.item.organic}</td>
-                            </tr>
+                            </tr>*/}
                             </tbody>
                         </table>
-                        <h3 className="sub-header">Reviews</h3>
+                        <h3 className="sub-header">Types of Crimes</h3>
                         <table className="table table-responsive table-hover">
                             <thead>
                             <tr>
-                                <th>Rating</th>
-                                <th>Comment</th>
+                                <th>Crime</th>
                             </tr>
                             </thead>
                             <tbody>

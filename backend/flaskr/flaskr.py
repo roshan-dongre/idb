@@ -17,7 +17,7 @@ db = SQLAlchemy(app)
 
 statelist = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY", "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT", "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "DC", "WV", "WI", "WY"]
 statenames = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachussetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "Washington DC", "West Virginia", "Wisconsin", "Wyoming"]
-
+criminal_loc = ["DC", "TN", "NV", "CA", "OH", "UT", "PA", "DC", "TX", "OR", "FL", "UT", "DC", "DC", "DC", "DC", "OR", "CO", "AL", "VA", "UT", "OK", "FL", "NY", "CA", "NY", "MI", "CA", "NC", "WA", "CA", "DC", "VA", "NJ", "CA", "FL", "NJ", "TX", "SC", "SC", "NY", "NY", "CA", "PA", "CA", "CA", "NY", "HI", "DC", "MD", "TX", "TX", "TX", "GA", "GA", "GA", "NV", "CA", "CA", "CA", "SC", "OR", "OR", "TX", "KS", "KS", "MI", "PA", "PA", "PA", "HI", "CA", "FL", "FL", "CA", "IL", "IL", "WI", "MD", "MD", "NY", "NY", "GA", "NJ", "MD", "GA", "IL", "MD", "SC", "CA", "GA", "CO", "CO", "GA", "MD", "GA", "CA", "CA", "MI", "CA", "OR", "CA", "CA", "NJ", "AL", "CA", "IL", "MI", "CA", "CA", "CA", "PA", "IL", "NJ", "PA", "NY", "MI", "AZ", "AZ", "TX", "PA", "NY", "LA", "AR", "CA", "FL", "FL", "FL", "NY", "PA", "MD", "CA", "NC", "PA", "SC", "NY", "NY", "NY", "NY", "NY", "NJ", "NY", "NE", "NJ", "NY", "NE", "PA", "GA", "DC", "DC", "NY", "OR", "PA", "CA", "SC", "IL", "CA", "KS", "CO", "PA", "PA", "CO", "OR", "GA", "AL", "FL", "MI", "CO", "KS", "IL", "NM", "IL", "TX", "GA", "IL", "OR", "CA", "CA", "CA", "GA", "CA", "CA", "CA", "CO", "CA", "OH", "MD", "LA", "TX", "VA", "CA", "NJ", "DC", "FL", "FL", "FL", "FL", "FL", "FL", "NV", "CA", "NE", "NY", "NY", "FL", "NJ", "CA", "CA", "FL", "MN", "MS", "FL", "CA", "AR", "FL", "OR", "PA", "CA", "PA", "MO", "TN", "AR", "IL", "SC", "CA", "IL", "IL", "IL", "IL", "IL", "OK", "OH", "NJ", "AR", "AR", "NY", "AR", "NM", "NY", "NY", "NY", "NY", "NY", "NY", "NY", "WI", "TX", "TX", "NE", "NE", "NE", "NE", "NY", "CA", "HI", "NJ", "PA", "OR", "NY", "NY", "NY", "MA", "NY", "DC", "NY", "NY", "AL", "OR", "NY", "NY", "FL", "DC", "DC", "DC", "NY", "DC", "NY", "DC", "DC", "FL", "NY", "OR", "NJ", "NJ", "TX", "NJ", "DC", "NY", "NY"]
 class State(db.Model):
     __tablename__ = 'states'
     id = db.Column(db.Integer,primary_key=True,unique=True)
@@ -27,7 +27,7 @@ class State(db.Model):
     name = db.Column(db.String(600))
 
     def __repr__(self):
-        return "{'name': %r, 'image': %r, 'abbreviation': %r, 'population': %r}" % (self.name, self.image, self.abbreviation, self.population)
+        return "{'name': %r, 'image': %r, 'abbreviation': %r, 'population': %r, 'id': %r}" % (self.name, self.image, self.abbreviation, self.population, self.id)
 
 class Criminal(db.Model):
     __tablename__ = 'criminals'
@@ -68,7 +68,6 @@ class CrimesState(db.Model):
 
     def __repr__(self):
         return "{'id': %r, 'state_id': %r, 'crime_id': %r}" % (self.id, self.state_id, self.crime_id)
-
 
 @app.route('/states', methods=['GET'], subdomain="api")
 def get_states():
@@ -128,6 +127,18 @@ def get_crime(crim_id):
 def get_crimetostate():
     return jsonify(ast.literal_eval(str(CrimesState.query.all())))
 
+@app.route('/crimestostate/<string:id_val>', methods=['GET'], subdomain="api")
+def get_crimestostate(id_val):
+    if(str(id_val).isdigit()):
+        return jsonify(ast.literal_eval(str(CrimesState.query.filter_by(crime_id=id_val).all())))
+    if len(id_val) == 2:
+        TempState = ast.literal_eval(str(State.query.filter_by(abbreviation=id_val).first()))
+        print(TempState)
+        return jsonify(ast.literal_eval(str(CrimesState.query.filter_by(state_id=TempState['id']).all())))
+    else:    
+        return jsonify(ast.literal_eval(str(Crime.query.filter_by(name=id_val).first())))
+
+
 # /api/states/                          //done
 # /api/states/<abr>
 # /api/states/info
@@ -157,7 +168,7 @@ if __name__ == '__main__':
     db.create_all()
 
     data = json.load(open('../criminal_data/sus.txt'))
-    
+    criminal_i = 0
     for person in data:
         NewName = person["title"]
         NewFieldOffice = person["field_offices"]
@@ -175,6 +186,8 @@ if __name__ == '__main__':
         NewNationality = person["nationality"]
         NewCrime = person["caution"]
         NewImage = person["images"]
+        NewState = criminal_loc[criminal_i]
+        criminal_i += 1
         NewCriminal = Criminal(name=NewName,
                               field_office=NewFieldOffice[0],
                               height=NewHeight,
@@ -186,7 +199,8 @@ if __name__ == '__main__':
                               race=NewRace,
                               nationality=NewNationality,
                               crime=NewCrime,
-                              image=NewImage[0]["large"])
+                              image=NewImage[0]["large"],
+                              state=NewState)
         db.session.add(NewCriminal)
 
     with open('../crime_data/crime_ids.txt') as fp:
@@ -226,7 +240,6 @@ if __name__ == '__main__':
             for x in data:
                 if x['count'] != None:
                     if x['count'] > 0:
-                        print("Found "+str(x['state_id'])+ ", "+ str(x['crime_id']))
                         NewStateId = x['state_id']
                         NewCrimeId = x['crime_id']
                         NewCrimeState = CrimesState(state_id=NewStateId,

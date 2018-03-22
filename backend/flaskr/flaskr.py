@@ -10,7 +10,7 @@ import json
 
 app = Flask(__name__) # create the application instance :)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////mydb.db' # load config from this file , flaskr.py
-app.config['SERVER_NAME'] = 'ontherun.me:5000'
+#app.config['SERVER_NAME'] = 'ontherun.me:5000'
 CORS(app)
 db = SQLAlchemy(app)
 
@@ -18,15 +18,18 @@ statelist = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "FL", "GA", "HI", "
 statenames = ["Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachussetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "Washington DC", "West Virginia", "Wisconsin", "Wyoming"]
 
 class State(db.Model):
+    __tablename__ = 'states'
     id = db.Column(db.Integer,primary_key=True,unique=True)
     population = db.Column(db.Integer)
     abbreviation = db.Column(db.String(10), nullable=False)
     image = db.Column(db.String(600))
     name = db.Column(db.String(600))
+
     def __repr__(self):
         return "{'name': %r, 'image': %r, 'abbreviation': %r, 'population': %r}" % (self.name, self.image, self.abbreviation, self.population)
 
 class Criminal(db.Model):
+    __tablename__ = 'criminals'
     id = db.Column(db.Integer,primary_key=True,unique=True)
     name = db.Column(db.String(80), nullable=False)
     field_office = db.Column(db.String(80), nullable=False)
@@ -45,6 +48,7 @@ class Criminal(db.Model):
 
 
 class Crime(db.Model):
+    __tablename__ = 'crimes'
     id = db.Column(db.Integer,primary_key=True,unique=True)
     name = db.Column(db.String(80), nullable=False)
     image = db.Column(db.String(600))
@@ -53,7 +57,17 @@ class Crime(db.Model):
     def __repr__(self):
         return "{'image': %r, 'id': %r, 'name': %r, 'description': %r}" % (self.image, self.id, self.name, self.description)
 
-@app.route('/states', methods=['GET'], subdomain="api")
+class CrimesState(db.Model):
+    __tablename__ = 'crimesTostate'
+    id = db.Column(db.Integer,primary_key=True,unique=True)
+    state_id = db.Column(db.Integer)
+    crime_id = db.Column(db.Integer)
+
+    def __repr__(self):
+        return "{'id': %r, 'state_id': %r, 'crime_id': %r}" % (self.id, self.state_id, self.crime_id)
+
+
+@app.route('/states', methods=['GET'])#, subdomain="api")
 def get_states():
     limit = request.args.get('limit','')
     if limit == '':
@@ -64,14 +78,14 @@ def get_states():
     offset = int(offset)*int(limit)
     return jsonify({'totalCount': db.session.query(State).count(), 'states': ast.literal_eval(str(State.query.filter(State.id>offset).limit(limit).all()))})
 
-@app.route('/states/<string:state_name>', methods=['GET'], subdomain="api")
+@app.route('/states/<string:state_name>', methods=['GET'])#, subdomain="api")
 def get_state(state_name):
     if len(state_name) == 2:
         return jsonify(ast.literal_eval(str(State.query.filter_by(abbreviation=state_name).first())))
     else:    
         return jsonify(ast.literal_eval(str(Crime.query.filter_by(name=state_name).first())))
 
-@app.route('/criminals', methods=['GET'], subdomain="api")
+@app.route('/criminals', methods=['GET'])#, subdomain="api")
 def get_criminals():
     limit = request.args.get('limit','')
     if limit == '':
@@ -82,11 +96,11 @@ def get_criminals():
     offset = int(offset)*int(limit)
     return jsonify({'totalCount': db.session.query(Criminal).count(), 'criminals': ast.literal_eval(str(Criminal.query.filter(Criminal.id>offset).limit(limit).all()))})
 
-@app.route('/criminals/<int:crim_id>', methods=['GET'], subdomain="api")
+@app.route('/criminals/<int:crim_id>', methods=['GET'])#, subdomain="api")
 def get_criminal(crim_id):
     return jsonify(ast.literal_eval(str(Criminal.query.filter_by(id=crim_id).first())))
 
-@app.route('/crimes', methods=['GET'], subdomain="api")
+@app.route('/crimes', methods=['GET'])#, subdomain="api")
 def get_crimes():
     limit = request.args.get('limit','')
     if limit == '':
@@ -97,9 +111,13 @@ def get_crimes():
     offset = int(offset)*int(limit)
     return jsonify({'totalCount': db.session.query(Crime).count(), 'crimes': ast.literal_eval(str(Crime.query.filter(Crime.id>offset).limit(limit).all()))})
 
-@app.route('/crimes/<int:crim_id>', methods=['GET'], subdomain="api")
+@app.route('/crimes/<int:crim_id>', methods=['GET'])#, subdomain="api")
 def get_crime(crim_id):
     return jsonify(ast.literal_eval(str(Crime.query.filter_by(id=crim_id).first())))
+
+@app.route('/crimestostate', methods=['GET'])#, subdomain="api")
+def get_crimetostate():
+    return jsonify(ast.literal_eval(str(CrimesState.query.all())))
 
 # /api/states/                          //done
 # /api/states/<abr>
@@ -169,9 +187,12 @@ if __name__ == '__main__':
             strLine = str(line).split(":") 
             NewImage = "https://raw.githubusercontent.com/roshan-dongre/idb/master/crimephotos/"+str(i)+".jpg"
             i += 1
+            NewDesc = strLine[2]
+            if(isinstance(NewDesc,str)):
+                NewDesc = unicode(NewDesc, "utf-8")
             NewCrime = Crime(name=strLine[1],
                             image=NewImage,
-                            description=strLine[2])
+                            description=NewDesc)
             db.session.add(NewCrime)
             line = fp.readline()
 
@@ -189,6 +210,18 @@ if __name__ == '__main__':
                             name= NewName)
             db.session.add(NewState)
             line = fp.readline()
+    for abv in statelist:
+        with open('../crime_data/json/'+abv) as fp:
+            data = json.loads(fp.readline())
+            for x in data:
+                if x['count'] != None:
+                    if x['count'] > 0:
+                        print("Found "+str(x['state_id'])+ ", "+ str(x['crime_id']))
+                        NewStateId = x['state_id']
+                        NewCrimeId = x['crime_id']
+                        NewCrimeState = CrimesState(state_id=NewStateId,
+                                                    crime_id=NewCrimeId)
+                        db.session.add(NewCrimeState)
 
     db.session.commit()
     print("Created db\n\n\n")

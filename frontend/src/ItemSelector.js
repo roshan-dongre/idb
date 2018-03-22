@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import {Redirect} from 'react-router-dom';
 
+
+var imageStyles = {
+    width: '250px',
+    height: '250px'
+}
+
 export default class ItemSelector extends Component {
     constructor (props) {
         super (props);
@@ -54,7 +60,7 @@ export default class ItemSelector extends Component {
             <div className="col-md-3 container-thumbnail">
                 <div className="text-center">
                     <div onClick={() => this.setState({navigate: true})}>
-                        <img className="img-thumbnail" src={this.state.item.image} alt={this.state.item.name} title={this.state.item.name} />
+                        <img className="img-thumbnail" src={this.state.item.image} alt={this.state.item.name} title={this.state.item.name} style = {imageStyles}/>
                         <div className="overlay">
                             <div className="text">{this.state.item.name}</div>
                         </div>

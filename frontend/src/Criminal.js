@@ -232,29 +232,10 @@ export default class Criminal extends Component {
                                 <td><strong>Description:</strong></td>
                                 <td>{this.state.item.crime}</td>
                             </tr>
-                            {/*<tr>
-                                <td><strong>Brewery:</strong></td>
-                                <td><button type="button" className="btn btn-link" onClick={this.handleBreweryNavigation}>{this.state.item.brewery}</button></td>
-                            </tr>
                             <tr>
-                                <td><strong>Style:</strong></td>
-                                <td><button type="button" className="btn btn-link" onClick={this.handleStyleNavigation}>{this.state.item.style}</button></td>
+                                <td><strong>Crime:</strong></td>
+                                <td>TYPE OF CRIME LINK GOES HERE</td>
                             </tr>
-                            <tr>
-                                <td><strong>Organic:</strong></td>
-                                <td>{this.state.item.organic}</td>
-                            </tr>*/}
-                            </tbody>
-                        </table>
-                        <h3 className="sub-header">Types of Crimes</h3>
-                        <table className="table table-responsive table-hover">
-                            <thead>
-                            <tr>
-                                <th>Crime</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {beerReviews}
                             </tbody>
                         </table>
                     </div>

@@ -7,6 +7,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import select
 import ast
 import json
+import unicodedata
 
 app = Flask(__name__) # create the application instance :)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////mydb.db' # load config from this file , flaskr.py
@@ -48,7 +49,7 @@ class Crime(db.Model):
     id = db.Column(db.Integer,primary_key=True,unique=True)
     name = db.Column(db.String(80), nullable=False)
     image = db.Column(db.String(600))
-    description = db.Column(db.String(600))
+    description = db.Column(db.String(6000))
 
     def __repr__(self):
         return "{'image': %r, 'id': %r, 'name': %r, 'description': %r}" % (self.image, self.id, self.name, self.description)
@@ -169,9 +170,12 @@ if __name__ == '__main__':
             strLine = str(line).split(":") 
             NewImage = "https://raw.githubusercontent.com/roshan-dongre/idb/master/crimephotos/"+str(i)+".jpg"
             i += 1
+            NewDesc = strLine[2]
+            if(isinstance(NewDesc,str)):
+            	NewDesc = unicode(NewDesc, "utf-8")
             NewCrime = Crime(name=strLine[1],
                             image=NewImage,
-                            description=strLine[2])
+                            description=NewDesc)
             db.session.add(NewCrime)
             line = fp.readline()
 

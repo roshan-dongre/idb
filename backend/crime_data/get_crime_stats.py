@@ -16,6 +16,9 @@ URL3 = "/offense_name?page=1&per_page=100&output=json&year=2016&api_key=iiHnOKfn
 DIR_CRIME = "crime_data"
 ITEMS = ["offenses", "offenders", "victims"]
 
+#population_url = https://api.usa.gov/crime/fbi/ucr/estimates/states/
+#    + state + ?&page=1&per_page=100&output=json&api_key=iiHnOKfno2Mgkt5AynpvPpUQTEyxE77jo1RU8PIv
+
 def write_crime(result, filename):
     print("Writing to " + filename + "...")
     success = False

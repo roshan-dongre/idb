@@ -60,8 +60,8 @@ export default class Criminals extends Component {
         axios.get(url)
             .then((res) => {
                 // Set state with result
+                console.log(res.data)
                 self.setState({criminals: res.data.criminals, totalCount: res.data.criminals.length, numPages: Math.ceil(res.data.criminals.length/self.state.pgSize)});
-                console.log(res.data.criminals.length)
             })
             .catch((error) => {
                 console.log(error)

@@ -6,6 +6,7 @@ export default class Criminal extends Component {
     constructor (props) {
         super (props);
         let item = "";
+        console.log(this.props)
         if ('location' in this.props  && this.props.location.state.item !== undefined) {
             item = this.props.location.state.item
         } else if (this.props.item !== undefined) {
@@ -13,14 +14,14 @@ export default class Criminal extends Component {
         }
         this.state = {
             item: item,
-            reviews: [],
+            crimes: [],
             totalCount: 0,
-            selectedReview: "",
             selectedId: "",
             navigate: false,
-            navigateTo: ""
+            navigateTo: "",
+            state: ""
         }
-        this.apiUrl = 'https://backend-staging-183303.appspot.com/beers';
+        this.apiUrl = 'http://api.ontherun.me:5000/criminals';
     }
 
     /* Mounting
@@ -58,7 +59,7 @@ export default class Criminal extends Component {
      */
 
     getReviews = () => {
-        let url = "https://backend-staging-183303.appspot.com/reviews?beer_name=" + this.state.item.name
+        let url = "http://api.ontherun.me:5000/criminals/" + this.state.item.id // need to fix this
         let self = this
         axios.get(url)
             .then((res) => {
@@ -73,9 +74,9 @@ export default class Criminal extends Component {
     callAPI = () => {
         let url
         if (this.props.location.state.selectedId !== undefined) {
-            url = "https://backend-staging-183303.appspot.com/beers/"+this.props.location.state.selectedId
+            url = "http://api.ontherun.me:5000/criminals/"+this.props.location.state.id
         } else {
-            url = "https://backend-staging-183303.appspot.com/beers/"+this.state.item.id
+            url = "http://api.ontherun.me:5000/criminals/"+this.state.item.id
         }
 
         let self = this
@@ -89,11 +90,11 @@ export default class Criminal extends Component {
             });
     }
 
-    handleReviewNavigation = (reviewId, e) => {
+    handleStateNavigation = (reviewId, e) => {
         e.preventDefault()
         this.setState({
             navigate: true,
-            navigateTo: "/Review",
+            navigateTo: "/State",
             selectedId: reviewId,
             selectedReview: reviewId
         })

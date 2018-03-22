@@ -1,0 +1,324 @@
+#api.ontherun.me/criminals
+{
+  "title": "Criminals",
+  "type": "object",
+  "properties": {
+    "criminals": {
+      "type": "array",
+      "description": "The list of criminals",
+      "items": {
+        "type": "object",
+        "properties": {
+            "id": {
+              "type": "integer",
+              "description": "The unique identifier for a criminal"
+            },
+            "name": {
+              "type": "string"
+            },
+            "crime": {
+              "type": "string"
+            },
+            "dob": {
+              "type": "string"
+            },
+            "eyes": {
+              "type": "string"
+            },
+            "field_office": {
+              "type": "string"
+            },
+            "hair": {
+              "type": "string"
+            },
+            "nationality": {
+              "type": "string"
+            },
+            "race": {
+              "type": "string"
+            },
+            "sex": {
+              "type": "string"
+            },
+            "height": {
+              "type": "integer"
+            },
+            "weight": {
+              "type": "integer"
+            }
+        },
+        "required": ["name", "id", "crime"]
+      }
+    }
+  },
+  "required": ["criminals"]
+}
+
+#api.ontherun.me/criminals/[id]
+{
+  "title": "Criminal",
+  "type": "object",
+  "description": "A data entry for one criminal.",
+  "properties": {
+    "items": {
+      "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The unique identifier for a criminal"
+          },
+          "name": {
+            "type": "string"
+          },
+          "crime": {
+            "type": "string"
+          },
+          "dob": {
+            "type": "string"
+          },
+          "eyes": {
+            "type": "string"
+          },
+          "field_office": {
+            "type": "string"
+          },
+          "hair": {
+            "type": "string"
+          },
+          "nationality": {
+            "type": "string"
+          },
+          "race": {
+            "type": "string"
+          },
+          "sex": {
+            "type": "string"
+          },
+          "height": {
+            "type": "integer"
+          },
+          "weight": {
+            "type": "integer"
+          }
+      },
+      "required": ["name", "id", "crime"]
+      }
+  }
+}
+
+#api.ontherun.me/criminals/info
+{
+  "title": "Criminal",
+  "type": "object",
+  "description": "A list of criminals and their ID numbers.",
+  "properties": {
+    "ids": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The unique identifier for a criminal"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+      "required": ["id", "name"]
+      }
+    }
+  },
+  "required": ["criminals"]
+}
+
+#api.ontherun.me/crimes
+{
+ "title": "Crimes",
+ "type": "object",
+ "properties": {
+   "crimes": {
+     "type": "array",
+     "description": "The list of crimes",
+     "items": {
+       "type": "object",
+       "properties": {
+           "id": {
+             "type": "integer",
+             "description": "The unique identifier for a state"
+           },
+           "name": {
+             "type": "string",
+             "description": "The unique identifier for a state"
+           },
+           "count": {
+             "type": "integer",
+             "description": "number of counts of this crime nationally"
+           },
+           "offenders": {
+             "type": "integer"
+           },
+           "victims": {
+             "type": "integer"
+           },
+           "perpopulation": {
+             "type": "number",
+             "description": "number of counts/100000 national pop."
+           }
+       },
+       "required": ["id", "name", "count"]
+     }
+   }
+ },
+ "required": ["crimes"]
+}
+
+#api.ontherun.me/crimes/[id]
+{
+	"title": "Crimes",
+	"type": "object",
+	"properties": {
+		"items": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "integer",
+					"description": "The unique identifier for a state"
+				},
+				"name": {
+					"type": "string",
+					"description": "The unique identifier for a state"
+				},
+				"count": {
+					"type": "integer",
+					"description": "number of counts of this crime nationally"
+				},
+				"offenders": {
+					"type": "integer"
+				},
+				"victims": {
+					"type": "integer"
+				},
+				"perpopulation": {
+					"type": "number",
+					"description": "number of counts/100000 national pop."
+				}
+			},
+			"required": ["id", "name", "count"]
+		}
+	}
+}
+
+#api.ontherun.me/crimes/info
+{
+  "title": "Crimes",
+  "type": "object",
+  "properties": {
+    "crimes": {
+      "type": "array",
+      "description": "The list of crimes",
+      "items": {
+        "type": "object",
+        "properties": {
+            "id": {
+              "type": "integer",
+              "description": "The unique identifier for a crime"
+            },
+            "name": {
+              "type": "string",
+              "description": "The name of the crime"
+            }
+        },
+        "required": ["id", "name"]
+      }
+    }
+  },
+  "required": ["crimes"]
+}
+
+#api.ontherun.me/states
+{
+  "title": "States",
+  "type": "object",
+  "properties": {
+    "states": {
+      "type": "array",
+      "description": "The list of states",
+      "items": {
+        "type": "object",
+        "properties": {
+            "abbreviation": {
+              "type": "string",
+              "description": "The unique identifier for a state"
+            },
+            "name": {
+              "type": "string"
+            },
+            "capital": {
+              "type": "string"
+            },
+            "population": {
+              "type": "integer",
+              "description": "The unique identifier for a state"
+            }
+        },
+        "required": ["abbreviation", "name", "population"]
+      }
+    }
+  },
+  "required": ["states"]
+}
+
+#api.ontherun.me/states/info
+{
+  "title": "States",
+  "type": "object",
+  "properties": {
+    "states": {
+      "type": "array",
+      "description": "The list of states",
+      "items": {
+        "type": "object",
+        "properties": {
+            "abbreviation": {
+              "type": "string",
+              "description": "The unique identifier for a state"
+            },
+            "name": {
+              "type": "string"
+            }
+        },
+        "required": ["abbreviation", "name"]
+      }
+    }
+  },
+  "required": ["states"]
+}
+
+
+#api.ontherun.me/states/[abbreviation]
+{
+	"title": "States",
+	"type": "object",
+	"properties": {
+		"items": {
+			"type": "object",
+			"abbreviation": {
+				"type": "string",
+				"description": "The unique identifier for a state"
+			},
+			"name": {
+				"type": "string"
+			},
+			"capital": {
+				"type": "string"
+			},
+			"population": {
+				"type": "integer",
+				"description": "The unique identifier for a state"
+			},
+
+			"required": ["abbreviation", "name", "population"]
+		}
+	}
+}

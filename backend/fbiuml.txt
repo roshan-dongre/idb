@@ -1,0 +1,60 @@
+@startuml
+
+State - WantedIn
+WantedIn - Criminal
+Criminal - WantedFor
+WantedFor - Crime
+Crime - CrimeByState
+CrimeByState - State
+
+class State {
+  char[2] abbreviation
+  text name
+  text capital
+  int population
+}
+
+class WantedIn {
+  char[2] abbreviation
+  int criminalID
+}
+
+class Criminal {
+  int criminalID
+  text name
+  text crime
+  text dob
+  text eye_color
+  text field_office
+  text hair_color
+  text nationality
+  text race
+  text sex
+  int height
+  int weight
+}
+
+class WantedFor {
+  int criminalID
+  int crimeID
+}
+
+class Crime {
+  int crimeID
+  text name
+  int count
+  int offenders
+  int victims
+  float per_100000_population
+}
+
+class CrimeByState {
+  char[2] abbreviation
+  int crimeID
+  int count_in_state
+  int offenders_in_state
+  int victims_in_state
+  float per_100000_population_in_state
+}
+
+@enduml

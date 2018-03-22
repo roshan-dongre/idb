@@ -1,24 +1,19 @@
-sudo: required
+sudo: false
 
-services:
-  - docker
+language: python
 
-env:
-  DOCKER_COMPOSE_VERSION: 1.18.0
+python:
+   - "3.6"
 
-before_install:
-  - sudo rm /usr/local/bin/docker-compose
-  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
-  - chmod +x docker-compose
-  - sudo mv docker-compose /usr/local/bin
+install:
+    - pip install --upgrade pip
+    - pip install coverage
+    - pip install -r requirements.txt
 
 before_script:
-  - export REACT_APP_USERS_SERVICE_URL=http://127.0.0.1
-  - docker-compose -f docker-compose-dev.yml up --build -d
+    - uname -a
+    - printenv | sort
 
 script:
-  - docker-compose -f docker-compose-dev.yml run users python manage.py test
-  - docker-compose -f docker-compose-dev.yml run users flake8 project
-
-after_script:
-  - docker-compose -f docker-compose-dev.yml down
+    - date
+    - sh run_tests.sh

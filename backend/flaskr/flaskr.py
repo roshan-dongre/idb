@@ -34,6 +34,7 @@ class State(db.Model):
     id = db.Column(db.Integer,primary_key=True,unique=True)
     population = db.Column(db.Integer)
     abbreviation = db.Column(db.String(10), nullable=False)
+    picture = db.Column(db.String(150))
     def __repr__(self):
         return "{'abbreviation': %r, 'population': %r}" % (self.abbreviation, self.population)
 
@@ -50,6 +51,7 @@ class Criminal(db.Model):
     race = db.Column(db.String(80))
     nationality = db.Column(db.String(80))
     crime = db.Column(db.String(600), nullable=False)
+    image = db.Column(db.String(150))
     def __repr__(self):
         return "{'id': %r, 'name': %r, 'field_office': %r, 'height': %r, 'weight': %r, 'sex': %r, 'hair': %r, 'eyes': %r, 'dob': %r, 'race': %r, 'nationality': %r, 'crime': %r}" % (self.id, self.name, self.field_office, self.height, self.weight, self.sex, self.hair, self.eyes, self.dob, self.race, self.nationality, self.crime)
 
@@ -95,7 +97,7 @@ def get_crimes():
 #404 handling for api 
 @app.errorhandler(404)
 def pageNotFound(error):
-    return "Display html with API functionality"
+    return redirect("https://roshan-dongre.gitbooks.io/api/")
 
 
 # start the server with the 'run()' method
@@ -123,6 +125,7 @@ if __name__ == '__main__':
         NewRace = person["race_raw"]
         NewNationality = person["nationality"]
         NewCrime = person["caution"]
+        NewImage = person["images"][0]["large"]
         NewCriminal = Criminal(name=NewName,
                               field_office=NewFieldOffice[0],
                               height=NewHeight,
@@ -133,7 +136,8 @@ if __name__ == '__main__':
                               dob=NewDob[0],
                               race=NewRace,
                               nationality=NewNationality,
-                              crime=NewCrime)
+                              crime=NewCrime,
+                              image=NewImage)
         db.session.add(NewCriminal)
 
     with open('../crime_data/crime_ids.txt') as fp:

@@ -5,11 +5,14 @@
   "dependencies": {
     "axios": "^0.18.0",
     "bootstrap": "^3.3.7",
+    "google-map-react": "^0.34.0",
+    "google-maps-react": "^1.1.6",
     "jquery": "^3.3.1",
     "lodash.chunk": "^4.2.0",
     "react": "^16.2.0",
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.2.0",
+    "react-geocode": "0.0.7",
     "react-grid-layout": "^0.16.6",
     "react-highlight-words": "^0.11.0",
     "react-router": "^2.8.1",
@@ -17,6 +20,7 @@
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.1",
     "react-stylesheet": "^2.2.2",
+    "striptags": "^3.1.1",
     "webpack": "^3.11.0"
   },
   "scripts": {

@@ -1,6 +1,20 @@
 import React, { Component } from 'react';
 import {Redirect} from 'react-router-dom';
 import axios from 'axios';
+import GoogleMapReact from 'google-map-react';
+import Geocode from "react-geocode";
+
+var imageStyles = {
+    width: '400px',
+    height: '350px'
+}
+
+var style = {
+    width: '400px',
+    height: '350px'
+}
+
+Geocode.setApiKey("AIzaSyDkRhH7iB4iZW9dDa-FY7HYb8vpjj19Vsc");
 
 export default class Criminal extends Component {
     constructor (props) {
@@ -16,14 +30,22 @@ export default class Criminal extends Component {
             item: item,
             crimes: [],
             totalCount: 0,
+            lat: 0,
+            lng: 0,
+            zoom: 11,
             selectedId: "",
             navigate: false,
             navigateTo: "",
             state: "",
-            unknown: "Unknown"
+            unknown: "Unknown",
+            center: {
+                lat: 0,
+                lng: 0
+            }
         }
         this.apiUrl = 'http://api.ontherun.me:5000/criminals';
         console.log(this.state.item.crime)
+
     }
 
     /* Mounting
@@ -36,6 +58,7 @@ export default class Criminal extends Component {
 
     componentDidMount () {
         this.callAPI()
+        this.getCoor()
         this.getReviews()
     }
 
@@ -112,15 +135,30 @@ export default class Criminal extends Component {
     }
 
     changeValues = () => {
-        this.state.item.crime = this.state.item.crime.replace(/(<p[^>]+?>|<p>|<\/p>)/img, "")
+        var striptags = require('striptags');
+        this.state.item.crime = striptags(this.state.item.crime)
         this.state.item.eyes = this.state.item.eyes.slice(0,1).toUpperCase() + this.state.item.eyes.slice(1, this.state.item.eyes.length)
         this.state.item.hair = this.state.item.hair.slice(0,1).toUpperCase() + this.state.item.hair.slice(1, this.state.item.hair.length)
+    }
+
+    getCoor = () => {
+        let self = this
+        Geocode.fromAddress(this.state.item.field_office).then(
+          response => {
+            const { lat, lng } = response.results[0].geometry.location;
+            console.log(lat, lng);
+            //self.setState({lat: lat, lng: lng})
+            self.setState({center: {lat: lat, lng: lng}})
+          },
+          error => {
+            console.error(error);
+          }
+        );
     }
 
     /* More information about the React.Component lifecycle here: https://reactjs.org/docs/react-component.html */
 
     render() {
-
         if (this.state.navigate) {
             return <Redirect to={{pathname: this.state.navigateTo, state: {selectedId: this.state.selectedId}}} push={true} />;
         }
@@ -138,22 +176,30 @@ export default class Criminal extends Component {
                 );
             })
         } else {
-            beerReviews = "No reviews are currently available for this beer"
+            beerReviews = "No news is currently available for this person"
         }
 
         return (
             <div className="container sub-container">
                 <div className="row">
                     <div className="col-md-4">
-                        <div className="text-center">
-                            <img className=" img-thumbnail img-thumbnail-sm" src={this.state.item.image === undefined ? this.state.item.images : this.state.item.image} alt={this.state.item.name} />
+                        <div className="text-center" style={{ height: '300px', width: '350px' }}>
+                            <img className=" img-thumbnail img-thumbnail-sm" src={this.state.item.image === undefined ? this.state.item.images : this.state.item.image} alt={this.state.item.name} style = {imageStyles}/>
+                            <div>{this.getCoor()}</div>
+                            <text> Field Office </text>
+                            <GoogleMapReact
+                              bootstrapURLKeys={{ key: "AIzaSyDkRhH7iB4iZW9dDa-FY7HYb8vpjj19Vsc"}}
+                              defaultCenter= {this.state.center}
+                              defaultZoom={this.state.zoom}
+                            >
+                            </GoogleMapReact>
                         </div>
                     </div>
+                    <div>{this.changeValues()}</div>
                     <div className="col-md-8">
                         <h2 className="sub-header">{this.state.item.name}</h2>
                         <table className="table table-responsive">
                             <tbody>
-                            <div>{this.changeValues()}</div>
                             <tr>
                                 <td><strong>DOB:</strong></td>
                                 <td>{this.state.item.dob == null ? this.state.unknown : this.state.item.dob}</td>
@@ -177,6 +223,10 @@ export default class Criminal extends Component {
                             <tr>
                                 <td><strong>Nationality:</strong></td>
                                 <td>{this.state.item.nationality == null ? this.state.unknown : this.state.item.nationality}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>State:</strong></td>
+                                <td>STATE LINK GOES HERE</td>
                             </tr>
                             <tr>
                                 <td><strong>Description:</strong></td>

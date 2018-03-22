@@ -51,17 +51,18 @@ export default class Crimes extends Component {
 
     callAPI = () => {
 
-        //let limit = this.state.pgSize
-        //let offset = this.state.page * this.state.pgSize
-        //let limOff = "?limit="+limit+"&offset="+offset
-        let url = "http://api.ontherun.me:5000/crimes"
+        let limit = this.state.pgSize
+        let offset = this.state.page
+        let limOff = "?limit="+limit+"&offset="+offset
+        let url = "http://api.ontherun.me:5000/crimes" + limOff
 
         let self = this
         axios.get(url)
             .then((res) => {
                 // Set state with result
                 console.log(res.data)
-                self.setState({crimes: res.data.crimes, totalCount: res.data.crimes.length, numPages: Math.ceil(res.data.crimes.length/self.state.pgSize)});
+                console.log(res.data.totalCount)
+                self.setState({crimes: res.data.crimes, totalCount: res.data.totalCount, numPages: Math.ceil(res.data.totalCount/self.state.pgSize)});
             })
             .catch((error) => {
                 console.log(error)
@@ -121,12 +122,12 @@ export default class Crimes extends Component {
                         </div>
                     )
                 })}
-                {/*<PageSelector handlePageChange={this.handlePageChange}
+                {<PageSelector handlePageChange={this.handlePageChange}
                               handlePrev={this.handlePrev}
                               handleNext={this.handleNext}
                               numPages={this.state.numPages}
                               currentPage={this.state.page}
-                              navigateTo="/Crimes"/>*/}
+                              navigateTo="/Crimes"/>}
             </div>
       );
     }

@@ -51,17 +51,19 @@ export default class Criminals extends Component {
 
     callAPI = () => {
 
-        //let limit = this.state.pgSize
-        //let offset = this.state.page * this.state.pgSize
-        //let limOff = "?limit="+limit+"&offset="+offset
-        let url = "http://api.ontherun.me:5000/criminals"
+        let limit = this.state.pgSize
+        let offset = this.state.page
+        let limOff = "?limit="+limit+"&offset="+offset
+        let url = "http://api.ontherun.me:5000/criminals" + limOff
 
         let self = this
         axios.get(url)
             .then((res) => {
                 // Set state with result
-                console.log(res.data)
-                self.setState({criminals: res.data.criminals, totalCount: res.data.criminals.length, numPages: Math.ceil(res.data.criminals.length/self.state.pgSize)});
+                self.setState({criminals: res.data.criminals, totalCount: 289})
+                self.setState({numPages: Math.ceil(self.state.totalCount/self.state.pgSize)})
+                console.log(self.state.criminals)
+                console.log(url)
             })
             .catch((error) => {
                 console.log(error)
@@ -81,6 +83,7 @@ export default class Criminals extends Component {
 
         if (prevState.page !== this.state.page) {
             this.callAPI()
+            console.log("Reached")
             window.scrollTo({
                 top: 0,
                 left: 0,
@@ -121,12 +124,12 @@ export default class Criminals extends Component {
                         </div>
                     )
                 })}
-                {/*<PageSelector handlePageChange={this.handlePageChange}
+                {<PageSelector handlePageChange={this.handlePageChange}
                               handlePrev={this.handlePrev}
                               handleNext={this.handleNext}
                               numPages={this.state.numPages}
                               currentPage={this.state.page}
-                              navigateTo="/Criminals"/>*/}
+                              navigateTo="/Criminals"/>}
             </div>
       );
     }

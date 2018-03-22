@@ -58,10 +58,6 @@ def get_criminals():
 def get_crimes():
     return jsonify({'total_pages': '1', 'crimes': ast.literal_eval(str(Crime.query.all()))})
 
-@app.route('/', methods=['GET'], subdomain="api")
-def get_info():
-    return redirect("https://roshan-dongre.gitbooks.io/api/")
-
 # /api/states/                          //done
 # /api/states/<abr>
 # /api/states/info

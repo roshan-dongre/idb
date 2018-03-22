@@ -4,6 +4,7 @@ from flask import Flask, jsonify, request, session, g, redirect, url_for, abort,
      render_template, flash
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.sql import select
 import ast
 import json
 
@@ -56,6 +57,10 @@ def get_states():
 @app.route('/criminals', methods=['GET'], subdomain="api")
 def get_criminals():
     return jsonify({'criminals': ast.literal_eval(str(Criminal.query.all()))})
+
+@app.route('/criminals/<int:crim_id>', methods=['GET'], subdomain="api")
+def get_criminal(crim_id):
+    return jsonify(ast.literal_eval(str(Criminal.query.filter_by(id=crim_id).first())))
 
 @app.route('/crimes', methods=['GET'], subdomain="api")
 def get_crimes():

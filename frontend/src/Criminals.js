@@ -15,7 +15,7 @@ export default class Criminals extends Component {
             pgSize: 16,
             pathname: "/Criminals"
         }
-        this.apiUrl = 'http://api.ontherun.me:5000';
+        this.apiUrl = 'http://api.ontherun.me:5000/criminals';
     }
 
     /* Mounting
@@ -54,13 +54,14 @@ export default class Criminals extends Component {
         let limit = this.state.pgSize
         let offset = this.state.page * this.state.pgSize
         let limOff = "?limit="+limit+"&offset="+offset
-        let url = "http://api.ontherun.me:5000"+limOff
+        let url = "http://api.ontherun.me:5000/criminals"
 
         let self = this
         axios.get(url)
             .then((res) => {
                 // Set state with result
-                self.setState({criminals: res.data.records, totalCount: res.data.totalCount, numPages: Math.ceil(res.data.totalCount/self.state.pgSize)});
+                self.setState({criminals: res.data.criminals, totalCount: res.data.criminals.length, numPages: Math.ceil(res.data.criminals.length/self.state.pgSize)});
+                console.log(res.data.criminals.length)
             })
             .catch((error) => {
                 console.log(error)
@@ -109,6 +110,7 @@ export default class Criminals extends Component {
             })
         }
 
+
         return (
             <div className="container sub-container">
                 {/* Break array into separate arrays and wrap each array containing 3 components in a row div */}
@@ -119,12 +121,12 @@ export default class Criminals extends Component {
                         </div>
                     )
                 })}
-                <PageSelector handlePageChange={this.handlePageChange}
+                {/*<PageSelector handlePageChange={this.handlePageChange}
                               handlePrev={this.handlePrev}
                               handleNext={this.handleNext}
                               numPages={this.state.numPages}
                               currentPage={this.state.page}
-                              navigateTo="/Criminals"/>
+                              navigateTo="/Criminals"/>*/}
             </div>
       );
     }

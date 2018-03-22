@@ -245,9 +245,11 @@ if __name__ == '__main__':
                 if x['count'] != None:
                     if x['count'] > 0:
                         NewStateId = x['state_id']
+                        NewStateAbv = ast.literal_eval(str(State.query.filter_by(id=NewStateId).first()))
                         NewCrimeId = x['crime_id']
                         NewCrimeName = ast.literal_eval(str(Crime.query.filter_by(id=NewCrimeId).first()))
                         NewCrimeState = CrimesState(state_id=NewStateId,
+                                                    state_abbreviation=NewStateAbv['abbreviation'],
                                                     crime_id=NewCrimeId,
                                                     crime_name=NewCrimeName['name'])
                         db.session.add(NewCrimeState)

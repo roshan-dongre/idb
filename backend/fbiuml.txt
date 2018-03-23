@@ -11,7 +11,6 @@ class State {
   int stateID
   text image
   text name
-  text capital
   int population
   }
 
@@ -45,10 +44,6 @@ class Crime {
   int crimeID
   text image
   text name
-  int count
-  int offenders
-  int victims
-  float per_100000_population
 }
 
 class CrimeByState {
@@ -56,8 +51,6 @@ class CrimeByState {
   int crimeID
   text crimeName
   int stateID
-  int victims_in_state
-  float per_100000_population_in_state
 }
 
 @enduml

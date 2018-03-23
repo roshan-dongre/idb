@@ -10,7 +10,6 @@ var imageStyles = {
 export default class Crime extends Component {
     constructor (props) {
         super (props);
-        console.log(props)
         let item = "";
         if ('location' in this.props  && this.props.location.state.item !== undefined) {
             item = this.props.location.state.item
@@ -150,11 +149,7 @@ export default class Crime extends Component {
                                 </tr>
                                 </tbody>
                             </table>
-                        </div>
-                    </div>
-                    <div className="row mt-3">
-                        <div className="col-md-6">
-                            <h4 className="sub-header text-center">Criminals from this type of crime {this.state.item.name}</h4>
+                            <h3 className="sub-header text-center">States from this Type of Crime</h3>
                             <table className="table table-responsive">
                                 <tbody>
                                 <tr>

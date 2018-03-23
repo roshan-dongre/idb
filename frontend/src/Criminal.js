@@ -35,14 +35,14 @@ export default class Criminal extends Component {
             selectedId: "",
             navigate: false,
             navigateTo: "",
-            states: "",
+            data_states: [],
             unknown: "Unknown",
             center: {
                 lat: 0,
                 lng: 0
             }
         }
-        this.apiUrl = 'http://api.ontherun.me:5000/criminals';
+        //this.apiUrl = 'http://api.ontherun.me:5000/criminals';
     }
 
     /* Mounting
@@ -59,6 +59,13 @@ export default class Criminal extends Component {
         this.getStates()
     }
 
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.item.name !== this.state.item.name)
+        {
+            this.getStates()
+        }
+    }
+
     /* Updating
      An update can be caused by changes to props or state. These methods are called when a component is being re-rendered:
      * componentWillReceiveProps()
@@ -70,12 +77,14 @@ export default class Criminal extends Component {
 
     getStates = () => {
         let url = "http://api.ontherun.me:5000/criminalstostate/" + this.state.item.id // need to fix this
+        //console.log(this.state.item)
         let self = this
         axios.get(url)
             .then((res) => {
                 // Set state with result
-                console.log(res.data)
-                self.setState({states: res.data});
+                //console.log(res)
+                self.setState({data_states: res.data});
+                console.log(this.state.data_states)
             })
             .catch((error) => {
                 console.log(error)
@@ -98,7 +107,7 @@ export default class Criminal extends Component {
     callAPI = () => {
         let url
         if (this.props.location.state.selectedId !== undefined) {
-            url = "http://api.ontherun.me:5000/criminals/"+this.props.location.state.id
+            url = "http://api.ontherun.me:5000/criminals/"+this.props.location.state.selectedId
         } else {
             url = "http://api.ontherun.me:5000/criminals/"+this.state.item.id
         }
@@ -144,7 +153,7 @@ export default class Criminal extends Component {
         Geocode.fromAddress(this.state.item.field_office).then(
           response => {
             const { lat, lng } = response.results[0].geometry.location;
-            console.log(lat, lng);
+            //console.log(lat, lng);
             //self.setState({lat: lat, lng: lng})
             self.setState({center: {lat: lat, lng: lng}})
           },
@@ -161,10 +170,18 @@ export default class Criminal extends Component {
             return <Redirect to={{pathname: this.state.navigateTo, state: {selectedId: this.state.selectedId}}} push={true} />;
         }
         
-        let stateValue
+        let stateList
         let self = this
-        console.log(this.state.states)
-        stateValue = this.state.states
+        //console.log("Reached2"
+        //console.log(this.state.data_states)
+        stateList = this.state.data_states.map((state) => {
+            console.log(state)
+            return (
+                <tr className="clickable-row" onClick={(e) => self.handleStateNavigation(state.state, e)}>
+                    <td><strong>{state.state}</strong></td>
+                </tr>
+            );
+        })
 
         return (
             <div className="container sub-container">
@@ -213,11 +230,7 @@ export default class Criminal extends Component {
                             </tr>
                             <tr>
                                 <td><strong>State:</strong></td>
-                                <td>
-                                    <tr className="clickable-row" onClick={(e) => self.handleStateNavigation(stateValue.state, e)}>
-                                    <td><strong>{stateValue.state}</strong></td>
-                                    </tr>
-                                </td>
+                                <td> {stateList}</td>
                             </tr>
                             <tr>
                                 <td><strong>Description:</strong></td>

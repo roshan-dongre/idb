@@ -20,7 +20,7 @@ export default class State extends Component {
     constructor (props) {
         super (props);
         let item = "";
-        console.log(this.props)
+        //console.log(this.props)
         if ('location' in this.props  && this.props.location.state.item !== undefined) {
             item = this.props.location.state.item
         } else if (this.props.item !== undefined) {
@@ -34,7 +34,6 @@ export default class State extends Component {
             selectedId: "",
             navigate: false,
             navigateTo: "",
-            state: "",
             unknown: "Unknown",
             center: {
                 lat: 0,
@@ -44,7 +43,7 @@ export default class State extends Component {
             criminals: []
         }
         this.apiUrl = 'http://api.ontherun.me:5000/states';
-        console.log(this.state.item.name)
+        //console.log(this.state.item.name)
     }
 
     /* Mounting
@@ -84,6 +83,7 @@ export default class State extends Component {
      */
 
     getCrimes = () => {
+        //console.log("In crimes")
         let url = "http://api.ontherun.me:5000/crimestostate/" + this.state.item.abbreviation // need to fix this
         let self = this
         axios.get(url)
@@ -217,10 +217,6 @@ export default class State extends Component {
                             <tr>
                                 <td><strong>Population:</strong></td>
                                 <td>{this.state.item.population == null ? this.state.unknown : this.state.item.population}</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Description:</strong></td>
-                                <td>Need more stuff here</td>
                             </tr>
                             </tbody>
                         </table>

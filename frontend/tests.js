@@ -1,24 +1,17 @@
-import React from 'react';
+import React, {Component} from 'react'
+import {Carousel, Container, Slide} from 'react-bootstrap'
 import { shallow, mount } from 'enzyme';
 import { expect } from 'chai';
-import * as sinon from 'sinon'
-import { Carousel, CarouselItem, CarouselControl, CarouselIndicators, CarouselCaption } from 'reactstrap';
+
 
 import App from './src/App';
-import Navigation from './src/components/Navigation';
 import About from './src/About'
 import Home from './src/Home'
 import Header from './src/Header'
-import { Criminal } from './src/Criminal'
-import { Crime } from './src/Crime'
-import { State } from './src/State'
-
 import Criminals from './src/Criminals'
 import Crimes from './src/Crimes'
 import States from './src/States'
-
-import { UIRouter } from '@uirouter/react';
-
+import {Route, Switch, withRouter, BrowserRouter } from 'react-router-dom'
 import ItemSelector from './src/ItemSelector'
 import PageSelector from './src/PageSelector'
 
@@ -66,7 +59,7 @@ describe('<Criminals/>', function () {
 
   describe('<Criminal/>', function () {
     it('should render without crasing', function () {
-      const wrapper = shallow(<Criminal />);
+      shallow(<Criminal />);
     })
 
     it('should contain the correct amount of data', function () {

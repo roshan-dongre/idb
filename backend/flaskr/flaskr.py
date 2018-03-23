@@ -137,6 +137,14 @@ def get_crimestostate(id_val):
         TempState = ast.literal_eval(str(State.query.filter_by(abbreviation=id_val).first()))
         return jsonify(ast.literal_eval(str(CrimesState.query.filter_by(state_id=TempState['id']).all())))
 
+@app.route('/criminalstostate', methods=['GET'])#, subdomain="api")
+def get_criminaltostate():
+    ans = []
+    for x in statelist:
+        for y in ast.literal_eval(str(Criminal.query.filter_by(state=x).all())):
+            ans += [{'id': y['id'], 'state': x}]
+    return jsonify(ans)
+
 @app.route('/criminalstostate/<string:id_val>', methods=['GET'])#, subdomain="api")
 def get_criminalstostate(id_val):
     if(str(id_val).isdigit()):

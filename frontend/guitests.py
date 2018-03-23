@@ -14,6 +14,7 @@ class SeleniumTesting(unittest.TestCase):
 	def setUp(self):
 		self.wdriver = webdriver.Chrome(executable_path = r"chromedriver.exe")
 		self.base_url = "http://api.ontherun.me"
+		
 		# self.base_url = "http://ontherun.me"
 
 	# Check that the about page link takes us to the right page.

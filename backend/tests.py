@@ -91,6 +91,20 @@ class CrimesToState(unittest.TestCase):
     for x in data:
       self.assertEqual(x["crime_name"], "Arson")
       
+class CriminalsToState(unittest.TestCase):
+  
+  def setUp(self):
+    self.url = "http://api.ontherun.me:5000/criminalstostate"
+    
+  def test_1(self):
+    response = requests.get(self.url)
+    data = json.loads(response.content)
+    keys1 = ["id", "state"]
+    keys2 = data[0].keys()
+    for k in keys1:
+      self.assertIn(k, keys2)
+    
+    
 if __name__ == '__main__':
   
   unittest.main()

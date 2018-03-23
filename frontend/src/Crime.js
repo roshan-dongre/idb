@@ -10,6 +10,7 @@ var imageStyles = {
 export default class Crime extends Component {
     constructor (props) {
         super (props);
+        console.log(props)
         let item = "";
         if ('location' in this.props  && this.props.location.state.item !== undefined) {
             item = this.props.location.state.item
@@ -34,7 +35,7 @@ export default class Crime extends Component {
      */
 
     componentDidMount() {
-        //this.callAPI()
+        this.callAPI()
         this.getStates()
     }
 
@@ -61,21 +62,34 @@ export default class Crime extends Component {
 
     /* More information about the React.Component lifecycle here: https://reactjs.org/docs/react-component.html */
 
+    getStates = () => {
+        let url = "http://api.ontherun.me:5000/crimestostate/" + this.state.item.id // need to fix this
+        let self = this
+        axios.get(url)
+            .then((res) => {
+                // Set state with result
+                self.setState({states: res.data});
+            })
+            .catch((error) => {
+                console.log(error)
+            });
+    }
+
     handleCriminalNavigation = (criminalId, e) => {
         e.preventDefault()
         this.setState({
             navigate: true,
-            //selectedId: crimeId,
+            selectedId: criminalId,
             navigateTo: "/Criminal"
         })
     }
 
-    handleStateNavigation = (styleId, e) => {
+    handleStateNavigation = (stateId, e) => {
         e.preventDefault()
         this.setState({
             navigate: true,
-            //selectedId: styleId,
-            navigateTo: "/State"
+            selectedId: stateId,
+            navigateTo: "/State" 
         })
     }
 
@@ -103,24 +117,16 @@ export default class Crime extends Component {
        if (this.state.navigate) {
             return <Redirect to={{pathname: this.state.navigateTo, state: {selectedId: this.state.selectedId}}} push={true} />;
         }
-
-        let crimeLinks, styleLinks
-        if (this.state.item !== "") {
-            /*crimeLinks = this.state.item.crimes.map((crime, index) => {
+            
+            let stateList
+            let self = this
+            stateList = this.state.states.map((state) => {
                 return (
-                    <div className="text-center">
-                        <button type="button" className="btn btn-link" onClick={(e) => this.handlecrimeNavigation(this.state.item.crime_ids[index], e)}>{crime}</button>
-                    </div>
+                    <tr className="clickable-row" onClick={(e) => self.handleStateNavigation(state.state_abbreviation, e)}>
+                        <td><strong>{state.state_abbreviation}</strong></td>
+                    </tr>
                 );
             })
-
-            styleLinks = this.state.item.styles.map((style, index) => {
-                return (
-                    <div className="text-center">
-                        <button type="button" className="btn btn-link" onClick={(e) => this.handleStyleNavigation(this.state.item.style_ids[index], e)}>{style}</button>
-                    </div>
-                );
-            }) */
 
             return (
                 <div className="container sub-container">
@@ -152,17 +158,7 @@ export default class Crime extends Component {
                             <table className="table table-responsive">
                                 <tbody>
                                 <tr>
-                                    <td>{crimeLinks}</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div className="col-md-6">
-                            <h4 className="sub-header text-center">More Styles Offered By {this.state.item.name}</h4>
-                            <table className="table table-responsive">
-                                <tbody>
-                                <tr>
-                                    <td>{styleLinks}</td>
+                                    <td>{stateList}</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -170,10 +166,5 @@ export default class Crime extends Component {
                     </div>
                 </div>
             );
-        } else {
-            return (
-                <div>Loading...</div>
-            )
         }
     }
-}

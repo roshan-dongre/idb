@@ -20,7 +20,6 @@ export default class Criminal extends Component {
     constructor (props) {
         super (props);
         let item = "";
-        console.log(this.props)
         if ('location' in this.props  && this.props.location.state.item !== undefined) {
             item = this.props.location.state.item
         } else if (this.props.item !== undefined) {
@@ -36,7 +35,7 @@ export default class Criminal extends Component {
             selectedId: "",
             navigate: false,
             navigateTo: "",
-            state: "",
+            states: "",
             unknown: "Unknown",
             center: {
                 lat: 0,
@@ -44,8 +43,6 @@ export default class Criminal extends Component {
             }
         }
         this.apiUrl = 'http://api.ontherun.me:5000/criminals';
-        console.log(this.state.item.crime)
-
     }
 
     /* Mounting
@@ -59,7 +56,7 @@ export default class Criminal extends Component {
     componentDidMount () {
         this.callAPI()
         this.getCoor()
-        this.getReviews()
+        this.getStates()
     }
 
     /* Updating
@@ -71,10 +68,25 @@ export default class Criminal extends Component {
      * componentDidUpdate()
      */
 
+    getStates = () => {
+        let url = "http://api.ontherun.me:5000/criminalstostate/" + this.state.item.id // need to fix this
+        let self = this
+        axios.get(url)
+            .then((res) => {
+                // Set state with result
+                console.log(res.data)
+                self.setState({states: res.data});
+            })
+            .catch((error) => {
+                console.log(error)
+            });
+    }
+
+
     componentDidUpdate(prevProps, prevState) {
         if (prevState.item.name !== this.state.item.name)
         {
-            this.getReviews()
+            this.getStates()
         }
     }
 
@@ -82,19 +94,6 @@ export default class Criminal extends Component {
      This method is called when a component is being removed from the DOM:
      * componentWillUnmount()
      */
-
-    getReviews = () => {
-        let url = "http://api.ontherun.me:5000/criminals/" + this.state.item.id // need to fix this
-        let self = this
-        axios.get(url)
-            .then((res) => {
-                // Set state with result
-                self.setState({reviews: res.data.records, totalCount: res.data.totalCount});
-            })
-            .catch((error) => {
-                console.log(error)
-            });
-    }
 
     callAPI = () => {
         let url
@@ -115,22 +114,21 @@ export default class Criminal extends Component {
             });
     }
 
-    handleStateNavigation = (reviewId, e) => {
+    handleStateNavigation = (stateId, e) => {
         e.preventDefault()
         this.setState({
             navigate: true,
             navigateTo: "/State",
-            //selectedId: reviewId,
-            //selectedReview: reviewId
+            selectedId: stateId
         })
     }
 
-    handleCrimeNavigation = (e) => {
+    handleCrimeNavigation = (crimeId,e) => {
         e.preventDefault()
         this.setState({
             navigate: true,
             navigateTo: "/Crime",
-            //selectedId: this.state.item.brewery_id
+            selectedId: crimeId
         })
     }
 
@@ -162,22 +160,11 @@ export default class Criminal extends Component {
         if (this.state.navigate) {
             return <Redirect to={{pathname: this.state.navigateTo, state: {selectedId: this.state.selectedId}}} push={true} />;
         }
-
-        let beerReviews
-        if (this.state.totalCount > 0) {
-            let self = this
-             beerReviews = this.state.reviews.map((review) => {
-                 review.image = self.state.item.image
-                return (
-                    <tr className="clickable-row" onClick={(e) => self.handleReviewNavigation(review.id, e)}>
-                        <td><strong>{review.rating}</strong></td>
-                        <td>{truncate(review.comment)}</td>
-                    </tr>
-                );
-            })
-        } else {
-            beerReviews = "No news is currently available for this person"
-        }
+        
+        let stateValue
+        let self = this
+        console.log(this.state.states)
+        stateValue = this.state.states
 
         return (
             <div className="container sub-container">
@@ -226,7 +213,11 @@ export default class Criminal extends Component {
                             </tr>
                             <tr>
                                 <td><strong>State:</strong></td>
-                                <td>STATE LINK GOES HERE</td>
+                                <td>
+                                    <tr className="clickable-row" onClick={(e) => self.handleStateNavigation(stateValue.state, e)}>
+                                    <td><strong>{stateValue.state}</strong></td>
+                                    </tr>
+                                </td>
                             </tr>
                             <tr>
                                 <td><strong>Description:</strong></td>

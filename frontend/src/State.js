@@ -40,11 +40,11 @@ export default class State extends Component {
                 lat: 0,
                 lng: 0
             },
-            crimes: []
+            crimes: [],
+            criminals: []
         }
         this.apiUrl = 'http://api.ontherun.me:5000/states';
         console.log(this.state.item.name)
-
     }
 
     /* Mounting
@@ -56,9 +56,10 @@ export default class State extends Component {
      */
 
     componentDidMount () {
-        //this.callAPI()
+        this.callAPI()
         this.getCoor()
         this.getCrimes()
+        this.getCriminals()
     }
 
     /* Updating
@@ -95,14 +96,25 @@ export default class State extends Component {
             });
     }
 
+    getCriminals = () => {
+        let url = "http://api.ontherun.me:5000/criminalstostate/" + this.state.item.abbreviation // need to fix this
+        let self = this
+        axios.get(url)
+            .then((res) => {
+                // Set state with result
+                self.setState({criminals: res.data});
+            })
+            .catch((error) => {
+                console.log(error)
+            });
+    }
 
-
-    /*callAPI = () => {
+    callAPI = () => {
         let url
         if (this.props.location.state.selectedId !== undefined) {
-            url = "http://ontherun.me:5000/api/states/"+this.props.location.state.id
+            url = "http://api.ontherun.me:5000/states/"+this.props.location.state.selectedId
         } else {
-            url = "http://ontherun.me:5000/api/states/"+this.state.item.id
+            url = "http://api.ontherun.me:5000/states/"+this.state.item.abbreviation
         }
 
         let self = this
@@ -114,7 +126,7 @@ export default class State extends Component {
             .catch((error) => {
                 console.log(error)
             });
-    }*/
+    }
 
     handleCrimeNavigation = (crimeId, e) => {
         e.preventDefault()
@@ -143,7 +155,6 @@ export default class State extends Component {
         Geocode.fromAddress(temp).then(
           response => {
             const { lat, lng } = response.results[0].geometry.location;
-            console.log(lat, lng);
             //self.setState({lat: lat, lng: lng})
             self.setState({center: {lat: lat, lng: lng}})
           },
@@ -161,13 +172,20 @@ export default class State extends Component {
         }
 
         let crimeList
-
-        console.log(this.state.crimes)
         let self = this
-         crimeList = this.state.crimes.map((crime) => {
+        crimeList = this.state.crimes.map((crime) => {
             return (
                 <tr className="clickable-row" onClick={(e) => self.handleCrimeNavigation(crime.crime_id, e)}>
                     <td><strong>{crime.crime_name}</strong></td>
+                </tr>
+            );
+        })
+
+        let criminalList
+        criminalList = this.state.criminals.map((criminal) => {
+            return (
+                <tr className="clickable-row" onClick={(e) => self.handleCriminalNavigation(criminal.id, e)}>
+                    <td><strong>{criminal.name}</strong></td>
                 </tr>
             );
         })
@@ -204,18 +222,6 @@ export default class State extends Component {
                                 <td><strong>Description:</strong></td>
                                 <td>Need more stuff here</td>
                             </tr>
-                            {/*<tr>
-                                <td><strong>Brewery:</strong></td>
-                                <td><button type="button" className="btn btn-link" onClick={this.handleBreweryNavigation}>{this.state.item.brewery}</button></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Style:</strong></td>
-                                <td><button type="button" className="btn btn-link" onClick={this.handleStyleNavigation}>{this.state.item.style}</button></td>
-                            </tr>
-                            <tr>
-                                <td><strong>Organic:</strong></td>
-                                <td>{this.state.item.organic}</td>
-                            </tr>*/}
                             </tbody>
                         </table>
                         <h3 className="sub-header">Crimes in this State</h3>
@@ -227,6 +233,16 @@ export default class State extends Component {
                             </thead>
                             <tbody>
                             {crimeList}
+                            </tbody>
+                        </table>
+                        <table className="table table-responsive table-hover">
+                            <thead>
+                            <tr>
+                                <th>Criminal</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {criminalList}
                             </tbody>
                         </table>
                     </div>

@@ -170,7 +170,7 @@ render () {
                                 <img className="img-thumbnail" src="https://ramdeepk2.github.io/ramdeepk2.github.io/cs373/headshot.JPG" alt="Krishna Pic" data-toggle="modal" data-target="#krishnaModal" style = {imageStyles}/>
                                 <h2>Krishna Ramdeep</h2>
                                 <p>Bio: CS senior taking Computer Vision, Programming for Performance, Software Engineering, and Randomized Algorithms. I like to work out, hike, and read in my free time (which I don't get too much of).</p>
-                                <p>Responsibilities: API Report</p>
+                                <p>Responsibilities: API Documentation, Frontend GUI tests, Technical Report</p>
                                 <p>Number of commits: {this.state.krishnaCommits}</p>
                                 <p>Number of issues: {this.state.krishnaIssues}</p>
                                 <p>Number of unit tests: 0</p>

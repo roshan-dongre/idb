@@ -64,11 +64,12 @@ class CrimesState(db.Model):
     __tablename__ = 'crimesTostate'
     id = db.Column(db.Integer,primary_key=True,unique=True)
     state_id = db.Column(db.Integer)
+    state_abbreviation = db.Column(db.String(10))
     crime_id = db.Column(db.Integer)
     crime_name = db.Column(db.String(600))
 
     def __repr__(self):
-        return "{'id': %r, 'state_id': %r, 'crime_id': %r, 'crime_name': %r}" % (self.id, self.state_id, self.crime_id, self.crime_name)
+        return "{'state_abbreviation': %r, 'id': %r, 'state_id': %r, 'crime_id': %r, 'crime_name': %r}" % (self.state_abbreviation, self.id, self.state_id, self.crime_id, self.crime_name)
 
 @app.route('/states', methods=['GET'])#, subdomain="api")
 def get_states():
@@ -244,9 +245,11 @@ if __name__ == '__main__':
                 if x['count'] != None:
                     if x['count'] > 0:
                         NewStateId = x['state_id']
+                        NewStateAbv = ast.literal_eval(str(State.query.filter_by(id=NewStateId).first()))
                         NewCrimeId = x['crime_id']
                         NewCrimeName = ast.literal_eval(str(Crime.query.filter_by(id=NewCrimeId).first()))
                         NewCrimeState = CrimesState(state_id=NewStateId,
+                                                    state_abbreviation=NewStateAbv['abbreviation'],
                                                     crime_id=NewCrimeId,
                                                     crime_name=NewCrimeName['name'])
                         db.session.add(NewCrimeState)

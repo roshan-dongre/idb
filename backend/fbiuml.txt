@@ -1,5 +1,4 @@
 @startuml
-
 State - WantedIn
 WantedIn - Criminal
 Criminal - WantedFor
@@ -9,15 +8,17 @@ CrimeByState - State
 
 class State {
   char[2] abbreviation
+  int stateID
+  text image
   text name
   text capital
   int population
-}
+  }
 
 class WantedIn {
-  char[2] abbreviation
   int criminalID
-}
+  char[2] abbreviation
+  }
 
 class Criminal {
   int criminalID
@@ -32,15 +33,17 @@ class Criminal {
   text sex
   int height
   int weight
-}
+  }
 
 class WantedFor {
   int criminalID
   int crimeID
-}
+  }
 
 class Crime {
+  text description
   int crimeID
+  text image
   text name
   int count
   int offenders
@@ -51,8 +54,8 @@ class Crime {
 class CrimeByState {
   char[2] abbreviation
   int crimeID
-  int count_in_state
-  int offenders_in_state
+  text crimeName
+  int stateID
   int victims_in_state
   float per_100000_population_in_state
 }

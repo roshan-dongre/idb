@@ -1,0 +1,737 @@
+{
+	"info": {
+		"_postman_id": "d87a9e2d-a1ac-48d8-b825-ac156671159c",
+		"name": "IDB Phase 2",
+		"description": "API tests for phase 2 of the Spring 2018 Software Engineering IDB project.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "State Base",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "de72c28d-3b04-49e3-92c7-542867bc31ef",
+						"type": "text/javascript",
+						"exec": [
+							"// Correct status code?",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"// Matches schema?",
+							"const statebaseSchema = {",
+							"  \"title\": \"States\",",
+							"  \"type\": \"object\",",
+							"  \"properties\": {",
+							"    \"states\": {",
+							"      \"type\": \"array\",",
+							"      \"description\": \"The list of states\",",
+							"      \"items\": {",
+							"        \"type\": \"object\",",
+							"        \"properties\": {",
+							"            \"abbreviation\": {",
+							"              \"type\": \"string\",",
+							"              \"description\": \"The unique identifier for a state\"",
+							"            },",
+							"            \"image\": {",
+							"              \"type\": \"string\"",
+							"            },",
+							"            \"name\": {",
+							"              \"type\": \"string\"",
+							"            },",
+							"            \"population\": {",
+							"              \"type\": \"integer\",",
+							"              \"description\": \"The unique identifier for a state\"",
+							"            }",
+							"        },",
+							"        \"required\": [\"abbreviation\", \"name\", \"population\"]",
+							"      }",
+							"    },",
+							"    \"totalCount\": {",
+							"      \"type\": \"integer\"",
+							"    }",
+							"  },",
+							"  \"required\": [\"states\", \"totalCount\"]",
+							"};",
+							"",
+							"var stateBaseResponse = JSON.parse(responseBody);",
+							"tests[\"Valid JSON\"] = tv4.validate(stateBaseResponse, statebaseSchema);",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://api.ontherun.me:5000/states",
+					"protocol": "http",
+					"host": [
+						"api",
+						"ontherun",
+						"me"
+					],
+					"port": "5000",
+					"path": [
+						"states"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "State Specific Abbrev",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "043da539-5685-4a96-bf33-be8a79e6715e",
+						"type": "text/javascript",
+						"exec": [
+							"// Correct status code?",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"// Matches schema?",
+							"const stateSchema = {",
+							"\t\"title\": \"States\",",
+							"\t\"type\": \"object\",",
+							"\t\"properties\": {",
+							"\t\t\"items\": {",
+							"\t\t\t\"type\": \"object\",",
+							"\t\t\t\"abbreviation\": {",
+							"\t\t\t\t\"type\": \"string\",",
+							"\t\t\t\t\"description\": \"The unique identifier for a state\"",
+							"\t\t\t},",
+							"\t\t\t\"name\": {",
+							"\t\t\t\t\"type\": \"string\"",
+							"\t\t\t},",
+							"\t\t\t\"capital\": {",
+							"\t\t\t\t\"type\": \"string\"",
+							"\t\t\t},",
+							"\t\t\t\"population\": {",
+							"\t\t\t\t\"type\": \"integer\",",
+							"\t\t\t\t\"description\": \"The unique identifier for a state\"",
+							"\t\t\t},",
+							"",
+							"\t\t\t\"required\": [\"abbreviation\", \"name\", \"population\"]",
+							"\t\t}",
+							"\t}",
+							"};",
+							"",
+							"var stateResponse = JSON.parse(responseBody);",
+							"tests[\"Valid JSON\"] = tv4.validate(stateResponse, stateSchema);",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://api.ontherun.me:5000/states/AL",
+					"protocol": "http",
+					"host": [
+						"api",
+						"ontherun",
+						"me"
+					],
+					"port": "5000",
+					"path": [
+						"states",
+						"AL"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "State Specific ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "043da539-5685-4a96-bf33-be8a79e6715e",
+						"type": "text/javascript",
+						"exec": [
+							"// Correct status code?",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"// Matches schema?",
+							"const stateSchema = {",
+							"\t\"title\": \"States\",",
+							"\t\"type\": \"object\",",
+							"\t\"properties\": {",
+							"\t\t\"items\": {",
+							"\t\t\t\"type\": \"object\",",
+							"\t\t\t\"abbreviation\": {",
+							"\t\t\t\t\"type\": \"string\",",
+							"\t\t\t\t\"description\": \"The unique identifier for a state\"",
+							"\t\t\t},",
+							"\t\t\t\"name\": {",
+							"\t\t\t\t\"type\": \"string\"",
+							"\t\t\t},",
+							"\t\t\t\"capital\": {",
+							"\t\t\t\t\"type\": \"string\"",
+							"\t\t\t},",
+							"\t\t\t\"population\": {",
+							"\t\t\t\t\"type\": \"integer\",",
+							"\t\t\t\t\"description\": \"The unique identifier for a state\"",
+							"\t\t\t},",
+							"",
+							"\t\t\t\"required\": [\"abbreviation\", \"name\", \"population\"]",
+							"\t\t}",
+							"\t}",
+							"};",
+							"",
+							"var stateResponse = JSON.parse(responseBody);",
+							"tests[\"Valid JSON\"] = tv4.validate(stateResponse, stateSchema);",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://api.ontherun.me:5000/states/24",
+					"protocol": "http",
+					"host": [
+						"api",
+						"ontherun",
+						"me"
+					],
+					"port": "5000",
+					"path": [
+						"states",
+						"24"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Criminal Base",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "332cf864-447d-4c74-b15b-c87926b1d380",
+						"type": "text/javascript",
+						"exec": [
+							"// Status code?",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// Matches schema?",
+							"const criminalbaseSchema = {",
+							"  \"title\": \"Criminals\",",
+							"  \"type\": \"object\",",
+							"  \"properties\": {",
+							"    \"criminals\": {",
+							"      \"type\": \"array\",",
+							"      \"description\": \"The list of criminals\",",
+							"      \"items\": {",
+							"        \"type\": \"object\",",
+							"        \"properties\": {",
+							"            \"crime\": {",
+							"              \"type\": [\"string\", \"null\"]",
+							"            },",
+							"            \"dob\": {",
+							"              \"type\": [\"string\", \"null\"]",
+							"            },",
+							"            \"eyes\": {",
+							"              \"type\": [\"string\", \"null\"]",
+							"            },",
+							"            \"field_office\": {",
+							"              \"type\": [\"string\", \"null\"]",
+							"            },",
+							"            \"hair\": {",
+							"              \"type\": [\"string\", \"null\"]",
+							"            },",
+							"            \"height\": {",
+							"              \"type\": [\"integer\", \"null\"]",
+							"            },",
+							"            \"id\": {",
+							"              \"type\": \"integer\",",
+							"              \"description\": \"The unique identifier for a criminal\"",
+							"            },",
+							"            \"image\": {",
+							"              \"type\": [\"string\", \"null\"]",
+							"            },",
+							"            \"name\": {",
+							"              \"type\": [\"string\", \"null\"]",
+							"            },",
+							"            \"nationality\": {",
+							"              \"type\": [\"string\", \"null\"]",
+							"            },",
+							"            \"race\": {",
+							"              \"type\": [\"string\", \"null\"]",
+							"            },",
+							"            \"sex\": {",
+							"              \"type\": [\"string\", \"null\"]",
+							"            },",
+							"            \"weight\": {",
+							"              \"type\": [\"integer\", \"null\"]",
+							"            }",
+							"        },",
+							"        \"required\": [\"name\", \"id\", \"crime\"]",
+							"      }",
+							"    },",
+							"    \"totalCount\": {",
+							"      \"type\": \"integer\"",
+							"    }",
+							"  },",
+							"  \"required\": [\"criminals\"]",
+							"};",
+							"",
+							"var crims = JSON.parse(responseBody);",
+							"tests[\"Valid JSON\"] = tv4.validate(crims, criminalbaseSchema);"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://api.ontherun.me:5000/criminals",
+					"protocol": "http",
+					"host": [
+						"api",
+						"ontherun",
+						"me"
+					],
+					"port": "5000",
+					"path": [
+						"criminals"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Criminal Specific",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "50f838b4-29a4-4cb4-8cb1-e7c4652e52df",
+						"type": "text/javascript",
+						"exec": [
+							"// Correct status code?",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"// Matches schema?",
+							"const crimSchema = {",
+							"  \"title\": \"Criminal\",",
+							"  \"type\": \"object\",",
+							"  \"description\": \"A data entry for one criminal.\",",
+							"  \"properties\": {",
+							"    \"items\": {",
+							"      \"type\": \"object\",",
+							"        \"properties\": {",
+							"          \"id\": {",
+							"            \"type\": \"integer\",",
+							"            \"description\": \"The unique identifier for a criminal\"",
+							"          },",
+							"          \"name\": {",
+							"            \"type\": \"string\"",
+							"          },",
+							"          \"crime\": {",
+							"            \"type\": \"string\"",
+							"          },",
+							"          \"dob\": {",
+							"            \"type\": \"string\"",
+							"          },",
+							"          \"eyes\": {",
+							"            \"type\": \"string\"",
+							"          },",
+							"          \"field_office\": {",
+							"            \"type\": \"string\"",
+							"          },",
+							"          \"hair\": {",
+							"            \"type\": \"string\"",
+							"          },",
+							"          \"nationality\": {",
+							"            \"type\": \"string\"",
+							"          },",
+							"          \"race\": {",
+							"            \"type\": \"string\"",
+							"          },",
+							"          \"sex\": {",
+							"            \"type\": \"string\"",
+							"          },",
+							"          \"height\": {",
+							"            \"type\": \"integer\"",
+							"          },",
+							"          \"weight\": {",
+							"            \"type\": \"integer\"",
+							"          }",
+							"      },",
+							"      \"required\": [\"name\", \"id\", \"crime\"]",
+							"      }",
+							"  }",
+							"};",
+							"",
+							"var crim = JSON.parse(responseBody);",
+							"tests[\"Valid JSON\"] = tv4.validate(crim, crimSchema);",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://api.ontherun.me:5000/criminals/2",
+					"protocol": "http",
+					"host": [
+						"api",
+						"ontherun",
+						"me"
+					],
+					"port": "5000",
+					"path": [
+						"criminals",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crime Base",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "49c7702d-5fd1-489a-b18f-c2cd05f660f3",
+						"type": "text/javascript",
+						"exec": [
+							"// Status code?",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// Matches schema?",
+							"const crimebaseSchema = {",
+							" \"title\": \"Crimes\",",
+							" \"type\": \"object\",",
+							" \"properties\": {",
+							"   \"crimes\": {",
+							"     \"type\": \"array\",",
+							"     \"description\": \"The list of crimes\",",
+							"     \"items\": {",
+							"       \"type\": \"object\",",
+							"       \"properties\": {",
+							"           \"description\": {",
+							"             \"type\": \"string\"",
+							"           },",
+							"           \"id\": {",
+							"              \"type\": \"integer\"",
+							"           },",
+							"           \"image\": {",
+							"              \"type\": \"string\"",
+							"           },",
+							"           \"name\": {",
+							"             \"type\": \"string\",",
+							"             \"description\": \"The unique identifier for a state\"",
+							"           }",
+							"       },",
+							"       \"required\": [\"id\", \"name\"]",
+							"     }",
+							"   },",
+							"   \"totalCount\": {",
+							"      \"type\": \"integer\"",
+							"   }",
+							" },",
+							" \"required\": [\"crimes\"]",
+							"};",
+							"",
+							"var crimes = JSON.parse(responseBody);",
+							"tests[\"Valid JSON\"] = tv4.validate(crimes, crimebaseSchema);",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "api.ontherun.me:5000/crimes",
+					"host": [
+						"api",
+						"ontherun",
+						"me"
+					],
+					"port": "5000",
+					"path": [
+						"crimes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crime Specific",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "667c2a4a-e1f4-4278-8d10-b6aee78be91f",
+						"type": "text/javascript",
+						"exec": [
+							"// Correct status code?",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"// Matches schema?",
+							"const crimeSchema = {",
+							"\t\"title\": \"Crimes\",",
+							"\t\"type\": \"object\",",
+							"\t\"properties\": {",
+							"\t\t\"items\": {",
+							"\t\t\t\"type\": \"object\",",
+							"\t\t\t\"properties\": {",
+							"\t\t\t\t\"id\": {",
+							"\t\t\t\t\t\"type\": \"integer\",",
+							"\t\t\t\t\t\"description\": \"The unique identifier for a state\"",
+							"\t\t\t\t},",
+							"\t\t\t\t\"name\": {",
+							"\t\t\t\t\t\"type\": \"string\",",
+							"\t\t\t\t\t\"description\": \"The unique identifier for a state\"",
+							"\t\t\t\t},",
+							"\t\t\t\t\"count\": {",
+							"\t\t\t\t\t\"type\": \"integer\",",
+							"\t\t\t\t\t\"description\": \"number of counts of this crime nationally\"",
+							"\t\t\t\t},",
+							"\t\t\t\t\"offenders\": {",
+							"\t\t\t\t\t\"type\": \"integer\"",
+							"\t\t\t\t},",
+							"\t\t\t\t\"victims\": {",
+							"\t\t\t\t\t\"type\": \"integer\"",
+							"\t\t\t\t},",
+							"\t\t\t\t\"perpopulation\": {",
+							"\t\t\t\t\t\"type\": \"number\",",
+							"\t\t\t\t\t\"description\": \"number of counts/100000 national pop.\"",
+							"\t\t\t\t}",
+							"\t\t\t},",
+							"\t\t\t\"required\": [\"id\", \"name\"]",
+							"\t\t}",
+							"\t}",
+							"};",
+							"",
+							"var crime = JSON.parse(responseBody);",
+							"tests[\"Valid JSON\"] = tv4.validate(crime, crimeSchema);",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://api.ontherun.me:5000/crimes/2",
+					"protocol": "http",
+					"host": [
+						"api",
+						"ontherun",
+						"me"
+					],
+					"port": "5000",
+					"path": [
+						"crimes",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crimes To State",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "cdcca865-9d34-47ea-9fdb-b2db1e092fcd",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"response is ok\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"const schema = {",
+							"  \"title\": \"CrimesToState\",",
+							"  \"type\": \"array\",",
+							"    \"items\": {",
+							"      \"type\": \"object\",",
+							"      \"properties\": {",
+							"        \"crime_id\": {",
+							"          \"type\": \"integer\"",
+							"        },",
+							"        \"crime_name\": {",
+							"          \"type\": \"string\"",
+							"        },",
+							"        \"id\": {",
+							"          \"type\": \"integer\"",
+							"        },",
+							"        \"state_abbreviation\": {",
+							"          \"type\": \"string\"",
+							"        },",
+							"        \"state_id\": {",
+							"          \"type\": \"integer\"",
+							"        }",
+							"      },",
+							"      \"required\": [\"crime_id\", \"crime_name\", \"id\", \"state_abbreviation\", \"state_id\"]",
+							"  }",
+							"}",
+							"var jsonData = pm.response.json();",
+							"tests[\"Valid JSON\"] = tv4.validate(jsonData, schema);",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://api.ontherun.me:5000/crimestostate",
+					"protocol": "http",
+					"host": [
+						"api",
+						"ontherun",
+						"me"
+					],
+					"port": "5000",
+					"path": [
+						"crimestostate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crimes To State Specific",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "03acc089-a514-4791-8610-6d2337e0b3a9",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"response is ok\", function() {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"const schema = {",
+							"  \"title\": \"CrimesToState\",",
+							"  \"type\": \"array\",",
+							"    \"items\": {",
+							"      \"type\": \"object\",",
+							"      \"properties\": {",
+							"        \"crime_id\": {",
+							"          \"type\": \"integer\"",
+							"        },",
+							"        \"crime_name\": {",
+							"          \"type\": \"string\"",
+							"        },",
+							"        \"id\": {",
+							"          \"type\": \"integer\"",
+							"        },",
+							"        \"state_abbreviation\": {",
+							"          \"type\": \"string\"",
+							"        },",
+							"        \"state_id\": {",
+							"          \"type\": \"integer\"",
+							"        }",
+							"      },",
+							"      \"required\": [\"crime_id\", \"crime_name\", \"id\", \"state_abbreviation\", \"state_id\"]",
+							"  }",
+							"}",
+							"var jsonData = pm.response.json();",
+							"tests[\"Valid JSON\"] = tv4.validate(jsonData, schema);",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://api.ontherun.me:5000/crimestostate/4",
+					"protocol": "http",
+					"host": [
+						"api",
+						"ontherun",
+						"me"
+					],
+					"port": "5000",
+					"path": [
+						"crimestostate",
+						"4"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

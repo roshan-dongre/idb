@@ -140,7 +140,7 @@ def get_crimestostate(id_val):
 @app.route('/criminalstostate/<string:id_val>', methods=['GET'])#, subdomain="api")
 def get_criminalstostate(id_val):
     if(str(id_val).isdigit()):
-        return jsonify({'state' : ast.literal_eval(str(Criminal.query.filter_by(id=id_val).first()))['state'], 'name' : ast.literal_eval(str(Criminal.query.filter_by(id=id_val).first()))['name']})
+        return jsonify([{'state' : ast.literal_eval(str(Criminal.query.filter_by(id=id_val).first()))['state'], 'id' : ast.literal_eval(str(Criminal.query.filter_by(id=id_val).first()))['id']}])
     if len(id_val) == 2:
         return jsonify(ast.literal_eval(str(Criminal.query.filter_by(state=id_val).all())))
 

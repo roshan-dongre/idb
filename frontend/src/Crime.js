@@ -143,10 +143,6 @@ export default class Crime extends Component {
                                     <td><strong>Description:</strong></td>
                                     <td>{this.state.item.description}</td>
                                 </tr>
-                                <tr>
-                                    <td><strong>Website:</strong></td>
-                                    <td><a href={this.state.item.website}>{this.state.item.website}</a></td>
-                                </tr>
                                 </tbody>
                             </table>
                             <h3 className="sub-header text-center">States from this Type of Crime</h3>

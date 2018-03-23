@@ -57,6 +57,7 @@ export default class Criminal extends Component {
         this.callAPI()
         this.getCoor()
         this.getStates()
+        //this.changeValues()
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -84,7 +85,7 @@ export default class Criminal extends Component {
                 // Set state with result
                 //console.log(res)
                 self.setState({data_states: res.data});
-                console.log(this.state.data_states)
+                //console.log(this.state.data_states)
             })
             .catch((error) => {
                 console.log(error)
@@ -111,7 +112,7 @@ export default class Criminal extends Component {
         } else {
             url = "http://api.ontherun.me:5000/criminals/"+this.state.item.id
         }
-
+        //console.log(this.state)
         let self = this
         axios.get(url)
             .then((res) => {
@@ -142,6 +143,7 @@ export default class Criminal extends Component {
     }
 
     changeValues = () => {
+        //console.log(this.state)
         var striptags = require('striptags');
         this.state.item.crime = striptags(this.state.item.crime)
         this.state.item.eyes = this.state.item.eyes.slice(0,1).toUpperCase() + this.state.item.eyes.slice(1, this.state.item.eyes.length)
@@ -175,7 +177,7 @@ export default class Criminal extends Component {
         //console.log("Reached2"
         //console.log(this.state.data_states)
         stateList = this.state.data_states.map((state) => {
-            console.log(state)
+            //console.log(state)
             return (
                 <tr className="clickable-row" onClick={(e) => self.handleStateNavigation(state.state, e)}>
                     <td><strong>{state.state}</strong></td>
@@ -199,7 +201,6 @@ export default class Criminal extends Component {
                             </GoogleMapReact>
                         </div>
                     </div>
-                    <div>{this.changeValues()}</div>
                     <div className="col-md-8">
                         <h2 className="sub-header">{this.state.item.name}</h2>
                         <table className="table table-responsive">
@@ -236,10 +237,10 @@ export default class Criminal extends Component {
                                 <td><strong>Description:</strong></td>
                                 <td>{this.state.item.crime}</td>
                             </tr>
-                            <tr>
+                            {/*<tr>
                                 <td><strong>Crime:</strong></td>
                                 <td>TYPE OF CRIME LINK GOES HERE</td>
-                            </tr>
+                            </tr>*/}
                             </tbody>
                         </table>
                     </div>

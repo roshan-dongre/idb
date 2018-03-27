@@ -61,6 +61,8 @@ export default class Criminal extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
+        console.log(prevState.item.name)
+        console.log(this.state.item.name)
         if (prevState.item.name !== this.state.item.name)
         {
             this.getStates()
@@ -97,6 +99,8 @@ export default class Criminal extends Component {
         if (prevState.item.name !== this.state.item.name)
         {
             this.getStates()
+            this.changeValues()
+            this.getCoor()
         }
     }
 
@@ -143,7 +147,7 @@ export default class Criminal extends Component {
     }
 
     changeValues = () => {
-        //console.log(this.state)
+        console.log(this.state)
         var striptags = require('striptags');
         this.state.item.crime = striptags(this.state.item.crime)
         this.state.item.eyes = this.state.item.eyes.slice(0,1).toUpperCase() + this.state.item.eyes.slice(1, this.state.item.eyes.length)
@@ -168,6 +172,10 @@ export default class Criminal extends Component {
     /* More information about the React.Component lifecycle here: https://reactjs.org/docs/react-component.html */
 
     render() {
+        console.log(this.state.item)
+        if (this.state.item != "")
+            this.changeValues()
+
         if (this.state.navigate) {
             return <Redirect to={{pathname: this.state.navigateTo, state: {selectedId: this.state.selectedId}}} push={true} />;
         }

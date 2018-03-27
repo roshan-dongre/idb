@@ -20,7 +20,7 @@ export default class State extends Component {
     constructor (props) {
         super (props);
         let item = "";
-        //console.log(this.props)
+
         if ('location' in this.props  && this.props.location.state.item !== undefined) {
             item = this.props.location.state.item
         } else if (this.props.item !== undefined) {
@@ -41,9 +41,8 @@ export default class State extends Component {
             },
             crimes: [],
             criminals: []
+
         }
-        //this.apiUrl = 'http://api.ontherun.me:5000/states';
-        //console.log(this.state.item.name)
     }
 
     /* Mounting
@@ -55,12 +54,10 @@ export default class State extends Component {
      */
 
     componentDidMount () {
-        console.log("Reached")
         this.callAPI()
         this.getCoor()
         this.getCrimes()
         this.getCriminals()
-        //console.log(this.state)
     }
 
     /* Updating
@@ -77,6 +74,7 @@ export default class State extends Component {
         {
             this.getCrimes()
             this.getCriminals()
+            this.getCoor()
         }
     }
 
@@ -86,8 +84,7 @@ export default class State extends Component {
      */
 
     getCrimes = () => {
-        //console.log(this.state)
-        let url = "http://api.ontherun.me:5000/crimestostate/" + this.state.item.abbreviation // need to fix this
+        let url = "http://api.ontherun.me:5000/crimestostate/" + this.state.item.abbreviation
         let self = this
         axios.get(url)
             .then((res) => {
@@ -100,7 +97,7 @@ export default class State extends Component {
     }
 
     getCriminals = () => {
-        let url = "http://api.ontherun.me:5000/criminalstostate/" + this.state.item.abbreviation // need to fix this
+        let url = "http://api.ontherun.me:5000/criminalstostate/" + this.state.item.abbreviation
         let self = this
         axios.get(url)
             .then((res) => {
@@ -170,8 +167,6 @@ export default class State extends Component {
     /* More information about the React.Component lifecycle here: https://reactjs.org/docs/react-component.html */
 
     render() {
-
-        console.log(this.state.criminals)
 
         if (this.state.navigate) {
             return <Redirect to={{pathname: this.state.navigateTo, state: {selectedId: this.state.selectedId}}} push={true} />;

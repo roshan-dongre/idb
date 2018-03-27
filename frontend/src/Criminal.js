@@ -57,7 +57,6 @@ export default class Criminal extends Component {
         this.callAPI()
         this.getCoor()
         this.getStates()
-        //this.changeValues()
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -245,10 +244,10 @@ export default class Criminal extends Component {
                                 <td><strong>Description:</strong></td>
                                 <td>{this.state.item.crime}</td>
                             </tr>
-                            {/*<tr>
+                            <tr>
                                 <td><strong>Crime:</strong></td>
                                 <td>TYPE OF CRIME LINK GOES HERE</td>
-                            </tr>*/}
+                            </tr>
                             </tbody>
                         </table>
                     </div>

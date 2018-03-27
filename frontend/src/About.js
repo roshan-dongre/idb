@@ -147,7 +147,7 @@ render () {
                                 <p>Responsibilities: Focused on designing the front end for the website, including the grid pages and 9 models.</p>
                                 <p>Number of commits: {this.state.zaraCommits}</p>
                                 <p>Number of issues: {this.state.zaraIssues}</p>
-                                <p>Number of unit tests: 0</p>
+                                <p>Number of unit tests: 10</p>
                             </div>
                         </div>
                     </div>
@@ -161,7 +161,7 @@ render () {
                                 <p>Responsibilities: Data Management: scraping, aggregating, and data modeling.</p>
                                 <p>Number of commits: {this.state.ramonCommits}</p>
                                 <p>Number of issues: {this.state.ramonIssues}</p>
-                                <p>Number of unit tests: 0</p>
+                                <p>Number of unit tests: 14</p>
                             </div>
                         </div>
 
@@ -173,7 +173,7 @@ render () {
                                 <p>Responsibilities: API Documentation, Frontend GUI tests, Technical Report</p>
                                 <p>Number of commits: {this.state.krishnaCommits}</p>
                                 <p>Number of issues: {this.state.krishnaIssues}</p>
-                                <p>Number of unit tests: 0</p>
+                                <p>Number of unit tests: 14</p>
                             </div>
                         </div>
                     </div>

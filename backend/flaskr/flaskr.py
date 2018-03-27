@@ -8,6 +8,7 @@ from sqlalchemy.sql import select
 import ast
 import json
 import unicodedata
+import random
 
 app = Flask(__name__) # create the application instance :)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////mydb.db' # load config from this file , flaskr.py
@@ -70,6 +71,16 @@ class CrimesState(db.Model):
 
     def __repr__(self):
         return "{'state_abbreviation': %r, 'id': %r, 'state_id': %r, 'crime_id': %r, 'crime_name': %r}" % (self.state_abbreviation, self.id, self.state_id, self.crime_id, self.crime_name)
+
+class CrimesCriminal(db.Model):
+    __tablename__='crimeTocriminal'
+    id = db.Column(db.Integer,primary_key=True,unique=True)
+    crime_id = db.Column(db.Integer)
+    criminal_id = db.Column(db.Integer)
+
+    def __repr__(self):
+        return "{'crime_id': %r, 'id': %r, 'criminal_id': %r}" % (self.crime_id, self.id, self.criminal_id)
+
 
 @app.route('/states', methods=['GET'])#, subdomain="api")
 def get_states():
@@ -152,6 +163,13 @@ def get_criminalstostate(id_val):
     if len(id_val) == 2:
         return jsonify(ast.literal_eval(str(Criminal.query.filter_by(state=id_val).all())))
 
+@app.route('/crimetocriminals/<int:catch_id>', methods=['GET'])#, subdomain="api")
+def get_crimetocriminals(catch_id):
+    return jsonify(ast.literal_eval(str(CrimesCriminal.query.filter_by(crime_id=catch_id).all())))
+
+@app.route('/criminaltocrimes/<int:catch_id>', methods=['GET'])#, subdomain="api")
+def get_criminalstocrime(catch_id):
+    return jsonify(ast.literal_eval(str(CrimesCriminal.query.filter_by(criminal_id=catch_id).all())))
 
 
 # /api/states/                          //done
@@ -261,6 +279,14 @@ if __name__ == '__main__':
                                                     crime_id=NewCrimeId,
                                                     crime_name=NewCrimeName['name'])
                         db.session.add(NewCrimeState)
+
+    for val in (ast.literal_eval(str(Criminal.query.all()))):
+        ran_val = random.randint(1,53)
+        NewCriminalId = val['id']
+        NewCrimeId = ran_val
+        NewCrimeCriminal = CrimesCriminal(crime_id=NewCrimeId,
+                                        criminal_id=NewCriminalId)
+        db.session.add(NewCrimeCriminal)
 
     db.session.commit()
     print("Created db\n\n\n")

@@ -36,8 +36,8 @@ export default class State extends Component {
             navigateTo: "",
             unknown: "Unknown",
             center: {
-                lat: 0,
-                lng: 0
+                lat: 98,
+                lng: 39
             },
             crimes: [],
             criminals: []

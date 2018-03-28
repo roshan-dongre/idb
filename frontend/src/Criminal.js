@@ -36,10 +36,11 @@ export default class Criminal extends Component {
             navigate: false,
             navigateTo: "",
             data_states: [],
+            data_crimes: [],
             unknown: "Unknown",
             center: {
-                lat: 0,
-                lng: 0
+                lat: 98,
+                lng: 39
             }
         }
         //this.apiUrl = 'http://api.ontherun.me:5000/criminals';
@@ -57,16 +58,28 @@ export default class Criminal extends Component {
         this.callAPI()
         this.getCoor()
         this.getStates()
+        this.getCrimes()
     }
 
     componentDidUpdate(prevProps, prevState) {
+        if (prevState.item.name !== this.state.item.name)
+        {
+            this.getStates()
+            this.getCrimes()
+            this.changeValues()
+            this.getCoor()
+        }
+    }
+
+    /*componentDidUpdate(prevProps, prevState) {
         console.log(prevState.item.name)
         console.log(this.state.item.name)
         if (prevState.item.name !== this.state.item.name)
         {
             this.getStates()
+            this.getCrimes()
         }
-    }
+    }*/
 
     /* Updating
      An update can be caused by changes to props or state. These methods are called when a component is being re-rendered:
@@ -78,7 +91,7 @@ export default class Criminal extends Component {
      */
 
     getStates = () => {
-        let url = "http://api.ontherun.me:5000/criminalstostate/" + this.state.item.id // need to fix this
+        let url = "http://api.ontherun.me:5000/criminalstostate/" + this.state.item.id
         //console.log(this.state.item)
         let self = this
         axios.get(url)
@@ -93,14 +106,21 @@ export default class Criminal extends Component {
             });
     }
 
-
-    componentDidUpdate(prevProps, prevState) {
-        if (prevState.item.name !== this.state.item.name)
-        {
-            this.getStates()
-            this.changeValues()
-            this.getCoor()
-        }
+    getCrimes = () => {
+        console.log(this.state.item.id)
+        let url = "http://api.ontherun.me:5000/criminaltocrimes/" + this.state.item.id 
+        //console.log(this.state.item)
+        let self = this
+        axios.get(url)
+            .then((res) => {
+                // Set state with result
+                //console.log(res)
+                self.setState({data_crimes: res.data});
+                //console.log(this.state.data_states)
+            })
+            .catch((error) => {
+                console.log(error)
+            });
     }
 
     /* Unmounting
@@ -191,6 +211,15 @@ export default class Criminal extends Component {
                 </tr>
             );
         })
+        let crimeList
+        //console.log(this.state.data_crimes)
+        crimeList = this.state.data_crimes.map((crime) => {
+            return (
+                <tr className="clickable-row" onClick={(e) => self.handleCrimeNavigation(crime.crime_id, e)}>
+                    <td><strong>{crime.crime_id}</strong></td>
+                </tr>
+            );
+        })
 
         return (
             <div className="container sub-container">
@@ -246,7 +275,7 @@ export default class Criminal extends Component {
                             </tr>
                             <tr>
                                 <td><strong>Crime:</strong></td>
-                                <td>TYPE OF CRIME LINK GOES HERE</td>
+                                <td>{crimeList}</td>
                             </tr>
                             </tbody>
                         </table>

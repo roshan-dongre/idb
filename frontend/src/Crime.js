@@ -21,7 +21,8 @@ export default class Crime extends Component {
             selectedId: "",
             navigate: false,
             navigateTo: "",
-            states: []
+            states: [],
+            criminals: []
         }
     }
 
@@ -36,12 +37,14 @@ export default class Crime extends Component {
     componentDidMount() {
         this.callAPI()
         this.getStates()
+        this.getCriminals()
     }
 
     componentDidUpdate(prevProps, prevState) {
         if (prevState.item.name !== this.state.item.name)
         {
             this.getStates()
+            this.getCriminals()
         }
     }
 
@@ -62,12 +65,25 @@ export default class Crime extends Component {
     /* More information about the React.Component lifecycle here: https://reactjs.org/docs/react-component.html */
 
     getStates = () => {
-        let url = "http://api.ontherun.me:5000/crimestostate/" + this.state.item.id // need to fix this
+        let url = "http://api.ontherun.me:5000/crimestostate/" + this.state.item.id
         let self = this
         axios.get(url)
             .then((res) => {
                 // Set state with result
                 self.setState({states: res.data});
+            })
+            .catch((error) => {
+                console.log(error)
+            });
+    }
+
+    getCriminals = () => {
+        let url = "http://api.ontherun.me:5000/crimetocriminals/" + this.state.item.id
+        let self = this
+        axios.get(url)
+            .then((res) => {
+                // Set state with result
+                self.setState({criminals: res.data});
             })
             .catch((error) => {
                 console.log(error)
@@ -127,6 +143,15 @@ export default class Crime extends Component {
                 );
             })
 
+            let criminalList
+            criminalList = this.state.criminals.map((criminal) => {
+                return (
+                    <tr className="clickable-row" onClick={(e) => self.handleCriminalNavigation(criminal.criminal_id, e)}>
+                        <td><strong>{criminal.criminal_id}</strong></td>
+                    </tr>
+                );
+            })
+
             return (
                 <div className="container sub-container">
                     <div className="row">
@@ -150,6 +175,14 @@ export default class Crime extends Component {
                                 <tbody>
                                 <tr>
                                     <td>{stateList}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <h3 className="sub-header text-center">Criminals from this Type of Crime</h3>
+                            <table className="table table-responsive">
+                                <tbody>
+                                <tr>
+                                    <td>{criminalList}</td>
                                 </tr>
                                 </tbody>
                             </table>

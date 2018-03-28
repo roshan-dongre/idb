@@ -78,6 +78,7 @@ export default class Crime extends Component {
     }
 
     getCriminals = () => {
+        if (this.state.item.id !== undefined) {
         let url = "http://api.ontherun.me:5000/crimetocriminals/" + this.state.item.id
         let self = this
         axios.get(url)
@@ -88,6 +89,7 @@ export default class Crime extends Component {
             .catch((error) => {
                 console.log(error)
             });
+        }
     }
 
     handleCriminalNavigation = (criminalId, e) => {

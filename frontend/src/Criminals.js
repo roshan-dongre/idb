@@ -120,8 +120,9 @@ export default class Criminals extends Component {
 
         return (
             <div className="container sub-container">
-                <div className="row">
+                <div className="row row-m-b">
                     <div className="col-md-3">
+                        <div className= "text-left">
                         <div className="button btn-group">
                             <button type="button"
                                   className={this.state.order === "asc" ? "btn btn-default active" : "btn btn-default"}
@@ -130,15 +131,18 @@ export default class Criminals extends Component {
                                   className={this.state.order === "desc" ? "btn btn-default active" : "btn btn-default"}
                                   onClick={(e) => this.sort("desc", e)}><i className="fa fa-sort-alpha-desc" aria-hidden="true"/></button>
                         </div>
+                        </div>
                     </div>
                     <div className="col-md-3">
+                        <div className = "text-left">
                         <label>
-                            <strong>American:  </strong>
+                            <strong>GENDER:  </strong>
                         </label><span> </span>
                         <select value={this.state.american} onChange={this.handleAmerican}>
                                 <option value="false">No</option>
                                 <option value="true">Yes</option>
                         </select>
+                        </div>
                     </div>
                     <div className="col-md-4">
                         <label>

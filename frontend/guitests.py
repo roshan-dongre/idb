@@ -13,15 +13,18 @@ class SeleniumTesting(unittest.TestCase):
 	# Create the Web Driver (we'll use Chrome)
 	def setUp(self):
 		self.wdriver = webdriver.Chrome(executable_path = r"chromedriver.exe")
-		self.base_url = "http://api.ontherun.me"
+		# self.base_url = "http://api.ontherun.me"
 		
-		# self.base_url = "http://ontherun.me"
+		self.base_url = "http://ontherun.me"
 
 	# Check that the about page link takes us to the right page.
 	def test_about(self):
 		# Create copy of driver with base URL.
 		driver = self.wdriver
 		driver.get(self.base_url)
+
+		# Wait a little bit.
+		time.sleep(2)
 
 		# Click on the about page and check its URL.
 		driver.find_element_by_link_text("About").click()
@@ -34,6 +37,9 @@ class SeleniumTesting(unittest.TestCase):
 		driver = self.wdriver
 		driver.get(self.base_url)
 
+		# Wait a little bit.
+		time.sleep(2)
+
 		# Click on the states page and check its URL.
 		driver.find_element_by_link_text("States").click()
 		self.assertEqual(driver.current_url, self.base_url + "/states")
@@ -44,6 +50,10 @@ class SeleniumTesting(unittest.TestCase):
 		# Check that we make it to states page.
 		driver = self.wdriver
 		driver.get(self.base_url)
+
+		# Wait a little bit.
+		time.sleep(2)
+
 		driver.find_element_by_link_text("States").click()
 		self.assertEqual(driver.current_url, self.base_url + "/states")
 
@@ -63,6 +73,9 @@ class SeleniumTesting(unittest.TestCase):
 		driver = self.wdriver
 		driver.get(self.base_url)
 
+		# Wait a little bit.
+		time.sleep(2)
+
 		# Click on the states page and check its URL.
 		driver.find_element_by_link_text("Criminals").click()
 		self.assertEqual(driver.current_url, self.base_url + "/criminals")
@@ -73,6 +86,10 @@ class SeleniumTesting(unittest.TestCase):
 		# Check that we make it to criminals page.
 		driver = self.wdriver
 		driver.get(self.base_url)
+
+		# Wait a little bit.
+		time.sleep(2)
+
 		driver.find_element_by_link_text("Criminals").click()
 		self.assertEqual(driver.current_url, self.base_url + "/criminals")
 
@@ -90,6 +107,9 @@ class SeleniumTesting(unittest.TestCase):
 		# Create copy of driver with base URL.
 		driver = self.wdriver
 		driver.get(self.base_url)
+
+		# Wait a little bit.
+		time.sleep(2)
 
 		# Click on the states page and check its URL.
 		driver.find_element_by_link_text("Crimes").click()

@@ -123,7 +123,7 @@ def get_criminals():
     if sort_name == "ASC":
         return jsonify({'totalCount': db.session.query(Criminal).filter_by(sex=gender).count(), 'criminals': ast.literal_eval(str(Criminal.query.filter_by(sex=gender).order_by(asc(Criminal.name)).offset(offset).limit(limit).all()))})
     if sort_name == "DESC":
-        return jsonify({'totalCount': db.session.query(Criminal).filter_by(sex=gender).count(), 'criminals': ast.literal_eval(str(Criminal.query.filter_by(sex=gender).order_by(asc(Criminal.name)).offset(offset).limit(limit).all()))})
+        return jsonify({'totalCount': db.session.query(Criminal).filter_by(sex=gender).count(), 'criminals': ast.literal_eval(str(Criminal.query.filter_by(sex=gender).order_by(desc(Criminal.name)).offset(offset).limit(limit).all()))})
     return jsonify({'totalCount': db.session.query(Criminal).filter_by(sex=gender).count(), 'criminals': ast.literal_eval(str(Criminal.query.filter(Criminal.id>offset).filter_by(sex=gender).limit(limit).all()))})
 
 @app.route('/criminals/<int:crim_id>', methods=['GET'])#, subdomain="api")

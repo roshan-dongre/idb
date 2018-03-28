@@ -34,3 +34,8 @@
   -ms-transform: translate(-50%, -50%);
   text-align: center;
 }
+
+.row-m-b{
+  margin-bottom : 5px
+}
+

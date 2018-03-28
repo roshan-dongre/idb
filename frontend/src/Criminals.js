@@ -4,6 +4,7 @@ import axios from 'axios';
 import ItemSelector from './ItemSelector';
 import PageSelector from './PageSelector';
 import './font/css/font-awesome.min.css'
+//import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 
 export default class Criminals extends Component {
     constructor (props) {
@@ -14,7 +15,9 @@ export default class Criminals extends Component {
             numPages: 0,
             totalCount: 0,
             pgSize: 16,
-            pathname: "/Criminals"
+            pathname: "/Criminals",
+            sortBy: "",
+            sex: "None"
         }
         this.apiUrl = 'http://api.ontherun.me:5000/criminals';
     }
@@ -50,6 +53,10 @@ export default class Criminals extends Component {
         }
     }
 
+    handleSex = (e) => {
+        this.setState({sex: e.target.value})
+    }
+
     sort = (order) => {
         this.setState({sortBy: order})
     }
@@ -60,6 +67,10 @@ export default class Criminals extends Component {
         let offset = this.state.page
         let limOff = "?limit="+limit+"&offset="+offset
         let url = "http://api.ontherun.me:5000/criminals" + limOff
+
+        if (this.state.sortBy !== "") {
+            url += "&sort="+this.state.sortBy
+        }
 
         let self = this
         axios.get(url)
@@ -85,9 +96,12 @@ export default class Criminals extends Component {
 
     componentDidUpdate(prevProps, prevState) {
 
+        if (prevState.sortBy != this.state.sortBy) {
+            this.callAPI()
+        }
+
         if (prevState.page !== this.state.page) {
             this.callAPI()
-            console.log("Reached")
             window.scrollTo({
                 top: 0,
                 left: 0,
@@ -125,11 +139,11 @@ export default class Criminals extends Component {
                         <div className= "text-left">
                         <div className="button btn-group">
                             <button type="button"
-                                  className={this.state.order === "asc" ? "btn btn-default active" : "btn btn-default"}
-                                  onClick={(e) => this.sort("asc", e)}><i className="fa fa-sort-alpha-asc" aria-hidden="true"/></button>
+                                  className={this.state.order === "ASC" ? "btn btn-default active" : "btn btn-default"}
+                                  onClick={(e) => this.sort("ASC", e)}><i className="fa fa-sort-alpha-asc" aria-hidden="true"/></button>
                             <button type="button"
-                                  className={this.state.order === "desc" ? "btn btn-default active" : "btn btn-default"}
-                                  onClick={(e) => this.sort("desc", e)}><i className="fa fa-sort-alpha-desc" aria-hidden="true"/></button>
+                                  className={this.state.order === "DESC" ? "btn btn-default active" : "btn btn-default"}
+                                  onClick={(e) => this.sort("DESC", e)}><i className="fa fa-sort-alpha-desc" aria-hidden="true"/></button>
                         </div>
                         </div>
                     </div>
@@ -139,8 +153,8 @@ export default class Criminals extends Component {
                             <strong>GENDER:  </strong>
                         </label><span> </span>
                         <select value={this.state.american} onChange={this.handleAmerican}>
-                                <option value="false">No</option>
-                                <option value="true">Yes</option>
+                                <option value="false">Male</option>
+                                <option value="true">Female</option>
                         </select>
                         </div>
                     </div>

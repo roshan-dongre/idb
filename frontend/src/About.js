@@ -185,7 +185,7 @@ render () {
                                         <ul>
                                             <li className="text-left"><h4><strong>total no. of commits: {this.state.totalCommits}</strong></h4></li>
                                             <li className="text-left"><h4><strong>total no. of issues:</strong> {this.state.totalIssues}</h4></li>
-                                            <li className="text-left"><h4><strong>total no. of unit tests:</strong> 0</h4></li>
+                                            <li className="text-left"><h4><strong>total no. of unit tests:</strong> 34</h4></li>
                                         </ul>
                                     </div>
                                 </div>

@@ -6,6 +6,15 @@ import PageSelector from './PageSelector';
 import './font/css/font-awesome.min.css'
 //import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 
+var blackStyles = {
+    color: 'black'
+}
+
+var whiteStyles = {
+    color: 'white'
+}
+
+
 export default class Criminals extends Component {
     constructor (props) {
         super (props);
@@ -17,7 +26,7 @@ export default class Criminals extends Component {
             pgSize: 16,
             pathname: "/Criminals",
             sortBy: "",
-            sex: "None"
+            sex: ""
         }
         this.apiUrl = 'http://api.ontherun.me:5000/criminals';
     }
@@ -71,6 +80,9 @@ export default class Criminals extends Component {
         if (this.state.sortBy !== "") {
             url += "&sort="+this.state.sortBy
         }
+        if (this.state.sex !== "") {
+            url += "&sex=" + this.state.sex
+        }
 
         let self = this
         axios.get(url)
@@ -96,7 +108,8 @@ export default class Criminals extends Component {
 
     componentDidUpdate(prevProps, prevState) {
 
-        if (prevState.sortBy != this.state.sortBy) {
+        if (prevState.sortBy != this.state.sortBy ||
+            prevState.sex != this.state.sex) {
             this.callAPI()
         }
 
@@ -148,13 +161,14 @@ export default class Criminals extends Component {
                         </div>
                     </div>
                     <div className="col-md-3">
-                        <div className = "text-left">
+                        <div className = "text-left" style = {blackStyles}>
                         <label>
-                            <strong>GENDER:  </strong>
+                            <strong style = {whiteStyles}>GENDER:  </strong>
                         </label><span> </span>
-                        <select value={this.state.american} onChange={this.handleAmerican}>
-                                <option value="false">Male</option>
-                                <option value="true">Female</option>
+                        <select value={this.state.sex} onChange={this.handleSex}>
+                                <option value="None"> None </option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
                         </select>
                         </div>
                     </div>

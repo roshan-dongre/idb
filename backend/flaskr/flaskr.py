@@ -4,7 +4,7 @@ from flask import Flask, jsonify, request, session, g, redirect, url_for, abort,
      render_template, flash
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.sql import select
+from sqlalchemy.sql import select, asc, desc
 import ast
 import json
 import unicodedata
@@ -66,11 +66,12 @@ class CrimesState(db.Model):
     id = db.Column(db.Integer,primary_key=True,unique=True)
     state_id = db.Column(db.Integer)
     state_abbreviation = db.Column(db.String(10))
+    state_name = db.Column(db.String(600))
     crime_id = db.Column(db.Integer)
     crime_name = db.Column(db.String(600))
 
     def __repr__(self):
-        return "{'state_abbreviation': %r, 'id': %r, 'state_id': %r, 'crime_id': %r, 'crime_name': %r}" % (self.state_abbreviation, self.id, self.state_id, self.crime_id, self.crime_name)
+        return "{'state_name': %r, 'state_abbreviation': %r, 'id': %r, 'state_id': %r, 'crime_id': %r, 'crime_name': %r}" % (self.state_name, self.state_abbreviation, self.id, self.state_id, self.crime_id, self.crime_name)
 
 class CrimesCriminal(db.Model):
     __tablename__='crimeTocriminal'
@@ -111,7 +112,19 @@ def get_criminals():
     if offset == '':
         offset = 0
     offset = int(offset)*int(limit)
-    return jsonify({'totalCount': db.session.query(Criminal).count(), 'criminals': ast.literal_eval(str(Criminal.query.filter(Criminal.id>offset).limit(limit).all()))})
+    gender = request.args.get('sex','')
+    sort_name = request.args.get('sort','')
+    if gender == '':
+        if sort_name == "ASC":
+            return jsonify({'totalCount': db.session.query(Criminal).count(), 'criminals': ast.literal_eval(str(Criminal.query.order_by(asc(Criminal.name)).offset(offset).limit(limit).all()))})
+        if sort_name == "DESC":
+            return jsonify({'totalCount': db.session.query(Criminal).count(), 'criminals': ast.literal_eval(str(Criminal.query.order_by(desc(Criminal.name)).offset(offset).limit(limit).all()))})
+        return jsonify({'totalCount': db.session.query(Criminal).count(), 'criminals': ast.literal_eval(str(Criminal.query.filter(Criminal.id>offset).limit(limit).all()))})
+    if sort_name == "ASC":
+        return jsonify({'totalCount': db.session.query(Criminal).filter_by(sex=gender).count(), 'criminals': ast.literal_eval(str(Criminal.query.filter_by(sex=gender).order_by(asc(Criminal.name)).offset(offset).limit(limit).all()))})
+    if sort_name == "DESC":
+        return jsonify({'totalCount': db.session.query(Criminal).filter_by(sex=gender).count(), 'criminals': ast.literal_eval(str(Criminal.query.filter_by(sex=gender).order_by(asc(Criminal.name)).offset(offset).limit(limit).all()))})
+    return jsonify({'totalCount': db.session.query(Criminal).filter_by(sex=gender).count(), 'criminals': ast.literal_eval(str(Criminal.query.filter(Criminal.id>offset).filter_by(sex=gender).limit(limit).all()))})
 
 @app.route('/criminals/<int:crim_id>', methods=['GET'])#, subdomain="api")
 def get_criminal(crim_id):
@@ -276,6 +289,7 @@ if __name__ == '__main__':
                         NewCrimeName = ast.literal_eval(str(Crime.query.filter_by(id=NewCrimeId).first()))
                         NewCrimeState = CrimesState(state_id=NewStateId,
                                                     state_abbreviation=NewStateAbv['abbreviation'],
+                                                    state_name=NewStateAbv['name'],
                                                     crime_id=NewCrimeId,
                                                     crime_name=NewCrimeName['name'])
                         db.session.add(NewCrimeState)

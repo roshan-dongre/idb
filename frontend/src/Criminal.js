@@ -29,8 +29,6 @@ export default class Criminal extends Component {
             item: item,
             crimes: [],
             totalCount: 0,
-            lat: 0,
-            lng: 0,
             zoom: 11,
             selectedId: "",
             navigate: false,
@@ -39,8 +37,8 @@ export default class Criminal extends Component {
             data_crimes: [],
             unknown: "Unknown",
             center: {
-                lat: 98,
-                lng: 39
+                lat: 0,
+                lng: 0
             }
         }
         //this.apiUrl = 'http://api.ontherun.me:5000/criminals';
@@ -107,9 +105,8 @@ export default class Criminal extends Component {
     }
 
     getCrimes = () => {
-        console.log(this.state.item.id)
+        if (this.state.item.id !== undefined) {
         let url = "http://api.ontherun.me:5000/criminaltocrimes/" + this.state.item.id 
-        //console.log(this.state.item)
         let self = this
         axios.get(url)
             .then((res) => {
@@ -121,6 +118,7 @@ export default class Criminal extends Component {
             .catch((error) => {
                 console.log(error)
             });
+        }
     }
 
     /* Unmounting
@@ -135,7 +133,6 @@ export default class Criminal extends Component {
         } else {
             url = "http://api.ontherun.me:5000/criminals/"+this.state.item.id
         }
-        //console.log(this.state)
         let self = this
         axios.get(url)
             .then((res) => {
@@ -178,8 +175,6 @@ export default class Criminal extends Component {
         Geocode.fromAddress(this.state.item.field_office).then(
           response => {
             const { lat, lng } = response.results[0].geometry.location;
-            //console.log(lat, lng);
-            //self.setState({lat: lat, lng: lng})
             self.setState({center: {lat: lat, lng: lng}})
           },
           error => {
@@ -191,9 +186,11 @@ export default class Criminal extends Component {
     /* More information about the React.Component lifecycle here: https://reactjs.org/docs/react-component.html */
 
     render() {
-        console.log(this.state.item)
+
         if (this.state.item != "")
             this.changeValues()
+
+        this.getCoor()
 
         if (this.state.navigate) {
             return <Redirect to={{pathname: this.state.navigateTo, state: {selectedId: this.state.selectedId}}} push={true} />;
@@ -227,7 +224,6 @@ export default class Criminal extends Component {
                     <div className="col-md-4">
                         <div className="text-center" style={{ height: '300px', width: '350px' }}>
                             <img className=" img-thumbnail img-thumbnail-sm" src={this.state.item.image === undefined ? this.state.item.images : this.state.item.image} alt={this.state.item.name} style = {imageStyles}/>
-                            <div>{this.getCoor()}</div>
                             <text> Field Office </text>
                             <GoogleMapReact
                               bootstrapURLKeys={{ key: "AIzaSyDkRhH7iB4iZW9dDa-FY7HYb8vpjj19Vsc"}}

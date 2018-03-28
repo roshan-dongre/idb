@@ -36,12 +36,11 @@ export default class State extends Component {
             navigateTo: "",
             unknown: "Unknown",
             center: {
-                lat: 98,
-                lng: 39
+                lat: 0,
+                lng: 0
             },
             crimes: [],
             criminals: []
-
         }
     }
 
@@ -149,6 +148,7 @@ export default class State extends Component {
     getCoor = () => {
         let self = this
         var temp = this.state.item.name
+        if (this.state.item.name !== undefined) {
         if (temp == "Georgia") {
             temp = "Georgia USA"
         }
@@ -162,6 +162,7 @@ export default class State extends Component {
             console.error(error);
           }
         );
+        }
     }
 
     /* More information about the React.Component lifecycle here: https://reactjs.org/docs/react-component.html */

@@ -3,6 +3,7 @@ import chunk from 'lodash.chunk';
 import axios from 'axios';
 import ItemSelector from './ItemSelector';
 import PageSelector from './PageSelector';
+import './font/css/font-awesome.min.css'
 
 export default class Criminals extends Component {
     constructor (props) {
@@ -47,6 +48,10 @@ export default class Criminals extends Component {
         if (this.state.page < this.state.numPages - 1) {
             this.setState({page: this.state.page + 1})
         }
+    }
+
+    sort = (order) => {
+        this.setState({sortBy: order})
     }
 
     callAPI = () => {
@@ -115,6 +120,35 @@ export default class Criminals extends Component {
 
         return (
             <div className="container sub-container">
+                <div className="row">
+                    <div className="col-md-3">
+                        <div className="button btn-group">
+                            <button type="button"
+                                  className={this.state.order === "asc" ? "btn btn-default active" : "btn btn-default"}
+                                  onClick={(e) => this.sort("asc", e)}><i className="fa fa-sort-alpha-asc" aria-hidden="true"/></button>
+                            <button type="button"
+                                  className={this.state.order === "desc" ? "btn btn-default active" : "btn btn-default"}
+                                  onClick={(e) => this.sort("desc", e)}><i className="fa fa-sort-alpha-desc" aria-hidden="true"/></button>
+                        </div>
+                    </div>
+                    <div className="col-md-3">
+                        <label>
+                            <strong>American:  </strong>
+                        </label><span> </span>
+                        <select value={this.state.american} onChange={this.handleAmerican}>
+                                <option value="false">No</option>
+                                <option value="true">Yes</option>
+                        </select>
+                    </div>
+                    <div className="col-md-4">
+                        <label>
+                            <strong>Style:  </strong>
+                        </label><span> </span>
+                        <select value={this.state.style} onChange={this.handleStyle}>
+                                {styleMenu}
+                        </select>
+                    </div>
+                </div>
                 {/* Break array into separate arrays and wrap each array containing 3 components in a row div */}
                 { chunk(criminalComponents, 4).map((row) => {
                     return (

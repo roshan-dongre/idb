@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Redirect} from 'react-router-dom';
 import './ItemSelector.css'
-
+import 'lodash'
 
 var imageStyles = {
     width: '250px',
@@ -53,6 +53,8 @@ export default class ItemSelector extends Component {
 
     render() {
 
+        var _ = require('lodash');
+
         if (this.state.navigate) {
             return <Redirect to={{pathname: this.state.navigateTo, state: {item: this.state.item}}} push={true} />;
         }
@@ -63,7 +65,7 @@ export default class ItemSelector extends Component {
                     <div onClick={() => this.setState({navigate: true})}>
                         <img className="img-thumbnail" src={this.state.item.image} alt={this.state.item.name} title={this.state.item.name} style = {imageStyles}/>
                         <div className="overlay">
-                            <div className="text">{this.state.item.name.toUpperCase()}</div>
+                            <div className="text">{_.startCase(_.camelCase(this.state.item.name))}</div>
                         </div>
                     </div>
                 </div>

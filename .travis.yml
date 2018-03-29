@@ -1,6 +1,6 @@
 jobs:
   include:
-    - stage: General_Tests
+    - stage: Python-tests
       language: python
       python: "3.6"
       install:

@@ -3,6 +3,7 @@ import {Redirect} from 'react-router-dom';
 import axios from 'axios';
 import GoogleMapReact from 'google-map-react';
 import Geocode from "react-geocode";
+import 'lodash'
 
 var imageStyles = {
     width: '400px',
@@ -169,6 +170,8 @@ export default class State extends Component {
 
     render() {
 
+        var _ = require('lodash');
+
         if (this.state.navigate) {
             return <Redirect to={{pathname: this.state.navigateTo, state: {selectedId: this.state.selectedId}}} push={true} />;
         }
@@ -187,7 +190,7 @@ export default class State extends Component {
         criminalList = this.state.criminals.map((criminal) => {
             return (
                 <tr className="clickable-row" onClick={(e) => self.handleCriminalNavigation(criminal.id, e)}>
-                    <td><strong>{criminal.name}</strong></td>
+                    <td><strong>{_.startCase(_.camelCase(criminal.name))}</strong></td>
                 </tr>
             );
         })

@@ -234,7 +234,7 @@ export default class Criminal extends Component {
                         </div>
                     </div>
                     <div className="col-md-8">
-                        <h2 className="sub-header">{this.state.item.name}</h2>
+                        <h3 className="sub-header">{this.state.item.name}</h3>
                         <table className="table table-responsive">
                             <tbody>
                             <tr>

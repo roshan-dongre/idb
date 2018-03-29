@@ -61,7 +61,7 @@ class SeleniumTesting(unittest.TestCase):
 		time.sleep(2)
 
 		# Get the instance by xpath.
-		instance = driver.find_element_by_xpath('//*[@id="root"]/div/main/div/div[1]/div[1]/div/div/img')
+		instance = driver.find_element_by_xpath('//*[@id="root"]/div/main/div/div[1]/div[1]/div/div')
 		instance.click()
 		self.assertEqual(driver.current_url, self.base_url + "/State")
 		pass
@@ -97,7 +97,7 @@ class SeleniumTesting(unittest.TestCase):
 		time.sleep(2)
 
 		# Get the instance by xpath.
-		instance = driver.find_element_by_xpath('//*[@id="root"]/div/main/div/div[1]/div[2]')
+		instance = driver.find_element_by_xpath('//*[@id="root"]/div/main/div/div[2]/div[1]/div')
 		instance.click()
 		self.assertEqual(driver.current_url, self.base_url + "/Criminal")
 		pass

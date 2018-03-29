@@ -1,0 +1,71 @@
+from flask import Flask
+from flask_cors import CORS
+from flask_sqlalchemy import SQLAlchemy
+
+app = Flask(__name__) # create the application instance :)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////mydb.db' # load config from this file , flaskr.py
+#app.config['SERVER_NAME'] = 'ontherun.me:5000'
+CORS(app)
+db = SQLAlchemy(app)
+
+class State(db.Model):
+    __tablename__ = 'states'
+    id = db.Column(db.Integer,primary_key=True,unique=True)
+    population = db.Column(db.Integer)
+    abbreviation = db.Column(db.String(10), nullable=False)
+    image = db.Column(db.String(600))
+    name = db.Column(db.String(600))
+
+    def __repr__(self):
+        return "{'name': %r, 'image': %r, 'abbreviation': %r, 'population': %r, 'id': %r}" % (self.name, self.image, self.abbreviation, self.population, self.id)
+
+class Criminal(db.Model):
+    __tablename__ = 'criminals'
+    id = db.Column(db.Integer,primary_key=True,unique=True)
+    name = db.Column(db.String(80), nullable=False)
+    field_office = db.Column(db.String(80), nullable=False)
+    height = db.Column(db.Integer)
+    weight = db.Column(db.Integer)
+    sex = db.Column(db.String(80))
+    hair = db.Column(db.String(80))
+    eyes = db.Column(db.String(80))
+    dob = db.Column(db.String(80))
+    race = db.Column(db.String(80))
+    nationality = db.Column(db.String(80))
+    crime = db.Column(db.String(600), nullable=False)
+    image = db.Column(db.String(600))
+    state = db.Column(db.String(600))
+
+    def __repr__(self):
+        return "{'state': %r, 'image': %r, 'id': %r, 'name': %r, 'field_office': %r, 'height': %r, 'weight': %r, 'sex': %r, 'hair': %r, 'eyes': %r, 'dob': %r, 'race': %r, 'nationality': %r, 'crime': %r}" % (self.state, self.image, self.id, self.name, self.field_office, self.height, self.weight, self.sex, self.hair, self.eyes, self.dob, self.race, self.nationality, self.crime)
+
+class Crime(db.Model):
+    __tablename__ = 'crimes'
+    id = db.Column(db.Integer,primary_key=True,unique=True)
+    name = db.Column(db.String(80), nullable=False)
+    image = db.Column(db.String(600))
+    description = db.Column(db.String(6000))
+
+    def __repr__(self):
+        return "{'image': %r, 'id': %r, 'name': %r, 'description': %r}" % (self.image, self.id, self.name, self.description)
+
+class CrimesState(db.Model):
+    __tablename__ = 'crimesTostate'
+    id = db.Column(db.Integer,primary_key=True,unique=True)
+    state_id = db.Column(db.Integer)
+    state_abbreviation = db.Column(db.String(10))
+    state_name = db.Column(db.String(600))
+    crime_id = db.Column(db.Integer)
+    crime_name = db.Column(db.String(600))
+
+    def __repr__(self):
+        return "{'state_name': %r, 'state_abbreviation': %r, 'id': %r, 'state_id': %r, 'crime_id': %r, 'crime_name': %r}" % (self.state_name, self.state_abbreviation, self.id, self.state_id, self.crime_id, self.crime_name)
+
+class CrimesCriminal(db.Model):
+    __tablename__='crimeTocriminal'
+    id = db.Column(db.Integer,primary_key=True,unique=True)
+    crime_id = db.Column(db.Integer)
+    criminal_id = db.Column(db.Integer)
+
+    def __repr__(self):
+        return "{'crime_id': %r, 'id': %r, 'criminal_id': %r}" % (self.crime_id, self.id, self.criminal_id)

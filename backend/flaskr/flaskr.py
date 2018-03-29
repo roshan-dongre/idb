@@ -148,6 +148,10 @@ def get_criminalstostate(id_val):
     if len(id_val) == 2:
         return jsonify(ast.literal_eval(str(Criminal.query.filter_by(state=id_val).all())))
 
+@app.route('/crimestocriminals', methods=['GET'])#, subdomain="api")
+def get_crimestocriminals():
+    return jsonify(ast.literal_eval(str(CrimesCriminal.query.all())))
+
 @app.route('/crimetocriminals/<int:catch_id>', methods=['GET'])#, subdomain="api")
 def get_crimetocriminals(catch_id):
     return jsonify(ast.literal_eval(str(CrimesCriminal.query.filter_by(crime_id=catch_id).all())))
@@ -170,6 +174,7 @@ if __name__ == '__main__':
     db.drop_all()
     db.create_all()
 
+    # Populating Criminals
     data = json.load(open('../criminal_data/sus.txt'))
     criminal_i = 0
     for person in data:
@@ -206,22 +211,31 @@ if __name__ == '__main__':
                               state=NewState)
         db.session.add(NewCriminal)
 
+    # Populating Crimes
+    data = json.load(open('../crime_data/json/national'))
     with open('../crime_data/crime_ids.txt') as fp:
         line = fp.readline()
         i = 1;
         while line:
             strLine = str(line).split(":") 
             NewImage = "https://raw.githubusercontent.com/roshan-dongre/idb/master/crimephotos/"+str(i)+".jpg"
+            NewOffenders = data[i-1]['offenders']
+            NewVictims = data[i-1]['victims']
+            NewCount = data[i-1]['count']
             i += 1
             NewDesc = strLine[2]
             if(isinstance(NewDesc,str)):
             	NewDesc = unicode(NewDesc, "utf-8")
             NewCrime = Crime(name=strLine[1],
                             image=NewImage,
-                            description=NewDesc)
+                            description=NewDesc,
+                            victims=NewVictims,
+                            offenders=NewOffenders,
+                            count=NewCount)
             db.session.add(NewCrime)
             line = fp.readline()
 
+    # Populating States
     with open('../crime_data/population.txt') as fp:
         line = fp.readline()
         i = 0
@@ -237,6 +251,7 @@ if __name__ == '__main__':
             db.session.add(NewState)
             line = fp.readline()
 
+    # Populating Crime to State relationship
     for abv in statelist:
         with open('../crime_data/json/'+abv) as fp:
             data = json.loads(fp.readline())
@@ -254,13 +269,17 @@ if __name__ == '__main__':
                                                     crime_name=NewCrimeName['name'])
                         db.session.add(NewCrimeState)
 
-    for val in (ast.literal_eval(str(Criminal.query.all()))):
-        ran_val = random.randint(1,53)
-        NewCriminalId = val['id']
-        NewCrimeId = ran_val
-        NewCrimeCriminal = CrimesCriminal(crime_id=NewCrimeId,
-                                        criminal_id=NewCriminalId)
-        db.session.add(NewCrimeCriminal)
+    # Populating Crime to Criminal relationship
+    data = json.load(open('../criminal_data/sus2.txt'))
+    for person in data:
+        NewCriminal = ast.literal_eval(str(Criminal.query.filter_by(name=person['title']).first()))
+        for x in person['crimes']:
+            NewCrime = ast.literal_eval(str(Crime.query.filter_by(id=x).first()))
+            NewCrimeCriminal = CrimesCriminal(crime_id=NewCrime['id'],
+                                            crime_name=NewCrime['name'],
+                                            criminal_id=NewCriminal['id'],
+                                            criminal_name=NewCriminal['name'])
+            db.session.add(NewCrimeCriminal)
 
     db.session.commit()
     print("Created db\n\n\n")

@@ -140,7 +140,7 @@ export default class Crime extends Component {
             stateList = this.state.states.map((state) => {
                 return (
                     <tr className="clickable-row" onClick={(e) => self.handleStateNavigation(state.state_abbreviation, e)}>
-                        <td><strong>{state.state_abbreviation}</strong></td>
+                        <td><strong>{state.state_name}</strong></td>
                     </tr>
                 );
             })
@@ -149,7 +149,7 @@ export default class Crime extends Component {
             criminalList = this.state.criminals.map((criminal) => {
                 return (
                     <tr className="clickable-row" onClick={(e) => self.handleCriminalNavigation(criminal.criminal_id, e)}>
-                        <td><strong>{criminal.criminal_id}</strong></td>
+                        <td><strong>{criminal.criminal_name}</strong></td>
                     </tr>
                 );
             })
@@ -172,20 +172,26 @@ export default class Crime extends Component {
                                 </tr>
                                 </tbody>
                             </table>
-                            <h3 className="sub-header text-center">States from this Type of Crime</h3>
-                            <table className="table table-responsive">
-                                <tbody>
+                            <h3 className="sub-header">States With This Crime</h3>
+                            <table className="table table-responsive table-hover">
+                                <thead>
                                 <tr>
-                                    <td>{stateList}</td>
+                                    <th>State</th>
                                 </tr>
+                                </thead>
+                                <tbody>
+                                {stateList}
                                 </tbody>
                             </table>
-                            <h3 className="sub-header text-center">Criminals from this Type of Crime</h3>
-                            <table className="table table-responsive">
-                                <tbody>
+                             <h3 className="sub-header">Criminals Committing This Crime</h3>
+                            <table className="table table-responsive table-hover">
+                                <thead>
                                 <tr>
-                                    <td>{criminalList}</td>
+                                    <th>Criminal</th>
                                 </tr>
+                                </thead>
+                                <tbody>
+                                {criminalList}
                                 </tbody>
                             </table>
                         </div>

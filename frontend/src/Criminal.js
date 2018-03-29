@@ -213,7 +213,7 @@ export default class Criminal extends Component {
         crimeList = this.state.data_crimes.map((crime) => {
             return (
                 <tr className="clickable-row" onClick={(e) => self.handleCrimeNavigation(crime.crime_id, e)}>
-                    <td><strong>{crime.crime_id}</strong></td>
+                    <td><strong>{crime.crime_name}</strong></td>
                 </tr>
             );
         })
@@ -251,7 +251,7 @@ export default class Criminal extends Component {
                             </tr>
                             <tr>
                                 <td><strong>Height:</strong></td>
-                                <td>{this.state.item.height == null ? this.state.unknown : this.state.item.height}</td>
+                                <td>{this.state.item.height == null ? this.state.unknown : this.state.item.height} Inches</td>
                             </tr>
                             <tr>
                                 <td><strong>Race:</strong></td>

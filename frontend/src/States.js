@@ -3,6 +3,16 @@ import chunk from 'lodash.chunk';
 import axios from 'axios';
 import ItemSelector from './ItemSelector';
 import PageSelector from './PageSelector';
+import './font/css/font-awesome.min.css'
+
+
+var blackStyles = {
+    color: 'black'
+}
+
+var whiteStyles = {
+    color: 'white'
+}
 
 export default class Criminals extends Component {
     constructor (props) {
@@ -13,6 +23,8 @@ export default class Criminals extends Component {
             numPages: 0,
             totalCount: 0,
             pgSize: 16,
+            sortBy: "",
+            region: "",
             pathname: "/States"
         }
         this.apiUrl = 'http://api.ontherun.me:5000/states';
@@ -47,6 +59,16 @@ export default class Criminals extends Component {
         if (this.state.page < this.state.numPages - 1) {
             this.setState({page: this.state.page + 1})
         }
+
+
+    }
+
+    handleRegion = (e) => {
+        this.setState({sex: e.target.value})
+    }
+
+    sort = (order) => {
+        this.setState({sortBy: order})
     }
 
     callAPI = () => {
@@ -55,6 +77,14 @@ export default class Criminals extends Component {
         let offset = this.state.page
         let limOff = "?limit="+limit+"&offset="+offset
         let url = "http://api.ontherun.me:5000/states" + limOff
+
+        if (this.state.sortBy !== "") {
+            url += "&sort="+this.state.sortBy
+        }
+
+        if (this.state.region !== "") {
+            url += "&region=" + this.state.region
+        }
 
         let self = this
         axios.get(url)
@@ -78,6 +108,12 @@ export default class Criminals extends Component {
      */
 
     componentDidUpdate(prevProps, prevState) {
+
+        if (prevState.sortBy != this.state.sortBy ||
+            prevState.region != this.state.region) {
+            this.callAPI()
+        }
+
 
         if (prevState.page !== this.state.page) {
             this.callAPI()
@@ -113,6 +149,50 @@ export default class Criminals extends Component {
 
         return (
             <div className="container sub-container">
+
+
+                <div className="row row-m-b">
+                        <div className="col-md-3">
+                            <div className= "text-left">
+                            <div className="button btn-group">
+                                <button type="button"
+                                      className={this.state.order === "ASC" ? "btn btn-default active" : "btn btn-default"}
+                                      onClick={(e) => this.sort("ASC", e)}><i className="fa fa-sort-alpha-asc" aria-hidden="true"/></button>
+                                <button type="button"
+                                      className={this.state.order === "DESC" ? "btn btn-default active" : "btn btn-default"}
+                                      onClick={(e) => this.sort("DESC", e)}><i className="fa fa-sort-alpha-desc" aria-hidden="true"/></button>
+                            </div>
+                            </div>
+                        </div>
+
+                        <div className="col-md-3">
+                            <div className = "text-left" style = {blackStyles}>
+                            <label>
+                                <strong style = {whiteStyles}>Region:  </strong>
+                            </label><span> </span>
+                            <select value={this.state.region} onChange={this.handleRegion}>
+                                    <option value="Unknown"> None </option>
+                                    <option value="Northeast">Northeast</option>
+                                    <option value="Midwest">Midwest</option>
+                                    <option value="South">South</option>
+                                    <option value="West">West</option>
+                            </select>
+                            </div>
+                        </div>
+                        <div className="col-md-4">
+                            <label>
+                                <strong>Style:  </strong>
+                            </label><span> </span>
+                            <select value={this.state.style} onChange={this.handleStyle}>
+                                    {styleMenu}
+                            </select>
+                        </div>
+                    
+
+                </div>
+
+
+
                 {/* Break array into separate arrays and wrap each array containing 3 components in a row div */}
                 { chunk(stateComponents, 4).map((row) => {
                     return (
@@ -126,7 +206,7 @@ export default class Criminals extends Component {
                               handleNext={this.handleNext}
                               numPages={this.state.numPages}
                               currentPage={this.state.page}
-                              navigateTo="/Criminals"/>}
+                              navigateTo="/States"/>}
             </div>
       );
     }

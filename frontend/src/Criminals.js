@@ -170,18 +170,6 @@ export default class Criminals extends Component {
                                 <option value="Female">Female</option>
                         </select>
                         </div>
-                    </div>
-                    <div className="col-md-3">
-                        <div className = "text-left" style = {blackStyles}>
-                        <label>
-                            <strong style = {whiteStyles}>Gender:  </strong>
-                        </label><span> </span>
-                        <select value={this.state.sex} onChange={this.handleSex}>
-                                <option value="Unknown"> None </option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                        </select>
-                        </div>
                     </div>     
                 </div>
                 {/* Break array into separate arrays and wrap each array containing 3 components in a row div */}

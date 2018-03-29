@@ -13,7 +13,6 @@ jobs:
       script:
           - date
           - sh run_tests.sh
-          - python frontend/guitests.py
 
     - stage: Postman
       language: node_js

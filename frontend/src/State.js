@@ -236,6 +236,7 @@ export default class State extends Component {
                             {crimeList}
                             </tbody>
                         </table>
+                         <h3 className="sub-header">Criminals in this State</h3>
                         <table className="table table-responsive table-hover">
                             <thead>
                             <tr>

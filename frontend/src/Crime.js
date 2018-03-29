@@ -172,7 +172,7 @@ export default class Crime extends Component {
                                 </tr>
                                 </tbody>
                             </table>
-                            <h3 className="sub-header">States with this Crime</h3>
+                            <h3 className="sub-header">States With This Crime</h3>
                             <table className="table table-responsive table-hover">
                                 <thead>
                                 <tr>
@@ -183,7 +183,7 @@ export default class Crime extends Component {
                                 {stateList}
                                 </tbody>
                             </table>
-                             <h3 className="sub-header">Criminals with this Crime</h3>
+                             <h3 className="sub-header">Criminals Committing This Crime</h3>
                             <table className="table table-responsive table-hover">
                                 <thead>
                                 <tr>

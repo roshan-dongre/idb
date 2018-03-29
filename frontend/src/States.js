@@ -3,6 +3,16 @@ import chunk from 'lodash.chunk';
 import axios from 'axios';
 import ItemSelector from './ItemSelector';
 import PageSelector from './PageSelector';
+import './font/css/font-awesome.min.css'
+
+
+var blackStyles = {
+    color: 'black'
+}
+
+var whiteStyles = {
+    color: 'white'
+}
 
 export default class Criminals extends Component {
     constructor (props) {
@@ -14,6 +24,7 @@ export default class Criminals extends Component {
             totalCount: 0,
             pgSize: 16,
             sortBy: "",
+            region: "",
             pathname: "/States"
         }
         this.apiUrl = 'http://api.ontherun.me:5000/states';
@@ -52,6 +63,10 @@ export default class Criminals extends Component {
 
     }
 
+    handleRegion = (e) => {
+        this.setState({sex: e.target.value})
+    }
+
     sort = (order) => {
         this.setState({sortBy: order})
     }
@@ -65,6 +80,10 @@ export default class Criminals extends Component {
 
         if (this.state.sortBy !== "") {
             url += "&sort="+this.state.sortBy
+        }
+
+        if (this.state.region !== "") {
+            url += "&region=" + this.state.region
         }
 
         let self = this
@@ -90,7 +109,8 @@ export default class Criminals extends Component {
 
     componentDidUpdate(prevProps, prevState) {
 
-        if (prevState.sortBy != this.state.sortBy) {
+        if (prevState.sortBy != this.state.sortBy ||
+            prevState.region != this.state.region) {
             this.callAPI()
         }
 
@@ -145,16 +165,17 @@ export default class Criminals extends Component {
                             </div>
                         </div>
 
-                        {/*
                         <div className="col-md-3">
                             <div className = "text-left" style = {blackStyles}>
                             <label>
-                                <strong style = {whiteStyles}>Gender:  </strong>
+                                <strong style = {whiteStyles}>Region:  </strong>
                             </label><span> </span>
-                            <select value={this.state.sex} onChange={this.handleSex}>
+                            <select value={this.state.region} onChange={this.handleRegion}>
                                     <option value="Unknown"> None </option>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
+                                    <option value="Northeast">Northeast</option>
+                                    <option value="Midwest">Midwest</option>
+                                    <option value="South">South</option>
+                                    <option value="West">West</option>
                             </select>
                             </div>
                         </div>
@@ -166,7 +187,7 @@ export default class Criminals extends Component {
                                     {styleMenu}
                             </select>
                         </div>
-                        */}
+                    
 
                 </div>
 

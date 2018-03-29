@@ -4,7 +4,6 @@ import axios from 'axios';
 import ItemSelector from './ItemSelector';
 import PageSelector from './PageSelector';
 import './font/css/font-awesome.min.css'
-//import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 
 var blackStyles = {
     color: 'black'
@@ -163,10 +162,10 @@ export default class Criminals extends Component {
                     <div className="col-md-3">
                         <div className = "text-left" style = {blackStyles}>
                         <label>
-                            <strong style = {whiteStyles}>GENDER:  </strong>
+                            <strong style = {whiteStyles}>Gender:  </strong>
                         </label><span> </span>
                         <select value={this.state.sex} onChange={this.handleSex}>
-                                <option value="None"> None </option>
+                                <option value="Unknown"> None </option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
                         </select>

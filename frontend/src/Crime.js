@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {Redirect} from 'react-router-dom';
 import axios from 'axios';
+import 'lodash'
+
 
 var imageStyles = {
     width: '400px',
@@ -131,6 +133,8 @@ export default class Crime extends Component {
 
     render() {
 
+        var _ = require('lodash');
+
        if (this.state.navigate) {
             return <Redirect to={{pathname: this.state.navigateTo, state: {selectedId: this.state.selectedId}}} push={true} />;
         }
@@ -149,7 +153,7 @@ export default class Crime extends Component {
             criminalList = this.state.criminals.map((criminal) => {
                 return (
                     <tr className="clickable-row" onClick={(e) => self.handleCriminalNavigation(criminal.criminal_id, e)}>
-                        <td><strong>{criminal.criminal_name}</strong></td>
+                        <td><strong>{_.startCase(_.camelCase(criminal.criminal_name))}</strong></td>
                     </tr>
                 );
             })
@@ -169,6 +173,18 @@ export default class Crime extends Component {
                                 <tr>
                                     <td><strong>Description:</strong></td>
                                     <td>{this.state.item.description}</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Crimes:</strong></td>
+                                    <td>{this.state.item.count} crimes committed in 2016</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Offenders:</strong></td>
+                                    <td>{this.state.item.offenders} offenders in 2016</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Victims:</strong></td>
+                                    <td>{this.state.item.victims} victims in 2016</td>
                                 </tr>
                                 </tbody>
                             </table>

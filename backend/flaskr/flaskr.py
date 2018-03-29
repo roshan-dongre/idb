@@ -42,8 +42,10 @@ def get_states():
         my_query['totalCount'] = db.session.query(State).count()
         if sort_name == "ASC":
             my_query['states'] = ast.literal_eval(str(State.query.order_by(asc(State.name)).offset(page_res['off']).limit(page_res['lim']).all()))
-        if sort_name == "DESC":
+        elif sort_name == "DESC":
             my_query['states'] = ast.literal_eval(str(State.query.order_by(desc(State.name)).offset(page_res['off']).limit(page_res['lim']).all()))
+        else:
+            my_query['states'] = ast.literal_eval(str(State.query.offset(page_res['off']).limit(page_res['lim']).all()))
     else:
         my_query['totalCount'] = db.session.query(State).filter(State.population>=int(filt_pop)).count()
         if sort_name == "ASC":
@@ -95,17 +97,19 @@ def get_crimes():
     if filt_pop == '':
         my_query['totalCount'] = db.session.query(Crime).count()
         if sort_name == "ASC":
-            my_query['states'] = ast.literal_eval(str(Crime.query.order_by(asc(Crime.name)).offset(page_res['off']).limit(page_res['lim']).all()))
-        if sort_name == "DESC":
-            my_query['states'] = ast.literal_eval(str(Crime.query.order_by(desc(Crime.name)).offset(page_res['off']).limit(page_res['lim']).all()))
+            my_query['crimes'] = ast.literal_eval(str(Crime.query.order_by(asc(Crime.name)).offset(page_res['off']).limit(page_res['lim']).all()))
+        elif sort_name == "DESC":
+            my_query['crimes'] = ast.literal_eval(str(Crime.query.order_by(desc(Crime.name)).offset(page_res['off']).limit(page_res['lim']).all()))
+        else:
+            my_query['crimes'] = ast.literal_eval(str(Crime.query.offset(page_res['off']).limit(page_res['lim']).all()))
     else:
         my_query['totalCount'] = db.session.query(Crime).filter(Crime.population>=int(filt_pop)).count()
         if sort_name == "ASC":
-            my_query['states'] = ast.literal_eval(str(Crime.query.filter(Crime.population>=int(filt_pop)).order_by(asc(Crime.name)).offset(page_res['off']).limit(page_res['lim']).all()))
+            my_query['crimes'] = ast.literal_eval(str(Crime.query.filter(Crime.population>=int(filt_pop)).order_by(asc(Crime.name)).offset(page_res['off']).limit(page_res['lim']).all()))
         elif sort_name == "DESC":
-            my_query['states'] = ast.literal_eval(str(Crime.query.filter(Crime.population>=int(filt_pop)).order_by(desc(Crime.name)).offset(page_res['off']).limit(page_res['lim']).all()))
+            my_query['crimes'] = ast.literal_eval(str(Crime.query.filter(Crime.population>=int(filt_pop)).order_by(desc(Crime.name)).offset(page_res['off']).limit(page_res['lim']).all()))
         else:
-            my_query['states'] = ast.literal_eval(str(Crime.query.filter(Crime.population>=int(filt_pop)).offset(page_res['off']).limit(page_res['lim']).all()))
+            my_query['crimes'] = ast.literal_eval(str(Crime.query.filter(Crime.population>=int(filt_pop)).offset(page_res['off']).limit(page_res['lim']).all()))
     return jsonify(my_query)
     # return jsonify({'totalCount': db.session.query(Crime).count(), 'crimes': ast.literal_eval(str(Crime.query.filter(Crime.id>offset).limit(limit).all()))})
 

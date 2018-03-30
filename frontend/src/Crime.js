@@ -24,7 +24,9 @@ export default class Crime extends Component {
             navigate: false,
             navigateTo: "",
             states: [],
-            criminals: []
+            criminals: [],    
+            criminalUnavailable: "No criminal available",
+            stateUnavailable: "No states available",
         }
     }
 
@@ -196,7 +198,7 @@ export default class Crime extends Component {
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {stateList}
+                                {stateList == null ? stateList : this.state.stateUnavailable}
                                 </tbody>
                             </table>
                              <h3 className="sub-header">Criminals Committing This Crime</h3>
@@ -207,7 +209,7 @@ export default class Crime extends Component {
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {criminalList}
+                                {criminalList == null ? criminalList : this.state.criminalUnavailable}
                                 </tbody>
                             </table>
                         </div>

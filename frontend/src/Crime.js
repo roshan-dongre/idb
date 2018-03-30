@@ -192,22 +192,12 @@ export default class Crime extends Component {
                             </table>
                             <h3 className="sub-header">States With This Crime</h3>
                             <table className="table table-responsive table-hover">
-                                <thead>
-                                <tr>
-                                    <th>State</th>
-                                </tr>
-                                </thead>
                                 <tbody>
                                 {stateList == null ? this.state.stateUnavailable: stateList}
                                 </tbody>
                             </table>
                              <h3 className="sub-header">Criminals Committing This Crime</h3>
                             <table className="table table-responsive table-hover">
-                                <thead>
-                                <tr>
-                                    <th>Criminal</th>
-                                </tr>
-                                </thead>
                                 <tbody>
                                 {criminalList == null ? this.state.criminalUnavailable : criminalList}
                                 </tbody>

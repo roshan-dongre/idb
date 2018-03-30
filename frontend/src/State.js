@@ -240,22 +240,12 @@ export default class State extends Component {
                         </table>
                         <h3 className="sub-header">Crimes In This State</h3>
                         <table className="table table-responsive table-hover">
-                            <thead>
-                            <tr>
-                                <th>Crime</th>
-                            </tr>
-                            </thead>
                             <tbody>
                             {crimeList == null ? this.state.crimeUnavailable : crimeList}
                             </tbody>
                         </table>
                          <h3 className="sub-header">Criminals In This State</h3>
                         <table className="table table-responsive table-hover">
-                            <thead>
-                            <tr>
-                                <th>Criminal</th>
-                            </tr>
-                            </thead>
                             <tbody>
                             {criminalList == null ? this.state.criminalUnavailable : criminalList}
                             </tbody>

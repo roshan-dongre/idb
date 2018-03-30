@@ -25,9 +25,7 @@ jobs:
 
 notifications:
   email: false
-  slack:
-    rooms:
-      - cs373group-spring2018:sCnIokOODJPNDix3PTLqFPKy#commits
+  slack: cs373group-spring2018:sCnIokOODJPNDix3PTLqFPKy
     on_failure: always
     on_success: never
     travis encrypt "cs373group-spring2018:sCnIokOODJPNDix3PTLqFPKy" --add notifications.slack

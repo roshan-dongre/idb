@@ -229,6 +229,10 @@ export default class State extends Component {
                                 <td>{this.state.item.field_offices == null ? this.state.unknown : this.state.item.field_offices}</td>
                             </tr>
                             <tr>
+                                <td><strong>Area:</strong></td>
+                                <td>{this.state.item.area == null ? this.state.unknown : this.state.item.area} square miles</td>
+                            </tr>
+                            <tr>
                                 <td><strong>Population:</strong></td>
                                 <td>{this.state.item.population == null ? this.state.unknown : this.state.item.population}</td>
                             </tr>

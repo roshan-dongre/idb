@@ -36,6 +36,8 @@ export default class Criminal extends Component {
             data_states: [],
             data_crimes: [],
             unknown: "Unknown",
+            crimeUnavailable: "No crimes available",
+            statesUnavailable: "No states available",
             center: {
                 lat: 0,
                 lng: 0
@@ -242,6 +244,10 @@ export default class Criminal extends Component {
                                 <td>{this.state.item.dob == null ? this.state.unknown : this.state.item.dob}</td>
                             </tr>
                             <tr>
+                                <td><strong>Gender:</strong></td>
+                                <td>{this.state.item.sex == null ? this.state.unknown : this.state.item.sex}</td>
+                            </tr>
+                            <tr>
                                 <td><strong>Eyes:</strong></td>
                                 <td>{this.state.item.eyes == null ? this.state.unknown : this.state.item.eyes}</td>
                             </tr>
@@ -263,7 +269,7 @@ export default class Criminal extends Component {
                             </tr>
                             <tr>
                                 <td><strong>State:</strong></td>
-                                <td> {stateList}</td>
+                                <td> {stateList == null ? stateList: this.state.statesUnavailable}</td>
                             </tr>
                             <tr>
                                 <td><strong>Description:</strong></td>
@@ -271,7 +277,7 @@ export default class Criminal extends Component {
                             </tr>
                             <tr>
                                 <td><strong>Crime:</strong></td>
-                                <td>{crimeList}</td>
+                                <td>{crimeList == null ? crimeList: this.state.crimeUnavailable}</td>
                             </tr>
                             </tbody>
                         </table>

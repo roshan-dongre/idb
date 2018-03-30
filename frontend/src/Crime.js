@@ -25,7 +25,7 @@ export default class Crime extends Component {
             navigateTo: "",
             states: [],
             criminals: [],    
-            criminalUnavailable: "No criminal available",
+            criminalUnavailable: "No criminals available",
             stateUnavailable: "No states available",
         }
     }
@@ -150,6 +150,9 @@ export default class Crime extends Component {
                     </tr>
                 );
             })
+            if (stateList.length === 0) {
+                stateList = this.state.stateUnavailable
+            }
 
             let criminalList
             criminalList = this.state.criminals.map((criminal) => {
@@ -159,6 +162,9 @@ export default class Crime extends Component {
                     </tr>
                 );
             })
+            if (criminalList.length === 0) {
+            criminalList = this.state.criminalUnavailable
+            }
 
             return (
                 <div className="container sub-container">
@@ -193,13 +199,13 @@ export default class Crime extends Component {
                             <h3 className="sub-header">States With This Crime</h3>
                             <table className="table table-responsive table-hover">
                                 <tbody>
-                                {stateList == null ? this.state.stateUnavailable: stateList}
+                                {stateList}
                                 </tbody>
                             </table>
                              <h3 className="sub-header">Criminals Committing This Crime</h3>
                             <table className="table table-responsive table-hover">
                                 <tbody>
-                                {criminalList == null ? this.state.criminalUnavailable : criminalList}
+                                {criminalList}
                                 </tbody>
                             </table>
                         </div>

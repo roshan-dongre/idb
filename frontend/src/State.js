@@ -186,6 +186,9 @@ export default class State extends Component {
                 </tr>
             );
         })
+        if (crimeList.length === 0) {
+            crimeList = this.state.crimeUnavailable
+        }
 
         let criminalList
         criminalList = this.state.criminals.map((criminal) => {
@@ -195,6 +198,9 @@ export default class State extends Component {
                 </tr>
             );
         })
+        if (criminalList.length === 0) {
+            criminalList = this.state.criminalUnavailable
+        }
 
         return (
             <div className="container sub-container">
@@ -245,13 +251,13 @@ export default class State extends Component {
                         <h3 className="sub-header">Crimes In This State</h3>
                         <table className="table table-responsive table-hover">
                             <tbody>
-                            {crimeList == null ? this.state.crimeUnavailable : crimeList}
+                            {crimeList}
                             </tbody>
                         </table>
                          <h3 className="sub-header">Criminals In This State</h3>
                         <table className="table table-responsive table-hover">
                             <tbody>
-                            {criminalList == null ? this.state.criminalUnavailable : criminalList}
+                            {criminalList}
                             </tbody>
                         </table>
                     </div>

@@ -37,7 +37,7 @@ export default class Criminal extends Component {
             data_crimes: [],
             unknown: "Unknown",
             crimeUnavailable: "No crimes available",
-            statesUnavailable: "No states available",
+            stateUnavailable: "No states available",
             center: {
                 lat: 0,
                 lng: 0
@@ -210,6 +210,10 @@ export default class Criminal extends Component {
                 </tr>
             );
         })
+        if (stateList.length === 0) {
+            stateList = this.state.stateUnavailable
+        }
+
         let crimeList
         //console.log(this.state.data_crimes)
         crimeList = this.state.data_crimes.map((crime) => {
@@ -219,6 +223,9 @@ export default class Criminal extends Component {
                 </tr>
             );
         })
+        if (crimeList.length === 0) {
+            crimeList = this.state.crimeUnavailable
+        }
 
         return (
             <div className="container sub-container">
@@ -269,7 +276,7 @@ export default class Criminal extends Component {
                             </tr>
                             <tr>
                                 <td><strong>State:</strong></td>
-                                <td> {stateList == null ? this.state.statesUnavailable : stateList}</td>
+                                <td> {stateList}</td>
                             </tr>
                             <tr>
                                 <td><strong>Description:</strong></td>
@@ -277,7 +284,7 @@ export default class Criminal extends Component {
                             </tr>
                             <tr>
                                 <td><strong>Crime:</strong></td>
-                                <td>{crimeList == null ? this.state.crimeUnavailable : crimeList}</td>
+                                <td>{crimeList}</td>
                             </tr>
                             </tbody>
                         </table>

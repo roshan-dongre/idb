@@ -242,6 +242,10 @@ export default class Criminal extends Component {
                                 <td>{this.state.item.dob == null ? this.state.unknown : this.state.item.dob}</td>
                             </tr>
                             <tr>
+                                <td><strong>Gender:</strong></td>
+                                <td>{this.state.item.sex == null ? this.state.unknown : this.state.item.sex}</td>
+                            </tr>
+                            <tr>
                                 <td><strong>Eyes:</strong></td>
                                 <td>{this.state.item.eyes == null ? this.state.unknown : this.state.item.eyes}</td>
                             </tr>

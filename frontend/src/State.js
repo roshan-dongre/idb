@@ -3,7 +3,6 @@ import {Redirect} from 'react-router-dom';
 import axios from 'axios';
 import GoogleMapReact from 'google-map-react';
 import Geocode from "react-geocode";
-import 'lodash'
 
 var imageStyles = {
     width: '400px',
@@ -222,6 +221,10 @@ export default class State extends Component {
                             <tr>
                                 <td><strong>Population:</strong></td>
                                 <td>{this.state.item.population == null ? this.state.unknown : this.state.item.population}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Field offices:</strong></td>
+                                <td>{this.state.item.field_offices == null ? this.state.unknown : this.state.item.field_offices}</td>
                             </tr>
                             </tbody>
                         </table>

@@ -70,19 +70,19 @@ def get_criminals():
     page_res = get_lim_off()
     gender = request.args.get('sex','')
     sort_name = request.args.get('sort','')
-    if gender == '':
-        totalCount = db.session.query(Criminal).count()
-        if sort_name == "ASC":
-            return jsonify({'totalCount': totalCount, 'criminals': ast.literal_eval(str(Criminal.query.order_by(asc(Criminal.name)).offset(page_res['off']).limit(page_res['lim']).all()))})
-        if sort_name == "DESC":
-            return jsonify({'totalCount': totalCount, 'criminals': ast.literal_eval(str(Criminal.query.order_by(desc(Criminal.name)).offset(page_res['off']).limit(page_res['lim']).all()))})
-        return jsonify({'totalCount': totalCount, 'criminals': ast.literal_eval(str(Criminal.query.filter(Criminal.id>page_res['off']).limit(page_res['lim']).all()))})
-    totalCount = db.session.query(Criminal).filter_by(sex=gender).count()
+    my_query = {}
+    my_query['totalCount'] = db.session.query(Criminal)
+    my_query['criminals'] = Criminal.query
+    if gender != '':
+        my_query['totalCount'] = my_query['totalCount'].filter_by(sex=gender)
+        my_query['criminals'] = my_query['criminals'].filter_by(sex=gender)
     if sort_name == "ASC":
-        return jsonify({'totalCount': totalCount, 'criminals': ast.literal_eval(str(Criminal.query.filter_by(sex=gender).order_by(asc(Criminal.name)).offset(page_res['off']).limit(page_res['lim']).all()))})
-    if sort_name == "DESC":
-        return jsonify({'totalCount': totalCount, 'criminals': ast.literal_eval(str(Criminal.query.filter_by(sex=gender).order_by(desc(Criminal.name)).offset(page_res['off']).limit(page_res['lim']).all()))})
-    return jsonify({'totalCount': totalCount, 'criminals': ast.literal_eval(str(Criminal.query.filter(Criminal.id>page_res['off']).filter_by(sex=gender).limit(page_res['lim']).all()))})
+        my_query['criminals'] = my_query['criminals'].order_by(asc(Criminal.name))
+    elif sort_name == "DESC":
+        my_query['criminals'] = my_query['criminals'].order_by(desc(Criminal.name))
+    my_query['totalCount'] = my_query['totalCount'].count()
+    my_query['criminals'] = ast.literal_eval(str(my_query['criminals'].offset(page_res['off']).limit(page_res['lim']).all()))
+    return jsonify(my_query)
 
 @app.route('/criminals/<int:crim_id>', methods=['GET'])#, subdomain="api")
 def get_criminal(crim_id):
@@ -244,7 +244,10 @@ if __name__ == '__main__':
                         name= file_state['name'],
                         density= file_state['density'],
                         area= file_state['area'],
-                        capital= file_state['capital'])
+                        capital= file_state['capital'],
+                        region= file_state['region'],
+                        flower= file_state['flower'],
+                        bird= file_state['bird'])
         db.session.add(NewState)
 
     # Populating Crime to State relationship
@@ -269,13 +272,14 @@ if __name__ == '__main__':
     data = json.load(open('../criminal_data/sus2.txt'))
     for person in data:
         NewCriminal = ast.literal_eval(str(Criminal.query.filter_by(name=person['title']).first()))
-        for x in person['crimes']:
-            NewCrime = ast.literal_eval(str(Crime.query.filter_by(id=x).first()))
-            NewCrimeCriminal = CrimesCriminal(crime_id=NewCrime['id'],
-                                            crime_name=NewCrime['name'],
-                                            criminal_id=NewCriminal['id'],
-                                            criminal_name=NewCriminal['name'])
-            db.session.add(NewCrimeCriminal)
+        if NewCriminal != None:
+            for x in person['crimes']:
+                NewCrime = ast.literal_eval(str(Crime.query.filter_by(id=x).first()))
+                NewCrimeCriminal = CrimesCriminal(crime_id=NewCrime['id'],
+                                                crime_name=NewCrime['name'],
+                                                criminal_id=NewCriminal['id'],
+                                                criminal_name=NewCriminal['name'])
+                db.session.add(NewCrimeCriminal)
 
     db.session.commit()
     print("Created db\n\n\n")

@@ -198,7 +198,7 @@ export default class Crime extends Component {
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {stateList == null ? stateList : this.state.stateUnavailable}
+                                {stateList == null ? this.state.stateUnavailable: stateList}
                                 </tbody>
                             </table>
                              <h3 className="sub-header">Criminals Committing This Crime</h3>
@@ -209,7 +209,7 @@ export default class Crime extends Component {
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {criminalList == null ? criminalList : this.state.criminalUnavailable}
+                                {criminalList == null ? this.state.criminalUnavailable : criminalList}
                                 </tbody>
                             </table>
                         </div>

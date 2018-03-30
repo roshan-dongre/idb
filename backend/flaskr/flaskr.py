@@ -236,20 +236,16 @@ if __name__ == '__main__':
             line = fp.readline()
 
     # Populating States
-    with open('../crime_data/population.txt') as fp:
-        line = fp.readline()
-        i = 0
-        while line:
-            strLine = str(line).split(" ") 
-            NewImage = "https://raw.githubusercontent.com/roshan-dongre/idb/master/stateflags/"+statelist[i]+".png"
-            NewName = statenames[i]
-            i += 1
-            NewState = State(population=strLine[1],
-                            abbreviation=strLine[0],
-                            image= NewImage,
-                            name= NewName)
-            db.session.add(NewState)
-            line = fp.readline()
+    data = json.load(open('../state_data/states2.txt'))
+    for file_state in data:
+        NewState = State(population=file_state['population'],
+                        abbreviation=file_state['abbreviation'],
+                        image= file_state['image'],
+                        name= file_state['name'],
+                        density= file_state['density'],
+                        area= file_state['area'],
+                        capital= file_state['capital'])
+        db.session.add(NewState)
 
     # Populating Crime to State relationship
     for abv in statelist:

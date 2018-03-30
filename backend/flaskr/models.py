@@ -15,9 +15,12 @@ class State(db.Model):
     abbreviation = db.Column(db.String(10), nullable=False)
     image = db.Column(db.String(600))
     name = db.Column(db.String(600))
+    density = db.Column(db.Float)
+    area = db.Column(db.Integer)
+    capital = db.Column(db.String(600))
 
     def __repr__(self):
-        return "{'name': %r, 'image': %r, 'abbreviation': %r, 'population': %r, 'id': %r}" % (self.name, self.image, self.abbreviation, self.population, self.id)
+        return "{'density': %r, 'area': %r, 'capital': %r, 'name': %r, 'image': %r, 'abbreviation': %r, 'population': %r, 'id': %r}" % (self.density, self.area, self.capital, self.name, self.image, self.abbreviation, self.population, self.id)
 
 class Criminal(db.Model):
     __tablename__ = 'criminals'

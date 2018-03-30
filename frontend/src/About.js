@@ -173,7 +173,7 @@ render () {
                                 <p>Responsibilities: API Documentation, Frontend GUI tests, Technical Report</p>
                                 <p>Number of commits: {this.state.krishnaCommits}</p>
                                 <p>Number of issues: {this.state.krishnaIssues}</p>
-                                <p>Number of unit tests: 14</p>
+                                <p>Number of unit tests: 16</p>
                             </div>
                         </div>
                     </div>

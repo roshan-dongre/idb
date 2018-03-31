@@ -166,7 +166,7 @@ export default class Criminals extends Component {
                     <div className="col-md-3">
                         <div className = "text-left" style = {blackStyles}>
                         <Select name="form-field-name" value={this.state.sex} onChange={this.handleSex}
-                        options={[ { value: 'Male', label: 'Male', clearableValue: false }, { value: 'Female', label: 'Female', clearableValue: false },]}/>
+                        options={[ { value: 'Male', label: 'Male' }, { value: 'Female', label: 'Female'},]}/>
                         </div>
                     </div>          
                 </div>

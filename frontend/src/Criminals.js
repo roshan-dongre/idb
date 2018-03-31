@@ -4,6 +4,8 @@ import axios from 'axios';
 import ItemSelector from './ItemSelector';
 import PageSelector from './PageSelector';
 import './font/css/font-awesome.min.css'
+import Select from 'react-select';
+import 'react-select/dist/react-select.css';
 
 var blackStyles = {
     color: 'black'
@@ -62,7 +64,9 @@ export default class Criminals extends Component {
     }
 
     handleSex = (e) => {
-        this.setState({sex: e.target.value})
+        if (e != null) {
+            this.setState({sex: e.value})
+        }
     }
 
     sort = (order) => {
@@ -161,16 +165,10 @@ export default class Criminals extends Component {
                     </div>
                     <div className="col-md-3">
                         <div className = "text-left" style = {blackStyles}>
-                        <label>
-                            <strong style = {whiteStyles}>Gender:  </strong>
-                        </label><span> </span>
-                        <select value={this.state.sex} onChange={this.handleSex}>
-                                <option value="Unknown"> None </option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                        </select>
+                        <Select name="form-field-name" value={this.state.sex} onChange={this.handleSex}
+                        options={[ { value: 'Male', label: 'Male', clearableValue: false }, { value: 'Female', label: 'Female', clearableValue: false },]}/>
                         </div>
-                    </div>     
+                    </div>          
                 </div>
                 {/* Break array into separate arrays and wrap each array containing 3 components in a row div */}
                 { chunk(criminalComponents, 4).map((row) => {

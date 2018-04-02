@@ -4,9 +4,8 @@ Tests of the frontend GUI, using Selenium for python.
 
 import selenium
 from selenium import webdriver
-import re # Regular Expressions
 import unittest # Python unit test library
-import time # For time
+import time # For time.sleep()
 
 class SeleniumTesting(unittest.TestCase):
 
@@ -14,7 +13,6 @@ class SeleniumTesting(unittest.TestCase):
 	def setUp(self):
 		self.wdriver = webdriver.Chrome(executable_path = r"chromedriver.exe")
 		# self.base_url = "http://api.ontherun.me"
-		
 		self.base_url = "http://ontherun.me"
 
 	# Check that the about page link takes us to the right page.
@@ -61,7 +59,7 @@ class SeleniumTesting(unittest.TestCase):
 		time.sleep(2)
 
 		# Get the instance by xpath.
-		instance = driver.find_element_by_xpath('//*[@id="root"]/div/main/div/div[1]/div[1]/div/div')
+		instance = driver.find_element_by_xpath('//*[@id="root"]/div/main/div/div[2]/div[1]/div')
 		instance.click()
 		self.assertEqual(driver.current_url, self.base_url + "/State")
 		pass
@@ -128,7 +126,7 @@ class SeleniumTesting(unittest.TestCase):
 		time.sleep(2)
 
 		# Get the instance by xpath.
-		instance = driver.find_element_by_xpath('//*[@id="root"]/div/main/div/div[1]/div[2]')
+		instance = driver.find_element_by_xpath('//*[@id="root"]/div/main/div/div[2]/div[1]/div')
 		instance.click()
 		self.assertEqual(driver.current_url, self.base_url + "/Crime")
 		pass
@@ -163,6 +161,76 @@ class SeleniumTesting(unittest.TestCase):
 
 		pass
 
+	def test_criminal_gender_filter(self):
+		pass
+
+	def test_criminal_alphabet_sort_az(self):
+		driver = self.wdriver
+		driver.get(self.base_url)
+
+		# Go to criminals
+		driver.find_element_by_link_text("Criminals").click()
+
+		# Click the sort A -> Z button
+		instance = driver.find_element_by_xpath('//*[@id="root"]/div/main/div/div[1]/div[1]/div/div/button[1]')
+		instance.click()
+
+		# wait
+		time.sleep(2)
+
+		# get the first grid point name
+		person1 = driver.find_element_by_xpath('//*[@id="root"]/div/main/div/div[2]/div[1]/div/div/img')
+		# name1 = person1.text
+		name1_ = str(person1.get_attribute('alt'))
+		name1_ = name1_.replace(',', '')
+		name1_ = name1_.lower()
+		# print(name1_)
+
+		# get the second grid point name
+		person2 = driver.find_element_by_xpath('//*[@id="root"]/div/main/div/div[2]/div[2]/div/div/img')
+		# name2 = person2.text
+		name2_ = str(person2.get_attribute('alt'))
+		name2_ = name2_.replace(',', '')
+		name2_ = name2_.lower()
+		# print(name2_)
+
+		# check the 2nd name comes after first name
+		self.assertEqual(str(name1_) < str(name2_), True)
+		pass
+
+	def test_criminal_alphabet_sort_za(self):
+		driver = self.wdriver
+		driver.get(self.base_url)
+
+		# Go to criminals
+		driver.find_element_by_link_text("Criminals").click()
+
+		# Click the sort A -> Z button
+		instance = driver.find_element_by_xpath('//*[@id="root"]/div/main/div/div[1]/div[1]/div/div/button[2]')
+		instance.click()
+
+		# wait
+		time.sleep(2)
+
+		# get the first grid point name
+		person1 = driver.find_element_by_xpath('//*[@id="root"]/div/main/div/div[2]/div[1]/div/div/img')
+		# name1 = person1.text
+		name1_ = str(person1.get_attribute('alt'))
+		name1_ = name1_.replace(',', '')
+		name1_ = name1_.lower()
+		# print(name1_)
+
+		# get the second grid point name
+		person2 = driver.find_element_by_xpath('//*[@id="root"]/div/main/div/div[2]/div[2]/div/div/img')
+		# name2 = person2.text
+		name2_ = str(person2.get_attribute('alt'))
+		name2_ = name2_.replace(',', '')
+		name2_ = name2_.lower()
+		# print(name2_)
+
+		# check the 2nd name comes after first name
+		self.assertEqual(str(name1_) > str(name2_), True)
+		pass
 
 	# Clean up.
 	def tearDown(self):
@@ -170,5 +238,3 @@ class SeleniumTesting(unittest.TestCase):
 
 if __name__ == '__main__':
 	unittest.main()
-	# suite = unittest.TestLoader().loadTestsFromTestCase(SeleniumTesting)
-	# unittest.TextTestRunner(verbosity=2).run(suite)

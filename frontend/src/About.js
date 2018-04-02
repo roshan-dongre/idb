@@ -173,7 +173,7 @@ render () {
                                 <p>Responsibilities: API Documentation, Frontend GUI tests, Technical Report</p>
                                 <p>Number of commits: {this.state.krishnaCommits}</p>
                                 <p>Number of issues: {this.state.krishnaIssues}</p>
-                                <p>Number of unit tests: 16</p>
+                                <p>Number of unit tests: 21</p>
                             </div>
                         </div>
                     </div>
@@ -185,7 +185,7 @@ render () {
                                         <ul>
                                             <li className="text-left"><h4><strong>total no. of commits: {this.state.totalCommits}</strong></h4></li>
                                             <li className="text-left"><h4><strong>total no. of issues:</strong> {this.state.totalIssues}</h4></li>
-                                            <li className="text-left"><h4><strong>total no. of unit tests:</strong> 34</h4></li>
+                                            <li className="text-left"><h4><strong>total no. of unit tests:</strong> 45</h4></li>
                                         </ul>
                                     </div>
                                 </div>

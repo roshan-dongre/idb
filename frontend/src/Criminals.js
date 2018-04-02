@@ -27,7 +27,8 @@ export default class Criminals extends Component {
             pgSize: 16,
             pathname: "/Criminals",
             sortBy: "",
-            sex: ""
+            sex: "",
+            race: ""
         }
         this.apiUrl = 'http://api.ontherun.me:5000/criminals';
     }
@@ -68,6 +69,11 @@ export default class Criminals extends Component {
             this.setState({sex: e.value})
         }
     }
+    handleRace = (e) => {
+        if (e != null) {
+            this.setState({race: e.value})
+        }
+    }
 
     sort = (order) => {
         this.setState({sortBy: order})
@@ -85,6 +91,9 @@ export default class Criminals extends Component {
         }
         if (this.state.sex !== "") {
             url += "&sex=" + this.state.sex
+        }
+        if (this.state.race !== "") {
+            url += "&race=" + this.state.race
         }
 
         let self = this
@@ -112,7 +121,8 @@ export default class Criminals extends Component {
     componentDidUpdate(prevProps, prevState) {
 
         if (prevState.sortBy != this.state.sortBy ||
-            prevState.sex != this.state.sex) {
+            prevState.sex != this.state.sex || 
+            prevState.race != this.state.race) {
             this.callAPI()
         }
 
@@ -167,6 +177,13 @@ export default class Criminals extends Component {
                         <div className = "text-left" style = {blackStyles}>
                         <Select name="form-field-name" value={this.state.sex} onChange={this.handleSex}
                         options={[ { value: 'Male', label: 'Male' }, { value: 'Female', label: 'Female'},]}/>
+                        </div>
+                    </div> 
+                    <div className="col-md-3">
+                        <div className = "text-left" style = {blackStyles}>
+                        <Select name="form-field-name" value={this.state.race} onChange={this.handleRace}
+                        options={[ { value: 'White', label: 'White' }, { value: 'Black', label: 'Black'}, { value: 'White (Hispanic)', label: 'White (Hispanic)'}, { value: 'Asian', label: 'Asian'}, 
+                        { value: 'White (Central Asian)', label: 'White (Central Asian)'}, { value: 'Black (Hispanic)', label: 'Black (Hispanic)'}, { value: 'White (Middle Eastern)', label: 'White (Middle Eastern)'}, ]}/>
                         </div>
                     </div>          
                 </div>

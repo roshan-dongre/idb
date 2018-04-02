@@ -3,6 +3,16 @@ import chunk from 'lodash.chunk';
 import axios from 'axios';
 import ItemSelector from './ItemSelector';
 import PageSelector from './PageSelector';
+import Select from 'react-select';
+import 'react-select/dist/react-select.css';
+
+var blackStyles = {
+    color: 'black'
+}
+
+var whiteStyles = {
+    color: 'grey'
+}
 
 export default class Crimes extends Component {
     constructor (props) {
@@ -14,6 +24,9 @@ export default class Crimes extends Component {
             totalCount: 0,
             pgSize: 16,
             sortBy: "",
+            count: 0,
+            offenders: 0,
+            victims: 0,
             pathname: "/Crimes"
         }
         this.apiUrl = 'http://api.ontherun.me:5000/crimes';
@@ -50,6 +63,24 @@ export default class Crimes extends Component {
         }
     }
 
+    handleCount = (e) => {
+        if (e != null) {
+            this.setState({count: e.value})
+        }
+    }
+
+    handleOffenders = (e) => {
+        if (e != null) {
+            this.setState({offenders: e.value})
+        }
+    }
+
+    handleVictims = (e) => {
+        if (e != null) {
+            this.setState({victims: e.value})
+        }
+    }
+
     sort = (order) => {
         this.setState({sortBy: order})
     }
@@ -63,6 +94,18 @@ export default class Crimes extends Component {
 
         if (this.state.sortBy !== "") {
             url += "&sort="+this.state.sortBy
+        }
+
+        if (this.state.count !== 0) {
+            url += "&count="+this.state.count
+        }
+
+        if (this.state.offenders !== 0) {
+            url += "&offenders="+this.state.offenders
+        }
+
+        if (this.state.victims !== 0) {
+            url += "&victims="+this.state.victims
         }
 
         let self = this
@@ -89,10 +132,12 @@ export default class Crimes extends Component {
 
     componentDidUpdate(prevProps, prevState) {
 
-        if (prevState.sortBy != this.state.sortBy) {
+        if (prevState.sortBy != this.state.sortBy ||
+            prevState.count != this.state.count ||
+            prevState.offenders != this.state.offenders ||
+            prevState.victims != this.state.victims) {
             this.callAPI()
         }
-
 
         if (prevState.page !== this.state.page) {
             this.callAPI()
@@ -131,7 +176,10 @@ export default class Crimes extends Component {
 
                 <div className="row row-m-b">
                         <div className="col-md-3">
-                            <div className= "text-left">
+                            <div className= "text-center">
+                            <label>
+                                <strong style = {whiteStyles}>Sort by Name:  &nbsp;&nbsp;</strong>
+                            </label><span> </span>
                             <div className="button btn-group">
                                 <button type="button"
                                       className={this.state.order === "ASC" ? "btn btn-default active" : "btn btn-default"}
@@ -142,36 +190,28 @@ export default class Crimes extends Component {
                             </div>
                             </div>
                         </div>
-
-                        {/*
                         <div className="col-md-3">
                             <div className = "text-left" style = {blackStyles}>
-                            <label>
-                                <strong style = {whiteStyles}>Gender:  </strong>
-                            </label><span> </span>
-                            <select value={this.state.sex} onChange={this.handleSex}>
-                                    <option value="Unknown"> None </option>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                            </select>
+                                <Select name="form-field-name" value={this.state.count} onChange={this.handleCount} placeholder = "Filter by Number of Crimes"
+                                options={[ { value: 5, label: '>5 offenses' }, { value: 500, label: '>500 offenses'}, { value: 1000, label: '>1,000 offenses'}, { value: 10000, label: '>10,000 offenses'},{ value: 50000, label: '>50,000 offenses'},
+                                { value: 100000, label: '>100,000 offenses'},{ value: 500000, label: '>500,000 offenses'},]}/>
                             </div>
                         </div>
-                        <div className="col-md-4">
-                            <label>
-                                <strong>Style:  </strong>
-                            </label><span> </span>
-                            <select value={this.state.style} onChange={this.handleStyle}>
-                                    {styleMenu}
-                            </select>
+                        <div className="col-md-3">
+                            <div className = "text-left" style = {blackStyles}>
+                                <Select name="form-field-name" value={this.state.offenders} onChange={this.handleOffenders} placeholder = "Filter by Number of Offenders"
+                                options={[ { value: 10, label: '>10 offenders' }, { value: 100, label: '>100 Offenders'}, { value: 1000, label: '>1,000 offenders'}, { value: 10000, label: '>10,000 offenders'},{ value: 50000, label: '>50,000 offenders'},
+                                { value: 100000, label: '>100,000 offenders'},{ value: 500000, label: '>500,000 offenders'},]}/>
+                            </div>
                         </div>
-                        */}
-
+                        <div className="col-md-3">
+                            <div className = "text-left" style = {blackStyles}>
+                                <Select name="form-field-name" value={this.state.victims} onChange={this.handleVictims} placeholder = "Filter by Number of Victims"
+                                options={[ { value: 5, label: '>5 victims' }, { value: 100, label: '>100 victims'}, { value: 1000, label: '>1,000 victims'}, { value: 10000, label: '>10,000 victims'},{ value: 50000, label: '>50,000 victims'},
+                                { value: 100000, label: '>100,000 victims'},{ value: 500000, label: '>500,000 victims'},]}/>
+                            </div>
+                        </div>
                 </div>
-
-
-
-
-
 
                 {/* Break array into separate arrays and wrap each array containing 3 components in a row div */}
                 { chunk(crimeComponents, 4).map((row) => {

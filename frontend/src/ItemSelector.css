@@ -38,3 +38,6 @@
   margin-bottom : 20px;
 }
 
+.Select-clear-zone {
+display: none !important;
+}

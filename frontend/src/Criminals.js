@@ -12,7 +12,7 @@ var blackStyles = {
 }
 
 var whiteStyles = {
-    color: 'white'
+    color: 'grey'
 }
 
 
@@ -172,6 +172,9 @@ export default class Criminals extends Component {
                 <div className="row row-m-b">
                     <div className="col-md-3">
                         <div className= "text-center">
+                        <label>
+                                <strong style = {whiteStyles}>Sort by Name:  &nbsp;&nbsp;</strong>
+                            </label><span> </span>
                         <div className="button btn-group">
                             <button type="button"
                                   className={this.state.order === "ASC" ? "btn btn-default active" : "btn btn-default"}
@@ -184,20 +187,20 @@ export default class Criminals extends Component {
                     </div>
                     <div className="col-md-3">
                         <div className = "text-left" style = {blackStyles}>
-                        <Select name="form-field-name" value={this.state.sex} onChange={this.handleSex}
+                        <Select name="form-field-name" value={this.state.sex} onChange={this.handleSex} placeholder= "Filter by Gender"
                         options={[ { value: 'Male', label: 'Male' }, { value: 'Female', label: 'Female'},]}/>
                         </div>
                     </div> 
                     <div className="col-md-3">
                         <div className = "text-left" style = {blackStyles}>
-                        <Select name="form-field-name" value={this.state.race} onChange={this.handleRace}
+                        <Select name="form-field-name" value={this.state.race} onChange={this.handleRace} placeholder = "Filter by Race"
                         options={[ { value: 'White', label: 'White' }, { value: 'Black', label: 'Black'}, { value: 'White (Hispanic)', label: 'White (Hispanic)'}, { value: 'Asian', label: 'Asian'}, 
                         { value: 'White (Central Asian)', label: 'White (Central Asian)'}, { value: 'Black (Hispanic)', label: 'Black (Hispanic)'}, { value: 'White (Middle Eastern)', label: 'White (Middle Eastern)'}, ]}/>
                         </div>
                     </div>    
                     <div className="col-md-3">
                         <div className = "text-left" style = {blackStyles}>
-                        <Select name="form-field-name" value={this.state.height} onChange={this.handleHeight}
+                        <Select name="form-field-name" value={this.state.height} onChange={this.handleHeight} placeholder = "Filter by Height"
                         options={[ { value: 50, label: '>50 Inches' }, { value: 55, label: '>55 Inches'}, { value: 60, label: '>60 Inches'}, { value: 65, label: '>65 Inches'}, 
                         { value: 70, label: '>70 Inches'}, { value: 75, label: '>75 Inches'}, ]}/>
                         </div>

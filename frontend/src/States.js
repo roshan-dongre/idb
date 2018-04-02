@@ -220,13 +220,13 @@ export default class Criminals extends Component {
                         <div className="col-md-3">
                             <div className = "text-left" style = {blackStyles}>
                                 <Select name="form-field-name" value={this.state.population} onChange={this.handlePopulation} placeholder = "Filter by Population"
-                                options={[ { value: 500000, label: '>500,000 people' }, { value: 1000000, label: '>1,000,000 people'}, { value: 2000000, label: '>2,000,000 people'}, { value: 5000000, label: '>5,000,000 people'},{ value: 10000000, label: '>10,000,000 people'},]}/>
+                                options={[ { value: 500000, label: '>500,000 People' }, { value: 1000000, label: '>1,000,000 People'}, { value: 2000000, label: '>2,000,000 People'}, { value: 5000000, label: '>5,000,000 People'},{ value: 10000000, label: '>10,000,000 People'},]}/>
                             </div>
                         </div> 
                         <div className="col-md-3">
                             <div className = "text-left" style = {blackStyles}>
                                 <Select name="form-field-name" value={this.state.area} onChange={this.handleArea} placeholder = "Filter by Area"
-                                options={[ { value: 50, label: '>50 square miles' }, { value: 5000, label: '>5,000 square miles'}, { value: 25000, label: '>25,000 square miles'}, { value: 50000, label: '>50,000 square miles'},{ value: 100000, label: '>100,000 square miles'},]}/>
+                                options={[ { value: 50, label: '>50 Square Miles' }, { value: 5000, label: '>5,000 Square Miles'}, { value: 25000, label: '>25,000 Square Miles'}, { value: 50000, label: '>50,000 Square Miles'},{ value: 100000, label: '>100,000 Square Miles'},]}/>
                             </div>
                         </div>
                 </div>

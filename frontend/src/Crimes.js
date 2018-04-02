@@ -208,22 +208,22 @@ export default class Crimes extends Component {
                         <div className="col-md-3">
                             <div className = "text-left" style = {blackStyles}>
                                 <Select name="form-field-name" value={this.state.count} onChange={this.handleCount} placeholder = "Filter by Number of Crimes"
-                                options={[ { value: 5, label: '>5 offenses' }, { value: 500, label: '>500 offenses'}, { value: 1000, label: '>1,000 offenses'}, { value: 10000, label: '>10,000 offenses'},{ value: 50000, label: '>50,000 offenses'},
-                                { value: 100000, label: '>100,000 offenses'},{ value: 500000, label: '>500,000 offenses'},]}/>
+                                options={[ { value: 5, label: '>5 Offenses' }, { value: 500, label: '>500 Offenses'}, { value: 1000, label: '>1,000 Offenses'}, { value: 10000, label: '>10,000 Offenses'},{ value: 50000, label: '>50,000 Offenses'},
+                                { value: 100000, label: '>100,000 Offenses'},{ value: 500000, label: '>500,000 Offenses'},]}/>
                             </div>
                         </div>
                         <div className="col-md-3">
                             <div className = "text-left" style = {blackStyles}>
                                 <Select name="form-field-name" value={this.state.offenders} onChange={this.handleOffenders} placeholder = "Filter by Number of Offenders"
-                                options={[ { value: 10, label: '>10 offenders' }, { value: 100, label: '>100 Offenders'}, { value: 1000, label: '>1,000 offenders'}, { value: 10000, label: '>10,000 offenders'},{ value: 50000, label: '>50,000 offenders'},
-                                { value: 100000, label: '>100,000 offenders'},{ value: 500000, label: '>500,000 offenders'},]}/>
+                                options={[ { value: 10, label: '>10 Offenders' }, { value: 100, label: '>100 Offenders'}, { value: 1000, label: '>1,000 Offenders'}, { value: 10000, label: '>10,000 Offenders'},{ value: 50000, label: '>50,000 Offenders'},
+                                { value: 100000, label: '>100,000 Offenders'},{ value: 500000, label: '>500,000 Offenders'},]}/>
                             </div>
                         </div>
                         <div className="col-md-3">
                             <div className = "text-left" style = {blackStyles}>
                                 <Select name="form-field-name" value={this.state.victims} onChange={this.handleVictims} placeholder = "Filter by Number of Victims"
-                                options={[ { value: 5, label: '>5 victims' }, { value: 100, label: '>100 victims'}, { value: 1000, label: '>1,000 victims'}, { value: 10000, label: '>10,000 victims'},{ value: 50000, label: '>50,000 victims'},
-                                { value: 100000, label: '>100,000 victims'},{ value: 500000, label: '>500,000 victims'},]}/>
+                                options={[ { value: 5, label: '>5 Victims' }, { value: 100, label: '>100 Victims'}, { value: 1000, label: '>1,000 Victims'}, { value: 10000, label: '>10,000 Victims'},{ value: 50000, label: '>50,000 Victims'},
+                                { value: 100000, label: '>100,000 Victims'},{ value: 500000, label: '>500,000 Victims'},]}/>
                             </div>
                         </div>
                 </div>

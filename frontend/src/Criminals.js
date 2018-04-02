@@ -28,7 +28,8 @@ export default class Criminals extends Component {
             pathname: "/Criminals",
             sortBy: "",
             sex: "",
-            race: ""
+            race: "",
+            height: 0
         }
         this.apiUrl = 'http://api.ontherun.me:5000/criminals';
     }
@@ -74,6 +75,11 @@ export default class Criminals extends Component {
             this.setState({race: e.value})
         }
     }
+    handleHeight = (e) => {
+        if (e != null) {
+            this.setState({height: e.value})
+        }
+    }
 
     sort = (order) => {
         this.setState({sortBy: order})
@@ -94,6 +100,9 @@ export default class Criminals extends Component {
         }
         if (this.state.race !== "") {
             url += "&race=" + this.state.race
+        }
+        if (this.state.height !== 0) {
+            url += "&height=" + this.state.height
         }
 
         let self = this
@@ -122,7 +131,7 @@ export default class Criminals extends Component {
 
         if (prevState.sortBy != this.state.sortBy ||
             prevState.sex != this.state.sex || 
-            prevState.race != this.state.race) {
+            prevState.race != this.state.race || prevState.height != this.state.height) {
             this.callAPI()
         }
 
@@ -162,7 +171,7 @@ export default class Criminals extends Component {
             <div className="container sub-container">
                 <div className="row row-m-b">
                     <div className="col-md-3">
-                        <div className= "text-left">
+                        <div className= "text-center">
                         <div className="button btn-group">
                             <button type="button"
                                   className={this.state.order === "ASC" ? "btn btn-default active" : "btn btn-default"}
@@ -184,6 +193,13 @@ export default class Criminals extends Component {
                         <Select name="form-field-name" value={this.state.race} onChange={this.handleRace}
                         options={[ { value: 'White', label: 'White' }, { value: 'Black', label: 'Black'}, { value: 'White (Hispanic)', label: 'White (Hispanic)'}, { value: 'Asian', label: 'Asian'}, 
                         { value: 'White (Central Asian)', label: 'White (Central Asian)'}, { value: 'Black (Hispanic)', label: 'Black (Hispanic)'}, { value: 'White (Middle Eastern)', label: 'White (Middle Eastern)'}, ]}/>
+                        </div>
+                    </div>    
+                    <div className="col-md-3">
+                        <div className = "text-left" style = {blackStyles}>
+                        <Select name="form-field-name" value={this.state.height} onChange={this.handleHeight}
+                        options={[ { value: 50, label: '>50 Inches' }, { value: 55, label: '>55 Inches'}, { value: 60, label: '>60 Inches'}, { value: 65, label: '>65 Inches'}, 
+                        { value: 70, label: '>70 Inches'}, { value: 75, label: '>75 Inches'}, ]}/>
                         </div>
                     </div>          
                 </div>

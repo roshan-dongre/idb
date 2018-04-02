@@ -173,7 +173,7 @@ render () {
                                 <p>Responsibilities: API Documentation, Frontend GUI tests, Technical Report</p>
                                 <p>Number of commits: {this.state.krishnaCommits}</p>
                                 <p>Number of issues: {this.state.krishnaIssues}</p>
-                                <p>Number of unit tests: 16</p>
+                                <p>Number of unit tests: 21</p>
                             </div>
                         </div>
                     </div>
@@ -185,7 +185,7 @@ render () {
                                         <ul>
                                             <li className="text-left"><h4><strong>total no. of commits: {this.state.totalCommits}</strong></h4></li>
                                             <li className="text-left"><h4><strong>total no. of issues:</strong> {this.state.totalIssues}</h4></li>
-                                            <li className="text-left"><h4><strong>total no. of unit tests:</strong> 34</h4></li>
+                                            <li className="text-left"><h4><strong>total no. of unit tests:</strong> 45</h4></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -227,6 +227,7 @@ render () {
                                         <a href="https://roshan-dongre.gitbooks.io/api/" style = {linkStyles}><h4><u>API Documentation</u></h4></a>
                                         <a href="https://roshan-dongre.gitbooks.io/report/" style = {linkStyles}><h4><u>Technical Report</u></h4></a>
                                         <a href="https://github.com/roshan-dongre/idb" style = {linkStyles}><h4><u>GitHub Repository</u></h4></a>
+                                        <a href="https://travis-ci.org/roshan-dongre/idb" style = {linkStyles}><h4><u>Travis CI Log</u></h4></a>
                                     </div>
                                 </div>
                             </div>

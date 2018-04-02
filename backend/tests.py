@@ -69,6 +69,9 @@ class Crime(db.Model):
     image = db.Column(db.String(600))
     description = db.Column(db.String(6000))
 
+    def asDict(self):
+    	return {"id": self.id, "name": self.name, "image": self.image, "description": self.description}
+
     def __repr__(self):
         return "{'image': %r, 'id': %r, 'name': %r, 'description': %r}" % (self.image, self.id, self.name, self.description)
 
@@ -81,6 +84,9 @@ class CrimesState(db.Model):
     crime_id = db.Column(db.Integer)
     crime_name = db.Column(db.String(600))
 
+    def asDict(self):
+    	return {"id": self.id, "state_id": self.state_id, "state_abbreviation": self.state_abbreviation, "state_name": self.state_name, "crime_id": self.crime_id, "crime_name": self.crime_name}
+
     def __repr__(self):
         return "{'state_name': %r, 'state_abbreviation': %r, 'id': %r, 'state_id': %r, 'crime_id': %r, 'crime_name': %r}" % (self.state_name, self.state_abbreviation, self.id, self.state_id, self.crime_id, self.crime_name)
 
@@ -89,6 +95,9 @@ class CrimesCriminal(db.Model):
     id = db.Column(db.Integer,primary_key=True,unique=True)
     crime_id = db.Column(db.Integer)
     criminal_id = db.Column(db.Integer)
+
+    def asDict(self):
+    	return {"id": self.id, "crime_id": self.crime_id, "criminal_id": self.criminal_id}
 
     def __repr__(self):
         return "{'crime_id': %r, 'id': %r, 'criminal_id': %r}" % (self.crime_id, self.id, self.criminal_id)
@@ -131,6 +140,51 @@ class DBTest(unittest.TestCase):
 		pass
 
 	def test_crime(self):
+		db.create_all()
+		Crime.query.filter(Crime.id == 1000).delete()
+		db.session.commit()
+		crime = Crime(id = 1000, name = "Robbery2", image = "robbery2.txt.img", description = "whatwhat")
+		db.session.add(crime)
+		db.session.commit()
+
+		whatWeWant = crime.asDict()
+		placeholder = Crime.query.filter(Crime.id == 1000).first()
+		self.assertEqual(whatWeWant, placeholder.asDict())
+
+		Crime.query.filter(Crime.id == 1000).delete()
+		db.session.commit()
+		pass
+
+	def test_crimesstate(self):
+		db.create_all()
+		CrimesState.query.filter(CrimesState.id == 1000).delete()
+		db.session.commit()
+		cs = CrimesState(id = 1000, crime_name = "Robbery2", state_name = "robbery2.txt.img", state_abbreviation = "gg", state_id = 2, crime_id = 5)
+		db.session.add(cs)
+		db.session.commit()
+
+		whatWeWant = cs.asDict()
+		placeholder = CrimesState.query.filter(CrimesState.id == 1000).first()
+		self.assertEqual(whatWeWant, placeholder.asDict())
+
+		CrimesState.query.filter(CrimesState.id == 1000).delete()
+		db.session.commit()
+		pass
+
+	def test_crimescriminal(self):
+		db.create_all()
+		CrimesCriminal.query.filter(CrimesCriminal.id == 1000).delete()
+		db.session.commit()
+		cs = CrimesCriminal(id = 1000, crime_id = 8, criminal_id = 5)
+		db.session.add(cs)
+		db.session.commit()
+
+		whatWeWant = cs.asDict()
+		placeholder = CrimesCriminal.query.filter(CrimesCriminal.id == 1000).first()
+		self.assertEqual(whatWeWant, placeholder.asDict())
+
+		CrimesCriminal.query.filter(CrimesCriminal.id == 1000).delete()
+		db.session.commit()
 		pass
 
 class StateTest(unittest.TestCase):

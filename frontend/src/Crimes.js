@@ -27,7 +27,8 @@ export default class Crimes extends Component {
             count: 0,
             offenders: 0,
             victims: 0,
-            pathname: "/Crimes"
+            pathname: "/Crimes",
+            loading: true
         }
         this.apiUrl = 'http://api.ontherun.me:5000/crimes';
     }
@@ -115,6 +116,7 @@ export default class Crimes extends Component {
                 console.log(res.data)
                 console.log(res.data.totalCount)
                 self.setState({crimes: res.data.crimes, totalCount: res.data.totalCount, numPages: Math.ceil(res.data.totalCount/self.state.pgSize)});
+                self.setState({loading: false})
             })
             .catch((error) => {
                 console.log(error)
@@ -158,6 +160,19 @@ export default class Crimes extends Component {
     /* More information about the React.Component lifecycle here: https://reactjs.org/docs/react-component.html */
 
     render() {
+
+    var Spinner = require('react-spinkit');
+    if (this.state.loading) {
+        return (
+            <div className="container sub-container">
+                <div className="row row-m-b">
+                    <div className= "text-center">
+                    <Spinner name = "wordpress" color="goldenrod"/>
+                    </div>
+                </div>
+            </div>)
+    }
+    else {
 
         let crimeComponents = []
         let styleMenu = []
@@ -229,5 +244,6 @@ export default class Crimes extends Component {
                               navigateTo="/Crimes"/>}
             </div>
       );
+    }
     }
 }

@@ -15,6 +15,10 @@ var whiteStyles = {
     color: 'grey'
 }
 
+var spinnerStyle = {
+    height: "250px",
+    width: "250px"
+}
 
 export default class Criminals extends Component {
     constructor (props) {
@@ -29,7 +33,8 @@ export default class Criminals extends Component {
             sortBy: "",
             sex: "",
             race: "",
-            height: 0
+            height: 0,
+            loading: true
         }
         this.apiUrl = 'http://api.ontherun.me:5000/criminals';
     }
@@ -110,6 +115,7 @@ export default class Criminals extends Component {
             .then((res) => {
                 // Set state with result
                 self.setState({criminals: res.data.criminals, totalCount: res.data.totalCount, numPages: Math.ceil(res.data.totalCount/self.state.pgSize)});
+                self.setState({loading: false})
                 console.log(self.state.criminals)
                 console.log(url)
             })
@@ -155,6 +161,19 @@ export default class Criminals extends Component {
 
     render() {
 
+    var Spinner = require('react-spinkit');
+    if (this.state.loading) {
+        return (
+            <div className="container sub-container">
+                <div className="row row-m-b">
+                    <div className= "text-center">
+                    <Spinner name = "wordpress" color="goldenrod"/>
+                    </div>
+                </div>
+            </div>)
+    }
+    else {
+
         let criminalComponents = []
         let styleMenu = []
         if (this.state.criminals !== undefined) {
@@ -165,7 +184,6 @@ export default class Criminals extends Component {
                 );
             })
         }
-
 
         return (
             <div className="container sub-container">
@@ -222,5 +240,6 @@ export default class Criminals extends Component {
                               navigateTo="/Criminals"/>}
             </div>
       );
+    }
     }
 }

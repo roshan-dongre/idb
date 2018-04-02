@@ -28,7 +28,8 @@ export default class Criminals extends Component {
             region: "",
             population: 0,
             area: 0,
-            pathname: "/States"
+            pathname: "/States",
+            loading: true
         }
         this.apiUrl = 'http://api.ontherun.me:5000/states';
     }
@@ -116,6 +117,7 @@ export default class Criminals extends Component {
             .then((res) => {
                 // Set state with result
                 self.setState({states: res.data.states, totalCount: res.data.totalCount, numPages: Math.ceil(res.data.totalCount/self.state.pgSize)});
+                self.setState({loading: false})
                 console.log(res.data.states.length)
             })
             .catch((error) => {
@@ -161,6 +163,21 @@ export default class Criminals extends Component {
     /* More information about the React.Component lifecycle here: https://reactjs.org/docs/react-component.html */
 
     render() {
+
+
+    var Spinner = require('react-spinkit');
+    if (this.state.loading) {
+        return (
+            <div className="container sub-container">
+                <div className="row row-m-b">
+                    <div className= "text-center">
+                    <Spinner name = "wordpress" color="goldenrod"/>
+                    </div>
+                </div>
+            </div>)
+    }
+    else {
+
 
         let stateComponents = []
         let styleMenu = []
@@ -230,5 +247,6 @@ export default class Criminals extends Component {
                               navigateTo="/States"/>}
             </div>
       );
+    }
     }
 }

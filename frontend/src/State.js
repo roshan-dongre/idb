@@ -231,7 +231,11 @@ export default class State extends Component {
                                 <td>{this.state.item.capital == null ? this.state.unknown : this.state.item.capital}</td>
                             </tr>
                             <tr>
-                                <td><strong>Field offices:</strong></td>
+                                <td><strong>State Flower:</strong></td>
+                                <td>{this.state.item.flower == null ? this.state.unknown : this.state.item.flower}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Field Offices:</strong></td>
                                 <td>{this.state.item.field_offices == null ? this.state.unknown : this.state.item.field_offices}</td>
                             </tr>
                             <tr>
@@ -245,6 +249,10 @@ export default class State extends Component {
                             <tr>
                                 <td><strong>Density:</strong></td>
                                 <td>{this.state.item.density == null ? this.state.unknown : this.state.item.density.toFixed(2)} people per square mile</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Region:</strong></td>
+                                <td>{this.state.item.region == null ? this.state.unknown : this.state.item.region}</td>
                             </tr>
                             </tbody>
                         </table>

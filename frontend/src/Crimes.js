@@ -3,6 +3,16 @@ import chunk from 'lodash.chunk';
 import axios from 'axios';
 import ItemSelector from './ItemSelector';
 import PageSelector from './PageSelector';
+import Select from 'react-select';
+import 'react-select/dist/react-select.css';
+
+var blackStyles = {
+    color: 'black'
+}
+
+var whiteStyles = {
+    color: 'grey'
+}
 
 export default class Crimes extends Component {
     constructor (props) {
@@ -14,7 +24,11 @@ export default class Crimes extends Component {
             totalCount: 0,
             pgSize: 16,
             sortBy: "",
-            pathname: "/Crimes"
+            count: 0,
+            offenders: 0,
+            victims: 0,
+            pathname: "/Crimes",
+            loading: true
         }
         this.apiUrl = 'http://api.ontherun.me:5000/crimes';
     }
@@ -50,6 +64,24 @@ export default class Crimes extends Component {
         }
     }
 
+    handleCount = (e) => {
+        if (e != null) {
+            this.setState({count: e.value})
+        }
+    }
+
+    handleOffenders = (e) => {
+        if (e != null) {
+            this.setState({offenders: e.value})
+        }
+    }
+
+    handleVictims = (e) => {
+        if (e != null) {
+            this.setState({victims: e.value})
+        }
+    }
+
     sort = (order) => {
         this.setState({sortBy: order})
     }
@@ -65,6 +97,18 @@ export default class Crimes extends Component {
             url += "&sort="+this.state.sortBy
         }
 
+        if (this.state.count !== 0) {
+            url += "&count="+this.state.count
+        }
+
+        if (this.state.offenders !== 0) {
+            url += "&offenders="+this.state.offenders
+        }
+
+        if (this.state.victims !== 0) {
+            url += "&victims="+this.state.victims
+        }
+
         let self = this
         axios.get(url)
             .then((res) => {
@@ -72,6 +116,7 @@ export default class Crimes extends Component {
                 console.log(res.data)
                 console.log(res.data.totalCount)
                 self.setState({crimes: res.data.crimes, totalCount: res.data.totalCount, numPages: Math.ceil(res.data.totalCount/self.state.pgSize)});
+                self.setState({loading: false})
             })
             .catch((error) => {
                 console.log(error)
@@ -89,10 +134,12 @@ export default class Crimes extends Component {
 
     componentDidUpdate(prevProps, prevState) {
 
-        if (prevState.sortBy != this.state.sortBy) {
+        if (prevState.sortBy != this.state.sortBy ||
+            prevState.count != this.state.count ||
+            prevState.offenders != this.state.offenders ||
+            prevState.victims != this.state.victims) {
             this.callAPI()
         }
-
 
         if (prevState.page !== this.state.page) {
             this.callAPI()
@@ -114,6 +161,19 @@ export default class Crimes extends Component {
 
     render() {
 
+    var Spinner = require('react-spinkit');
+    if (this.state.loading) {
+        return (
+            <div className="container sub-container">
+                <div className="row row-m-b">
+                    <div className= "text-center">
+                    <Spinner name = "wordpress" color="goldenrod"/>
+                    </div>
+                </div>
+            </div>)
+    }
+    else {
+
         let crimeComponents = []
         let styleMenu = []
         if (this.state.crimes !== undefined) {
@@ -131,7 +191,10 @@ export default class Crimes extends Component {
 
                 <div className="row row-m-b">
                         <div className="col-md-3">
-                            <div className= "text-left">
+                            <div className= "text-center">
+                            <label>
+                                <strong style = {whiteStyles}>Sort by Name:  &nbsp;&nbsp;</strong>
+                            </label><span> </span>
                             <div className="button btn-group">
                                 <button type="button"
                                       className={this.state.order === "ASC" ? "btn btn-default active" : "btn btn-default"}
@@ -142,36 +205,28 @@ export default class Crimes extends Component {
                             </div>
                             </div>
                         </div>
-
-                        {/*
                         <div className="col-md-3">
                             <div className = "text-left" style = {blackStyles}>
-                            <label>
-                                <strong style = {whiteStyles}>Gender:  </strong>
-                            </label><span> </span>
-                            <select value={this.state.sex} onChange={this.handleSex}>
-                                    <option value="Unknown"> None </option>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                            </select>
+                                <Select name="form-field-name" value={this.state.count} onChange={this.handleCount} placeholder = "Filter by Number of Crimes"
+                                options={[ { value: 5, label: '>5 Offenses' }, { value: 500, label: '>500 Offenses'}, { value: 1000, label: '>1,000 Offenses'}, { value: 10000, label: '>10,000 Offenses'},{ value: 50000, label: '>50,000 Offenses'},
+                                { value: 100000, label: '>100,000 Offenses'},{ value: 500000, label: '>500,000 Offenses'},]}/>
                             </div>
                         </div>
-                        <div className="col-md-4">
-                            <label>
-                                <strong>Style:  </strong>
-                            </label><span> </span>
-                            <select value={this.state.style} onChange={this.handleStyle}>
-                                    {styleMenu}
-                            </select>
+                        <div className="col-md-3">
+                            <div className = "text-left" style = {blackStyles}>
+                                <Select name="form-field-name" value={this.state.offenders} onChange={this.handleOffenders} placeholder = "Filter by Number of Offenders"
+                                options={[ { value: 10, label: '>10 Offenders' }, { value: 100, label: '>100 Offenders'}, { value: 1000, label: '>1,000 Offenders'}, { value: 10000, label: '>10,000 Offenders'},{ value: 50000, label: '>50,000 Offenders'},
+                                { value: 100000, label: '>100,000 Offenders'},{ value: 500000, label: '>500,000 Offenders'},]}/>
+                            </div>
                         </div>
-                        */}
-
+                        <div className="col-md-3">
+                            <div className = "text-left" style = {blackStyles}>
+                                <Select name="form-field-name" value={this.state.victims} onChange={this.handleVictims} placeholder = "Filter by Number of Victims"
+                                options={[ { value: 5, label: '>5 Victims' }, { value: 100, label: '>100 Victims'}, { value: 1000, label: '>1,000 Victims'}, { value: 10000, label: '>10,000 Victims'},{ value: 50000, label: '>50,000 Victims'},
+                                { value: 100000, label: '>100,000 Victims'},{ value: 500000, label: '>500,000 Victims'},]}/>
+                            </div>
+                        </div>
                 </div>
-
-
-
-
-
 
                 {/* Break array into separate arrays and wrap each array containing 3 components in a row div */}
                 { chunk(crimeComponents, 4).map((row) => {
@@ -189,5 +244,6 @@ export default class Crimes extends Component {
                               navigateTo="/Crimes"/>}
             </div>
       );
+    }
     }
 }

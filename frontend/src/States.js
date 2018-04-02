@@ -4,14 +4,15 @@ import axios from 'axios';
 import ItemSelector from './ItemSelector';
 import PageSelector from './PageSelector';
 import './font/css/font-awesome.min.css'
-
+import Select from 'react-select';
+import 'react-select/dist/react-select.css';
 
 var blackStyles = {
     color: 'black'
 }
 
 var whiteStyles = {
-    color: 'white'
+    color: 'grey'
 }
 
 export default class Criminals extends Component {
@@ -25,7 +26,10 @@ export default class Criminals extends Component {
             pgSize: 16,
             sortBy: "",
             region: "",
-            pathname: "/States"
+            population: 0,
+            area: 0,
+            pathname: "/States",
+            loading: true
         }
         this.apiUrl = 'http://api.ontherun.me:5000/states';
     }
@@ -64,7 +68,21 @@ export default class Criminals extends Component {
     }
 
     handleRegion = (e) => {
-        this.setState({sex: e.target.value})
+        if (e != null) {
+            this.setState({region: e.value})
+        }
+    }
+
+    handlePopulation = (e) => {
+        if (e != null) {
+            this.setState({population: e.value})
+        }
+    }
+
+    handleArea = (e) => {
+        if (e != null) {
+            this.setState({area: e.value})
+        }
     }
 
     sort = (order) => {
@@ -86,11 +104,20 @@ export default class Criminals extends Component {
             url += "&region=" + this.state.region
         }
 
+        if (this.state.population !== 0) {
+            url += "&population=" + this.state.population
+        }
+
+        if (this.state.area !== 0) {
+            url += "&area=" + this.state.area
+        }
+
         let self = this
         axios.get(url)
             .then((res) => {
                 // Set state with result
                 self.setState({states: res.data.states, totalCount: res.data.totalCount, numPages: Math.ceil(res.data.totalCount/self.state.pgSize)});
+                self.setState({loading: false})
                 console.log(res.data.states.length)
             })
             .catch((error) => {
@@ -110,7 +137,9 @@ export default class Criminals extends Component {
     componentDidUpdate(prevProps, prevState) {
 
         if (prevState.sortBy != this.state.sortBy ||
-            prevState.region != this.state.region) {
+            prevState.region != this.state.region || 
+            prevState.population != this.state.population
+            || prevState.area != this.state.area) {
             this.callAPI()
         }
 
@@ -135,6 +164,21 @@ export default class Criminals extends Component {
 
     render() {
 
+
+    var Spinner = require('react-spinkit');
+    if (this.state.loading) {
+        return (
+            <div className="container sub-container">
+                <div className="row row-m-b">
+                    <div className= "text-center">
+                    <Spinner name = "wordpress" color="goldenrod"/>
+                    </div>
+                </div>
+            </div>)
+    }
+    else {
+
+
         let stateComponents = []
         let styleMenu = []
         if (this.state.states !== undefined) {
@@ -153,7 +197,10 @@ export default class Criminals extends Component {
 
                 <div className="row row-m-b">
                         <div className="col-md-3">
-                            <div className= "text-left">
+                            <div className= "text-center">
+                            <label>
+                                <strong style = {whiteStyles}>Sort by Name:  &nbsp;&nbsp;</strong>
+                            </label><span> </span>
                             <div className="button btn-group">
                                 <button type="button"
                                       className={this.state.order === "ASC" ? "btn btn-default active" : "btn btn-default"}
@@ -164,34 +211,25 @@ export default class Criminals extends Component {
                             </div>
                             </div>
                         </div>
-
                         <div className="col-md-3">
                             <div className = "text-left" style = {blackStyles}>
-                            <label>
-                                <strong style = {whiteStyles}>Region:  </strong>
-                            </label><span> </span>
-                            <select value={this.state.region} onChange={this.handleRegion}>
-                                    <option value="Unknown"> None </option>
-                                    <option value="Northeast">Northeast</option>
-                                    <option value="Midwest">Midwest</option>
-                                    <option value="South">South</option>
-                                    <option value="West">West</option>
-                            </select>
+                                <Select name="form-field-name" value={this.state.region} onChange={this.handleRegion} placeholder = "Filter by Region"
+                                options={[ { value: 'Northeast', label: 'Northeast' }, { value: 'Midwest', label: 'Midwest'}, { value: 'South', label: 'South'}, { value: 'West', label: 'West'},]}/>
+                            </div>
+                        </div> 
+                        <div className="col-md-3">
+                            <div className = "text-left" style = {blackStyles}>
+                                <Select name="form-field-name" value={this.state.population} onChange={this.handlePopulation} placeholder = "Filter by Population"
+                                options={[ { value: 500000, label: '>500,000 People' }, { value: 1000000, label: '>1,000,000 People'}, { value: 2000000, label: '>2,000,000 People'}, { value: 5000000, label: '>5,000,000 People'},{ value: 10000000, label: '>10,000,000 People'},]}/>
+                            </div>
+                        </div> 
+                        <div className="col-md-3">
+                            <div className = "text-left" style = {blackStyles}>
+                                <Select name="form-field-name" value={this.state.area} onChange={this.handleArea} placeholder = "Filter by Area"
+                                options={[ { value: 50, label: '>50 Square Miles' }, { value: 5000, label: '>5,000 Square Miles'}, { value: 25000, label: '>25,000 Square Miles'}, { value: 50000, label: '>50,000 Square Miles'},{ value: 100000, label: '>100,000 Square Miles'},]}/>
                             </div>
                         </div>
-                        <div className="col-md-4">
-                            <label>
-                                <strong>Style:  </strong>
-                            </label><span> </span>
-                            <select value={this.state.style} onChange={this.handleStyle}>
-                                    {styleMenu}
-                            </select>
-                        </div>
-                    
-
                 </div>
-
-
 
                 {/* Break array into separate arrays and wrap each array containing 3 components in a row div */}
                 { chunk(stateComponents, 4).map((row) => {
@@ -209,5 +247,6 @@ export default class Criminals extends Component {
                               navigateTo="/States"/>}
             </div>
       );
+    }
     }
 }

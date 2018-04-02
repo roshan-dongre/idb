@@ -18,9 +18,12 @@ class State(db.Model):
     density = db.Column(db.Float)
     area = db.Column(db.Integer)
     capital = db.Column(db.String(600))
+    region = db.Column(db.String(600))
+    flower = db.Column(db.String(600))
+    bird = db.Column(db.String(600))
 
     def __repr__(self):
-        return "{'density': %r, 'area': %r, 'capital': %r, 'name': %r, 'image': %r, 'abbreviation': %r, 'population': %r, 'id': %r}" % (self.density, self.area, self.capital, self.name, self.image, self.abbreviation, self.population, self.id)
+        return "{'flower': %r, 'bird': %r, 'region': %r, 'density': %r, 'area': %r, 'capital': %r, 'name': %r, 'image': %r, 'abbreviation': %r, 'population': %r, 'id': %r}" % (self.flower, self.bird, self.region, self.density, self.area, self.capital, self.name, self.image, self.abbreviation, self.population, self.id)
 
 class Criminal(db.Model):
     __tablename__ = 'criminals'

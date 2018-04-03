@@ -118,7 +118,7 @@ export default class Criminals extends Component {
         /*if (this.state.height !== 0) {
             url += "&height=" + this.state.height
         }*/
-        if (this.state.height.min !== 0 || this.state.height.max !== 80) {
+        if (this.state.height.min !== 50 || this.state.height.max !== 80) {
             url += "&height_min=" + this.state.height.min + "&height_max=" + this.state.height.max 
         }
 

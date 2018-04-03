@@ -5,6 +5,8 @@ import ItemSelector from './ItemSelector';
 import PageSelector from './PageSelector';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
+import InputRange from 'react-input-range';
+import 'react-input-range/lib/css/index.css';
 
 var blackStyles = {
     color: 'black'
@@ -24,9 +26,9 @@ export default class Crimes extends Component {
             totalCount: 0,
             pgSize: 16,
             sortBy: "",
-            count: 0,
-            offenders: 0,
-            victims: 0,
+            count: {min: 0, max: 750},
+            offenders: {min: 0, max: 750},
+            victims: {min: 0, max: 750},
             pathname: "/Crimes",
             loading: true
         }
@@ -64,7 +66,7 @@ export default class Crimes extends Component {
         }
     }
 
-    handleCount = (e) => {
+    /*handleCount = (e) => {
         if (e != null) {
             this.setState({count: e.value})
         }
@@ -80,7 +82,7 @@ export default class Crimes extends Component {
         if (e != null) {
             this.setState({victims: e.value})
         }
-    }
+    }*/
 
     sort = (order) => {
         this.setState({sortBy: order})
@@ -97,7 +99,7 @@ export default class Crimes extends Component {
             url += "&sort="+this.state.sortBy
         }
 
-        if (this.state.count !== 0) {
+        /*if (this.state.count !== 0) {
             url += "&count="+this.state.count
         }
 
@@ -107,6 +109,16 @@ export default class Crimes extends Component {
 
         if (this.state.victims !== 0) {
             url += "&victims="+this.state.victims
+        }*/
+
+        if (this.state.count.min !== 0 || this.state.count.max !== 750) {
+            url += "&count_min=" + (this.state.count.min * 1000) + "&count_max=" + (this.state.count.max * 1000)
+        }
+        if (this.state.offenders.min !== 0 || this.state.offenders.max !== 750) {
+            url += "&offenders_min=" + (this.state.offenders.min * 1000) + "&offenders_max=" + (this.state.offenders.max * 1000)
+        }
+        if (this.state.victims.min !== 0 || this.state.victims.max !== 750) {
+            url += "&victims_min=" + (this.state.victims.min * 1000) + "&victims_max=" + (this.state.victims.max * 1000)
         }
 
         let self = this
@@ -205,7 +217,7 @@ export default class Crimes extends Component {
                             </div>
                             </div>
                         </div>
-                        <div className="col-md-3">
+                        {/*<div className="col-md-3">
                             <div className = "text-left" style = {blackStyles}>
                                 <Select name="form-field-name" value={this.state.count} onChange={this.handleCount} placeholder = "Filter by Number of Crimes"
                                 options={[ { value: 5, label: '>5 Offenses' }, { value: 500, label: '>500 Offenses'}, { value: 1000, label: '>1,000 Offenses'}, { value: 10000, label: '>10,000 Offenses'},{ value: 50000, label: '>50,000 Offenses'},
@@ -224,6 +236,24 @@ export default class Crimes extends Component {
                                 <Select name="form-field-name" value={this.state.victims} onChange={this.handleVictims} placeholder = "Filter by Number of Victims"
                                 options={[ { value: 5, label: '>5 Victims' }, { value: 100, label: '>100 Victims'}, { value: 1000, label: '>1,000 Victims'}, { value: 10000, label: '>10,000 Victims'},{ value: 50000, label: '>50,000 Victims'},
                                 { value: 100000, label: '>100,000 Victims'},{ value: 500000, label: '>500,000 Victims'},]}/>
+                            </div>
+                        </div>*/}
+                        <div className="col-md-3">
+                            <div className = "text-center" style = {whiteStyles}>
+                                <label> <strong> Filter by Number of Crimes (M): </strong> </label>
+                                <InputRange maxValue={750} minValue={0} value={this.state.count} onChange={count => this.setState({ count })} />
+                            </div>
+                        </div>
+                        <div className="col-md-3">
+                            <div className = "text-center" style = {whiteStyles}>
+                                <label> <strong> Filter by Number of Offenders (M): </strong> </label>
+                                <InputRange maxValue={750} minValue={0} value={this.state.offenders} onChange={offenders => this.setState({ offenders })} />
+                            </div>
+                        </div>
+                        <div className="col-md-3">
+                            <div className = "text-center" style = {whiteStyles}>
+                                <label> <strong> Filter by Number of Victims (M): </strong> </label>
+                                <InputRange maxValue={750} minValue={0} value={this.state.victims} onChange={victims => this.setState({ victims })} />
                             </div>
                         </div>
                 </div>

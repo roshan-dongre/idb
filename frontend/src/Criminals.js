@@ -6,6 +6,10 @@ import PageSelector from './PageSelector';
 import './font/css/font-awesome.min.css'
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
+//import Slider from 'react-rangeslider'
+//import 'react-rangeslider/lib/index.css'
+import InputRange from 'react-input-range';
+import 'react-input-range/lib/css/index.css';
 
 var blackStyles = {
     color: 'black'
@@ -33,7 +37,7 @@ export default class Criminals extends Component {
             sortBy: "",
             sex: "",
             race: "",
-            height: 0,
+            height: {min: 50, max: 80},
             loading: true
         }
         this.apiUrl = 'http://api.ontherun.me:5000/criminals';
@@ -80,10 +84,15 @@ export default class Criminals extends Component {
             this.setState({race: e.value})
         }
     }
-    handleHeight = (e) => {
+    /*handleHeight = (e) => {
         if (e != null) {
             this.setState({height: e.value})
         }
+    }*/
+    handleHeight = (value) => {
+        this.setState({
+          height_min: value
+        })
     }
 
     sort = (order) => {
@@ -106,8 +115,11 @@ export default class Criminals extends Component {
         if (this.state.race !== "") {
             url += "&race=" + this.state.race
         }
-        if (this.state.height !== 0) {
+        /*if (this.state.height !== 0) {
             url += "&height=" + this.state.height
+        }*/
+        if (this.state.height.min !== 0 || this.state.height.max !== 80) {
+            url += "&height_min=" + this.state.height.min + "&height_max=" + this.state.height.max 
         }
 
         let self = this
@@ -216,13 +228,19 @@ export default class Criminals extends Component {
                         { value: 'White (Central Asian)', label: 'White (Central Asian)'}, { value: 'Black (Hispanic)', label: 'Black (Hispanic)'}, { value: 'White (Middle Eastern)', label: 'White (Middle Eastern)'}, ]}/>
                         </div>
                     </div>    
-                    <div className="col-md-3">
+                    {/*<div className="col-md-3">
                         <div className = "text-left" style = {blackStyles}>
                         <Select name="form-field-name" value={this.state.height} onChange={this.handleHeight} placeholder = "Filter by Height"
                         options={[ { value: 50, label: '>50 Inches' }, { value: 55, label: '>55 Inches'}, { value: 60, label: '>60 Inches'}, { value: 65, label: '>65 Inches'}, 
                         { value: 70, label: '>70 Inches'}, { value: 75, label: '>75 Inches'}, ]}/>
                         </div>
-                    </div>          
+                    </div>  */}
+                    <div className="col-md-3">
+                        <div className = "text-center" style = {whiteStyles}>
+                        <label> <strong> Filter by Height (Inches): </strong> </label>
+                        <InputRange maxValue={80} minValue={50} value={this.state.height} onChange={height => this.setState({ height })} />
+                        </div>
+                    </div>  
                 </div>
                 {/* Break array into separate arrays and wrap each array containing 3 components in a row div */}
                 { chunk(criminalComponents, 4).map((row) => {

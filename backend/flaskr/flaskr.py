@@ -43,28 +43,28 @@ def get_states():
     sort_name = request.args.get('sort','')
     my_query = {}
     my_query['totalCount'] = db.session.query(State)
-    my_query['states'] = State.query
+    my_query['results'] = State.query
     if filt_pop_min != '':
         my_query['totalCount'] = my_query['totalCount'].filter(State.population>=int(filt_pop_min))
-        my_query['states'] = my_query['states'].filter(State.population>=int(filt_pop_min))
+        my_query['results'] = my_query['results'].filter(State.population>=int(filt_pop_min))
     if filt_pop_max != '':
         my_query['totalCount'] = my_query['totalCount'].filter(State.population<=int(filt_pop_max))
-        my_query['states'] = my_query['states'].filter(State.population<=int(filt_pop_max))
+        my_query['results'] = my_query['results'].filter(State.population<=int(filt_pop_max))
     if filt_region != '':
         my_query['totalCount'] = my_query['totalCount'].filter_by(region=filt_region)
-        my_query['states'] = my_query['states'].filter_by(region=filt_region)
+        my_query['results'] = my_query['results'].filter_by(region=filt_region)
     if filt_area_min != '':
         my_query['totalCount'] = my_query['totalCount'].filter(State.area>=int(filt_area_min))
-        my_query['states'] = my_query['states'].filter(State.area>=int(filt_area_min))
+        my_query['results'] = my_query['results'].filter(State.area>=int(filt_area_min))
     if filt_area_max != '':
         my_query['totalCount'] = my_query['totalCount'].filter(State.area<=int(filt_area_max))
-        my_query['states'] = my_query['states'].filter(State.area<=int(filt_area_max))
+        my_query['results'] = my_query['results'].filter(State.area<=int(filt_area_max))
     if sort_name == "ASC":
-        my_query['states'] = my_query['states'].order_by(asc(State.name))
+        my_query['results'] = my_query['results'].order_by(asc(State.name))
     elif sort_name == "DESC":
-        my_query['states'] = my_query['states'].order_by(desc(State.name))
+        my_query['results'] = my_query['results'].order_by(desc(State.name))
     my_query['totalCount'] = my_query['totalCount'].count()
-    my_query['states'] = ast.literal_eval(str(my_query['states'].offset(page_res['off']).limit(page_res['lim']).all()))
+    my_query['results'] = ast.literal_eval(str(my_query['results'].offset(page_res['off']).limit(page_res['lim']).all()))
     return jsonify(my_query)
 
 @app.route('/states/<string:state_name>', methods=['GET'])#, subdomain="api")
@@ -86,25 +86,25 @@ def get_criminals():
     sort_name = request.args.get('sort','')
     my_query = {}
     my_query['totalCount'] = db.session.query(Criminal)
-    my_query['criminals'] = Criminal.query
+    my_query['results'] = Criminal.query
     if gender != '':
         my_query['totalCount'] = my_query['totalCount'].filter_by(sex=gender)
-        my_query['criminals'] = my_query['criminals'].filter_by(sex=gender)
+        my_query['results'] = my_query['results'].filter_by(sex=gender)
     if filt_height_min != '':
         my_query['totalCount'] = my_query['totalCount'].filter(Criminal.height>=filt_height_min)
-        my_query['criminals'] = my_query['criminals'].filter(Criminal.height>=filt_height_min)
+        my_query['results'] = my_query['results'].filter(Criminal.height>=filt_height_min)
     if filt_height_max != '':
         my_query['totalCount'] = my_query['totalCount'].filter(Criminal.height<=filt_height_max)
-        my_query['criminals'] = my_query['criminals'].filter(Criminal.height<=filt_height_max)
+        my_query['results'] = my_query['results'].filter(Criminal.height<=filt_height_max)
     if filt_race != '':
         my_query['totalCount'] = my_query['totalCount'].filter_by(race=filt_race)
-        my_query['criminals'] = my_query['criminals'].filter_by(race=filt_race)
+        my_query['results'] = my_query['results'].filter_by(race=filt_race)
     if sort_name == "ASC":
-        my_query['criminals'] = my_query['criminals'].order_by(asc(Criminal.name))
+        my_query['results'] = my_query['results'].order_by(asc(Criminal.name))
     elif sort_name == "DESC":
-        my_query['criminals'] = my_query['criminals'].order_by(desc(Criminal.name))
+        my_query['results'] = my_query['results'].order_by(desc(Criminal.name))
     my_query['totalCount'] = my_query['totalCount'].count()
-    my_query['criminals'] = ast.literal_eval(str(my_query['criminals'].offset(page_res['off']).limit(page_res['lim']).all()))
+    my_query['results'] = ast.literal_eval(str(my_query['results'].offset(page_res['off']).limit(page_res['lim']).all()))
     return jsonify(my_query)
 
 @app.route('/criminals/<int:crim_id>', methods=['GET'])#, subdomain="api")
@@ -123,36 +123,33 @@ def get_crimes():
     sort_name = request.args.get('sort','')
     my_query = {}
     my_query['totalCount'] = db.session.query(Crime)
-    my_query['crimes'] = Crime.query
+    my_query['results'] = Crime.query
     if filt_count_min != '':
         my_query['totalCount'] = my_query['totalCount'].filter(Crime.count>=int(filt_count_min))
-        my_query['crimes'] = my_query['crimes'].filter(Crime.count>=int(filt_count_min))
+        my_query['results'] = my_query['results'].filter(Crime.count>=int(filt_count_min))
     if filt_count_max != '':
         my_query['totalCount'] = my_query['totalCount'].filter(Crime.count<=int(filt_count_max))
-        my_query['crimes'] = my_query['crimes'].filter(Crime.count<=int(filt_count_max))
+        my_query['results'] = my_query['results'].filter(Crime.count<=int(filt_count_max))
     if filt_offen_min != '':
         my_query['totalCount'] = my_query['totalCount'].filter(Crime.offenders>=int(filt_offen_min))
-        my_query['crimes'] = my_query['crimes'].filter(Crime.offenders>=int(filt_offen_min))
+        my_query['results'] = my_query['results'].filter(Crime.offenders>=int(filt_offen_min))
     if filt_offen_max != '':
         my_query['totalCount'] = my_query['totalCount'].filter(Crime.offenders<=int(filt_offen_max))
-        my_query['crimes'] = my_query['crimes'].filter(Crime.offenders<=int(filt_offen_max))
+        my_query['results'] = my_query['results'].filter(Crime.offenders<=int(filt_offen_max))
     if filt_vict_min != '':
         my_query['totalCount'] = my_query['totalCount'].filter(Crime.victims>=int(filt_vict_min))
-        my_query['crimes'] = my_query['crimes'].filter(Crime.victims>=int(filt_vict_min))
+        my_query['results'] = my_query['results'].filter(Crime.victims>=int(filt_vict_min))
     if filt_vict_max != '':
         my_query['totalCount'] = my_query['totalCount'].filter(Crime.victims<=int(filt_vict_max))
-        my_query['crimes'] = my_query['crimes'].filter(Crime.victims<=int(filt_vict_max))
+        my_query['results'] = my_query['results'].filter(Crime.victims<=int(filt_vict_max))
     if sort_name == "ASC":
-        my_query['crimes'] = my_query['crimes'].order_by(asc(Crime.name))
+        my_query['results'] = my_query['results'].order_by(asc(Crime.name))
     elif sort_name == "DESC":
-        my_query['crimes'] = my_query['crimes'].order_by(desc(Crime.name))
+        my_query['results'] = my_query['results'].order_by(desc(Crime.name))
     my_query['totalCount'] = my_query['totalCount'].count()
-    my_query['crimes'] = ast.literal_eval(str(my_query['crimes'].offset(page_res['off']).limit(page_res['lim']).all()))
+    my_query['results'] = ast.literal_eval(str(my_query['results'].offset(page_res['off']).limit(page_res['lim']).all()))
     return jsonify(my_query)
-    
-    if filt_vict_min != '':
-        my_query['totalCount'] = my_query['totalCount'].filter(Crime.victims>=int(filt_vict_min))
-        my_query['crimes'] = my_query['crimes'].filter(Crime.victims>=int(filt_vict_min))
+
 @app.route('/crimes/state/<int:stat_id>', methods=['GET'])#, subdomain="api")
 def get_crimesperstate(stat_id):
     return jsonify(ast.literal_eval(str(CrimesState.query.filter_by(state_id=stat_id).all())))
@@ -248,7 +245,8 @@ if __name__ == '__main__':
                               nationality=NewNationality,
                               crime=NewCrime,
                               image=NewImage[0]["large"],
-                              state=NewState)
+                              state=NewState,
+                              type="criminal")
         db.session.add(NewCriminal)
 
     # Populating Crimes
@@ -271,7 +269,8 @@ if __name__ == '__main__':
                             description=NewDesc,
                             victims=NewVictims,
                             offenders=NewOffenders,
-                            count=NewCount)
+                            count=NewCount,
+                            type="crime")
             db.session.add(NewCrime)
             line = fp.readline()
 
@@ -287,7 +286,8 @@ if __name__ == '__main__':
                         capital= file_state['capital'],
                         region= file_state['region'],
                         flower= file_state['flower'],
-                        bird= file_state['bird'])
+                        bird= file_state['bird'],
+                        type="state")
         db.session.add(NewState)
 
     # Populating Crime to State relationship

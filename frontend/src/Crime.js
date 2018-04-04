@@ -151,7 +151,7 @@ export default class Crime extends Component {
                         </div>
                         <div className="col-md-8">
                             <h2 className="sub-header text-center">{this.state.item.name}</h2>
-                            <table className="table table-responsive">
+                            <table className="table table-responsive text-left">
                                 <tbody>
                                 <tr>
                                     <td><strong>Description:</strong></td>
@@ -172,13 +172,13 @@ export default class Crime extends Component {
                                 </tbody>
                             </table>
                             <h3 className="sub-header">States With This Crime</h3>
-                            <table className="table table-responsive table-hover">
+                            <table className="table table-responsive table-hover text-left">
                                 <tbody>
                                 {stateList}
                                 </tbody>
                             </table>
                              <h3 className="sub-header">Criminals Committing This Crime</h3>
-                            <table className="table table-responsive table-hover">
+                            <table className="table table-responsive table-hover text-left">
                                 <tbody>
                                 {criminalList}
                                 </tbody>

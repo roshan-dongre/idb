@@ -196,7 +196,7 @@ export default class State extends Component {
                     </div>
                     <div className="col-md-8">
                         <h2 className="sub-header">{this.state.item.name}</h2>
-                        <table className="table table-responsive">
+                        <table className="table table-responsive text-left">
                             <tbody>
                             <tr>
                                 <td><strong>Abbreviation:</strong></td>
@@ -209,10 +209,6 @@ export default class State extends Component {
                             <tr>
                                 <td><strong>State Flower:</strong></td>
                                 <td>{this.state.item.flower == null ? this.state.unknown : this.state.item.flower}</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Field Offices:</strong></td>
-                                <td>{this.state.item.field_offices == null ? this.state.unknown : this.state.item.field_offices}</td>
                             </tr>
                             <tr>
                                 <td><strong>Area:</strong></td>
@@ -233,13 +229,13 @@ export default class State extends Component {
                             </tbody>
                         </table>
                         <h3 className="sub-header">Crimes In This State</h3>
-                        <table className="table table-responsive table-hover">
+                        <table className="table table-responsive table-hover text-left">
                             <tbody>
                             {crimeList}
                             </tbody>
                         </table>
                          <h3 className="sub-header">Criminals In This State</h3>
-                        <table className="table table-responsive table-hover">
+                        <table className="table table-responsive table-hover text-left">
                             <tbody>
                             {criminalList}
                             </tbody>

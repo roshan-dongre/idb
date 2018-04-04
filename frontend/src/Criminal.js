@@ -14,6 +14,7 @@ var style = {
     height: '350px'
 }
 
+
 Geocode.setApiKey("AIzaSyDkRhH7iB4iZW9dDa-FY7HYb8vpjj19Vsc");
 
 export default class Criminal extends Component {
@@ -203,7 +204,7 @@ export default class Criminal extends Component {
                     </div>
                     <div className="col-md-8">
                         <h3 className="sub-header">{this.state.item.name}</h3>
-                        <table className="table table-responsive">
+                        <table className="table table-responsive text-left">
                             <tbody>
                             <tr>
                                 <td><strong>DOB:</strong></td>

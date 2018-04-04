@@ -21,9 +21,10 @@ class State(db.Model):
     region = db.Column(db.String(600))
     flower = db.Column(db.String(600))
     bird = db.Column(db.String(600))
+    type = db.Column(db.String(600))
 
     def __repr__(self):
-        return "{'flower': %r, 'bird': %r, 'region': %r, 'density': %r, 'area': %r, 'capital': %r, 'name': %r, 'image': %r, 'abbreviation': %r, 'population': %r, 'id': %r}" % (self.flower, self.bird, self.region, self.density, self.area, self.capital, self.name, self.image, self.abbreviation, self.population, self.id)
+        return "{'type': %r, 'flower': %r, 'bird': %r, 'region': %r, 'density': %r, 'area': %r, 'capital': %r, 'name': %r, 'image': %r, 'abbreviation': %r, 'population': %r, 'id': %r}" % (self.type, self.flower, self.bird, self.region, self.density, self.area, self.capital, self.name, self.image, self.abbreviation, self.population, self.id)
 
 class Criminal(db.Model):
     __tablename__ = 'criminals'
@@ -41,9 +42,10 @@ class Criminal(db.Model):
     crime = db.Column(db.String(600), nullable=False)
     image = db.Column(db.String(600))
     state = db.Column(db.String(600))
+    type = db.Column(db.String(600))
 
     def __repr__(self):
-        return "{'state': %r, 'image': %r, 'id': %r, 'name': %r, 'field_office': %r, 'height': %r, 'weight': %r, 'sex': %r, 'hair': %r, 'eyes': %r, 'dob': %r, 'race': %r, 'nationality': %r, 'crime': %r}" % (self.state, self.image, self.id, self.name, self.field_office, self.height, self.weight, self.sex, self.hair, self.eyes, self.dob, self.race, self.nationality, self.crime)
+        return "{'type': %r, 'state': %r, 'image': %r, 'id': %r, 'name': %r, 'field_office': %r, 'height': %r, 'weight': %r, 'sex': %r, 'hair': %r, 'eyes': %r, 'dob': %r, 'race': %r, 'nationality': %r, 'crime': %r}" % (self.type, self.state, self.image, self.id, self.name, self.field_office, self.height, self.weight, self.sex, self.hair, self.eyes, self.dob, self.race, self.nationality, self.crime)
 
 class Crime(db.Model):
     __tablename__ = 'crimes'
@@ -54,9 +56,10 @@ class Crime(db.Model):
     offenders = db.Column(db.Integer)
     victims = db.Column(db.Integer)
     count = db.Column(db.Integer)
+    type = db.Column(db.String(600))
 
     def __repr__(self):
-        return "{'offenders': %r,'victims': %r,'count': %r,'image': %r, 'id': %r, 'name': %r, 'description': %r}" % (self.offenders, self.victims, self.count, self.image, self.id, self.name, self.description)
+        return "{'type': %r, 'offenders': %r,'victims': %r,'count': %r,'image': %r, 'id': %r, 'name': %r, 'description': %r}" % (self.type, self.offenders, self.victims, self.count, self.image, self.id, self.name, self.description)
 
 class CrimesState(db.Model):
     __tablename__ = 'crimesTostate'

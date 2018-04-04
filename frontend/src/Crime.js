@@ -91,7 +91,8 @@ export default class Crime extends Component {
 
     callAPI = () => {
         let url
-        if (this.props.location.state.selectedId !== undefined) {
+        console.log(this.props)
+        if (this.props.location !== undefined && this.props.location.state.selectedId !== undefined) {
             url = "http://api.ontherun.me:5000/crimes/"+this.props.location.state.selectedId
         } else {
             url = "http://api.ontherun.me:5000/crimes/"+this.state.item.id

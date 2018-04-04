@@ -12,7 +12,7 @@ export default class Result extends Component {
     }
 
     render() {
-
+        {console.log(this.state.item)}
         if ('eyes' in this.state.item) {               // This is a criminal item
             return <Criminal item={this.state.item} />
         } else if ('area' in this.state.item) {    // This is a state item

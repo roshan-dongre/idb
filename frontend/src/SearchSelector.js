@@ -77,11 +77,13 @@ export default class SearchSelector extends Component {
 
         let self = this
         let searchRows = Object.keys(attributes).map(function(key) {
+            if (attributes[key] !== null && attributes[key] !== undefined) {
             return (
                 <tr>
                     <td className="col-md-2"><strong>{key + ":  "}</strong><Highlighter searchWords={[self.state.searchTerm]} textToHighlight={attributes[key].toString()} /></td>
                 </tr>
             );
+            }
         })
 
         return (

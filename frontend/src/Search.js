@@ -27,8 +27,8 @@ class Search extends Component {
 
     handleSearch = (e) => {
         e.preventDefault()
-        console.log(this.refs.loader.style)
-        this.refs.loader.style = "display: block";
+        //console.log(this)
+        //this.refs.loader.style = "display: block";
         this.setState({ searchTerm: this.input.value });
         this.searchData(this.input.value)
     }

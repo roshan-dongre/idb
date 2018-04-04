@@ -119,7 +119,7 @@ export default class Crimes extends Component {
                 // Set state with result
                 console.log(res.data)
                 console.log(res.data.totalCount)
-                self.setState({crimes: res.data.crimes, totalCount: res.data.totalCount, numPages: Math.ceil(res.data.totalCount/self.state.pgSize)});
+                self.setState({crimes: res.data.results, totalCount: res.data.totalCount, numPages: Math.ceil(res.data.totalCount/self.state.pgSize)});
                 self.setState({loading: false})
             })
             .catch((error) => {

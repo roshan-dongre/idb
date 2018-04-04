@@ -46,29 +46,12 @@ export default class State extends Component {
         }
     }
 
-    /* Mounting
-     These methods are called when an instance of a component is being created and inserted into the DOM:
-     * constructor()
-     * componentWillMount()
-     * render()
-     * componentDidMount()
-     */
-
     componentDidMount () {
         this.callAPI()
         this.getCoor()
         this.getCrimes()
         this.getCriminals()
     }
-
-    /* Updating
-     An update can be caused by changes to props or state. These methods are called when a component is being re-rendered:
-     * componentWillReceiveProps()
-     * shouldComponentUpdate()
-     * componentWillUpdate()
-     * render()
-     * componentDidUpdate()
-     */
 
     componentDidUpdate(prevProps, prevState) {
         if (prevState.item.name !== this.state.item.name)
@@ -78,11 +61,6 @@ export default class State extends Component {
             this.getCoor()
         }
     }
-
-    /* Unmounting
-     This method is called when a component is being removed from the DOM:
-     * componentWillUnmount()
-     */
 
     getCrimes = () => {
         let url = "http://api.ontherun.me:5000/crimestostate/" + this.state.item.abbreviation
@@ -166,8 +144,6 @@ export default class State extends Component {
         );
         }
     }
-
-    /* More information about the React.Component lifecycle here: https://reactjs.org/docs/react-component.html */
 
     render() {
 

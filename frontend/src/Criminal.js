@@ -46,14 +46,6 @@ export default class Criminal extends Component {
         //this.apiUrl = 'http://api.ontherun.me:5000/criminals';
     }
 
-    /* Mounting
-     These methods are called when an instance of a component is being created and inserted into the DOM:
-     * constructor()
-     * componentWillMount()
-     * render()
-     * componentDidMount()
-     */
-
     componentDidMount () {
         this.callAPI()
         this.getCoor()
@@ -71,35 +63,12 @@ export default class Criminal extends Component {
         }
     }
 
-    /*componentDidUpdate(prevProps, prevState) {
-        console.log(prevState.item.name)
-        console.log(this.state.item.name)
-        if (prevState.item.name !== this.state.item.name)
-        {
-            this.getStates()
-            this.getCrimes()
-        }
-    }*/
-
-    /* Updating
-     An update can be caused by changes to props or state. These methods are called when a component is being re-rendered:
-     * componentWillReceiveProps()
-     * shouldComponentUpdate()
-     * componentWillUpdate()
-     * render()
-     * componentDidUpdate()
-     */
-
     getStates = () => {
         let url = "http://api.ontherun.me:5000/criminalstostate/" + this.state.item.id
-        //console.log(this.state.item)
         let self = this
         axios.get(url)
             .then((res) => {
-                // Set state with result
-                //console.log(res)
                 self.setState({data_states: res.data});
-                //console.log(this.state.data_states)
             })
             .catch((error) => {
                 console.log(error)
@@ -112,21 +81,13 @@ export default class Criminal extends Component {
         let self = this
         axios.get(url)
             .then((res) => {
-                // Set state with result
-                //console.log(res)
                 self.setState({data_crimes: res.data});
-                //console.log(this.state.data_states)
             })
             .catch((error) => {
                 console.log(error)
             });
         }
     }
-
-    /* Unmounting
-     This method is called when a component is being removed from the DOM:
-     * componentWillUnmount()
-     */
 
     callAPI = () => {
         let url
@@ -138,7 +99,6 @@ export default class Criminal extends Component {
         let self = this
         axios.get(url)
             .then((res) => {
-                // Set state with result
                 self.setState({item: res.data});
             })
             .catch((error) => {
@@ -200,10 +160,9 @@ export default class Criminal extends Component {
         
         let stateList
         let self = this
-        //console.log("Reached2"
-        //console.log(this.state.data_states)
+
         stateList = this.state.data_states.map((state) => {
-            //console.log(state)
+
             return (
                 <tr className="clickable-row" onClick={(e) => self.handleStateNavigation(state.state, e)}>
                     <td><strong>{state.state}</strong></td>
@@ -215,7 +174,7 @@ export default class Criminal extends Component {
         }
 
         let crimeList
-        //console.log(this.state.data_crimes)
+
         crimeList = this.state.data_crimes.map((crime) => {
             return (
                 <tr className="clickable-row" onClick={(e) => self.handleCrimeNavigation(crime.crime_id, e)}>

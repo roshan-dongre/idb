@@ -6,6 +6,8 @@ import PageSelector from './PageSelector';
 import './font/css/font-awesome.min.css'
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
+import InputRange from 'react-input-range';
+import 'react-input-range/lib/css/index.css';
 
 var blackStyles = {
     color: 'black'
@@ -26,21 +28,13 @@ export default class Criminals extends Component {
             pgSize: 16,
             sortBy: "",
             region: "",
-            population: 0,
-            area: 0,
+            population: {min: 0, max: 200},
+            area: {min: 0, max: 200},
             pathname: "/States",
             loading: true
         }
-        this.apiUrl = 'http://api.ontherun.me:5000/states';
+        //this.apiUrl = 'http://api.ontherun.me:5000/states';
     }
-
-    /* Mounting
-        These methods are called when an instance of a component is being created and inserted into the DOM:
-            * constructor()
-            * componentWillMount()
-            * render()
-            * componentDidMount()
-     */
 
     componentDidMount () {
         this.callAPI()
@@ -63,8 +57,6 @@ export default class Criminals extends Component {
         if (this.state.page < this.state.numPages - 1) {
             this.setState({page: this.state.page + 1})
         }
-
-
     }
 
     handleRegion = (e) => {
@@ -73,7 +65,7 @@ export default class Criminals extends Component {
         }
     }
 
-    handlePopulation = (e) => {
+    /*handlePopulation = (e) => {
         if (e != null) {
             this.setState({population: e.value})
         }
@@ -83,7 +75,7 @@ export default class Criminals extends Component {
         if (e != null) {
             this.setState({area: e.value})
         }
-    }
+    }*/
 
     sort = (order) => {
         this.setState({sortBy: order})
@@ -104,13 +96,21 @@ export default class Criminals extends Component {
             url += "&region=" + this.state.region
         }
 
-        if (this.state.population !== 0) {
+        if (this.state.population.min !== 0 || this.state.population.max !== 200) {
+            url += "&population_min=" + (this.state.population.min * 100000) + "&population_max=" + (this.state.population.max * 100000)
+        }
+
+        if (this.state.area.min !== 0 || this.state.area.max !== 200) {
+            url += "&area_min=" + (this.state.area.min * 1000) + "&area_max=" + (this.state.area.max * 1000)
+        }
+
+        /*if (this.state.population !== 0) {
             url += "&population=" + this.state.population
         }
 
         if (this.state.area !== 0) {
             url += "&area=" + this.state.area
-        }
+        }*/
 
         let self = this
         axios.get(url)
@@ -194,8 +194,7 @@ export default class Criminals extends Component {
         return (
             <div className="container sub-container">
 
-
-                <div className="row row-m-b">
+                    <div className="row row-m-b">
                         <div className="col-md-3">
                             <div className= "text-center">
                             <label>
@@ -217,7 +216,7 @@ export default class Criminals extends Component {
                                 options={[ { value: 'Northeast', label: 'Northeast' }, { value: 'Midwest', label: 'Midwest'}, { value: 'South', label: 'South'}, { value: 'West', label: 'West'},]}/>
                             </div>
                         </div> 
-                        <div className="col-md-3">
+                        {/*<div className="col-md-3">
                             <div className = "text-left" style = {blackStyles}>
                                 <Select name="form-field-name" value={this.state.population} onChange={this.handlePopulation} placeholder = "Filter by Population"
                                 options={[ { value: 500000, label: '>500,000 People' }, { value: 1000000, label: '>1,000,000 People'}, { value: 2000000, label: '>2,000,000 People'}, { value: 5000000, label: '>5,000,000 People'},{ value: 10000000, label: '>10,000,000 People'},]}/>
@@ -228,8 +227,21 @@ export default class Criminals extends Component {
                                 <Select name="form-field-name" value={this.state.area} onChange={this.handleArea} placeholder = "Filter by Area"
                                 options={[ { value: 50, label: '>50 Square Miles' }, { value: 5000, label: '>5,000 Square Miles'}, { value: 25000, label: '>25,000 Square Miles'}, { value: 50000, label: '>50,000 Square Miles'},{ value: 100000, label: '>100,000 Square Miles'},]}/>
                             </div>
+                        </div>*/}
+                        <div className="col-md-3">
+                            <div className = "text-center" style = {whiteStyles}>
+                                <label> <strong> Filter by Population (MM People): </strong> </label>
+                                <InputRange maxValue={200} minValue={0} value={this.state.population} onChange={population => this.setState({ population })} />
+                            </div>
                         </div>
-                </div>
+                        <div className="col-md-3">
+                            <div className = "text-center" style = {whiteStyles}>
+                                <label> <strong> Filter by Area (MM Sq. Miles): </strong> </label>
+                                <InputRange maxValue={200} minValue={0} value={this.state.area} onChange={area => this.setState({ area })} />
+                            </div>
+                        </div>   
+                    
+                    </div>
 
                 {/* Break array into separate arrays and wrap each array containing 3 components in a row div */}
                 { chunk(stateComponents, 4).map((row) => {

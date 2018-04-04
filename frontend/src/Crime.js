@@ -30,14 +30,6 @@ export default class Crime extends Component {
         }
     }
 
-    /* Mounting
-     These methods are called when an instance of a component is being created and inserted into the DOM:
-     * constructor()
-     * componentWillMount()
-     * render()
-     * componentDidMount()
-     */
-
     componentDidMount() {
         this.callAPI()
         this.getStates()
@@ -51,22 +43,6 @@ export default class Crime extends Component {
             this.getCriminals()
         }
     }
-
-    /* Updating
-     An update can be caused by changes to props or state. These methods are called when a component is being re-rendered:
-     * componentWillReceiveProps()
-     * shouldComponentUpdate()
-     * componentWillUpdate()
-     * render()
-     * componentDidUpdate()
-     */
-
-    /* Unmounting
-     This method is called when a component is being removed from the DOM:
-     * componentWillUnmount()
-     */
-
-    /* More information about the React.Component lifecycle here: https://reactjs.org/docs/react-component.html */
 
     getStates = () => {
         let url = "http://api.ontherun.me:5000/crimestostate/" + this.state.item.id
@@ -87,7 +63,6 @@ export default class Crime extends Component {
         let self = this
         axios.get(url)
             .then((res) => {
-                // Set state with result
                 self.setState({criminals: res.data});
             })
             .catch((error) => {
@@ -125,7 +100,6 @@ export default class Crime extends Component {
         let self = this
         axios.get(url)
             .then((res) => {
-                // Set state with result
                 self.setState({item: res.data});
             })
             .catch((error) => {

@@ -49,8 +49,6 @@ body {
     border-color: black; 
 }
 
-
-
 .pagination>li.active>a:hover {
     border-color: red;
     background-color: black;

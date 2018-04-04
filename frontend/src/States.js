@@ -30,7 +30,7 @@ export default class Criminals extends Component {
             sortBy: "",
             region: "",
             population: {min: 0, max: 200},
-            area: {min: 0, max: 200},
+            area: {min: 0, max: 300},
             pathname: "/States",
             loading: true
         }
@@ -101,7 +101,7 @@ export default class Criminals extends Component {
             url += "&population_min=" + (this.state.population.min * 100000) + "&population_max=" + (this.state.population.max * 100000)
         }
 
-        if (this.state.area.min !== 0 || this.state.area.max !== 200) {
+        if (this.state.area.min !== 0 || this.state.area.max !== 300) {
             url += "&area_min=" + (this.state.area.min * 1000) + "&area_max=" + (this.state.area.max * 1000)
         }
 
@@ -243,7 +243,7 @@ export default class Criminals extends Component {
                         <div className="col-md-3">
                             <div className = "text-center" style = {whiteStyles}>
                                 <label> <strong> Filter by Area (MM Sq. Miles): </strong> </label>
-                                <InputRange maxValue={200} minValue={0} value={this.state.area} onChange={area => this.setState({ area })} />
+                                <InputRange maxValue={300} minValue={0} value={this.state.area} onChange={area => this.setState({ area })} />
                             </div>
                         </div>   
                     

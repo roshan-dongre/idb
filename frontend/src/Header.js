@@ -1,19 +1,11 @@
-import React from 'react'
+import React, {Component} from 'react'
 import { Link } from 'react-router-dom'
 import { Navbar, NavItem, Button, Container, Nav, MenuItem, NavDropdown, FormGroup, FormControl } from 'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap'
 import './Header.css'
+import Search from './Search'
 
-// The Header creates links that can be used to navigate
-// between routes.
-//Got the basic outline for the navbar from https://react-bootstrap.github.io/components.html#navigation
-
-
-class Header extends React.Component {
-
-    constructor(props) {
-        super(props);
-    }
+export default class Header extends Component {
 
     render(){
         return(
@@ -24,7 +16,6 @@ class Header extends React.Component {
               </Navbar.Brand>
               <Navbar.Toggle />
             </Navbar.Header>
-
 
             <Navbar.Collapse>
                 <Nav pullRight>
@@ -40,12 +31,10 @@ class Header extends React.Component {
                 <LinkContainer to="/crimes">
                 <NavItem eventKey={1}>Crimes</NavItem>
                 </LinkContainer>
+                <Search allData={this.props.allData}/>
               </Nav>
             </Navbar.Collapse>
           </Navbar>
         )
-
     }
-
 }
-export default Header

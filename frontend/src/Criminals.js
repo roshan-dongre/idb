@@ -6,8 +6,6 @@ import PageSelector from './PageSelector';
 import './font/css/font-awesome.min.css'
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
-//import Slider from 'react-rangeslider'
-//import 'react-rangeslider/lib/index.css'
 import InputRange from 'react-input-range';
 import 'react-input-range/lib/css/index.css';
 
@@ -40,16 +38,8 @@ export default class Criminals extends Component {
             height: {min: 50, max: 80},
             loading: true
         }
-        this.apiUrl = 'http://api.ontherun.me:5000/criminals';
+        //this.apiUrl = 'http://api.ontherun.me:5000/criminals';
     }
-
-    /* Mounting
-        These methods are called when an instance of a component is being created and inserted into the DOM:
-            * constructor()
-            * componentWillMount()
-            * render()
-            * componentDidMount()
-     */
 
     componentDidMount () {
         this.callAPI()
@@ -136,15 +126,6 @@ export default class Criminals extends Component {
             });
     }
 
-    /* Updating
-        An update can be caused by changes to props or state. These methods are called when a component is being re-rendered:
-            * componentWillReceiveProps()
-            * shouldComponentUpdate()
-            * componentWillUpdate()
-            * render()
-            * componentDidUpdate()
-     */
-
     componentDidUpdate(prevProps, prevState) {
 
         if (prevState.sortBy != this.state.sortBy ||
@@ -162,14 +143,6 @@ export default class Criminals extends Component {
             })
         }
     }
-
-
-    /* Unmounting
-        This method is called when a component is being removed from the DOM:
-            * componentWillUnmount()
-     */
-
-    /* More information about the React.Component lifecycle here: https://reactjs.org/docs/react-component.html */
 
     render() {
 

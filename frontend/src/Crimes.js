@@ -35,14 +35,6 @@ export default class Crimes extends Component {
         this.apiUrl = 'http://api.ontherun.me:5000/crimes';
     }
 
-    /* Mounting
-        These methods are called when an instance of a component is being created and inserted into the DOM:
-            * constructor()
-            * componentWillMount()
-            * render()
-            * componentDidMount()
-     */
-
     componentDidMount () {
         this.callAPI()
     }
@@ -162,14 +154,6 @@ export default class Crimes extends Component {
             })
         }
     }
-
-
-    /* Unmounting
-        This method is called when a component is being removed from the DOM:
-            * componentWillUnmount()
-     */
-
-    /* More information about the React.Component lifecycle here: https://reactjs.org/docs/react-component.html */
 
     render() {
 

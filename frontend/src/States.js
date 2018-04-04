@@ -33,16 +33,8 @@ export default class Criminals extends Component {
             pathname: "/States",
             loading: true
         }
-        this.apiUrl = 'http://api.ontherun.me:5000/states';
+        //this.apiUrl = 'http://api.ontherun.me:5000/states';
     }
-
-    /* Mounting
-        These methods are called when an instance of a component is being created and inserted into the DOM:
-            * constructor()
-            * componentWillMount()
-            * render()
-            * componentDidMount()
-     */
 
     componentDidMount () {
         this.callAPI()

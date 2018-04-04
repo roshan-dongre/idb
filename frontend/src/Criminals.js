@@ -8,6 +8,7 @@ import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 import InputRange from 'react-input-range';
 import 'react-input-range/lib/css/index.css';
+import { Circle } from 'better-react-spinkit'
 
 var blackStyles = {
     color: 'black'
@@ -17,9 +18,10 @@ var whiteStyles = {
     color: 'grey'
 }
 
-var spinnerStyle = {
-    height: "250px",
-    width: "250px"
+var containerStyle = {
+    height: "80%",
+    width: "80%"
+
 }
 
 export default class Criminals extends Component {
@@ -116,7 +118,7 @@ export default class Criminals extends Component {
         axios.get(url)
             .then((res) => {
                 // Set state with result
-                self.setState({criminals: res.data.results, totalCount: res.data.totalCount, numPages: Math.ceil(res.data.totalCount/self.state.pgSize)});
+                self.setState({criminals: res.data.criminals, totalCount: res.data.totalCount, numPages: Math.ceil(res.data.totalCount/self.state.pgSize)});
                 self.setState({loading: false})
                 console.log(self.state.criminals)
                 console.log(url)
@@ -146,13 +148,19 @@ export default class Criminals extends Component {
 
     render() {
 
-    var Spinner = require('react-spinkit');
+    
     if (this.state.loading) {
         return (
-            <div className="container sub-container">
+            <div className="container sub-container" style={containerStyle}>
                 <div className="row row-m-b">
-                    <div className= "text-center">
-                    <Spinner name = "wordpress" color="goldenrod"/>
+                    <div className="col-md-3">
+                        <p>   </p>
+                    </div>
+                    <div className= "col-md-3">
+                        <Circle size={250} color= "green"/>
+                    </div>
+                    <div className= "col-md-3">
+                        <p>   </p>
                     </div>
                 </div>
             </div>)

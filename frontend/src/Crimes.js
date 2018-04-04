@@ -7,6 +7,7 @@ import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 import InputRange from 'react-input-range';
 import 'react-input-range/lib/css/index.css';
+import { Circle } from 'better-react-spinkit'
 
 var blackStyles = {
     color: 'black'
@@ -157,13 +158,18 @@ export default class Crimes extends Component {
 
     render() {
 
-    var Spinner = require('react-spinkit');
     if (this.state.loading) {
         return (
             <div className="container sub-container">
                 <div className="row row-m-b">
-                    <div className= "text-center">
-                    <Spinner name = "wordpress" color="goldenrod"/>
+                    <div className="col-md-3">
+                        <p>   </p>
+                    </div>
+                    <div className= "col-md-3">
+                        <Circle size={250} color= "green"/>
+                    </div>
+                    <div className= "col-md-3">
+                        <p>   </p>
                     </div>
                 </div>
             </div>)

@@ -18,6 +18,11 @@ var whiteStyles = {
     color: 'grey'
 }
 
+var divStyle = {
+    display: 'flex',
+    justifyContent: 'center'
+}
+
 export default class Criminals extends Component {
     constructor (props) {
         super (props);
@@ -168,18 +173,8 @@ export default class Criminals extends Component {
 
     if (this.state.loading) {
         return (
-            <div className="container sub-container">
-                <div className="row row-m-b">
-                    <div className="col-md-3">
-                        <p>   </p>
-                    </div>
-                    <div className= "col-md-3">
-                        <Circle size={250} color= "green"/>
-                    </div>
-                    <div className= "col-md-3">
-                        <p>   </p>
-                    </div>
-                </div>
+            <div className="container sub-container" style={divStyle}>
+                <Circle size={250} color= "green"/>
             </div>)
     }
     else {

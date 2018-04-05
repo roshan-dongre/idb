@@ -26,9 +26,10 @@ class State(db.Model):
     flower = db.Column(db.String(600))
     bird = db.Column(db.String(600))
     type = db.Column(db.String(600))
+    wiki= db.Column(db.String(600))
 
     def __repr__(self):
-        return "{'type': %r, 'flower': %r, 'bird': %r, 'region': %r, 'density': %r, 'area': %r, 'capital': %r, 'name': %r, 'image': %r, 'abbreviation': %r, 'population': %r, 'id': %r}" % (self.type, self.flower, self.bird, self.region, self.density, self.area, self.capital, self.name, self.image, self.abbreviation, self.population, self.id)
+        return "{'wiki': %r, 'type': %r, 'flower': %r, 'bird': %r, 'region': %r, 'density': %r, 'area': %r, 'capital': %r, 'name': %r, 'image': %r, 'abbreviation': %r, 'population': %r, 'id': %r}" % (self.wiki, self.type, self.flower, self.bird, self.region, self.density, self.area, self.capital, self.name, self.image, self.abbreviation, self.population, self.id)
 
 class Criminal(db.Model):
     __tablename__ = 'criminals'

@@ -292,7 +292,8 @@ if __name__ == '__main__':
                         region= file_state['region'],
                         flower= file_state['flower'],
                         bird= file_state['bird'],
-                        type="state")
+                        type="state",
+                        wiki="http://wikipedia.org/wiki/"+file_state['name'].replace(" ", "_"))
         db.session.add(NewState)
 
     print("Linking models together...")

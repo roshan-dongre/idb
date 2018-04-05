@@ -107,10 +107,10 @@ export default class Criminals extends Component {
         if (this.state.sortBy !== "") {
             url += "&sort="+this.state.sortBy
         }
-        if (this.state.sex !== "") {
+        if (this.state.sex !== "" && this.state.sex !== "All") {
             url += "&sex=" + this.state.sex
         }
-        if (this.state.race !== "") {
+        if (this.state.race !== "" && this.state.race !== "All") {
             url += "&race=" + this.state.race
         }
         /*if (this.state.height !== 0) {
@@ -195,13 +195,13 @@ export default class Criminals extends Component {
                     <div className="col-md-3">
                         <div className = "text-left" style = {blackStyles}>
                         <Select name="form-field-name" value={this.state.sex} onChange={this.handleSex} placeholder= "Filter by Gender"
-                        options={[ { value: 'Male', label: 'Male' }, { value: 'Female', label: 'Female'},]}/>
+                        options={[ {value: 'All', label: 'All'}, { value: 'Male', label: 'Male' }, { value: 'Female', label: 'Female'},]}/>
                         </div>
                     </div> 
                     <div className="col-md-3">
                         <div className = "text-left" style = {blackStyles}>
                         <Select name="form-field-name" value={this.state.race} onChange={this.handleRace} placeholder = "Filter by Race"
-                        options={[ { value: 'White', label: 'White' }, { value: 'Black', label: 'Black'}, { value: 'White (Hispanic)', label: 'White (Hispanic)'}, { value: 'Asian', label: 'Asian'}, 
+                        options={[ {value: 'All', label: 'All'}, { value: 'White', label: 'White' }, { value: 'Black', label: 'Black'}, { value: 'White (Hispanic)', label: 'White (Hispanic)'}, { value: 'Asian', label: 'Asian'}, 
                         { value: 'White (Central Asian)', label: 'White (Central Asian)'}, { value: 'Black (Hispanic)', label: 'Black (Hispanic)'}, { value: 'White (Middle Eastern)', label: 'White (Middle Eastern)'}, ]}/>
                         </div>
                     </div>    

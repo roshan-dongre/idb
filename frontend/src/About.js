@@ -120,7 +120,7 @@ render () {
                                 <img className="img-thumbnail" src="https://larius11.github.io/cs373-blog/assets/headshot.jpg" alt="Ricardo Pic" data-toggle="modal" data-target="#ricardoModal" style = {imageStyles}/>
                                 <h2>Ricardo Riveron</h2>
                                 <p>Bio: 4th year CS student currently working full-time at H-E-B. I love to play music, watch netflix, and play videogames when I'm not too busy doing work.</p>
-                                <p>Responsibilities: Create a project board, Set up Git book for API documentation, Add a new column for each group member, Add issues to our project.</p>
+                                <p>Responsibilities: Set up the database and a large part of the backend.</p>
                                 <p>Number of commits: {this.state.ricardoCommits}</p>
                                 <p>Number of issues: {this.state.ricardoIssues}</p>
                                 <p>Number of unit tests: 0</p>
@@ -132,7 +132,7 @@ render () {
                                 <img className="img-thumbnail" src="https://avatars3.githubusercontent.com/u/14967965?s=460&v=4" alt="Roshan Pic" data-toggle="modal" data-target="#roshanModal" style = {imageStyles}/>
                                 <h2>Roshan Dongre</h2>
                                 <p>Bio: Senior pursuing a double major in Computer Science and Finance. Interested in trading and sports analytics. I enjoy playing tennis, working out, and playing poker.</p>
-                                <p>Responsibilities: Wrote technical report, AWS/Namecheap, Front-end model pages, About page, part of Flask integration</p>
+                                <p>Responsibilities: Front-end development including filtering, searching, and all the pages. AWS/Namecheap.</p>
                                 <p>Number of commits: {this.state.roshanCommits}</p>
                                 <p>Number of issues: {this.state.roshanIssues}</p>
                                 <p>Number of unit tests: 0</p>
@@ -158,10 +158,10 @@ render () {
                                 <img className="img-thumbnail" src="https://rp27537cs373sp18.files.wordpress.com/2018/01/why.png" alt="Ramon Pic" data-toggle="modal" data-target="#ramonModal" style = {imageStyles}/>
                                 <h2>Ramon Perez</h2>
                                 <p>Bio: CS student hailing from New Braunfels, Texas. This is my third year as part of UTCS, and I'm in the Software Engineering and Artificial Intelligence classes this semester. I enjoy video games, running, and playing with my cats.</p>
-                                <p>Responsibilities: Data Management: scraping, aggregating, and data modeling.</p>
+                                <p>Responsibilities: Data Management: scraping, aggregating, and data modeling. Testing.</p>
                                 <p>Number of commits: {this.state.ramonCommits}</p>
                                 <p>Number of issues: {this.state.ramonIssues}</p>
-                                <p>Number of unit tests: 14</p>
+                                <p>Number of unit tests: 15</p>
                             </div>
                         </div>
 
@@ -170,7 +170,7 @@ render () {
                                 <img className="img-thumbnail" src="https://ramdeepk2.github.io/ramdeepk2.github.io/cs373/headshot.JPG" alt="Krishna Pic" data-toggle="modal" data-target="#krishnaModal" style = {imageStyles}/>
                                 <h2>Krishna Ramdeep</h2>
                                 <p>Bio: CS senior taking Computer Vision, Programming for Performance, Software Engineering, and Randomized Algorithms. I like to work out, hike, and read in my free time (which I don't get too much of).</p>
-                                <p>Responsibilities: API Documentation, Frontend GUI tests, Technical Report</p>
+                                <p>Responsibilities: API Documentation, Most of Testing Code, Technical Report, Travis CI</p>
                                 <p>Number of commits: {this.state.krishnaCommits}</p>
                                 <p>Number of issues: {this.state.krishnaIssues}</p>
                                 <p>Number of unit tests: 21</p>
@@ -198,6 +198,7 @@ render () {
                                             <li className="text-left"><h4>React</h4></li>
                                             <li className="text-left"><h4>Postman</h4></li>
                                             <li className="text-left"><h4>Travis CI</h4></li>
+                                            <li className="text-left"><h4>Fuse.js</h4></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -205,11 +206,12 @@ render () {
                                     <div className="text-center">
                                         <h1><u>Tools</u></h1>
                                         <ul>
-                                            <li className="text-left"><h4>GitHub</h4></li>
                                             <li className="text-left"><h4>Mocha</h4></li>
                                             <li className="text-left"><h4>Selenium</h4></li>
                                             <li className="text-left"><h4>SQLAlchemy</h4></li>
                                             <li className="text-left"><h4>MySQL</h4></li>
+                                            <li className="text-left"><h4>React-Select</h4></li>
+                                            <li className="text-left"><h4>React-Input-Range</h4></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -243,7 +245,8 @@ render () {
                                             <li className="text-left"><h4><strong>Scraping: </strong> We used the requests module to scrape the two FBI apis, and used React to request from the Google Maps API</h4></li>
                                             <li className="text-left"><h4><strong>Tools: </strong> We used Slack to communicate, Flask handles the API data requests and acts as an interface that communicates with the front-end, React for the 
                                             dynamic front-end, Postman for the API testing, Travis CI for the build logs, Mocha for the front-end tests, Selenium for the acceptance tests, and unnitest for the backend tests. SQLAlchemy
-                                            and MySQL are used for the database and GitHub is used to store our code. </h4></li>
+                                            and MySQL are used for the database and GitHub is used to store our code. Fuse.js was used for the searching and was done on the front-end. React-Select and React-Input-Range were 
+                                            used for the front-end filters that are shown on the grid pages.</h4></li>
                                         </ul>
                                     </div>
                                 </div>

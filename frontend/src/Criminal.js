@@ -173,8 +173,8 @@ export default class Criminal extends Component {
         stateList = this.state.data_states.map((state) => {
 
             return (
-                <tr className="clickable-row" onClick={(e) => self.handleStateNavigation(state.state, e)}>
-                    <td><strong>{state.state}</strong></td>
+                <tr className="clickable-row" onClick={(e) => self.handleStateNavigation(state.state_name, e)}>
+                    <td><strong>{state.state_name}</strong></td>
                 </tr>
             );
         })

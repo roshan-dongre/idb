@@ -23,14 +23,14 @@ OFFICES = {"albany": ["NY"], "albuquerque": ["NM"], "anchorage": ["AK"],
     "stlouis": ["MO"], "tampa": ["FL"], "washingtondc": ["VA", "DC"]}
 
 if __name__ == "__main__":
-    f1 = "sus.txt"
+    f1 = "sus2.txt"
     print("Reading data from %s..." % f1)
     infile = open(f1, "r")
     line = infile.readline()
     data = json.loads(line)
     result = []
     for item in data:
-        id = item["id"]
+        name = item["title"]
         states = set()
         if(item["field_offices"] != None):
             for x in item["field_offices"]:
@@ -39,8 +39,8 @@ if __name__ == "__main__":
                     for state in y:
                         states.add(state)
         for state in states:
-            print("#%d is wanted in %s" % (id, state))
-            result.append({"id": id, "state": state})
+            print("%s is wanted in %s" % (name, state))
+            result.append({"name": name, "state": state})
     
 
     f2 = "wanted_in.txt"

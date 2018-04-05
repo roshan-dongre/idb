@@ -11,7 +11,7 @@ class Search extends Component {
             allData: this.props.allData,
             results: [],
             searchKeys: [],
-            queryPhrase: "",
+            searchTerm: "",
             totalCount: 0,
             numPages: 0,
             pgSize: 9,
@@ -19,7 +19,6 @@ class Search extends Component {
             navigate: false
         }
         this.apiUrl = 'http://api.ontherun.me:5000/';
-        //this.apiUrl = 'http://18.219.198.152/';
         let criminalKeys = ["name", "dob", "sex", "eyes", "hair", "height", "race", "nationality", "crime"]
         let stateKeys = ["name", "abbreviation", "capital", "flower", "field_offices", "area", "population", "density", "region"]
         let crimeKeys = ["name", "description", "count", "offenders", "victims"]
@@ -30,7 +29,7 @@ class Search extends Component {
         e.preventDefault()
         //console.log(this)
         //this.refs.loader.style = "display: block";
-        this.setState({ queryPhrase: this.input.value });
+        this.setState({ searchTerm: this.input.value });
         this.queryInfo(this.input.value)
     }
 
@@ -42,7 +41,7 @@ class Search extends Component {
         }
     }
 
-    queryInfo = (queryPhrase) => {
+    queryInfo = (searchTerm) => {
         let result
         let options = {
             shouldSort: true,
@@ -55,7 +54,7 @@ class Search extends Component {
             result = "Error"
         } else {
             let fuse = new Fuse(this.state.allData, options);
-            result = fuse.search(queryPhrase);
+            result = fuse.search(searchTerm);
         }
         console.log(result)
         this.setState({ results: result, navigate: true, loading: false });
@@ -65,7 +64,7 @@ class Search extends Component {
 
         if (this.state.navigate) {
             this.setState({navigate: false})
-            return <Redirect to={{pathname: '/SearchResults', state: {results: this.state.results, queryPhrase: this.state.queryPhrase}}} push={true} />;
+            return <Redirect to={{pathname: '/SearchResults', state: {results: this.state.results, searchTerm: this.state.searchTerm}}} push={true} />;
         }
         return (
             <form className="navbar-form navbar-right" onSubmit={this.handleSearch}>

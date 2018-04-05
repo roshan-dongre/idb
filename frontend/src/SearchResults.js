@@ -17,7 +17,7 @@ class SearchResults extends Component {
             numPages: Math.ceil(this.props.location.state.results.length/10),
             totalResults: this.props.location.state.results.length,
             pageSize: 10,
-            queryPhrase: this.props.location.state.queryPhrase,
+            searchTerm: this.props.location.state.searchTerm,
             pathname: "/SearchResults"
         }
         this.contextTypes = {
@@ -46,10 +46,10 @@ class SearchResults extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.location.state.queryPhrase !== this.props.location.state.queryPhrase ||
+        if (nextProps.location.state.searchTerm !== this.props.location.state.searchTerm ||
             nextProps.location.state.results !== this.props.location.state.results) {
             this.setState({
-                queryPhrase: nextProps.location.state.queryPhrase,
+                searchTerm: nextProps.location.state.searchTerm,
                 results: chunk(nextProps.location.state.results, 10),
                 numPages: Math.ceil(nextProps.location.state.results.length/10),
                 totalResults: nextProps.location.state.results.length,
@@ -75,9 +75,7 @@ class SearchResults extends Component {
         //     this.changeValues()
         // }
 
-        console.log(this.state.results)
-        console.log(this.state.results[0])
-        console.log(this.state.results[1])
+        
         if (this.state.results.length === 0) {
             return (<div className="container sub-container" style={{height: 100}}>
                         <div className="mh-50">
@@ -103,10 +101,10 @@ class SearchResults extends Component {
                 </div>
             </div>);
         }
-        let queryPhrase = this.state.queryPhrase
+        let searchTerm = this.state.searchTerm
         let resultRows = this.state.results[this.state.page].map((result) => {
             return (
-                <SearchItem key={result.id} item={result} queryPhrase={queryPhrase} navigateTo="/Result"/>
+                <SearchItem key={result.id} item={result} searchTerm={searchTerm} navigateTo="/Result"/>
             );
         })
         console.log(resultRows)

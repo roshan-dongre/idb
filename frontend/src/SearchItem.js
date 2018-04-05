@@ -35,9 +35,14 @@ export default class SearchItem extends Component {
     changeCriminalValues = () => {
         var striptags = require('striptags');
         this.state.item.crime = striptags(this.state.item.crime)
-        this.state.item.eyes = this.state.item.eyes.slice(0,1).toUpperCase() + this.state.item.eyes.slice(1, this.state.item.eyes.length)
-        this.state.item.hair = this.state.item.hair.slice(0,1).toUpperCase() + this.state.item.hair.slice(1, this.state.item.hair.length)
 
+        if(this.state.item.eyes != null) {
+            this.state.item.eyes = this.state.item.eyes.slice(0,1).toUpperCase() + this.state.item.eyes.slice(1, this.state.item.eyes.length)
+        }
+        if(this.state.item.hair != null) {
+            this.state.item.hair = this.state.item.hair.slice(0,1).toUpperCase() + this.state.item.hair.slice(1, this.state.item.hair.length)
+        }
+        //date of birth, eyes, field office, hair, nationality, race    
 
     }
 
@@ -93,9 +98,9 @@ export default class SearchItem extends Component {
 
         let self = this
         let searchRows = Object.keys(attributes).map(function(key) {
-            console.log(attributes.toString())
+            console.log(key)
             if (attributes[key] !== null && attributes[key] !== undefined) {
-                console.log(self.state.searchTerm)
+                console.log("Search term: " + self.state.searchTerm)
 
             return (
                 <tr>

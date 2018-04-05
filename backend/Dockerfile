@@ -1,11 +1,9 @@
 FROM ubuntu:14.04.4
 
-RUN apt-get update && apt-get install -y apt-transport-https
 #Install Python Setuptools
 RUN apt-get update
 RUN apt-get upgrade -y
-RUN apt-get install -y python3.4
-RUN apt-get install -y python-setuptools python-dev build-essential python-pip
+RUN apt-get install -y apt-transport-https python3.4 python-setuptools python-dev build-essential python-pip
 
 #Install pip
 RUN easy_install pip

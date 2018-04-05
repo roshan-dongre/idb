@@ -20,7 +20,7 @@ RUN pip install --upgrade pip    && \
     pip install Flask-Restless
 
 COPY . /src
-WORKDIR /src/flaskr/
+WORKDIR /src/
 EXPOSE 5000
 ENTRYPOINT ["python"]
-CMD ["flaskr.py"]
+CMD ["main.py"]

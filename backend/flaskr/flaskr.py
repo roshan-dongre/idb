@@ -206,8 +206,8 @@ def pageNotFound(error):
 " Database Init  "
 "" "" "" "" "" """
 
-if __name__ == '__main__':
-
+# if __name__ == '__main__':
+def mainFunc():
     db.reflect()
     db.drop_all()
     db.create_all()
@@ -215,7 +215,7 @@ if __name__ == '__main__':
 
     print("Populating Criminals...")
     # Populating Criminals
-    data = json.load(open('../criminal_data/sus.txt'))
+    data = json.load(open('criminal_data/sus.txt'))
     criminal_i = 0
     for person in data:
         NewName = person["title"]
@@ -255,8 +255,8 @@ if __name__ == '__main__':
 
     print("Populating Crimes...")
     # Populating Crimes
-    data = json.load(open('../crime_data/json/national'))
-    with open('../crime_data/crime_ids.txt') as fp:
+    data = json.load(open('crime_data/json/national'))
+    with open('crime_data/crime_ids.txt') as fp:
         line = fp.readline()
         i = 1;
         while line:
@@ -281,7 +281,7 @@ if __name__ == '__main__':
 
     print("Populating States...")
     # Populating States
-    data = json.load(open('../state_data/states2.txt'))
+    data = json.load(open('state_data/states2.txt'))
     for file_state in data:
         NewState = State(population=file_state['population'],
                         abbreviation=file_state['abbreviation'],
@@ -300,7 +300,7 @@ if __name__ == '__main__':
     print("Linking models together...")
     # Populating Crime to State relationship
     for abv in statelist:
-        with open('../crime_data/json/'+abv) as fp:
+        with open('crime_data/json/'+abv) as fp:
             data = json.loads(fp.readline())
             for x in data:
                 if x['count'] != None:
@@ -317,7 +317,7 @@ if __name__ == '__main__':
                         db.session.add(NewCrimeState)
 
     # Populating Crime to Criminal relationship
-    data = json.load(open('../criminal_data/sus2.txt'))
+    data = json.load(open('criminal_data/sus2.txt'))
     for person in data:
         NewCriminal = ast.literal_eval(str(Criminal.query.filter_by(name=person['title']).first()))
         if NewCriminal != None:

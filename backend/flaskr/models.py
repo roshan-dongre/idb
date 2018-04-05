@@ -48,9 +48,10 @@ class Criminal(db.Model):
     image = db.Column(db.String(600))
     state = db.Column(db.String(600))
     type = db.Column(db.String(600))
+    fbi = db.Column(db.String(600))
 
     def __repr__(self):
-        return "{'type': %r, 'state': %r, 'image': %r, 'id': %r, 'name': %r, 'field_office': %r, 'height': %r, 'weight': %r, 'sex': %r, 'hair': %r, 'eyes': %r, 'dob': %r, 'race': %r, 'nationality': %r, 'crime': %r}" % (self.type, self.state, self.image, self.id, self.name, self.field_office, self.height, self.weight, self.sex, self.hair, self.eyes, self.dob, self.race, self.nationality, self.crime)
+        return "{'fbi': %r, 'type': %r, 'state': %r, 'image': %r, 'id': %r, 'name': %r, 'field_office': %r, 'height': %r, 'weight': %r, 'sex': %r, 'hair': %r, 'eyes': %r, 'dob': %r, 'race': %r, 'nationality': %r, 'crime': %r}" % (self.fbi, self.type, self.state, self.image, self.id, self.name, self.field_office, self.height, self.weight, self.sex, self.hair, self.eyes, self.dob, self.race, self.nationality, self.crime)
 
 class Crime(db.Model):
     __tablename__ = 'crimes'

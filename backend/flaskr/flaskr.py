@@ -249,7 +249,8 @@ if __name__ == '__main__':
                               crime=NewCrime,
                               image=NewImage[0]["large"],
                               state=NewState,
-                              type="criminal")
+                              type="criminal",
+                              fbi=NewImage[0]["large"].split('@')[0])
         db.session.add(NewCriminal)
 
     print("Populating Crimes...")

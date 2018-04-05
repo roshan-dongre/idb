@@ -27,6 +27,23 @@ export default class SearchItem extends Component {
         })
     }
 
+
+
+    changeStateValues = () => {
+        console.log(this.state)
+        //var striptags = require('striptags');
+        //this.state.item.crime = striptags(this.state.item.crime)
+        this.state.item.type = this.state.item.type.slice(0,1).toUpperCase() + this.state.item.type.slice(1, this.state.item.type.length)
+
+        //this.state.item.eyes = this.state.item.eyes.slice(0,1).toUpperCase() + this.state.item.eyes.slice(1, this.state.item.eyes.length)
+        //this.state.item.hair = this.state.item.hair.slice(0,1).toUpperCase() + this.state.item.hair.slice(1, this.state.item.hair.length)
+    }
+
+    changeCriminalValues = () => {
+        var striptags = require('striptags');
+        this.state.item.crime = striptags(this.state.item.crime)
+    }
+
     render() {
 
         if (this.state.navigate) {
@@ -37,41 +54,47 @@ export default class SearchItem extends Component {
         let name
 
         if (this.state.item.type === "criminal") {             // NEED TO CHANGE THIS
+            this.changeStateValues()
+            this.changeCriminalValues()
+            //this.state.item.name = this.state.item.name.slice(0,1).toUpperCase() + this.state.item.name.slice(1, this.state.item.eyes.length)
             name = this.state.item.name
             attributes = {
-                name: this.state.item.name,
-                dob: this.state.item.dob,
-                sex: this.state.item.sex,
-                eyes: this.state.item.eyes,
-                hair: this.state.item.hair,
-                height: this.state.item.height,
-                race: this.state.item.race,
-                nationality: this.state.item.nationality,
-                crime: this.state.item.crime
+                Name: this.state.item.name,
+                DOB: this.state.item.dob,
+                Sex: this.state.item.sex,
+                Eyes: this.state.item.eyes,
+                Hair: this.state.item.hair,
+                Height: this.state.item.height,
+                Race: this.state.item.race,
+                Nationality: this.state.item.nationality,
+                Crime: this.state.item.crime
             }
-
         } else if (this.state.item.type === "state") {    // NEED TO CHANGE THIS
+            //this.state.item.name = this.state.item.name.slice(0,1).toUpperCase() + this.state.item.name.slice(1, this.state.item.eyes.length)
+            this.changeStateValues()
             name = this.state.item.name
             attributes = {
-                name: this.state.item.name,
-                abbreviation: this.state.item.abbreviation,
-                capital: this.state.item.capital,
-                flower: this.state.item.flower,
-                field_offices: this.state.item.field_offices,
-                area: this.state.item.area,
-                population: this.state.item.population,
-                density: this.state.item.density,
-                region: this.state.item.region  
+                Name: this.state.item.name,
+                Abbreviation: this.state.item.abbreviation,
+                Capital: this.state.item.capital,
+                Flower: this.state.item.flower,
+                Field_offices: this.state.item.field_offices,
+                Area: this.state.item.area,
+                Population: this.state.item.population,
+                Density: this.state.item.density,
+                Region: this.state.item.region  
             }
-
         } else if (this.state.item.type === "crime") {    // NEED TO CHANGE THIS
+            //this.changeStateValues()
+            //this.state.item.name = this.state.item.name.slice(0,1).toUpperCase() + this.state.item.name.slice(1, this.state.item.eyes.length)
+            this.changeStateValues()
             name = this.state.item.name
             attributes = {
-                name: this.state.item.name,
-                description: this.state.item.description,
-                count: this.state.item.count,
-                offenders: this.state.item.offenders,
-                victims: this.state.item.victims
+                Name: this.state.item.name,
+                Description: this.state.item.description,
+                Count: this.state.item.count,
+                Offenders: this.state.item.offenders,
+                Victims: this.state.item.victims
             }
         }
 

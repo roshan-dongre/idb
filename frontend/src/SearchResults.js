@@ -66,8 +66,23 @@ class SearchResults extends Component {
         }
     }
 
+    changeValues = () => {
+        console.log(this.state)
+        var striptags = require('striptags');
+        this.state.results.crime = striptags(this.state.item.crime)   
+        this.state.results.eyes = this.state.item.eyes.slice(0,1).toUpperCase() + this.state.item.eyes.slice(1, this.state.item.eyes.length)
+        this.state.results.hair = this.state.item.hair.slice(0,1).toUpperCase() + this.state.item.hair.slice(1, this.state.item.hair.length)
+    }
+
     render() {
+        
+        // if (this.state.results != "") {
+        //     this.changeValues()
+        // }
+
         console.log(this.state.results)
+        console.log(this.state.results[0])
+        console.log(this.state.results[1])
         if (this.state.results.length === 0) {
             return (<div className="container sub-container" style={{height: 100}}>
                         <div className="mh-50">
@@ -76,7 +91,7 @@ class SearchResults extends Component {
                             </div>
                             <div className="row align-items-center">
                                 <button className="btn btn-link"
-                                        onClick={this.props.history.return}>Return</button>
+                                        onClick={this.props.history.goBack}>Return</button>
                             </div>
                         </div>
                     </div>);
@@ -99,6 +114,7 @@ class SearchResults extends Component {
                 <SearchItem key={result.id} item={result} queryPhrase={queryPhrase} navigateTo="/Result"/>
             );
         })
+        console.log(resultRows)
 
         return (
             <div className="container sub-container">
@@ -111,7 +127,7 @@ class SearchResults extends Component {
                                 <strong>{this.state.page*this.state.pageSize + 10 < this.state.totalResults ? this.state.page*this.state.pageSize + 10 : this.state.totalResults}</strong> of
                                 <strong> {this.state.totalResults}</strong> results
                         </div>
-                        <table className="table table-responsive table-hover">
+                        <table className="table table-responsive">
                             <tbody>
                             {resultRows}
                             </tbody>

@@ -65,7 +65,7 @@ class Crime(db.Model):
     type = db.Column(db.String(600))
 
     def __repr__(self):
-        return "{'type': %r, 'offenders': %r,'victims': %r,'count': %r,'image': %r, 'id': %r, 'name': %r, 'description': %r}" % (self.type, self.offenders, self.victims, self.count, self.image, self.id, self.name, self.description)
+        return "{'type': %r, 'offenders': %r,'victims': %r,'count': %r,'image': %r, 'id': %r, 'name': %r, 'description': %r, 'info': 'https://ucr.fbi.gov/crime-in-the-u.s/2016/crime-in-the-u.s.-2016/topic-pages/tables/table-3'}" % (self.type, self.offenders, self.victims, self.count, self.image, self.id, self.name, self.description)
 
 class CrimesState(db.Model):
     __tablename__ = 'crimesTostate'

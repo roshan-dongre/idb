@@ -23,7 +23,7 @@ var divStyle = {
     justifyContent: 'center'
 }
 
-export default class Criminals extends Component {
+export default class States extends Component {
     constructor (props) {
         super (props);
         this.state = {

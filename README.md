@@ -1,6 +1,6 @@
 # The Slackers - www.ontherun.me
 --------------------
 
-- [API](https://larius11.gitbooks.io/our-restful-api/content/) Documentation
-- [Technical Report](https://larius11.gitbooks.io/our-restful-api/content/)
+- [API](https://roshan-dongre.gitbooks.io/api/) Documentation
+- [Technical Report](https://roshan-dongre.gitbooks.io/report/)
 - [GitHub repository](https://github.com/roshan-dongre/idb)

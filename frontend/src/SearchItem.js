@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {Redirect} from 'react-router-dom';
-
 import Highlighter from 'react-highlight-words';
 
 export default class SearchItem extends Component {
@@ -30,18 +29,16 @@ export default class SearchItem extends Component {
 
 
     changeStateValues = () => {
-        console.log(this.state)
-        //var striptags = require('striptags');
-        //this.state.item.crime = striptags(this.state.item.crime)
         this.state.item.type = this.state.item.type.slice(0,1).toUpperCase() + this.state.item.type.slice(1, this.state.item.type.length)
-
-        //this.state.item.eyes = this.state.item.eyes.slice(0,1).toUpperCase() + this.state.item.eyes.slice(1, this.state.item.eyes.length)
-        //this.state.item.hair = this.state.item.hair.slice(0,1).toUpperCase() + this.state.item.hair.slice(1, this.state.item.hair.length)
     }
 
     changeCriminalValues = () => {
         var striptags = require('striptags');
         this.state.item.crime = striptags(this.state.item.crime)
+        this.state.item.eyes = this.state.item.eyes.slice(0,1).toUpperCase() + this.state.item.eyes.slice(1, this.state.item.eyes.length)
+        this.state.item.hair = this.state.item.hair.slice(0,1).toUpperCase() + this.state.item.hair.slice(1, this.state.item.hair.length)
+
+
     }
 
     render() {
@@ -56,7 +53,6 @@ export default class SearchItem extends Component {
         if (this.state.item.type === "criminal") {             // NEED TO CHANGE THIS
             this.changeStateValues()
             this.changeCriminalValues()
-            //this.state.item.name = this.state.item.name.slice(0,1).toUpperCase() + this.state.item.name.slice(1, this.state.item.eyes.length)
             name = this.state.item.name
             attributes = {
                 Name: this.state.item.name,
@@ -70,7 +66,6 @@ export default class SearchItem extends Component {
                 Crime: this.state.item.crime
             }
         } else if (this.state.item.type === "state") {    // NEED TO CHANGE THIS
-            //this.state.item.name = this.state.item.name.slice(0,1).toUpperCase() + this.state.item.name.slice(1, this.state.item.eyes.length)
             this.changeStateValues()
             name = this.state.item.name
             attributes = {
@@ -85,9 +80,7 @@ export default class SearchItem extends Component {
                 Region: this.state.item.region  
             }
         } else if (this.state.item.type === "crime") {    // NEED TO CHANGE THIS
-            //this.changeStateValues()
-            //this.state.item.name = this.state.item.name.slice(0,1).toUpperCase() + this.state.item.name.slice(1, this.state.item.eyes.length)
-            this.changeStateValues()
+           this.changeStateValues()
             name = this.state.item.name
             attributes = {
                 Name: this.state.item.name,
@@ -100,13 +93,17 @@ export default class SearchItem extends Component {
 
         let self = this
         let searchRows = Object.keys(attributes).map(function(key) {
+            console.log(attributes.toString())
             if (attributes[key] !== null && attributes[key] !== undefined) {
+                console.log(self.state.searchTerm)
+
             return (
                 <tr>
                     <td className="col-md-2"><strong>{key + ":  "}</strong><Highlighter searchWords={[self.state.searchTerm]} textToHighlight={attributes[key].toString()} /></td>
                 </tr>
             );
             }
+
         })
 
         return (

@@ -99,7 +99,7 @@ export default class Criminals extends Component {
             url += "&sort="+this.state.sortBy
         }
 
-        if (this.state.region !== "") {
+        if (this.state.region !== "" && this.state.region !== "All") {
             url += "&region=" + this.state.region
         }
 
@@ -215,7 +215,7 @@ export default class Criminals extends Component {
                         <div className="col-md-3">
                             <div className = "text-left" style = {blackStyles}>
                                 <Select name="form-field-name" value={this.state.region} onChange={this.handleRegion} placeholder = "Filter by Region"
-                                options={[ { value: 'Northeast', label: 'Northeast' }, { value: 'Midwest', label: 'Midwest'}, { value: 'South', label: 'South'}, { value: 'West', label: 'West'},]}/>
+                                options={[ {value: 'All', label: 'All'}, { value: 'Northeast', label: 'Northeast' }, { value: 'Midwest', label: 'Midwest'}, { value: 'South', label: 'South'}, { value: 'West', label: 'West'},]}/>
                             </div>
                         </div> 
                         {/*<div className="col-md-3">

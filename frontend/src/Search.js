@@ -56,7 +56,7 @@ class Search extends Component {
             let fuse = new Fuse(this.state.allData, options);
             result = fuse.search(searchTerm);
         }
-        console.log(result)
+        
         this.setState({ results: result, navigate: true, loading: false });
     }
 

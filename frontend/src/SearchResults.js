@@ -107,7 +107,6 @@ class SearchResults extends Component {
                 <SearchItem key={result.id} item={result} searchTerm={searchTerm} navigateTo="/Result"/>
             );
         })
-        console.log(resultRows)
 
         return (
             <div className="container sub-container">
@@ -120,7 +119,7 @@ class SearchResults extends Component {
                                 <strong>{this.state.page*this.state.pageSize + 10 < this.state.totalResults ? this.state.page*this.state.pageSize + 10 : this.state.totalResults}</strong> of
                                 <strong> {this.state.totalResults}</strong> results
                         </div>
-                        <table className="table table-responsive">
+                        <table className="table table-responsive text-left" style={{maxWidth: '60%'}}>
                             <tbody>
                             {resultRows}
                             </tbody>

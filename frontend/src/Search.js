@@ -18,8 +18,8 @@ class Search extends Component {
             loading: false,
             navigate: false
         }
-        //this.apiUrl = 'http://api.ontherun.me:5000/';
-        this.apiUrl = 'http://18.219.198.152/';
+        this.apiUrl = 'http://api.ontherun.me:5000/';
+        //this.apiUrl = 'http://18.219.198.152/';
         let criminalKeys = ["name", "dob", "sex", "eyes", "hair", "height", "race", "nationality", "crime"]
         let stateKeys = ["name", "abbreviation", "capital", "flower", "field_offices", "area", "population", "density", "region"]
         let crimeKeys = ["name", "description", "count", "offenders", "victims"]

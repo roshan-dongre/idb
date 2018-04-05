@@ -4,6 +4,8 @@ import chunk from 'lodash.chunk';
 import SearchItem from './SearchItem';
 import Pagination from './Pagination';
 
+import Highlighter from 'react-highlight-words'
+
 class SearchResults extends Component {
     constructor (props) {
         super (props);
@@ -66,13 +68,6 @@ class SearchResults extends Component {
         }
     }
 
-    changeValues = () => {
-        console.log(this.state)
-        var striptags = require('striptags');
-        this.state.results.crime = striptags(this.state.item.crime)   
-        this.state.results.eyes = this.state.item.eyes.slice(0,1).toUpperCase() + this.state.item.eyes.slice(1, this.state.item.eyes.length)
-        this.state.results.hair = this.state.item.hair.slice(0,1).toUpperCase() + this.state.item.hair.slice(1, this.state.item.hair.length)
-    }
 
     render() {
         

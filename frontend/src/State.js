@@ -14,8 +14,6 @@ var style = {
     height: '350px'
 }
 
-Geocode.setApiKey("AIzaSyDkRhH7iB4iZW9dDa-FY7HYb8vpjj19Vsc");
-
 export default class State extends Component {
     constructor (props) {
         super (props);
@@ -77,8 +75,8 @@ export default class State extends Component {
     }
 
     getCriminals = () => {
-        //let url = "http://api.ontherun.me:5000/criminalstostate/" + this.state.item.abbreviation
-        let url = "http://18.219.198.152/criminalstostate/" + this.state.item.abbreviation
+        let url = "http://api.ontherun.me:5000/criminalstostate/" + this.state.item.abbreviation
+        //let url = "http://18.219.198.152/criminalstostate/" + this.state.item.abbreviation
         let self = this
         axios.get(url)
             .then((res) => {
@@ -92,17 +90,17 @@ export default class State extends Component {
 
     callAPI = () => {
         let url
-        // if (this.props.location !== undefined && this.props.location.state.selectedId !== undefined) {
-        //     url = "http://api.ontherun.me:5000/states/"+this.props.location.state.selectedId
-        // } else {
-        //     url = "http://api.ontherun.me:5000/states/"+this.state.item.abbreviation
-        // }
-
         if (this.props.location !== undefined && this.props.location.state.selectedId !== undefined) {
-            url = "http://18.219.198.152/states/"+this.props.location.state.selectedId
+            url = "http://api.ontherun.me:5000/states/"+this.props.location.state.selectedId
         } else {
-            url = "http://18.219.198.152/states/"+this.state.item.abbreviation
+            url = "http://api.ontherun.me:5000/states/"+this.state.item.abbreviation
         }
+
+        // if (this.props.location !== undefined && this.props.location.state.selectedId !== undefined) {
+        //     url = "http://18.219.198.152/states/"+this.props.location.state.selectedId
+        // } else {
+        //     url = "http://18.219.198.152/states/"+this.state.item.abbreviation
+        // }
 
         let self = this
         axios.get(url)

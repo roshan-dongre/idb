@@ -190,8 +190,8 @@ class DBTest(unittest.TestCase):
 class StateTest(unittest.TestCase):
   
   def setUp(self):
-    # self.url = "http://api.ontherun.me:5000/states"
-    self.url = "http://18.219.198.152/states"
+    self.url = "http://api.ontherun.me:5000/states"
+    # self.url = "http://18.219.198.152/states"
 
   def test_1(self):
     response = requests.get(self.url)
@@ -220,7 +220,8 @@ class StateTest(unittest.TestCase):
 class CriminalTest(unittest.TestCase):
   
   def setUp(self):
-    self.url = "http://18.219.198.152/criminals"
+  	self.url = "http://api.ontherun.me:5000/criminals"
+    # self.url = "http://18.219.198.152/criminals"
     
   def test_1(self):
     response = requests.get(self.url)
@@ -234,12 +235,13 @@ class CriminalTest(unittest.TestCase):
   def test_2(self):
     response = requests.get(self.url + "/64")
     data = json.loads(response.content)
-    self.assertEqual(data["name"], "WEI LI PANG")
+    self.assertEqual(data["name"], "STEPHEN MARCUS GILBERT")
     
 class CrimeTest(unittest.TestCase):
 
   def setUp(self):
-    self.url = "http://18.219.198.152/crimes"
+  	self.url = "http://api.ontherun.me:5000/crimes"
+    # self.url = "http://18.219.198.152/crimes"
     
   def test_1(self):
     response = requests.get(self.url)
@@ -262,7 +264,8 @@ class CrimeTest(unittest.TestCase):
 class CrimesToState(unittest.TestCase):
   
   def setUp(self):
-    self.url = "http://18.219.198.152/crimestostate"
+  	self.url = "http://api.ontherun.me:5000/crimestostate"
+    # self.url = "http://18.219.198.152/crimestostate"
     
   def test_1(self):
     response = requests.get(self.url)
@@ -281,12 +284,13 @@ class CrimesToState(unittest.TestCase):
 class CriminalsToState(unittest.TestCase):
   
   def setUp(self):
-    self.url = "http://18.219.198.152/criminalstostate"
+  	self.url = "http://api.ontherun.me:5000/criminalstostate"
+    # self.url = "http://18.219.198.152/criminalstostate"
     
   def test_1(self):
     response = requests.get(self.url)
     data = json.loads(response.content)
-    keys1 = ["id", "state"]
+    keys1 = ["id", "state_name"]
     keys2 = data[0].keys()
     for k in keys1:
       self.assertIn(k, keys2)

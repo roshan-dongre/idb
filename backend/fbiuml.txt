@@ -8,10 +8,16 @@ CrimeByState - State
 
 class State {
   char[2] abbreviation
+  int area
+  text bird
+  text capital
+  text flower
   int stateID
   text image
   text name
   int population
+  text region
+  text wiki
   }
 
 class WantedIn {
@@ -32,6 +38,8 @@ class Criminal {
   text sex
   int height
   int weight
+  text image
+  text fbi
   }
 
 class WantedFor {
@@ -44,6 +52,10 @@ class Crime {
   int crimeID
   text image
   text name
+  int count
+  int offenders
+  int victims
+  text info
 }
 
 class CrimeByState {

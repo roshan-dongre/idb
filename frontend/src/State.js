@@ -234,6 +234,10 @@ export default class State extends Component {
                                 <td><strong>Region:</strong></td>
                                 <td>{this.state.item.region == null ? this.state.unknown : this.state.item.region}</td>
                             </tr>
+                            <tr>
+                                <td><strong>Wiki Link:</strong></td>
+                                <td><a href={this.state.item.wiki == null ? this.state.unknown : this.state.item.wiki}>{this.state.item.wiki == null ? this.state.unknown : this.state.item.wiki}</a></td>
+                            </tr>
                             </tbody>
                         </table>
                         <h3 className="sub-header">Crimes In This State</h3>

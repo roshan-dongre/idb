@@ -171,6 +171,10 @@ export default class Crime extends Component {
                                     <td><strong>Victims:</strong></td>
                                     <td>{this.state.item.victims} victims in 2016</td>
                                 </tr>
+                                <tr>
+                                    <td><strong>FBI Info:</strong></td>
+                                    <td><a href={this.state.item.info == null ? this.state.unknown : this.state.item.info}>{this.state.item.info == null ? this.state.unknown : this.state.item.info}</a></td>
+                                </tr>
                                 </tbody>
                             </table>
                             <h3 className="sub-header">States With This Crime</h3>

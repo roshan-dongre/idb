@@ -42,7 +42,7 @@ export default class SearchItem extends Component {
         if(this.state.item.hair != null) {
             this.state.item.hair = this.state.item.hair.slice(0,1).toUpperCase() + this.state.item.hair.slice(1, this.state.item.hair.length)
         }
-        //date of birth, eyes, field office, hair, nationality, race    
+        //date of birth, eyes, field office, hair, nationality, race, sex    
 
     }
 

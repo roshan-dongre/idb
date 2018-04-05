@@ -89,3 +89,14 @@ class CrimesCriminal(db.Model):
 
     def __repr__(self):
         return "{'crime_name': %r, 'criminal_name': %r, 'crime_id': %r, 'id': %r, 'criminal_id': %r}" % (self.crime_name, self.criminal_name, self.crime_id, self.id, self.criminal_id)
+
+class CriminalState(db.Model):
+    __tablename__='criminalTostate'
+    id = db.Column(db.Integer,primary_key=True,unique=True)
+    state_id = db.Column(db.Integer)
+    criminal_id = db.Column(db.Integer)
+    state_name = db.Column(db.String(600))
+    criminal_name = db.Column(db.String(600))
+
+    def __repr__(self):
+        return "{'state_name': %r, 'criminal_name': %r, 'state_id': %r, 'id': %r, 'criminal_id': %r}" % (self.state_name, self.criminal_name, self.state_id, self.id, self.criminal_id)

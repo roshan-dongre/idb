@@ -158,10 +158,10 @@ render () {
                                 <img className="img-thumbnail" src="https://rp27537cs373sp18.files.wordpress.com/2018/01/why.png" alt="Ramon Pic" data-toggle="modal" data-target="#ramonModal" style = {imageStyles}/>
                                 <h2>Ramon Perez</h2>
                                 <p>Bio: CS student hailing from New Braunfels, Texas. This is my third year as part of UTCS, and I'm in the Software Engineering and Artificial Intelligence classes this semester. I enjoy video games, running, and playing with my cats.</p>
-                                <p>Responsibilities: Data Management: scraping, aggregating, and data modeling.</p>
+                                <p>Responsibilities: Data Management: scraping, aggregating, and data modeling. Testing our API.</p>
                                 <p>Number of commits: {this.state.ramonCommits}</p>
                                 <p>Number of issues: {this.state.ramonIssues}</p>
-                                <p>Number of unit tests: 14</p>
+                                <p>Number of unit tests: 15</p>
                             </div>
                         </div>
 

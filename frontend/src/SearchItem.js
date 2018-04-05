@@ -3,7 +3,7 @@ import {Redirect} from 'react-router-dom';
 
 import Highlighter from 'react-highlight-words';
 
-export default class SearchSelector extends Component {
+export default class SearchItem extends Component {
     constructor (props) {
         super (props);
         this.state = {

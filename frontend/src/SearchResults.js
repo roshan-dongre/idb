@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import {withRouter} from 'react-router-dom';
 import chunk from 'lodash.chunk';
-import SearchSelector from './SearchSelector';
-import PageSelector from './PageSelector';
+import SearchItem from './SearchItem';
+import Pagination from './Pagination';
 
 class SearchResults extends Component {
     constructor (props) {
@@ -19,7 +19,7 @@ class SearchResults extends Component {
             pathname: "/SearchResults"
         }
         this.contextTypes = {
-            router: () => true, // replace with PropTypes.object if you use them
+            router: () => true, 
         }
     }
 
@@ -67,14 +67,12 @@ class SearchResults extends Component {
     }
 
     render() {
-
-        // Create an array of X components with 1 for each result gathered from Search
         console.log(this.state.results)
         if (this.state.results.length === 0) {
             return (<div className="container sub-container" style={{height: 100}}>
                         <div className="mh-50">
                             <div className="col-12">
-                                <h3>No results were found</h3>
+                                <h3>No available results</h3>
                             </div>
                             <div className="row align-items-center">
                                 <button className="btn btn-link"
@@ -98,7 +96,7 @@ class SearchResults extends Component {
         let queryPhrase = this.state.queryPhrase
         let resultRows = this.state.results[this.state.page].map((result) => {
             return (
-                <SearchSelector key={result.id} item={result} queryPhrase={queryPhrase} navigateTo="/Result"/>
+                <SearchItem key={result.id} item={result} queryPhrase={queryPhrase} navigateTo="/Result"/>
             );
         })
 
@@ -120,7 +118,7 @@ class SearchResults extends Component {
                         </table>
                     </div>
                 </div>
-                <PageSelector handlePageChange={this.handlePageChange}
+                <Pagination handlePageChange={this.handlePageChange}
                                 handlePrev={this.handlePrev}
                                 handleNext={this.handleNext}
                                 numPages={this.state.numPages}

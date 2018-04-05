@@ -56,7 +56,7 @@ export default class SearchItem extends Component {
         let name
 
         if (this.state.item.type === "criminal") {             // NEED TO CHANGE THIS
-            this.changeStateValues()
+            //this.changeStateValues()
             this.changeCriminalValues()
             name = this.state.item.name
             attributes = {
@@ -71,7 +71,7 @@ export default class SearchItem extends Component {
                 Crime: this.state.item.crime
             }
         } else if (this.state.item.type === "state") {    // NEED TO CHANGE THIS
-            this.changeStateValues()
+            //this.changeStateValues()
             name = this.state.item.name
             attributes = {
                 Name: this.state.item.name,
@@ -85,7 +85,7 @@ export default class SearchItem extends Component {
                 Region: this.state.item.region  
             }
         } else if (this.state.item.type === "crime") {    // NEED TO CHANGE THIS
-           this.changeStateValues()
+           //this.changeStateValues()
             name = this.state.item.name
             attributes = {
                 Name: this.state.item.name,

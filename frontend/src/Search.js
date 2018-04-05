@@ -30,7 +30,7 @@ class Search extends Component {
         //console.log(this)
         //this.refs.loader.style = "display: block";
         this.setState({ searchTerm: this.input.value });
-        this.queryInfo(this.input.value)
+        this.searchData(this.input.value)
     }
 
     componentWillReceiveProps(nextProps) {
@@ -41,7 +41,7 @@ class Search extends Component {
         }
     }
 
-    queryInfo = (searchTerm) => {
+    searchData = (searchTerm) => {
         let result
         let options = {
             shouldSort: true,

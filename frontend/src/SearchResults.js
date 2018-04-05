@@ -16,7 +16,7 @@ class SearchResults extends Component {
             page: 0,
             numPages: Math.ceil(this.props.location.state.results.length/10),
             totalResults: this.props.location.state.results.length,
-            pageSize: 10,
+            pgSize: 10,
             searchTerm: this.props.location.state.searchTerm,
             pathname: "/SearchResults"
         }
@@ -70,10 +70,6 @@ class SearchResults extends Component {
 
 
     render() {
-        
-        // if (this.state.results != "") {
-        //     this.changeValues()
-        // }
 
         
         if (this.state.results.length === 0) {
@@ -107,7 +103,7 @@ class SearchResults extends Component {
                 <SearchItem key={result.id} item={result} searchTerm={searchTerm} navigateTo="/Result"/>
             );
         })
-
+        console.log(resultRows)
         return (
             <div className="container sub-container">
                 <div className="row">
@@ -115,8 +111,8 @@ class SearchResults extends Component {
                         <h2 className="sub-header">Search Results</h2>
                         <div>
                             <h4 style={{display: 'inline'}}>Showing:</h4>
-                                <strong> {this.state.page*this.state.pageSize + 1}</strong> -
-                                <strong>{this.state.page*this.state.pageSize + 10 < this.state.totalResults ? this.state.page*this.state.pageSize + 10 : this.state.totalResults}</strong> of
+                                <strong> {this.state.page*this.state.pgSize + 1}</strong> -
+                                <strong>{this.state.page*this.state.pgSize + 10 < this.state.totalResults ? this.state.page*this.state.pgSize + 10 : this.state.totalResults}</strong> of
                                 <strong> {this.state.totalResults}</strong> results
                         </div>
                         <table className="table table-responsive text-left" style={{maxWidth: '60%'}}>

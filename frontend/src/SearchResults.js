@@ -14,8 +14,8 @@ class SearchResults extends Component {
             page: 0,
             numPages: Math.ceil(this.props.location.state.results.length/10),
             totalResults: this.props.location.state.results.length,
-            pgSize: 10,
-            searchTerm: this.props.location.state.searchTerm,
+            pageSize: 10,
+            queryPhrase: this.props.location.state.queryPhrase,
             pathname: "/SearchResults"
         }
         this.contextTypes = {
@@ -44,10 +44,10 @@ class SearchResults extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.location.state.searchTerm !== this.props.location.state.searchTerm ||
+        if (nextProps.location.state.queryPhrase !== this.props.location.state.queryPhrase ||
             nextProps.location.state.results !== this.props.location.state.results) {
             this.setState({
-                searchTerm: nextProps.location.state.searchTerm,
+                queryPhrase: nextProps.location.state.queryPhrase,
                 results: chunk(nextProps.location.state.results, 10),
                 numPages: Math.ceil(nextProps.location.state.results.length/10),
                 totalResults: nextProps.location.state.results.length,
@@ -78,7 +78,7 @@ class SearchResults extends Component {
                             </div>
                             <div className="row align-items-center">
                                 <button className="btn btn-link"
-                                        onClick={this.props.history.goBack}>Go Back</button>
+                                        onClick={this.props.history.return}>Return</button>
                             </div>
                         </div>
                     </div>);
@@ -86,19 +86,19 @@ class SearchResults extends Component {
             return (<div className="container sub-container" style={{height: 100}}>
                 <div className="mh-50">
                     <div className="col-12">
-                        <h3>Sorry, there was an error on our end. Please try your search again.</h3>
+                        <h3> Error! Please search again.</h3>
                     </div>
                     <div className="row align-items-center">
                         <button className="btn btn-link"
-                                onClick={this.props.history.goBack}>Go Back</button>
+                                onClick={this.props.history.return}>Return</button>
                     </div>
                 </div>
             </div>);
         }
-        let searchTerm = this.state.searchTerm
+        let queryPhrase = this.state.queryPhrase
         let resultRows = this.state.results[this.state.page].map((result) => {
             return (
-                <SearchSelector key={result.id} item={result} searchTerm={searchTerm} navigateTo="/Result"/>
+                <SearchSelector key={result.id} item={result} queryPhrase={queryPhrase} navigateTo="/Result"/>
             );
         })
 
@@ -109,8 +109,8 @@ class SearchResults extends Component {
                         <h2 className="sub-header">Search Results</h2>
                         <div>
                             <h4 style={{display: 'inline'}}>Showing:</h4>
-                                <strong> {this.state.page*this.state.pgSize + 1}</strong> -
-                                <strong>{this.state.page*this.state.pgSize + 10 < this.state.totalResults ? this.state.page*this.state.pgSize + 10 : this.state.totalResults}</strong> of
+                                <strong> {this.state.page*this.state.pageSize + 1}</strong> -
+                                <strong>{this.state.page*this.state.pageSize + 10 < this.state.totalResults ? this.state.page*this.state.pageSize + 10 : this.state.totalResults}</strong> of
                                 <strong> {this.state.totalResults}</strong> results
                         </div>
                         <table className="table table-responsive table-hover">

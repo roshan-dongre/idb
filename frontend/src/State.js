@@ -177,8 +177,8 @@ export default class State extends Component {
         let criminalList
         criminalList = this.state.criminals.map((criminal) => {
             return (
-                <tr className="clickable-row" onClick={(e) => self.handleCriminalNavigation(criminal.id, e)}>
-                    <td><strong>{_.startCase(_.camelCase(criminal.name))}</strong></td>
+                <tr className="clickable-row" onClick={(e) => self.handleCriminalNavigation(criminal.criminal_id, e)}>
+                    <td><strong>{_.startCase(_.camelCase(criminal.criminal_name))}</strong></td>
                 </tr>
             );
         })

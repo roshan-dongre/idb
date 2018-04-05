@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import chunk from 'lodash.chunk';
 import axios from 'axios';
-import ItemSelector from './ItemSelector';
-import PageSelector from './PageSelector';
+import ModelOverlay from './ModelOverlay';
+import Pagination from './Pagination';
 import './font/css/font-awesome.min.css'
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
@@ -22,6 +22,11 @@ var containerStyle = {
     height: "80%",
     width: "80%"
 
+}
+
+var divStyle = {
+    display: 'flex',
+    justifyContent: 'center'
 }
 
 export default class Criminals extends Component {
@@ -97,6 +102,7 @@ export default class Criminals extends Component {
         let offset = this.state.page
         let limOff = "?limit="+limit+"&offset="+offset
         let url = "http://api.ontherun.me:5000/criminals" + limOff
+        //let url = "http://18.219.198.152/criminals" + limOff
 
         if (this.state.sortBy !== "") {
             url += "&sort="+this.state.sortBy
@@ -151,18 +157,8 @@ export default class Criminals extends Component {
     
     if (this.state.loading) {
         return (
-            <div className="container sub-container" style={containerStyle}>
-                <div className="row row-m-b">
-                    <div className="col-md-3">
-                        <p>   </p>
-                    </div>
-                    <div className= "col-md-3">
-                        <Circle size={250} color= "green"/>
-                    </div>
-                    <div className= "col-md-3">
-                        <p>   </p>
-                    </div>
-                </div>
+            <div className="container sub-container" style={divStyle}>
+                <Circle size={250} color= "green"/>
             </div>)
     }
     else {
@@ -173,7 +169,7 @@ export default class Criminals extends Component {
             // Create an array of X components with 1 for each beer gathered from API call
             criminalComponents = this.state.criminals.map((criminal) => {
                 return (
-                    <ItemSelector item={criminal} navigateTo="/Criminal"/>
+                    <ModelOverlay item={criminal} navigateTo="/Criminal"/>
                 );
             })
         }
@@ -231,7 +227,7 @@ export default class Criminals extends Component {
                         </div>
                     )
                 })}
-                {<PageSelector handlePageChange={this.handlePageChange}
+                {<Pagination handlePageChange={this.handlePageChange}
                               handlePrev={this.handlePrev}
                               handleNext={this.handleNext}
                               numPages={this.state.numPages}

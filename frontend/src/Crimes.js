@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import chunk from 'lodash.chunk';
 import axios from 'axios';
-import ItemSelector from './ItemSelector';
-import PageSelector from './PageSelector';
+import ModelOverlay from './ModelOverlay';
+import Pagination from './Pagination';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 import InputRange from 'react-input-range';
@@ -15,6 +15,11 @@ var blackStyles = {
 
 var whiteStyles = {
     color: 'grey'
+}
+
+var divStyle = {
+    display: 'flex',
+    justifyContent: 'center'
 }
 
 export default class Crimes extends Component {
@@ -33,7 +38,7 @@ export default class Crimes extends Component {
             pathname: "/Crimes",
             loading: true
         }
-        this.apiUrl = 'http://api.ontherun.me:5000/crimes';
+        //this.apiUrl = 'http://api.ontherun.me:5000/crimes';
     }
 
     componentDidMount () {
@@ -87,6 +92,7 @@ export default class Crimes extends Component {
         let offset = this.state.page
         let limOff = "?limit="+limit+"&offset="+offset
         let url = "http://api.ontherun.me:5000/crimes" + limOff
+        //let url = "http://18.219.198.152/crimes" + limOff
 
         if (this.state.sortBy !== "") {
             url += "&sort="+this.state.sortBy
@@ -160,18 +166,8 @@ export default class Crimes extends Component {
 
     if (this.state.loading) {
         return (
-            <div className="container sub-container">
-                <div className="row row-m-b">
-                    <div className="col-md-3">
-                        <p>   </p>
-                    </div>
-                    <div className= "col-md-3">
-                        <Circle size={250} color= "green"/>
-                    </div>
-                    <div className= "col-md-3">
-                        <p>   </p>
-                    </div>
-                </div>
+            <div className="container sub-container" style={divStyle}>
+                <Circle size={250} color= "green"/>
             </div>)
     }
     else {
@@ -182,7 +178,7 @@ export default class Crimes extends Component {
             // Create an array of X components with 1 for each beer gathered from API call
             crimeComponents = this.state.crimes.map((crime) => {
                 return (
-                    <ItemSelector item={crime} navigateTo="/Crime"/>
+                    <ModelOverlay item={crime} navigateTo="/Crime"/>
                 );
             })
         }
@@ -256,7 +252,7 @@ export default class Crimes extends Component {
                         </div>
                     )
                 })}
-                {<PageSelector handlePageChange={this.handlePageChange}
+                {<Pagination handlePageChange={this.handlePageChange}
                               handlePrev={this.handlePrev}
                               handleNext={this.handleNext}
                               numPages={this.state.numPages}

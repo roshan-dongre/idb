@@ -14,8 +14,6 @@ var style = {
     height: '350px'
 }
 
-Geocode.setApiKey("AIzaSyDkRhH7iB4iZW9dDa-FY7HYb8vpjj19Vsc");
-
 export default class State extends Component {
     constructor (props) {
         super (props);
@@ -63,7 +61,8 @@ export default class State extends Component {
     }
 
     getCrimes = () => {
-        let url = "http://api.ontherun.me:5000/crimestostate/" + this.state.item.abbreviation
+        let url = "http://18.219.198.152/crimestostate/" + this.state.item.abbreviation
+        //let url = "http://api.ontherun.me:5000/crimestostate/" + this.state.item.abbreviation
         let self = this
         axios.get(url)
             .then((res) => {
@@ -77,6 +76,7 @@ export default class State extends Component {
 
     getCriminals = () => {
         let url = "http://api.ontherun.me:5000/criminalstostate/" + this.state.item.abbreviation
+        //let url = "http://18.219.198.152/criminalstostate/" + this.state.item.abbreviation
         let self = this
         axios.get(url)
             .then((res) => {
@@ -95,6 +95,12 @@ export default class State extends Component {
         } else {
             url = "http://api.ontherun.me:5000/states/"+this.state.item.abbreviation
         }
+
+        // if (this.props.location !== undefined && this.props.location.state.selectedId !== undefined) {
+        //     url = "http://18.219.198.152/states/"+this.props.location.state.selectedId
+        // } else {
+        //     url = "http://18.219.198.152/states/"+this.state.item.abbreviation
+        // }
 
         let self = this
         axios.get(url)
@@ -135,6 +141,8 @@ export default class State extends Component {
         Geocode.fromAddress(temp).then(
           response => {
             const { lat, lng } = response.results[0].geometry.location;
+            console.log("Lat: " + lat)
+            console.log("Long: " + lng)
             //self.setState({lat: lat, lng: lng})
             self.setState({center: {lat: lat, lng: lng}})
           },
@@ -182,7 +190,7 @@ export default class State extends Component {
             <div className="container sub-container">
                 <div className="row">
                     <div className="col-md-4">
-                        <div className="text-center" style={{ height: '300px', width: '350px' }}>
+                       <div className="text-center" style={{ height: '300px', width: '350px' }}>
                             <img className=" img-thumbnail img-thumbnail-sm" src={this.state.item.image === undefined ? this.state.item.images : this.state.item.image} alt={this.state.item.name} style = {imageStyles}/>
                             <div>{this.getCoor()}</div>
                             <text> State Map </text>

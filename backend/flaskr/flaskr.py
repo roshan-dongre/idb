@@ -74,7 +74,7 @@ def get_state(state_name):
     if len(state_name) == 2:
         return jsonify(ast.literal_eval(str(State.query.filter_by(abbreviation=state_name).first())))
     else:    
-        return jsonify(ast.literal_eval(str(Crime.query.filter_by(name=state_name).first())))
+        return jsonify(ast.literal_eval(str(State.query.filter_by(name=state_name).first())))
 
 @app.route('/criminals', methods=['GET'])#, subdomain="api")
 def get_criminals():
@@ -207,10 +207,13 @@ def pageNotFound(error):
 "" "" "" "" "" """
 
 if __name__ == '__main__':
+
     db.reflect()
     db.drop_all()
     db.create_all()
+    print("DB has been created...")
 
+    print("Populating Criminals...")
     # Populating Criminals
     data = json.load(open('../criminal_data/sus.txt'))
     criminal_i = 0
@@ -249,6 +252,7 @@ if __name__ == '__main__':
                               type="criminal")
         db.session.add(NewCriminal)
 
+    print("Populating Crimes...")
     # Populating Crimes
     data = json.load(open('../crime_data/json/national'))
     with open('../crime_data/crime_ids.txt') as fp:
@@ -274,6 +278,7 @@ if __name__ == '__main__':
             db.session.add(NewCrime)
             line = fp.readline()
 
+    print("Populating States...")
     # Populating States
     data = json.load(open('../state_data/states2.txt'))
     for file_state in data:
@@ -290,6 +295,7 @@ if __name__ == '__main__':
                         type="state")
         db.session.add(NewState)
 
+    print("Linking models together...")
     # Populating Crime to State relationship
     for abv in statelist:
         with open('../crime_data/json/'+abv) as fp:
@@ -322,5 +328,5 @@ if __name__ == '__main__':
                 db.session.add(NewCrimeCriminal)
 
     db.session.commit()
-    print("Created db\n\n\n")
+    print("DB done!\n")
     app.run(host='0.0.0.0', port=5000)

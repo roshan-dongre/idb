@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Redirect} from 'react-router-dom';
-import './ItemSelector.css'
+import './ModelOverlay.css'
 import 'lodash'
 
 var imageStyles = {
@@ -8,7 +8,7 @@ var imageStyles = {
     height: '250px'
 }
 
-export default class ItemSelector extends Component {
+export default class ModelOverlay extends Component {
     constructor (props) {
         super (props);
             this.state = {
@@ -35,7 +35,6 @@ export default class ItemSelector extends Component {
         if (this.state.navigate) {
             return <Redirect to={{pathname: this.state.navigateTo, state: {item: this.state.item}}} push={true} />;
         }
-        {console.log("Reached1")}
         return (
             <div className="col-md-3 container-thumbnail">
                 <div className="text-center">

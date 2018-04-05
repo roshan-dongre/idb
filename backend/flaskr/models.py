@@ -2,11 +2,15 @@ from flask import Flask
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 
-app = Flask(__name__) # create the application instance :)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////mydb.db' # load config from this file , flaskr.py
+app = Flask(__name__) # create the application instance
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////mydb.db' 
+app.config['SQLALCHEMY_POOL_RECYCLE'] = 15
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 #app.config['SERVER_NAME'] = 'ontherun.me:5000'
 CORS(app)
 db = SQLAlchemy(app)
+
+print("DB connection established...")
 
 class State(db.Model):
     __tablename__ = 'states'

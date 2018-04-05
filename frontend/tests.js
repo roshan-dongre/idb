@@ -12,8 +12,8 @@ import Criminals from './src/Criminals'
 import Crimes from './src/Crimes'
 import States from './src/States'
 import {Route, Switch, withRouter, BrowserRouter } from 'react-router-dom'
-import ItemSelector from './src/ItemSelector'
-import PageSelector from './src/PageSelector'
+import ModelOverlay from './src/ModelOverlay'
+import Pagination from './src/Pagination'
 
 
 // App
@@ -151,26 +151,26 @@ describe('<Home/>', function () {
 });
 
 
-// ItemSelector
-describe('<ItemSelector/>', function () {
-    it('should ItemSelector render without crashing', function () {
-      shallow(<ItemSelector />);
+// ModelOverlay
+describe('<ModelOverlay/>', function () {
+    it('should ModelOverlay render without crashing', function () {
+      shallow(<ModelOverlay />);
     })
 
     it('should have state item', function () {
-      const wrapper = shallow(<ItemSelector />);
+      const wrapper = shallow(<ModelOverlay />);
       expect(wrapper.state().item).to.be.defined;
     });
 
 });
 
-// PageSelector
-describe('<PageSelector/>', function () {
-    it('should PageSelector render without crashing', function () {
-        shallow(<PageSelector />);
+// Pagination
+describe('<Pagination/>', function () {
+    it('should Pagination render without crashing', function () {
+        shallow(<Pagination />);
     })
     it('should have pagination', function () {
-        const wrapper = shallow(<PageSelector />).render();
+        const wrapper = shallow(<Pagination />).render();
         const pagination = wrapper.find('.pagination');
         expect(pagination.to.have.length(1));
         expect(wrapper.state().minPage).to.be.defined;

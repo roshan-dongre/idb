@@ -269,9 +269,9 @@ if __name__ == '__main__':
             NewDesc = strLine[2]
             if(isinstance(NewDesc,str)):
             	NewDesc = unicode(NewDesc, "utf-8")
-            NewCrime = Crime(name=strLine[1],
+            NewCrime = Crime(name=strLine[2].strip(),
                             image=NewImage,
-                            description=NewDesc,
+                            description=NewDesc.strip(),
                             victims=NewVictims,
                             offenders=NewOffenders,
                             count=NewCount,

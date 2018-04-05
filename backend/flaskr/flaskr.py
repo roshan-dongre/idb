@@ -1,7 +1,7 @@
 import os
 from flask import jsonify, request, session, g, redirect, url_for, abort
 from sqlalchemy.sql import select, asc, desc
-from models import State, Criminal, Crime, CrimesState, CrimesCriminal, app, db
+from models import State, Criminal, Crime, CrimesState, CrimesCriminal, CriminalState, app, db
 import ast
 import json
 import unicodedata
@@ -172,18 +172,14 @@ def get_crimestostate(id_val):
 
 @app.route('/criminalstostate', methods=['GET'])#, subdomain="api")
 def get_criminaltostate():
-    ans = []
-    for x in statelist:
-        for y in ast.literal_eval(str(Criminal.query.filter_by(state=x).all())):
-            ans += [{'id': y['id'], 'state': x}]
-    return jsonify(ans)
+    return jsonify(ast.literal_eval(str(CriminalState.query.all())))
 
 @app.route('/criminalstostate/<string:id_val>', methods=['GET'])#, subdomain="api")
 def get_criminalstostate(id_val):
     if(str(id_val).isdigit()):
-        return jsonify([{'state' : ast.literal_eval(str(Criminal.query.filter_by(id=id_val).first()))['state'], 'id' : ast.literal_eval(str(Criminal.query.filter_by(id=id_val).first()))['id']}])
+        return jsonify(ast.literal_eval(str(CriminalState.query.filter_by(criminal_id=id_val).all())))
     if len(id_val) == 2:
-        return jsonify(ast.literal_eval(str(Criminal.query.filter_by(state=id_val).all())))
+        return jsonify(ast.literal_eval(str(CriminalState.query.filter_by(state_name=id_val).all())))
 
 @app.route('/crimestocriminals', methods=['GET'])#, subdomain="api")
 def get_crimestocriminals():
@@ -328,6 +324,19 @@ def mainFunc():
                                                 criminal_id=NewCriminal['id'],
                                                 criminal_name=NewCriminal['name'])
                 db.session.add(NewCrimeCriminal)
+
+    # Populating Criminal to State relationship
+    data = json.load(open('criminal_data/wanted_in.txt'))
+    for entry in data:
+        NewCriminal = ast.literal_eval(str(Criminal.query.filter_by(name=entry['name']).first()))
+        if(NewCriminal==None):
+            continue
+        NewState = ast.literal_eval(str(State.query.filter_by(abbreviation=entry['state']).first()))
+        NewCriminalState = CriminalState(state_id=NewState['id'],
+                                        state_name=NewState['abbreviation'],
+                                        criminal_id=NewCriminal['id'],
+                                        criminal_name=NewCriminal['name'])
+        db.session.add(NewCriminalState)
 
     db.session.commit()
     print("DB done!\n")

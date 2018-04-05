@@ -23,6 +23,14 @@ jobs:
         - npm install newman
         - node_modules/.bin/newman run Postman.json
 
+    - stage: Mocha
+      language: node_js
+      node_js: "8.9"
+      script:
+        - echo Mocha tests
+        - npm install --prefix frontend
+        - npm run test -- prefix frontend &
+
 notifications:
   email: false
   slack:

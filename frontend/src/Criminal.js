@@ -243,6 +243,10 @@ export default class Criminal extends Component {
                                 <td>{this.state.item.nationality == null ? this.state.unknown : this.state.item.nationality}</td>
                             </tr>
                             <tr>
+                                <td><strong>Page:</strong></td>
+                                <td><a href={this.state.item.fbi == null ? this.state.unknown : this.state.item.fbi}>{this.state.item.fbi == null ? this.state.unknown : this.state.item.fbi}</a></td>
+                            </tr>
+                            <tr>
                                 <td><strong>State:</strong></td>
                                 <td> {stateList}</td>
                             </tr>

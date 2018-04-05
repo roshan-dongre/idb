@@ -61,8 +61,8 @@ export default class State extends Component {
     }
 
     getCrimes = () => {
-        let url = "http://18.219.198.152/crimestostate/" + this.state.item.abbreviation
-        //let url = "http://api.ontherun.me:5000/crimestostate/" + this.state.item.abbreviation
+        //let url = "http://18.219.198.152/crimestostate/" + this.state.item.abbreviation
+        let url = "http://api.ontherun.me:5000/crimestostate/" + this.state.item.abbreviation
         let self = this
         axios.get(url)
             .then((res) => {

@@ -37,7 +37,7 @@
   "scripts": {
     "start": "PORT=80 react-scripts start",
     "build": "react-scripts build",
-    "test": "mocha react-scripts test --env=jsdom",
+    "test": "mocha  --require ignore-styles --require babel-polyfill --require babel-core --exit test/home.test.js -r mock-local-storage",
     "eject": "react-scripts eject"
   },
   "devDependencies": {

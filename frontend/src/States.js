@@ -34,7 +34,7 @@ export default class States extends Component {
             pgSize: 16,
             sortBy: "",
             region: "",
-            population: {min: 0, max: 200},
+            population: {min: 0, max: 400},
             area: {min: 0, max: 300},
             pathname: "/States",
             loading: true
@@ -103,7 +103,7 @@ export default class States extends Component {
             url += "&region=" + this.state.region
         }
 
-        if (this.state.population.min !== 0 || this.state.population.max !== 200) {
+        if (this.state.population.min !== 0 || this.state.population.max !== 400) {
             url += "&population_min=" + (this.state.population.min * 100000) + "&population_max=" + (this.state.population.max * 100000)
         }
 
@@ -233,7 +233,7 @@ export default class States extends Component {
                         <div className="col-md-3">
                             <div className = "text-center" style = {whiteStyles}>
                                 <label> <strong> Filter by Population (MM People): </strong> </label>
-                                <InputRange maxValue={200} minValue={0} value={this.state.population} onChange={population => this.setState({ population })} />
+                                <InputRange maxValue={400} minValue={0} value={this.state.population} onChange={population => this.setState({ population })} />
                             </div>
                         </div>
                         <div className="col-md-3">

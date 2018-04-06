@@ -1,19 +1,19 @@
-// import React, {Component} from 'react'
-// import {Carousel, Container, Slide} from 'react-bootstrap'
+import React, {Component} from 'react'
+import {Carousel, Container, Slide} from 'react-bootstrap'
 import { shallow, mount } from 'enzyme';
 import { expect } from 'chai';
 
 
-// import App from './src/App';
-// import About from './src/About'
-// import Home from './src/Home'
-// import Header from './src/Header'
-// import Criminals from './src/Criminals'
-// import Crimes from './src/Crimes'
-// import States from './src/States'
-// import {Route, Switch, withRouter, BrowserRouter } from 'react-router-dom'
-// import ModelOverlay from './src/ModelOverlay'
-// import Pagination from './src/Pagination'
+import App from './src/App';
+import About from './src/About'
+import Home from './src/Home'
+import Header from './src/Header'
+import Criminals from './src/Criminals'
+import Crimes from './src/Crimes'
+import States from './src/States'
+import {Route, Switch, withRouter, BrowserRouter } from 'react-router-dom'
+import ModelOverlay from './src/ModelOverlay'
+import Pagination from './src/Pagination'
 
 
 // App

@@ -201,7 +201,6 @@ describe('<About/>', function () {
       const images = wrapper.find('.img-thumbnail');
       const headers = wrapper.find('h1');
       expect(images.to.have.length(5));
-      expect(headers.at(0).render().text().to.equal('The Slackers About page');
+      expect(headers).at(0).render().text().to.equal('The Slackers About page');
     });
-
 });

@@ -1,7 +1,7 @@
 // import React, {Component} from 'react'
 // import {Carousel, Container, Slide} from 'react-bootstrap'
-// import { shallow, mount } from 'enzyme';
-// import { expect } from 'chai';
+import { shallow, mount } from 'enzyme';
+import { expect } from 'chai';
 
 
 // import App from './src/App';

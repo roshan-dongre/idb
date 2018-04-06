@@ -11,6 +11,7 @@ class State {
   int area
   text bird
   text capital
+  real density
   text flower
   int stateID
   text image

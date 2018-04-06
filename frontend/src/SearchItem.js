@@ -55,8 +55,8 @@ export default class SearchItem extends Component {
         let attributes = {}
         let name
 
-        if (this.state.item.type === "criminal") {             // NEED TO CHANGE THIS
-            //this.changeStateValues()
+        if (this.state.item.type === "criminal") {            
+            
             this.changeCriminalValues()
             name = this.state.item.name
             attributes = {
@@ -70,7 +70,7 @@ export default class SearchItem extends Component {
                 Nationality: this.state.item.nationality,
                 Crime: this.state.item.crime
             }
-        } else if (this.state.item.type === "state") {    // NEED TO CHANGE THIS
+        } else if (this.state.item.type === "state") {    
             //this.changeStateValues()
             name = this.state.item.name
             attributes = {
@@ -84,7 +84,7 @@ export default class SearchItem extends Component {
                 Density: this.state.item.density,
                 Region: this.state.item.region  
             }
-        } else if (this.state.item.type === "crime") {    // NEED TO CHANGE THIS
+        } else if (this.state.item.type === "crime") {    
            //this.changeStateValues()
             name = this.state.item.name
             attributes = {
@@ -98,9 +98,7 @@ export default class SearchItem extends Component {
 
         let self = this
         let searchRows = Object.keys(attributes).map(function(key) {
-            console.log(key)
             if (attributes[key] !== null && attributes[key] !== undefined) {
-                console.log("Search term: " + self.state.searchTerm)
 
             return (
                 <tr>

@@ -70,8 +70,7 @@ class SearchResults extends Component {
 
 
     render() {
-
-        
+       
         if (this.state.results.length === 0) {
             return (<div className="container sub-container" style={{height: 100}}>
                         <div className="mh-50">
@@ -92,7 +91,7 @@ class SearchResults extends Component {
                     </div>
                     <div className="row align-items-center">
                         <button className="btn btn-link"
-                                onClick={this.props.history.return}>Return</button>
+                                onClick={this.props.history.goBack}>Return</button>
                     </div>
                 </div>
             </div>);
@@ -103,7 +102,6 @@ class SearchResults extends Component {
                 <SearchItem key={result.id} item={result} searchTerm={searchTerm} navigateTo="/Result"/>
             );
         })
-        console.log(resultRows)
         return (
             <div className="container sub-container">
                 <div className="row">

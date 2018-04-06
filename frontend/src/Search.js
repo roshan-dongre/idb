@@ -29,7 +29,9 @@ class Search extends Component {
         e.preventDefault()
         //console.log(this)
         //this.refs.loader.style = "display: block";
-        this.setState({ searchTerm: this.input.value });
+        //console.log("Input value: " + this.input.value)
+        console.log("In handle search")
+        this.setState({ searchTerm: this.input.value});
         this.searchData(this.input.value)
     }
 

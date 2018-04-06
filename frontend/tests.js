@@ -30,6 +30,13 @@ describe('<Main/>', function () {
     });
 });
 
+// SearchResults 
+describe('<SearchResults/>', function () {
+    it('should render without crashing', function () {
+        shallow(<SearchResults />);
+    });
+});
+
 // Header
 describe('<Header/>', function () {
     it('should render without crashing', function () {
@@ -48,6 +55,12 @@ describe('<Header/>', function () {
         expect(navItems.at(1).render().text()).to.equal('States');
         expect(navItems.at(2).render().text()).to.equal('Crime');
         expect(navItems.at(3).render().text()).to.equal('About');
+    });
+
+    it('should have a search box', function () {
+        const wrapper = shallow(<Header />);
+        const searchItems = wrapper.find('Search');
+        expect(wrapper.find('Search'));
     });
 });
 

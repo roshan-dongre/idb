@@ -3,7 +3,7 @@ import json
 import errno
 import sys
 
-OFFICES = {"albany": ["NY"], "albuquerque": ["NM"], "anchorage": ["AK"],
+OFFICES = {"albany": ["NY", "VT"], "albuquerque": ["NM"], "anchorage": ["AK"],
     "atlanta": ["GA"], "baltimore": ["DE", "MD"], "birmingham": ["AL"],
     "boston": ["ME", "MA", "NH", "RI"], "buffalo": ["NY"], "charlotte": ["NC"],
     "chicago": ["IL"], "cincinnati": ["OH"], "cleveland": ["OH"],
@@ -23,13 +23,13 @@ OFFICES = {"albany": ["NY"], "albuquerque": ["NM"], "anchorage": ["AK"],
     "stlouis": ["MO"], "tampa": ["FL"], "washingtondc": ["VA", "DC"]}
 
 if __name__ == "__main__":
-    f1 = "sus2.txt"
+    f1 = "sus.txt"
     print("Reading data from %s..." % f1)
     infile = open(f1, "r")
-    line = infile.readline()
-    data = json.loads(line)
+    data = json.load(infile)
     result = []
     for item in data:
+        id = item["id"]
         name = item["title"]
         states = set()
         if(item["field_offices"] != None):
@@ -39,8 +39,8 @@ if __name__ == "__main__":
                     for state in y:
                         states.add(state)
         for state in states:
-            print("%s is wanted in %s" % (name, state))
-            result.append({"name": name, "state": state})
+            print(("%s (#%d) is wanted in %s" % (name, id, state)).encode("utf-8"))
+            result.append({"criminal_id": id, "name": name, "state": state})
     
 
     f2 = "wanted_in.txt"

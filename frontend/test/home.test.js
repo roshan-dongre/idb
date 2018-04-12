@@ -1,6 +1,15 @@
 import React from 'react';
+import App from '../src/App';
 
-describe('a passing test', () => {
+describe('<App/>', () => {
+  const wrapper = shallow(<App />);
+
+  it('should render without crashing', () => {
+    expect(wrapper.type());
+  });
+});
+
+describe('A passing test, for sanity\'s sake', () => {
   it('should pass', () => {
     expect(true).to.be.true;
   });

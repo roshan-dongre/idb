@@ -43,7 +43,7 @@
   "scripts": {
     "start": "PORT=80 react-scripts start",
     "build": "react-scripts build",
-    "test": "mocha --compilers js:babel-register --require ./test/helpers.js --require ./test/dom.js --recursive",
+    "test": "mocha --compilers js:babel-register --require ./test/helper.js --require ./test/dom.js --recursive",
     "eject": "react-scripts eject"
   },
   "devDependencies": {

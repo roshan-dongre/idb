@@ -240,18 +240,24 @@ export default class State extends Component {
                             </tr>
                             </tbody>
                         </table>
+
+                        <div class="col-sm-6">
                         <h3 className="sub-header">Crimes In This State</h3>
                         <table className="table table-responsive table-hover text-left">
                             <tbody>
                             {crimeList}
                             </tbody>
                         </table>
-                         <h3 className="sub-header">Criminals In This State</h3>
-                        <table className="table table-responsive table-hover text-left">
-                            <tbody>
-                            {criminalList}
-                            </tbody>
-                        </table>
+                        </div>
+
+                        <div class="col-sm-6">
+                        <h3 className="sub-header">Criminals In This State</h3>
+                            <table className="table table-responsive table-hover text-left">
+                                <tbody>
+                                {criminalList}
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>

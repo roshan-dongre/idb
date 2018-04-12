@@ -257,7 +257,7 @@ def mainFunc():
         i = 1;
         while line:
             strLine = str(line).split(":") 
-            NewImage = "https://raw.githubusercontent.com/roshan-dongre/idb/master/crimephotos/"+str(i)+".jpg"
+            NewImage = "https://raw.githubusercontent.com/roshan-dongre/idb/master/backend/data/crimephotos/"+str(i)+".jpg"
             NewOffenders = data[i-1]['offenders']
             NewVictims = data[i-1]['victims']
             NewCount = data[i-1]['count']

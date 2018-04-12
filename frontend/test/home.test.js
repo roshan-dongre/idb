@@ -1,14 +1,13 @@
 import React from 'react';
-import App from './src/App';
-import About from './src/About'
-import Home from './src/Home'
-import Header from './src/Header'
-import Criminals from './src/Criminals'
-import Crimes from './src/Crimes'
-import States from './src/States'
-import {Route, Switch, withRouter, BrowserRouter } from 'react-router-dom'
-import ModelOverlay from './src/ModelOverlay'
-import Pagination from './src/Pagination'
+import App from '../src/App';
+import About from '../src/About'
+import Home from '../src/Home'
+import Header from '../src/Header'
+import Criminals from '../src/Criminals'
+import Crimes from '../src/Crimes'
+import States from '../src/States'
+import ModelOverlay from '../src/ModelOverlay'
+import Pagination from '../src/Pagination'
 
 describe('a passing test', () => {
   it('should pass', () => {

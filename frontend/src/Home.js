@@ -47,7 +47,7 @@ class Home extends React.Component {
                     </Carousel.Item>
                     <Carousel.Item>
                         <img className="center-block" alt="900x500"
-                             src="https://upload.wikimedia.org/wikipedia/commons/b/bd/US_Presidential_Flag_Navy_1899.svg"
+                             src="http://wallpaperscraft.com/image/city_statue_statue_of_liberty_new_york_874_4320x2874.jpg"
                              style={imageStyles}/>
                         <Carousel.Caption>
                             <h3>A Life of Crime</h3>

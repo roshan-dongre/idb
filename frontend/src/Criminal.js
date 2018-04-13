@@ -15,13 +15,6 @@ var style = {
 }
 
 
-// Geocode.setApiKey("AIzaSyDkRhH7iB4iZW9dDa-FY7HYb8vpjj19Vsc");
-
-// var googleMapsClient = require('@google/maps').createClient({
-//   key: 'AIzaSyDkRhH7iB4iZW9dDa-FY7HYb8vpjj19Vsc'
-// });
-
-
 export default class Criminal extends Component {
     constructor (props) {
         super (props);
@@ -49,7 +42,6 @@ export default class Criminal extends Component {
                 lng: 0
             }
         }
-        //this.apiUrl = 'http://api.ontherun.me:5000/criminals';
     }
 
     componentDidMount () {
@@ -84,7 +76,6 @@ export default class Criminal extends Component {
     getCrimes = () => {
         if (this.state.item.id !== undefined) {
         let url = "http://api.ontherun.me:5000/criminaltocrimes/" + this.state.item.id 
-        //let url = "http://18.219.198.152/criminaltocrimes/" + this.state.item.id
         let self = this
         axios.get(url)
             .then((res) => {
@@ -100,10 +91,8 @@ export default class Criminal extends Component {
         let url
         if (this.props.location !== undefined && this.props.location.state.selectedId !== undefined) {
             url = "http://api.ontherun.me:5000/criminals/"+this.props.location.state.selectedId
-            //url = "http://18.219.198.152/criminals/" + this.props.location.state.selectedId
         } else {
             url = "http://api.ontherun.me:5000/criminals/"+this.state.item.id
-            //url = "http://18.219.198.152/criminals/" + this.state.item.id
         }
         let self = this
         axios.get(url)
@@ -251,13 +240,15 @@ export default class Criminal extends Component {
                                 <td> {stateList}</td>
                             </tr>
                             <tr>
-                                <td><strong>Description:</strong></td>
-                                <td>{this.state.item.crime}</td>
-                            </tr>
-                            <tr>
                                 <td><strong>Crime:</strong></td>
                                 <td>{crimeList}</td>
                             </tr>
+                            <tr>
+                                <td><strong>Description:</strong></td>
+                                <td>{this.state.item.crime}</td>
+                            </tr>
+
+                           
                             </tbody>
                         </table>
                     </div>

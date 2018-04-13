@@ -177,18 +177,24 @@ export default class Crime extends Component {
                                 </tr>
                                 </tbody>
                             </table>
+
+                            <div class="col-sm-6">
                             <h3 className="sub-header">States With This Crime</h3>
                             <table className="table table-responsive table-hover text-left">
                                 <tbody>
                                 {stateList}
                                 </tbody>
                             </table>
-                             <h3 className="sub-header">Criminals Committing This Crime</h3>
+                            </div>
+
+                            <div class="col-sm-6">
+                             <h3 className="sub-header">Criminals Guilty of This Crime</h3>
                             <table className="table table-responsive table-hover text-left">
                                 <tbody>
                                 {criminalList}
                                 </tbody>
                             </table>
+                            </div>
                         </div>
                     </div>
                 </div>

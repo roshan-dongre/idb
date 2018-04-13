@@ -1,0 +1,13 @@
+Population p:
+tiny: p < 1M
+small: 1M <= p < 3M
+medium: 3M <= p < 5M
+large: 5M <= p < 10M
+giant: p >= 10M
+
+Area a:
+tiny: a < 10K sq.mi
+small: 10K <= a < 50K sq.mi
+medium: 50K <= a < 70K sq.mi
+large: 70K <= a < 100K sq.mi
+giant: a >= 100K sq.mi

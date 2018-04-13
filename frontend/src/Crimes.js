@@ -45,70 +45,39 @@ export default class Crimes extends Component {
         this.callAPI()
     }
 
-    handlePageChange = (page, e) => {
+    handlePageChange(page, e) {
         e.preventDefault()
         this.setState({page: page})
     }
 
-    handlePrev = (e) => {
+    handlePrev(e) {
         e.preventDefault()
         if (this.state.page > 0) {
             this.setState({page: this.state.page - 1})
         }
     }
 
-    handleNext = (e) => {
+    handleNext(e) {
         e.preventDefault()
         if (this.state.page < this.state.numPages - 1) {
             this.setState({page: this.state.page + 1})
         }
     }
 
-    /*handleCount = (e) => {
-        if (e != null) {
-            this.setState({count: e.value})
-        }
-    }
-
-    handleOffenders = (e) => {
-        if (e != null) {
-            this.setState({offenders: e.value})
-        }
-    }
-
-    handleVictims = (e) => {
-        if (e != null) {
-            this.setState({victims: e.value})
-        }
-    }*/
-
-    sort = (order) => {
+    sort(order) {
         this.setState({sortBy: order})
     }
 
-    callAPI = () => {
+    callAPI() {
 
         let limit = this.state.pgSize
         let offset = this.state.page
         let limOff = "?limit="+limit+"&offset="+offset
         let url = "http://api.ontherun.me:5000/crimes" + limOff
-        //let url = "http://18.219.198.152/crimes" + limOff
 
         if (this.state.sortBy !== "") {
             url += "&sort="+this.state.sortBy
         }
-
-        /*if (this.state.count !== 0) {
-            url += "&count="+this.state.count
-        }
-
-        if (this.state.offenders !== 0) {
-            url += "&offenders="+this.state.offenders
-        }
-
-        if (this.state.victims !== 0) {
-            url += "&victims="+this.state.victims
-        }*/
 
         if (this.state.count.min !== 0 || this.state.count.max !== 750) {
             url += "&count_min=" + (this.state.count.min * 1000) + "&count_max=" + (this.state.count.max * 1000)

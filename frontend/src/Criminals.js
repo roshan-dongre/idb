@@ -52,58 +52,52 @@ export default class Criminals extends Component {
         this.callAPI()
     }
 
-    handlePageChange = (page, e) => {
+    handlePageChange(page, e) {
         e.preventDefault()
         this.setState({page: page})
     }
 
-    handlePrev = (e) => {
+    handlePrev(e) {
         e.preventDefault()
         if (this.state.page > 0) {
             this.setState({page: this.state.page - 1})
         }
     }
 
-    handleNext = (e) => {
+    handleNext(e) {
         e.preventDefault()
         if (this.state.page < this.state.numPages - 1) {
             this.setState({page: this.state.page + 1})
         }
     }
 
-    handleSex = (e) => {
+    handleSex(e) {
         if (e != null) {
             this.setState({sex: e.value})
         }
     }
-    handleRace = (e) => {
+    handleRace(e) {
         if (e != null) {
             this.setState({race: e.value})
         }
     }
-    /*handleHeight = (e) => {
-        if (e != null) {
-            this.setState({height: e.value})
-        }
-    }*/
-    handleHeight = (value) => {
+    handleHeight(value) {
         this.setState({
           height_min: value
         })
     }
 
-    sort = (order) => {
+    sort(order) {
         this.setState({sortBy: order})
     }
 
-    callAPI = () => {
+    callAPI() {
 
         let limit = this.state.pgSize
         let offset = this.state.page
         let limOff = "?limit="+limit+"&offset="+offset
         let url = "http://api.ontherun.me:5000/criminals" + limOff
-        //let url = "http://18.219.198.152/criminals" + limOff
-
+        
         if (this.state.sortBy !== "") {
             url += "&sort="+this.state.sortBy
         }
@@ -113,9 +107,6 @@ export default class Criminals extends Component {
         if (this.state.race !== "" && this.state.race !== "All") {
             url += "&race=" + this.state.race
         }
-        /*if (this.state.height !== 0) {
-            url += "&height=" + this.state.height
-        }*/
         if (this.state.height.min !== 50 || this.state.height.max !== 80) {
             url += "&height_min=" + this.state.height.min + "&height_max=" + this.state.height.max 
         }

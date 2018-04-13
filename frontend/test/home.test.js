@@ -4,9 +4,9 @@ import Enzyme from 'enzyme';
 import {shallow, mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 Enzyme.configure({ adapter: new Adapter() });
-import Search from '../src/Search';
+import Home from '../src/Home';
 
-describe('<App/>', () => {
+describe('<Home/>', () => {
 
   before(function () {
   	this.jsdom = require('jsdom-global')()
@@ -16,10 +16,23 @@ describe('<App/>', () => {
   	this.jsdom()
   })
 
-  const wrapper = shallow(<Search />);
+  const wrapper = shallow(<Home />);
 
   it('should render without crashing', () => {
-    expect(wrapper.type());
+    expect(wrapper);
+  })
+
+  it('should have 4 items: Albums, Artists, Movies and TV, and Making Connections', function () {
+    const carouselItems = wrapper.find('Carousel.Item');
+    expect(carouselItems).to.have.length(3);
+    expect(carouselItems.at(0).render().src().to.equal('http://getwallpapers.com/wallpaper/full/5/c/9/89804.jpg');
+    expect(carouselItems.at(1).render().src().to.equal('https://cdn01.theintercept.com/wp-uploads/sites/1/2017/12/fbi-peter-maass-reality-winner-2-1513811184-article-header.jpg');
+    expect(carouselItems.at(2).render().src().to.equal('https://theintercept.imgix.net/wp-uploads/sites/1/2017/12/fbi-interrogation-1513811579.jpg?auto=compress%2Cformat&q=90&w=1024&h=683');  
+  })
+
+  it('should render a header and a caption', () => {
+    expect(wrapper.find('h3').length).to.equal(1);
+    expect(wrapper.find('p').length).to.equal(1);
   });
 });
 

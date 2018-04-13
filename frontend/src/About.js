@@ -37,7 +37,7 @@ componentDidMount() {
     this.callAPI()
 }
 
-callAPI = () => {
+callAPI() {
         let url = "https://api.github.com/repos/roshan-dongre/idb/stats/contributors"
 
         let self = this

@@ -46,48 +46,36 @@ export default class States extends Component {
         this.callAPI()
     }
 
-    handlePageChange = (page, e) => {
+    handlePageChange(page, e) {
         e.preventDefault()
         this.setState({page: page})
     }
 
-    handlePrev = (e) => {
+    handlePrev(e) {
         e.preventDefault()
         if (this.state.page > 0) {
             this.setState({page: this.state.page - 1})
         }
     }
 
-    handleNext = (e) => {
+    handleNext(e) {
         e.preventDefault()
         if (this.state.page < this.state.numPages - 1) {
             this.setState({page: this.state.page + 1})
         }
     }
 
-    handleRegion = (e) => {
+    handleRegion(e) {
         if (e != null) {
             this.setState({region: e.value})
         }
     }
 
-    /*handlePopulation = (e) => {
-        if (e != null) {
-            this.setState({population: e.value})
-        }
-    }
-
-    handleArea = (e) => {
-        if (e != null) {
-            this.setState({area: e.value})
-        }
-    }*/
-
-    sort = (order) => {
+    sort(order) {
         this.setState({sortBy: order})
     }
 
-    callAPI = () => {
+    callAPI() {
 
         let limit = this.state.pgSize
         let offset = this.state.page

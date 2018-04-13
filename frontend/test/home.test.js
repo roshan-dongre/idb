@@ -4,7 +4,11 @@ import Enzyme from 'enzyme';
 import {shallow, mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 Enzyme.configure({ adapter: new Adapter() });
+
+//Importing our modules
 import Home from '../src/Home';
+import App from '../src/App';
+import About from '../src/About';
 
 describe('<Home/>', () => {
 
@@ -22,12 +26,9 @@ describe('<Home/>', () => {
     expect(wrapper);
   })
 
-  it('should have 4 items: Albums, Artists, Movies and TV, and Making Connections', function () {
+  it('should have 1 carousel displayed on screen', function () {
     const carouselItems = wrapper.find('Carousel.Item');
-    expect(carouselItems).to.have.length(3);
-    expect(carouselItems).at(0).render().src().to.equal('http://getwallpapers.com/wallpaper/full/5/c/9/89804.jpg');
-    expect(carouselItems).at(1).render().src().to.equal('https://cdn01.theintercept.com/wp-uploads/sites/1/2017/12/fbi-peter-maass-reality-winner-2-1513811184-article-header.jpg');
-    expect(carouselItems).at(2).render().src().to.equal('https://theintercept.imgix.net/wp-uploads/sites/1/2017/12/fbi-interrogation-1513811579.jpg?auto=compress%2Cformat&q=90&w=1024&h=683');  
+    expect(carouselItems).to.have.length(1);
   })
 
   it('should render a header and a caption', () => {
@@ -36,18 +37,46 @@ describe('<Home/>', () => {
   });
 });
 
-describe('A passing test, for sanity\'s sake', () => {
-  it('should pass', () => {
-    expect(true).to.be.true;
+describe('</App>', () => {
+
+  before(function () {
+    this.jsdom = require('jsdom-global')()
+  })
+
+  after(function () {
+    this.jsdom()
+  })
+
+  const wrapper = shallow(<App />);
+  it('should render without crashing', () => {
+    expect(wrapper);
   });
 });
 
-// // App
-// describe('<App/>', function () {
-//     it('should render without crashing', function () {
-//         shallow(<App />);
-//     });
-// });
+//About
+describe('<About/>', () => {
+
+    before(function () {
+      this.jsdom = require('jsdom-global')()
+    })
+
+    after(function () {
+      this.jsdom()
+    })
+
+    const wrapper = shallow(<About />);
+
+    it('should render without crashing', () => {
+        expect(wrapper);
+    })
+
+    it('should contain the correct amount of data', () => {
+      const images = wrapper.find('.img-thumbnail');
+      const headers = wrapper.find('h1');
+      expect(images.to.have.length(5));
+      expect(headers).at(0).render().text().to.equal('The Slackers About page');
+    });
+});
 
 // // Main 
 // describe('<Main/>', function () {
@@ -167,28 +196,6 @@ describe('A passing test, for sanity\'s sake', () => {
 //     });
 // });
 
-// // Home
-// describe('<Home/>', function () {
-//     it('should render without crashing', function () {
-//         shallow(<Home />);
-//     })
-
-//     it('should have 4 items: Albums, Artists, Movies and TV, and Making Connections', function () {
-//         const wrapper = shallow(<Home />);
-//         const carouselItems = wrapper.find('Carousel.Item');
-//         expect(carouselItems).to.have.length(3);
-//         expect(carouselItems).at(0).render().src().to.equal('http://getwallpapers.com/wallpaper/full/5/c/9/89804.jpg');
-//         expect(carouselItems).at(1).render().src().to.equal('https://cdn01.theintercept.com/wp-uploads/sites/1/2017/12/fbi-peter-maass-reality-winner-2-1513811184-article-header.jpg');
-//         expect(carouselItems).at(2).render().src().to.equal('https://theintercept.imgix.net/wp-uploads/sites/1/2017/12/fbi-interrogation-1513811579.jpg?auto=compress%2Cformat&q=90&w=1024&h=683');  
-//     })
-
-//     it('should render a header and a caption', () => {
-//       const wrapper = shallow(<Home />);
-//       expect(wrapper.find('h3').length).to.equal(1);
-//       expect(wrapper.find('p').length).to.equal(1);
-//     });
-// });
-
 
 // // ModelOverlay
 // describe('<ModelOverlay/>', function () {
@@ -215,19 +222,4 @@ describe('A passing test, for sanity\'s sake', () => {
 //         expect(wrapper.state().minPage).to.be.defined;
 //         expect(wrapper.state().maxPage).to.be.defined;
 //     })
-// });
-
-// //About
-// describe('<About/>', function () {
-//     it('should About render without crashing', function () {
-//         shallow(<About />).render();
-//     });
-
-//     it('should contain the correct amount of data', function () {
-//       const wrapper = shallow(<About />);
-//       const images = wrapper.find('.img-thumbnail');
-//       const headers = wrapper.find('h1');
-//       expect(images.to.have.length(5));
-//       expect(headers).at(0).render().text().to.equal('The Slackers About page');
-//     });
 // });

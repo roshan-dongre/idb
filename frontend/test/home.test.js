@@ -1,8 +1,22 @@
 import React from 'react';
-import App from '../src/App';
+import { expect } from 'chai';
+import Enzyme from 'enzyme';
+import {shallow, mount} from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+Enzyme.configure({ adapter: new Adapter() });
+import Search from '../src/Search';
 
 describe('<App/>', () => {
-  const wrapper = shallow(<App />);
+
+  before(function () {
+  	this.jsdom = require('jsdom-global')()
+  })
+
+  after(function () {
+  	this.jsdom()
+  })
+
+  const wrapper = shallow(<Search />);
 
   it('should render without crashing', () => {
     expect(wrapper.type());

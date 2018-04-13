@@ -60,7 +60,7 @@ export default class State extends Component {
         }
     }
 
-    getCrimes = () => {
+    getCrimes() {
         //let url = "http://18.219.198.152/crimestostate/" + this.state.item.abbreviation
         let url = "http://api.ontherun.me:5000/crimestostate/" + this.state.item.abbreviation
         let self = this
@@ -74,7 +74,7 @@ export default class State extends Component {
             });
     }
 
-    getCriminals = () => {
+    getCriminals() {
         let url = "http://api.ontherun.me:5000/criminalstostate/" + this.state.item.abbreviation
         //let url = "http://18.219.198.152/criminalstostate/" + this.state.item.abbreviation
         let self = this
@@ -88,7 +88,7 @@ export default class State extends Component {
             });
     }
 
-    callAPI = () => {
+    callAPI() {
         let url
         if (this.props.location !== undefined && this.props.location.state.selectedId !== undefined) {
             url = "http://api.ontherun.me:5000/states/"+this.props.location.state.selectedId
@@ -113,7 +113,7 @@ export default class State extends Component {
             });
     }
 
-    handleCrimeNavigation = (crimeId, e) => {
+    handleCrimeNavigation(crimeId, e) {
         e.preventDefault()
         this.setState({
             navigate: true,
@@ -122,7 +122,7 @@ export default class State extends Component {
         })
     }
 
-    handleCriminalNavigation = (criminalId, e) => {
+    handleCriminalNavigation(criminalId, e) {
         e.preventDefault()
         this.setState({
             navigate: true,
@@ -131,7 +131,7 @@ export default class State extends Component {
         })
     }
 
-    getCoor = () => {
+    getCoor() {
         let self = this
         var temp = this.state.item.name
         if (this.state.item.name !== undefined) {

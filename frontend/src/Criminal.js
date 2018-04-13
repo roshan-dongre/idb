@@ -61,7 +61,7 @@ export default class Criminal extends Component {
         }
     }
 
-    getStates = () => {
+    getStates() {
         let url = "http://api.ontherun.me:5000/criminalstostate/" + this.state.item.id
         let self = this
         axios.get(url)
@@ -73,7 +73,7 @@ export default class Criminal extends Component {
             });
     }
 
-    getCrimes = () => {
+    getCrimes() {
         if (this.state.item.id !== undefined) {
         let url = "http://api.ontherun.me:5000/criminaltocrimes/" + this.state.item.id 
         let self = this
@@ -87,7 +87,7 @@ export default class Criminal extends Component {
         }
     }
 
-    callAPI = () => {
+    callAPI() {
         let url
         if (this.props.location !== undefined && this.props.location.state.selectedId !== undefined) {
             url = "http://api.ontherun.me:5000/criminals/"+this.props.location.state.selectedId
@@ -104,7 +104,7 @@ export default class Criminal extends Component {
             });
     }
 
-    handleStateNavigation = (stateId, e) => {
+    handleStateNavigation(stateId, e) {
         e.preventDefault()
         this.setState({
             navigate: true,
@@ -113,7 +113,7 @@ export default class Criminal extends Component {
         })
     }
 
-    handleCrimeNavigation = (crimeId,e) => {
+    handleCrimeNavigation(crimeId,e) {
         e.preventDefault()
         this.setState({
             navigate: true,
@@ -122,7 +122,7 @@ export default class Criminal extends Component {
         })
     }
 
-    changeValues = () => {
+    changeValues() {
         console.log(this.state)
         var striptags = require('striptags');
         this.state.item.crime = striptags(this.state.item.crime)
@@ -130,7 +130,7 @@ export default class Criminal extends Component {
         this.state.item.hair = this.state.item.hair.slice(0,1).toUpperCase() + this.state.item.hair.slice(1, this.state.item.hair.length)
     }
 
-    getCoor = () => {
+    getCoor() {
         let self = this
         Geocode.fromAddress(this.state.item.field_office).then(
           response => {

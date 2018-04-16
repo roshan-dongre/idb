@@ -45,19 +45,19 @@ export default class Crimes extends Component {
         this.callAPI()
     }
 
-    handlePageChange(page, e) {
+    handlePageChange = (page, e) => {
         e.preventDefault()
         this.setState({page: page})
     }
 
-    handlePrev(e) {
+    handlePrev = (e) => {
         e.preventDefault()
         if (this.state.page > 0) {
             this.setState({page: this.state.page - 1})
         }
     }
 
-    handleNext(e) {
+    handleNext = (e) => {
         e.preventDefault()
         if (this.state.page < this.state.numPages - 1) {
             this.setState({page: this.state.page + 1})

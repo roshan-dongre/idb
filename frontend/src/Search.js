@@ -25,7 +25,7 @@ class Search extends Component {
         this.allKeys = criminalKeys.concat(stateKeys).concat(crimeKeys)
     }
 
-    handleSearch(e) {
+    handleSearch = (e) => {
         e.preventDefault()
         //console.log(this)
         //this.refs.loader.style = "display: block";

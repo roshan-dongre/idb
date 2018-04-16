@@ -4,4 +4,4 @@
 echo "Building Image..."
 docker build -t db_image .
 echo "Building Container..."
-docker run --name db_container -d -p 5000:5000 db_image
+docker run --name db_container -d -p 80:80 db_image

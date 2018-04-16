@@ -5,3 +5,17 @@
 .Highlight {
     background-color: #ffd54f;
 }
+
+body { 
+    /* The image used */
+    background-image: url("https://images.pexels.com/photos/137077/pexels-photo-137077.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+
+    /* Set a specific height */
+    height: 500px; 
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

@@ -163,7 +163,7 @@ export default class States extends Component {
     if (this.state.loading) {
         return (
             <div className="container sub-container" style={divStyle}>
-                <Circle size={250} color= "green"/>
+                <Circle size={250} color= "blue"/>
             </div>)
     }
     else {

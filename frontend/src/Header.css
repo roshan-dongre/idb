@@ -31,8 +31,8 @@ body {
     font-size:150%;
     text-transform: uppercase;
     font-weight: bold;
-    padding-top: 10px;
-    padding-bottom: 5px;
+    padding-top: 0px;
+    padding-bottom: 0px;
     text-align: center;
 }
 
@@ -82,4 +82,6 @@ body {
 .navbar-default {
 background-image: none;
 background-color: #070605;
+margin-bottom: 0px;
+font-size: large;
 }

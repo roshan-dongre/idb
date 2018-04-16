@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Redirect} from 'react-router-dom';
+import {Thumbnail, Button} from 'react-bootstrap'
 import './ModelOverlay.css'
 import 'lodash'
 
@@ -42,6 +43,9 @@ export default class ModelOverlay extends Component {
                         <img className="img-thumbnail" src={this.state.item.image} alt={this.state.item.name} title={this.state.item.name} style = {imageStyles}/>
                         <div className="overlay">
                             <div className="text">{_.startCase(_.camelCase(this.state.item.name))}</div>
+                        </div>
+                        <div class="caption">
+                            <p>Lorem ipsum...</p>
                         </div>
                     </div>
                 </div>

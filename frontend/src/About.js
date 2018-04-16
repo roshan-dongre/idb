@@ -1,8 +1,7 @@
 import React from 'react'
-import {Row, Col, Panel} from 'react-bootstrap'
+import {Row, Col, Panel, Button, Modal, Well} from 'react-bootstrap'
 import './About.css'
 import axios from 'axios';
-
 
 var imageStyles = {
     width: '400px',
@@ -12,13 +11,36 @@ var imageStyles = {
 var linkStyles = {
     color: 'white'
 }
+
+var textStyles = {
+    color: 'black'
+}
+
+var textStylesGray = {
+    color: 'gray'
+}
     
 export default class About extends React.Component {
 
 
 constructor(props) {
     super(props);
+    this.handleShowRicardo = this.handleShowRicardo.bind(this);
+    this.handleCloseRicardo = this.handleCloseRicardo.bind(this);
+    this.handleShowRoshan = this.handleShowRoshan.bind(this);
+    this.handleCloseRoshan = this.handleCloseRoshan.bind(this);
+    this.handleShowZara = this.handleShowZara.bind(this);
+    this.handleCloseZara = this.handleCloseZara.bind(this);
+    this.handleShowRamon = this.handleShowRamon.bind(this);
+    this.handleCloseRamon = this.handleCloseRamon.bind(this);
+    this.handleShowKrishna = this.handleShowKrishna.bind(this);
+    this.handleCloseKrishna = this.handleCloseKrishna.bind(this);
     this.state = {
+        showRicardo: false,
+        showRoshan: false,
+        showZara: false,
+        showRamon: false,
+        showKrishna: false,
         ricardoCommits: 0,
         roshanCommits: 0,
         zaraCommits: 0,
@@ -35,6 +57,46 @@ constructor(props) {
 
 componentDidMount() {
     this.callAPI()
+}
+
+handleCloseRicardo() {
+    this.setState({ showRicardo: false });
+}
+
+handleShowRicardo() {
+    this.setState({ showRicardo: true });
+}
+
+handleCloseRoshan() {
+    this.setState({ showRoshan: false });
+}
+
+handleShowRoshan() {
+    this.setState({ showRoshan: true });
+}
+
+handleCloseZara() {
+    this.setState({ showZara: false });
+}
+
+handleShowZara() {
+    this.setState({ showZara: true });
+}
+
+handleCloseRamon() {
+    this.setState({ showRamon: false });
+}
+
+handleShowRamon() {
+    this.setState({ showRamon: true });
+}
+
+handleCloseKrishna() {
+    this.setState({ showKrishna: false });
+}
+
+handleShowKrishna() {
+    this.setState({ showKrishna: true });
 }
 
 callAPI() {
@@ -97,87 +159,183 @@ render () {
 
             <div>
 
-                <header className="bg-secondary text-white">
+                <header className="text-white bg-first">
                   <div className="container text-center">
                     <h1>The Slackers About Page</h1>
                     <p className="lead"></p>
                   </div>
                 </header>
+                    <div className = "bg-second" >
+                        <div className = "container">
+                        <div className="row">
+                            <div className="col-md-12">
+                                <div className="text-center">
+                                    <h1 className="title">The Team</h1>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div className = "bg-third">
+                        <div className= "container">
+                            <div className="row">
+                                <div className="col-md-4">
+                                    <div className="text-center">
+                                        <img className="img-thumbnail" src="https://larius11.github.io/cs373-blog/assets/headshot.jpg" alt="Ricardo Pic" data-toggle="modal" data-target="#ricardoModal" style = {imageStyles}/>
+                                        <h2>Ricardo Riveron</h2>
+                                        <Button bsStyle="primary" bsSize="large" onClick={this.handleShowRicardo}>
+                                        Learn about Ricardo!
+                                        </Button>
+                                    </div>
+                                </div>
+                                <Modal show={this.state.showRicardo} onHide={this.handleCloseRicardo} style = {textStyles}>
+                                  <Modal.Header closeButton>
+                                    <Modal.Title>Ricardo Riveron</Modal.Title>
+                                  </Modal.Header>
+                                  <Modal.Body>
+                                    <h4>Biography</h4>
+                                    <p>
+                                      4th year CS student currently working full-time at H-E-B. I love to play music, watch netflix, and play videogames when I'm not too busy doing work.
+                                    </p>
+                                    <hr />
+                                    <h4>Responsibilities and Commit Info</h4>
+                                    <p>Responsibilities: Set up the database and a large part of the backend.</p>
+                                    <p>Number of commits: {this.state.ricardoCommits}</p>
+                                    <p>Number of issues: {this.state.ricardoIssues}</p>
+                                    <p>Number of unit tests: 0</p>
+                                  </Modal.Body>
+                                  <Modal.Footer>
+                                    <Button onClick={this.handleCloseRicardo}>Close</Button>
+                                  </Modal.Footer>
+                                </Modal>
+                                <div className="col-md-4">
+                                    <div className="text-center">
+                                        <img className="img-thumbnail" src="https://avatars3.githubusercontent.com/u/14967965?s=460&v=4" alt="Roshan Pic" data-toggle="modal" data-target="#roshanModal" style = {imageStyles}/>
+                                        <h2>Roshan Dongre</h2>
+                                        <Button bsStyle="success" bsSize="large" onClick={this.handleShowRoshan}>
+                                        Learn about Roshan!
+                                        </Button>
+                                    </div>
+                                </div>
+                                <Modal show={this.state.showRoshan} onHide={this.handleCloseRoshan} style = {textStyles}>
+                                  <Modal.Header closeButton>
+                                    <Modal.Title>Roshan Dongre</Modal.Title>
+                                  </Modal.Header>
+                                  <Modal.Body>
+                                    <h4>Biography</h4>
+                                    <p>
+                                      Senior pursuing a double major in Computer Science and Finance. Interested in trading and sports analytics. I enjoy playing tennis, working out, and playing poker.
+                                    </p>
+                                    <hr />
+                                    <h4>Responsibilities and Commit Info</h4>
+                                    <p>Responsibilities: Front-end development including filtering, searching, and all the pages. AWS/Namecheap.</p>
+                                    <p>Number of commits: {this.state.roshanCommits}</p>
+                                    <p>Number of issues: {this.state.roshanIssues}</p>
+                                    <p>Number of unit tests: 0</p>
+                                  </Modal.Body>
+                                  <Modal.Footer>
+                                    <Button onClick={this.handleCloseRoshan}>Close</Button>
+                                  </Modal.Footer>
+                                </Modal>
+                                <div className="col-md-4">
+                                    <div className="text-center">
+                                        <img className="img-thumbnail" src="https://zaralouis.files.wordpress.com/2018/01/headshot1.jpg?w=2048&h=1814" alt="Zara Pic" data-toggle="modal" data-target="#zaraModal" style = {imageStyles}/>
+                                        <h2>Zara Louis</h2>
+                                        <Button bsStyle="danger" bsSize="large" onClick={this.handleShowZara}>
+                                        Learn about Zara!
+                                        </Button>
+                                    </div>
+                                </div>
+                                <Modal show={this.state.showZara} onHide={this.handleCloseZara} style = {textStyles}>
+                                  <Modal.Header closeButton>
+                                    <Modal.Title>Zara Louis</Modal.Title>
+                                  </Modal.Header>
+                                  <Modal.Body>
+                                    <h4>Biography</h4>
+                                    <p>
+                                      I am a third year CS student from Plano, Texas. I enjoy working out and reading in my spare time.
+                                    </p>
+                                    <hr />
+                                    <h4>Responsibilities and Commit Info</h4>
+                                    <p>Responsibilities: Focused on designing the front end for the website, including the grid pages and 9 models.</p>
+                                    <p>Number of commits: {this.state.zaraCommits}</p>
+                                    <p>Number of issues: {this.state.zaraIssues}</p>
+                                    <p>Number of unit tests: 10</p>
+                                  </Modal.Body>
+                                  <Modal.Footer>
+                                    <Button onClick={this.handleCloseZara}>Close</Button>
+                                  </Modal.Footer>
+                                </Modal>
+                            </div> 
+                        </div>      
+                    </div>
+                    <div className = "bg-first">
+                        <div className= "container">
+                            <div className="row">
+                                <div className="col-md-6">
+                                    <div className="text-center">
+                                        <img className="img-thumbnail" src="https://rp27537cs373sp18.files.wordpress.com/2018/01/why.png" alt="Ramon Pic" data-toggle="modal" data-target="#ramonModal" style = {imageStyles}/>
+                                        <h2>Ramon Perez</h2>
+                                        <Button bsStyle="warning" bsSize="large" onClick={this.handleShowRamon}>
+                                        Learn about Ramon!
+                                        </Button>
+                                    </div>
+                                </div>
+                                <Modal show={this.state.showRamon} onHide={this.handleCloseRamon} style = {textStyles}>
+                                  <Modal.Header closeButton>
+                                    <Modal.Title>Ramon Perez</Modal.Title>
+                                  </Modal.Header>
+                                  <Modal.Body>
+                                    <h4>Biography</h4>
+                                    <p>
+                                      CS student hailing from New Braunfels, Texas. This is my third year as part of UTCS, and I'm in the Software Engineering and Artificial Intelligence classes this semester. I enjoy video games, running, and playing with my cats.
+                                    </p>
+                                    <hr />
+                                    <h4>Responsibilities and Commit Info</h4>
+                                    <p>Responsibilities: Data Management: scraping, aggregating, and data modeling. Testing.</p>
+                                    <p>Number of commits: {this.state.ramonCommits}</p>
+                                    <p>Number of issues: {this.state.ramonIssues}</p>
+                                    <p>Number of unit tests: 15</p>
+                                  </Modal.Body>
+                                  <Modal.Footer>
+                                    <Button onClick={this.handleCloseRamon}>Close</Button>
+                                  </Modal.Footer>
+                                </Modal>      
 
-                <div className="container">
-
-                    <div className="row">
-                        <div className="col-md-12">
-                            <div className="text-center">
-                                <h1 className="title">The Team</h1>
+                                <div className="col-md-6">
+                                    <div className="text-center">
+                                        <img className="img-thumbnail" src="https://ramdeepk2.github.io/ramdeepk2.github.io/cs373/headshot.JPG" alt="Krishna Pic" data-toggle="modal" data-target="#krishnaModal" style = {imageStyles}/>
+                                        <h2>Krishna Ramdeep</h2>
+                                        <Button bsStyle="info" bsSize="large" onClick={this.handleShowKrishna}>
+                                        Learn about Krishna!
+                                        </Button>
+                                    </div>
+                                </div>
+                                <Modal show={this.state.showKrishna} onHide={this.handleCloseKrishna} style = {textStyles}>
+                                  <Modal.Header closeButton>
+                                    <Modal.Title>Krishna Ramdeep</Modal.Title>
+                                  </Modal.Header>
+                                  <Modal.Body>
+                                    <h4>Biography</h4>
+                                    <p>
+                                      CS senior taking Computer Vision, Programming for Performance, Software Engineering, and Randomized Algorithms. I like to work out, hike, and read in my free time (which I don't get too much of).
+                                    </p>
+                                    <hr />
+                                    <h4>Responsibilities and Commit Info</h4>
+                                    <p>Responsibilities: API Documentation, Most of Testing Code, Technical Report, Travis CI</p>
+                                    <p>Number of commits: {this.state.krishnaCommits}</p>
+                                    <p>Number of issues: {this.state.krishnaIssues}</p>
+                                    <p>Number of unit tests: 21</p>
+                                  </Modal.Body>
+                                  <Modal.Footer>
+                                    <Button onClick={this.handleCloseKrishna}>Close</Button>
+                                  </Modal.Footer>
+                                </Modal>  
                             </div>
                         </div>
                     </div>
-
-                    <div className="row">
-                        <div className="col-md-4">
-                            <div className="text-center">
-                                <img className="img-thumbnail" src="https://larius11.github.io/cs373-blog/assets/headshot.jpg" alt="Ricardo Pic" data-toggle="modal" data-target="#ricardoModal" style = {imageStyles}/>
-                                <h2>Ricardo Riveron</h2>
-                                <p>Bio: 4th year CS student currently working full-time at H-E-B. I love to play music, watch netflix, and play videogames when I'm not too busy doing work.</p>
-                                <p>Responsibilities: Set up the database and a large part of the backend.</p>
-                                <p>Number of commits: {this.state.ricardoCommits}</p>
-                                <p>Number of issues: {this.state.ricardoIssues}</p>
-                                <p>Number of unit tests: 0</p>
-                            </div>
-                        </div>
-
-                        <div className="col-md-4">
-                            <div className="text-center">
-                                <img className="img-thumbnail" src="https://avatars3.githubusercontent.com/u/14967965?s=460&v=4" alt="Roshan Pic" data-toggle="modal" data-target="#roshanModal" style = {imageStyles}/>
-                                <h2>Roshan Dongre</h2>
-                                <p>Bio: Senior pursuing a double major in Computer Science and Finance. Interested in trading and sports analytics. I enjoy playing tennis, working out, and playing poker.</p>
-                                <p>Responsibilities: Front-end development including filtering, searching, and all the pages. AWS/Namecheap.</p>
-                                <p>Number of commits: {this.state.roshanCommits}</p>
-                                <p>Number of issues: {this.state.roshanIssues}</p>
-                                <p>Number of unit tests: 0</p>
-                            </div>
-                        </div>
-
-                        <div className="col-md-4">
-                            <div className="text-center">
-                                <img className="img-thumbnail" src="https://zaralouis.files.wordpress.com/2018/01/headshot1.jpg?w=2048&h=1814" alt="Zara Pic" data-toggle="modal" data-target="#zaraModal" style = {imageStyles}/>
-                                <h2>Zara Louis</h2>
-                                <p>Bio: I am a third year CS student from Plano, Texas. I enjoy working out and reading in my spare time.</p>
-                                <p>Responsibilities: Focused on designing the front end for the website, including the grid pages and 9 models.</p>
-                                <p>Number of commits: {this.state.zaraCommits}</p>
-                                <p>Number of issues: {this.state.zaraIssues}</p>
-                                <p>Number of unit tests: 10</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="row">
-                        <div className="col-md-6">
-                            <div className="text-center">
-                                <img className="img-thumbnail" src="https://rp27537cs373sp18.files.wordpress.com/2018/01/why.png" alt="Ramon Pic" data-toggle="modal" data-target="#ramonModal" style = {imageStyles}/>
-                                <h2>Ramon Perez</h2>
-                                <p>Bio: CS student hailing from New Braunfels, Texas. This is my third year as part of UTCS, and I'm in the Software Engineering and Artificial Intelligence classes this semester. I enjoy video games, running, and playing with my cats.</p>
-                                <p>Responsibilities: Data Management: scraping, aggregating, and data modeling. Testing.</p>
-                                <p>Number of commits: {this.state.ramonCommits}</p>
-                                <p>Number of issues: {this.state.ramonIssues}</p>
-                                <p>Number of unit tests: 15</p>
-                            </div>
-                        </div>
-
-                        <div className="col-md-6">
-                            <div className="text-center">
-                                <img className="img-thumbnail" src="https://ramdeepk2.github.io/ramdeepk2.github.io/cs373/headshot.JPG" alt="Krishna Pic" data-toggle="modal" data-target="#krishnaModal" style = {imageStyles}/>
-                                <h2>Krishna Ramdeep</h2>
-                                <p>Bio: CS senior taking Computer Vision, Programming for Performance, Software Engineering, and Randomized Algorithms. I like to work out, hike, and read in my free time (which I don't get too much of).</p>
-                                <p>Responsibilities: API Documentation, Most of Testing Code, Technical Report, Travis CI</p>
-                                <p>Number of commits: {this.state.krishnaCommits}</p>
-                                <p>Number of issues: {this.state.krishnaIssues}</p>
-                                <p>Number of unit tests: 21</p>
-                            </div>
-                        </div>
-                    </div>
-
+                    <div className="bg-second">
+                        <div className = "container" >
                             <div className="row">
                                 <div className="col-md-3 container data-thumbnail">
                                     <div className="text-center">
@@ -233,9 +391,14 @@ render () {
                                     </div>
                                 </div>
                             </div>
-                            <div className="row">
+                        </div>
+                    </div>
+                    <div className="bg-last">
+                        <div className= "container">
+                            <div className="row bg-s">
                                 <div className="col-md-12 container data-thumbnail">
-                                    <div className="text-left">
+                                    <div className="text-left" style= {textStylesGray}>
+                                        <Well>
                                         <ul>
                                             <li className="text-left"><h4><strong>Description: </strong>On The Run is a website that allows people to draw interesting connections between the FBI Most Wanted Page and information
                                             on different types of crimes as well as information on the states in which these crimes were committed</h4></li>
@@ -248,11 +411,13 @@ render () {
                                             and MySQL are used for the database and GitHub is used to store our code. Fuse.js was used for the searching and was done on the front-end. React-Select and React-Input-Range were 
                                             used for the front-end filters that are shown on the grid pages.</h4></li>
                                         </ul>
+                                        </Well>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
         );
 }
 }

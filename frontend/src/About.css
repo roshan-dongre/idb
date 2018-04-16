@@ -1,19 +1,20 @@
-header {
-  padding: 120px 0 10px;
+.row {
+  margin-bottom: 15px;
+  margin-top: 20px;
 }
 
-@media (min-width: 992px) {
-  header {
-    padding: 20px 0 10px;
-  }
+.bg-first {
+  background-color: #212529 !important;
 }
 
-section {
-  padding: 20px 0;
+.bg-second {
+  background-color: #2C3A47 !important;
 }
 
-body {
-  /* background: radial-gradient(red,black); */
-  background-image: url("background.jpg");
-  /* margin-bottom: 60px; */
+.bg-third {
+  background-color: #353b48 !important;
+}
+
+.bg-last {
+  background-color: grey !important;
 }

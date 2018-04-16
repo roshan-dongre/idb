@@ -35,6 +35,7 @@
     "react": "^16.3.1",
     "react-addons-test-utils": "^15.6.2",
     "react-bootstrap": "^0.32.1",
+    "react-bootstrap-card": "^0.1.5",
     "react-dom": "^16.3.1",
     "react-geocode": "0.0.7",
     "react-grid-layout": "^0.16.6",
@@ -48,6 +49,7 @@
     "react-select": "^1.2.1",
     "react-spinkit": "^3.0.0",
     "react-stylesheet": "^2.2.2",
+    "reactstrap": "^5.0.0",
     "sinon": "^4.5.0",
     "striptags": "^3.1.1",
     "webpack": "^3.11.0"
@@ -63,6 +65,7 @@
     "babel-loader": "^7.1.4",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
+    "bootstrap-3-card": "^0.2.0",
     "mocha": "^5.0.5",
     "webpack-dev-server": "^3.1.1"
   }

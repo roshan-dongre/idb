@@ -16,7 +16,8 @@ class Search extends Component {
             numPages: 0,
             pgSize: 9,
             loading: false,
-            navigate: false
+            navigate: false,
+            reload: false
         }
         this.apiUrl = 'http://api.ontherun.me:5000/';
         let criminalKeys = ["name", "dob", "sex", "eyes", "hair", "height", "race", "nationality", "crime"]
@@ -27,12 +28,10 @@ class Search extends Component {
 
     handleSearch = (e) => {
         e.preventDefault()
-        //console.log(this)
-        //this.refs.loader.style = "display: block";
-        //console.log("Input value: " + this.input.value)
-        console.log("In handle search")
         this.setState({ searchTerm: this.input.value});
         this.searchData(this.input.value)
+        this.setState({reload: true})
+        //location.window.reload()
     }
 
     componentWillReceiveProps(nextProps) {
@@ -43,7 +42,7 @@ class Search extends Component {
         }
     }
 
-    searchData(searchTerm){
+    searchData = (searchTerm) => {
         let result
         let options = {
             shouldSort: true,
@@ -58,16 +57,20 @@ class Search extends Component {
             let fuse = new Fuse(this.state.allData, options);
             result = fuse.search(searchTerm);
         }
-        
         this.setState({ results: result, navigate: true, loading: false });
+
     }
 
     render() {
-
+        if (this.state.reload === true) {
+            window.location.reload()
+        }
+        //window.location.reload()
         if (this.state.navigate) {
             this.setState({navigate: false})
             return <Redirect to={{pathname: '/SearchResults', state: {results: this.state.results, searchTerm: this.state.searchTerm}}} push={true} />;
         }
+        //window.location.reload()
         return (
             <form className="navbar-form navbar-right" onSubmit={this.handleSearch}>
                 <div className="form-group search-bar">

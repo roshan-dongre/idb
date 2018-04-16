@@ -52,36 +52,36 @@ export default class Criminals extends Component {
         this.callAPI()
     }
 
-    handlePageChange(page, e) {
+    handlePageChange = (page, e) => {
         e.preventDefault()
         this.setState({page: page})
     }
 
-    handlePrev(e) {
+    handlePrev = (e) => {
         e.preventDefault()
         if (this.state.page > 0) {
             this.setState({page: this.state.page - 1})
         }
     }
 
-    handleNext(e) {
+    handleNext = (e) => {
         e.preventDefault()
         if (this.state.page < this.state.numPages - 1) {
             this.setState({page: this.state.page + 1})
         }
     }
 
-    handleSex(e) {
+    handleSex = (e) => {
         if (e != null) {
             this.setState({sex: e.value})
         }
     }
-    handleRace(e) {
+    handleRace = (e) => {
         if (e != null) {
             this.setState({race: e.value})
         }
     }
-    handleHeight(value) {
+    handleHeight = (value) => {
         this.setState({
           height_min: value
         })

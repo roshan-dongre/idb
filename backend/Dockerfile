@@ -21,6 +21,6 @@ RUN pip install --upgrade pip    && \
 
 COPY . /src
 WORKDIR /src/
-EXPOSE 5000
+EXPOSE 80
 ENTRYPOINT ["python"]
 CMD ["main.py"]

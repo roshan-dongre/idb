@@ -9,7 +9,7 @@ import 'react-select/dist/react-select.css';
 import InputRange from 'react-input-range';
 import 'react-input-range/lib/css/index.css';
 import { Circle } from 'better-react-spinkit'
-import {Row, Col, Panel, Button, Modal, Well} from 'react-bootstrap'
+import {Row, Col, Panel, Button, Modal, Well, Alert} from 'react-bootstrap'
 
 var blackStyles = {
     color: 'black'
@@ -190,6 +190,9 @@ export default class States extends Component {
 
         return (
             <div className="container sub-container">
+                <Alert bsStyle="warning">
+                  <strong>Note!</strong> M stands for thousands, and MM stands for millions!
+                </Alert>
                 <Well style = {wellStyle}>
                     <div className="row row-m-b">
                         <div className="col-md-3">

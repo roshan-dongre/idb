@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import {Redirect} from 'react-router-dom';
 import Highlighter from 'react-highlight-words';
+import {Row, Col, Panel, Button, Modal, Well} from 'react-bootstrap'
+
+
+var bgStyles = {
+    background: '#ededed',
+    color: '#000000'
+}
 
 export default class SearchItem extends Component {
     constructor (props) {
@@ -110,12 +117,14 @@ export default class SearchItem extends Component {
         })
 
         return (
-            <tr className="clickable-row" onClick={this.handleNavigation}>
-                <tr>
-                    <td><button type="button" className="btn btn-link" onClick={this.handleNavigation}><h3><strong>{this.state.item.type} - {name}</strong></h3></button></td>
-                </tr>
+            <Panel style={bgStyles}>
+            <Panel.Heading>
+                <Panel.Title onClick={this.handleNavigation}><h3><strong><u>{this.state.item.type} - {name}</u></strong></h3></Panel.Title>
+            </Panel.Heading>
+            <Panel.Body style={bgStyles}>
                 {searchRows}
-            </tr>
+            </Panel.Body>      
+            </Panel>
         );
     }
 }

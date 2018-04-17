@@ -9,6 +9,7 @@ import 'react-select/dist/react-select.css';
 import InputRange from 'react-input-range';
 import 'react-input-range/lib/css/index.css';
 import { Circle } from 'better-react-spinkit'
+import {Row, Col, Panel, Button, Modal, Well} from 'react-bootstrap'
 
 var blackStyles = {
     color: 'black'
@@ -21,12 +22,17 @@ var whiteStyles = {
 var containerStyle = {
     height: "80%",
     width: "80%"
-
 }
 
 var divStyle = {
     display: 'flex',
     justifyContent: 'center'
+}
+
+var wellStyle = {
+  padding: "10px",
+  margin: "10px",
+  backgroundColor: '#40739e'
 }
 
 export default class Criminals extends Component {
@@ -45,7 +51,7 @@ export default class Criminals extends Component {
             height: {min: 50, max: 80},
             loading: true
         }
-        //this.apiUrl = 'http://api.ontherun.me:5000/criminals';
+        //this.apiUrl = 'http://api.ontherun.me/criminals';
     }
 
     componentDidMount () {
@@ -167,6 +173,7 @@ export default class Criminals extends Component {
 
         return (
             <div className="container sub-container">
+                <Well style = {wellStyle}>
                 <div className="row row-m-b">
                     <div className="col-md-3">
                         <div className= "text-center">
@@ -196,20 +203,14 @@ export default class Criminals extends Component {
                         { value: 'White (Central Asian)', label: 'White (Central Asian)'}, { value: 'Black (Hispanic)', label: 'Black (Hispanic)'}, { value: 'White (Middle Eastern)', label: 'White (Middle Eastern)'}, ]}/>
                         </div>
                     </div>    
-                    {/*<div className="col-md-3">
-                        <div className = "text-left" style = {blackStyles}>
-                        <Select name="form-field-name" value={this.state.height} onChange={this.handleHeight} placeholder = "Filter by Height"
-                        options={[ { value: 50, label: '>50 Inches' }, { value: 55, label: '>55 Inches'}, { value: 60, label: '>60 Inches'}, { value: 65, label: '>65 Inches'}, 
-                        { value: 70, label: '>70 Inches'}, { value: 75, label: '>75 Inches'}, ]}/>
-                        </div>
-                    </div>  */}
                     <div className="col-md-3">
                         <div className = "text-center" style = {whiteStyles}>
                         <label> <strong> Filter by Height (Inches): </strong> </label>
                         <InputRange maxValue={80} minValue={50} value={this.state.height} onChange={height => this.setState({ height })} />
                         </div>
-                    </div>  
+                    </div>
                 </div>
+                </Well>
                 {/* Break array into separate arrays and wrap each array containing 3 components in a row div */}
                 { chunk(criminalComponents, 4).map((row) => {
                     return (

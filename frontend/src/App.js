@@ -23,7 +23,7 @@ export default class App extends Component {
         super(props)
         this.state = {
             allData: [],
-            apiUrl: "http://api.ontherun.me:5000"
+            apiUrl: "http://api.ontherun.me"
         }
     }
 

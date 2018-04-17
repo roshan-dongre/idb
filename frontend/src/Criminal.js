@@ -3,6 +3,8 @@ import {Redirect} from 'react-router-dom';
 import axios from 'axios';
 import GoogleMapReact from 'google-map-react';
 import Geocode from "react-geocode";
+import {Row, Col, Panel, Button, Modal, Well} from 'react-bootstrap'
+
 
 var imageStyles = {
     width: '400px',
@@ -14,6 +16,13 @@ var style = {
     height: '350px'
 }
 
+var textStyles = {
+    color: 'black'
+}
+
+var wellStyles = {
+    backgroundColor: '#7f8fa6'
+}
 
 export default class Criminal extends Component {
     constructor (props) {
@@ -199,7 +208,8 @@ export default class Criminal extends Component {
                             </GoogleMapReact>
                         </div>
                     </div>
-                    <div className="col-md-8">
+                    <div className="col-md-8" style= {textStyles}>
+                        <Well style= {wellStyles}>
                         <h3 className="sub-header">{this.state.item.name}</h3>
                         <table className="table table-responsive text-left">
                             <tbody>
@@ -233,7 +243,7 @@ export default class Criminal extends Component {
                             </tr>
                             <tr>
                                 <td><strong>Page:</strong></td>
-                                <td><a href={this.state.item.fbi == null ? this.state.unknown : this.state.item.fbi}>{this.state.item.fbi == null ? this.state.unknown : this.state.item.fbi}</a></td>
+                                <td><a href={this.state.item.fbi == null ? this.state.unknown : this.state.item.fbi} style={{ color: '#FFF' }}>{this.state.item.fbi == null ? this.state.unknown : this.state.item.fbi}</a></td>
                             </tr>
                             <tr>
                                 <td><strong>State:</strong></td>
@@ -247,10 +257,10 @@ export default class Criminal extends Component {
                                 <td><strong>Description:</strong></td>
                                 <td>{this.state.item.crime}</td>
                             </tr>
-
                            
                             </tbody>
                         </table>
+                        </Well>
                     </div>
                 </div>
             </div>

@@ -19,7 +19,7 @@ class Search extends Component {
             navigate: false,
             reload: false
         }
-        this.apiUrl = 'http://api.ontherun.me:5000/';
+        this.apiUrl = 'http://api.ontherun.me/';
         let criminalKeys = ["name", "dob", "sex", "eyes", "hair", "height", "race", "nationality", "crime"]
         let stateKeys = ["name", "abbreviation", "capital", "flower", "field_offices", "area", "population", "density", "region"]
         let crimeKeys = ["name", "description", "count", "offenders", "victims"]

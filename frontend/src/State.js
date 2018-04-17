@@ -62,7 +62,7 @@ export default class State extends Component {
 
     getCrimes() {
         //let url = "http://18.219.198.152/crimestostate/" + this.state.item.abbreviation
-        let url = "http://api.ontherun.me:5000/crimestostate/" + this.state.item.abbreviation
+        let url = "http://api.ontherun.me/crimestostate/" + this.state.item.abbreviation
         let self = this
         axios.get(url)
             .then((res) => {
@@ -75,7 +75,7 @@ export default class State extends Component {
     }
 
     getCriminals() {
-        let url = "http://api.ontherun.me:5000/criminalstostate/" + this.state.item.abbreviation
+        let url = "http://api.ontherun.me/criminalstostate/" + this.state.item.abbreviation
         //let url = "http://18.219.198.152/criminalstostate/" + this.state.item.abbreviation
         let self = this
         axios.get(url)
@@ -91,9 +91,9 @@ export default class State extends Component {
     callAPI() {
         let url
         if (this.props.location !== undefined && this.props.location.state.selectedId !== undefined) {
-            url = "http://api.ontherun.me:5000/states/"+this.props.location.state.selectedId
+            url = "http://api.ontherun.me/states/"+this.props.location.state.selectedId
         } else {
-            url = "http://api.ontherun.me:5000/states/"+this.state.item.abbreviation
+            url = "http://api.ontherun.me/states/"+this.state.item.abbreviation
         }
 
         // if (this.props.location !== undefined && this.props.location.state.selectedId !== undefined) {

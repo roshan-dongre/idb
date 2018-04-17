@@ -8,6 +8,7 @@ import 'react-select/dist/react-select.css';
 import InputRange from 'react-input-range';
 import 'react-input-range/lib/css/index.css';
 import { Circle } from 'better-react-spinkit'
+import './Crimes.css'
 
 var blackStyles = {
     color: 'black'
@@ -38,7 +39,7 @@ export default class Crimes extends Component {
             pathname: "/Crimes",
             loading: true
         }
-        //this.apiUrl = 'http://api.ontherun.me:5000/crimes';
+        //this.apiUrl = 'http://api.ontherun.me/crimes';
     }
 
     componentDidMount () {
@@ -73,7 +74,7 @@ export default class Crimes extends Component {
         let limit = this.state.pgSize
         let offset = this.state.page
         let limOff = "?limit="+limit+"&offset="+offset
-        let url = "http://api.ontherun.me:5000/crimes" + limOff
+        let url = "http://api.ontherun.me/crimes" + limOff
 
         if (this.state.sortBy !== "") {
             url += "&sort="+this.state.sortBy
@@ -154,79 +155,65 @@ export default class Crimes extends Component {
 
 
         return (
-            <div className="container sub-container">
+            <div>
 
-                <div className="row row-m-b">
-                        <div className="col-md-3">
-                            <div className= "text-center">
-                            <label>
-                                <strong style = {whiteStyles}>Sort by Name:  &nbsp;&nbsp;</strong>
-                            </label><span> </span>
-                            <div className="button btn-group">
-                                <button type="button"
-                                      className={this.state.order === "ASC" ? "btn btn-default active" : "btn btn-default"}
-                                      onClick={(e) => this.sort("ASC", e)}><i className="fa fa-sort-alpha-asc" aria-hidden="true"/></button>
-                                <button type="button"
-                                      className={this.state.order === "DESC" ? "btn btn-default active" : "btn btn-default"}
-                                      onClick={(e) => this.sort("DESC", e)}><i className="fa fa-sort-alpha-desc" aria-hidden="true"/></button>
-                            </div>
-                            </div>
+                <div className="bg-second">
+                    <div className="container">
+                        <div className="row row-m-b">
+                                <div className="col-md-3">
+                                    <div className= "text-center">
+                                    <label>
+                                        <strong style = {whiteStyles}>Sort by Name:  &nbsp;&nbsp;</strong>
+                                    </label><span> </span>
+                                    <div className="button btn-group">
+                                        <button type="button"
+                                              className={this.state.order === "ASC" ? "btn btn-default active" : "btn btn-default"}
+                                              onClick={(e) => this.sort("ASC", e)}><i className="fa fa-sort-alpha-asc" aria-hidden="true"/></button>
+                                        <button type="button"
+                                              className={this.state.order === "DESC" ? "btn btn-default active" : "btn btn-default"}
+                                              onClick={(e) => this.sort("DESC", e)}><i className="fa fa-sort-alpha-desc" aria-hidden="true"/></button>
+                                    </div>
+                                    </div>
+                                </div>
+                                <div className="col-md-3">
+                                    <div className = "text-center" style = {whiteStyles}>
+                                        <label> <strong> Filter by Number of Crimes (M): </strong> </label>
+                                        <InputRange maxValue={750} minValue={0} value={this.state.count} onChange={count => this.setState({ count })} />
+                                    </div>
+                                </div>
+                                <div className="col-md-3">
+                                    <div className = "text-center" style = {whiteStyles}>
+                                        <label> <strong> Filter by Number of Offenders (M): </strong> </label>
+                                        <InputRange maxValue={750} minValue={0} value={this.state.offenders} onChange={offenders => this.setState({ offenders })} />
+                                    </div>
+                                </div>
+                                <div className="col-md-3">
+                                    <div className = "text-center" style = {whiteStyles}>
+                                        <label> <strong> Filter by Number of Victims (M): </strong> </label>
+                                        <InputRange maxValue={750} minValue={0} value={this.state.victims} onChange={victims => this.setState({ victims })} />
+                                    </div>
+                                </div>
                         </div>
-                        {/*<div className="col-md-3">
-                            <div className = "text-left" style = {blackStyles}>
-                                <Select name="form-field-name" value={this.state.count} onChange={this.handleCount} placeholder = "Filter by Number of Crimes"
-                                options={[ { value: 5, label: '>5 Offenses' }, { value: 500, label: '>500 Offenses'}, { value: 1000, label: '>1,000 Offenses'}, { value: 10000, label: '>10,000 Offenses'},{ value: 50000, label: '>50,000 Offenses'},
-                                { value: 100000, label: '>100,000 Offenses'},{ value: 500000, label: '>500,000 Offenses'},]}/>
-                            </div>
-                        </div>
-                        <div className="col-md-3">
-                            <div className = "text-left" style = {blackStyles}>
-                                <Select name="form-field-name" value={this.state.offenders} onChange={this.handleOffenders} placeholder = "Filter by Number of Offenders"
-                                options={[ { value: 10, label: '>10 Offenders' }, { value: 100, label: '>100 Offenders'}, { value: 1000, label: '>1,000 Offenders'}, { value: 10000, label: '>10,000 Offenders'},{ value: 50000, label: '>50,000 Offenders'},
-                                { value: 100000, label: '>100,000 Offenders'},{ value: 500000, label: '>500,000 Offenders'},]}/>
-                            </div>
-                        </div>
-                        <div className="col-md-3">
-                            <div className = "text-left" style = {blackStyles}>
-                                <Select name="form-field-name" value={this.state.victims} onChange={this.handleVictims} placeholder = "Filter by Number of Victims"
-                                options={[ { value: 5, label: '>5 Victims' }, { value: 100, label: '>100 Victims'}, { value: 1000, label: '>1,000 Victims'}, { value: 10000, label: '>10,000 Victims'},{ value: 50000, label: '>50,000 Victims'},
-                                { value: 100000, label: '>100,000 Victims'},{ value: 500000, label: '>500,000 Victims'},]}/>
-                            </div>
-                        </div>*/}
-                        <div className="col-md-3">
-                            <div className = "text-center" style = {whiteStyles}>
-                                <label> <strong> Filter by Number of Crimes (M): </strong> </label>
-                                <InputRange maxValue={750} minValue={0} value={this.state.count} onChange={count => this.setState({ count })} />
-                            </div>
-                        </div>
-                        <div className="col-md-3">
-                            <div className = "text-center" style = {whiteStyles}>
-                                <label> <strong> Filter by Number of Offenders (M): </strong> </label>
-                                <InputRange maxValue={750} minValue={0} value={this.state.offenders} onChange={offenders => this.setState({ offenders })} />
-                            </div>
-                        </div>
-                        <div className="col-md-3">
-                            <div className = "text-center" style = {whiteStyles}>
-                                <label> <strong> Filter by Number of Victims (M): </strong> </label>
-                                <InputRange maxValue={750} minValue={0} value={this.state.victims} onChange={victims => this.setState({ victims })} />
-                            </div>
-                        </div>
+                    </div>
                 </div>
-
-                {/* Break array into separate arrays and wrap each array containing 3 components in a row div */}
-                { chunk(crimeComponents, 4).map((row) => {
-                    return (
-                        <div className="row">
-                            { row }
-                        </div>
-                    )
-                })}
-                {<Pagination handlePageChange={this.handlePageChange}
-                              handlePrev={this.handlePrev}
-                              handleNext={this.handleNext}
-                              numPages={this.state.numPages}
-                              currentPage={this.state.page}
-                              navigateTo="/Crimes"/>}
+                <div>
+                    <div className= "container sub-container">
+                    {/* Break array into separate arrays and wrap each array containing 3 components in a row div */}
+                    { chunk(crimeComponents, 4).map((row) => {
+                        return (
+                            <div className="row row-striped">
+                                { row }
+                            </div>
+                        )
+                    })}
+                    {<Pagination handlePageChange={this.handlePageChange}
+                                  handlePrev={this.handlePrev}
+                                  handleNext={this.handleNext}
+                                  numPages={this.state.numPages}
+                                  currentPage={this.state.page}
+                                  navigateTo="/Crimes"/>}
+                    </div>
+                </div>
             </div>
       );
     }

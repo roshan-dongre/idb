@@ -44,9 +44,6 @@ export default class ModelOverlay extends Component {
                         <div className="overlay">
                             <div className="text">{_.startCase(_.camelCase(this.state.item.name))}</div>
                         </div>
-                        <div class="caption">
-                            <p>Lorem ipsum...</p>
-                        </div>
                     </div>
                 </div>
             </div>

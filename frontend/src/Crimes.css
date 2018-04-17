@@ -6,16 +6,14 @@
     background-color: #ffd54f;
 }
 
-body { 
-    /* The image used */
-    background-image: url("https://images.pexels.com/photos/137077/pexels-photo-137077.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+.bg-crimes {
+  background-color: #8C4646 !important;
+}
 
-    /* Set a specific height */
-    height: 500px; 
+.row-striped:nth-of-type(odd){
+  background-color: #8C4646;
+}
 
-    /* Create the parallax scrolling effect */
-    background-attachment: fixed;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+.row-striped:nth-of-type(even){
+  background-color: #ffffff;
 }

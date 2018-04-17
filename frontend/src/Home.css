@@ -2,7 +2,7 @@ body,
 html {
   width: 100%;
   height: 100%;
-  background: black;
+  background: url(https://img00.deviantart.net/8c61/i/2014/156/c/0/the_walking_dead_wallpaper___prison_neutral_by_atomicxmario-d7l56eb.jpg);
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -122,22 +122,4 @@ section {
   margin: 0;
   font-size: 14px;
   line-height: 24px;
-}
-
-/*-----------------------------------------------------------------------------------*/
-/*  Overlay
-/*-----------------------------------------------------------------------------------*/
-
-.overlay {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
-    width: 100%;
-    opacity: 0;
-    transition: .5s ease;
-    cursor: pointer;
-    background-color: rgba( 255, 255, 255, 0.8 );
 }

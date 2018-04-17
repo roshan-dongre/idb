@@ -9,6 +9,7 @@ import InputRange from 'react-input-range';
 import 'react-input-range/lib/css/index.css';
 import { Circle } from 'better-react-spinkit'
 import './Crimes.css'
+import {Row, Col, Panel, Button, Modal, Well} from 'react-bootstrap'
 
 var blackStyles = {
     color: 'black'
@@ -21,6 +22,12 @@ var whiteStyles = {
 var divStyle = {
     display: 'flex',
     justifyContent: 'center'
+}
+
+var wellStyle = {
+  padding: "10px",
+  margin: "10px",
+  background: '#353b48'
 }
 
 export default class Crimes extends Component {
@@ -74,7 +81,7 @@ export default class Crimes extends Component {
         let limit = this.state.pgSize
         let offset = this.state.page
         let limOff = "?limit="+limit+"&offset="+offset
-        let url = "http://api.ontherun.me/crimes" + limOff
+        let url = "http://api.ontherun.me:5000/crimes" + limOff
 
         if (this.state.sortBy !== "") {
             url += "&sort="+this.state.sortBy
@@ -155,10 +162,8 @@ export default class Crimes extends Component {
 
 
         return (
-            <div>
-
-                <div className="bg-second">
-                    <div className="container">
+                <div className="container sub-container">
+                    <Well style = {wellStyle}>
                         <div className="row row-m-b">
                                 <div className="col-md-3">
                                     <div className= "text-center">
@@ -194,10 +199,7 @@ export default class Crimes extends Component {
                                     </div>
                                 </div>
                         </div>
-                    </div>
-                </div>
-                <div>
-                    <div className= "container sub-container">
+                    </Well>
                     {/* Break array into separate arrays and wrap each array containing 3 components in a row div */}
                     { chunk(crimeComponents, 4).map((row) => {
                         return (
@@ -212,9 +214,7 @@ export default class Crimes extends Component {
                                   numPages={this.state.numPages}
                                   currentPage={this.state.page}
                                   navigateTo="/Crimes"/>}
-                    </div>
                 </div>
-            </div>
       );
     }
     }

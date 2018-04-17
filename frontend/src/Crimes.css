@@ -9,11 +9,3 @@
 .bg-crimes {
   background-color: #8C4646 !important;
 }
-
-.row-striped:nth-of-type(odd){
-  background-color: #8C4646;
-}
-
-.row-striped:nth-of-type(even){
-  background-color: #ffffff;
-}

@@ -9,6 +9,7 @@ import 'react-select/dist/react-select.css';
 import InputRange from 'react-input-range';
 import 'react-input-range/lib/css/index.css';
 import { Circle } from 'better-react-spinkit'
+import {Row, Col, Panel, Button, Modal, Well} from 'react-bootstrap'
 
 var blackStyles = {
     color: 'black'
@@ -21,6 +22,12 @@ var whiteStyles = {
 var divStyle = {
     display: 'flex',
     justifyContent: 'center'
+}
+
+var wellStyle = {
+  padding: "10px",
+  margin: "10px",
+  background: '#2C3A47'
 }
 
 export default class States extends Component {
@@ -80,7 +87,7 @@ export default class States extends Component {
         let limit = this.state.pgSize
         let offset = this.state.page
         let limOff = "?limit="+limit+"&offset="+offset
-        let url = "http://api.ontherun.me/states" + limOff
+        let url = "http://api.ontherun.me:5000/states" + limOff
         //let url = "http://18.219.198.152/states" + limOff
 
         if (this.state.sortBy !== "") {
@@ -183,7 +190,7 @@ export default class States extends Component {
 
         return (
             <div className="container sub-container">
-
+                <Well style = {wellStyle}>
                     <div className="row row-m-b">
                         <div className="col-md-3">
                             <div className= "text-center">
@@ -232,6 +239,7 @@ export default class States extends Component {
                         </div>   
                     
                     </div>
+                </Well>
 
                 {/* Break array into separate arrays and wrap each array containing 3 components in a row div */}
                 { chunk(stateComponents, 4).map((row) => {

@@ -7,4 +7,4 @@ docker stop db_container
 docker rm db_container
 echo "Updating image..."
 docker build -t db_image .
-docker run --name db_container -d -p 5000:5000 db_image
+docker run --name db_container -d -p 80:80 db_image

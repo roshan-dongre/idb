@@ -2643,7 +2643,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "f8bc0f15-ccda-4fb2-9738-165caf6e4f78",
+						"id": "ba243a19-2c97-4d7a-b18f-dd36306b491c",
 						"type": "text/javascript",
 						"exec": [
 							"// Status code?",
@@ -2654,13 +2654,14 @@
 							"pm.test(\"Criminals race filtering works!\", function() {",
 							"    var obj = JSON.parse(responseBody);",
 							"    var valid = 0;",
-							"    // console.log(obj[\"results\"]);",
-							"    for (i = 0; i < 32; i++) {",
+							"    // console.log(obj[\"results\"][0][\"race\"]);",
+							"    for (i = 0; i < 31; i++) {",
 							"        if (obj[\"results\"][i][\"race\"] == \"Black\") {",
+							"            console.log(obj[\"results\"][i][\"race\"]);",
 							"            valid++;",
 							"        }",
 							"    }",
-							"    pm.expect(valid).to.equal(32);",
+							"    pm.expect(valid).to.equal(31);",
 							"});",
 							"",
 							"// Matches schema?",

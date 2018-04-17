@@ -235,7 +235,7 @@ class CriminalTest(unittest.TestCase):
   def test_2(self):
     response = requests.get(self.url + "/64")
     data = json.loads(response.content)
-    self.assertEqual(data["name"], "ROBERT WILLIAM ZENY")
+    self.assertEqual(data["name"], "GLENN WALTER ZENY")
     
 class CrimeTest(unittest.TestCase):
 

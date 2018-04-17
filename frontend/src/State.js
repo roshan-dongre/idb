@@ -3,6 +3,7 @@ import {Redirect} from 'react-router-dom';
 import axios from 'axios';
 import GoogleMapReact from 'google-map-react';
 import Geocode from "react-geocode";
+import {Row, Col, Panel, Button, Modal, Well} from 'react-bootstrap'
 
 var imageStyles = {
     width: '400px',
@@ -14,9 +15,21 @@ var style = {
     height: '350px'
 }
 
+var textStyles = {
+    color: 'black'
+}
+
+var wellStyles = {
+    background: '#7f8fa6'
+}
+
 export default class State extends Component {
     constructor (props) {
         super (props);
+        this.handleShowCrimes = this.handleShowCrimes.bind(this);
+        this.handleCloseCrimes = this.handleCloseCrimes.bind(this);
+        this.handleShowCriminals = this.handleShowCriminals.bind(this);
+        this.handleCloseCriminals = this.handleCloseCriminals.bind(this);
         let item = "";
 
         if ('location' in this.props  && this.props.location.state.item !== undefined) {
@@ -40,8 +53,26 @@ export default class State extends Component {
                 lng: 0
             },
             crimes: [],
-            criminals: []
+            criminals: [],
+            showCrimes: false,
+            showCriminals: false
         }
+    }
+
+    handleCloseCrimes() {
+        this.setState({ showCrimes: false });
+    }
+
+    handleShowCrimes() {
+        this.setState({ showCrimes: true });
+    }
+
+    handleCloseCriminals() {
+        this.setState({ showCriminals: false });
+    }
+
+    handleShowCriminals() {
+        this.setState({ showCriminals: true });
     }
 
     componentDidMount () {
@@ -203,6 +234,7 @@ export default class State extends Component {
                         </div>
                     </div>
                     <div className="col-md-8">
+                        <Well style= {wellStyles}>
                         <h2 className="sub-header">{this.state.item.name}</h2>
                         <table className="table table-responsive text-left">
                             <tbody>
@@ -242,22 +274,51 @@ export default class State extends Component {
                         </table>
 
                         <div class="col-sm-6">
-                        <h3 className="sub-header">Crimes In This State</h3>
-                        <table className="table table-responsive table-hover text-left">
-                            <tbody>
-                            {crimeList}
-                            </tbody>
-                        </table>
+                        <h3 className="sub-header" style = {textStyles}>Crimes In This State</h3>
+                            <Button bsStyle="primary" bsSize="large" onClick={this.handleShowCrimes}>
+                                See Crimes in this State!
+                            </Button>
                         </div>
 
+                        <Modal show={this.state.showCrimes} onHide={this.handleCloseCrimes} style = {textStyles}>
+                            <Modal.Header closeButton>
+                                <Modal.Title>Crimes in This State</Modal.Title>
+                              </Modal.Header>
+                              <Modal.Body>
+                                  <table className="table table-responsive table-hover text-left">
+                                    <tbody>
+                                    {crimeList}
+                                    </tbody>
+                                  </table>
+                              </Modal.Body>
+                              <Modal.Footer>
+                                <Button onClick={this.handleCloseCrimes}>Close</Button>
+                              </Modal.Footer>
+                        </Modal>
+
                         <div class="col-sm-6">
-                        <h3 className="sub-header">Criminals In This State</h3>
-                            <table className="table table-responsive table-hover text-left">
-                                <tbody>
-                                {criminalList}
-                                </tbody>
-                            </table>
+                        <h3 className="sub-header" style = {textStyles}>Criminals In This State</h3>
+                            <Button bsStyle="primary" bsSize="large" onClick={this.handleShowCriminals}>
+                                See Criminals in this State!
+                            </Button>
                         </div>
+
+                        <Modal show={this.state.showCriminals} onHide={this.handleCloseCriminals} style = {textStyles}>
+                            <Modal.Header closeButton>
+                                <Modal.Title>Criminals in This State</Modal.Title>
+                              </Modal.Header>
+                              <Modal.Body>
+                                <table className="table table-responsive table-hover text-left">
+                                    <tbody>
+                                    {criminalList}
+                                    </tbody>
+                                  </table>
+                              </Modal.Body>
+                              <Modal.Footer>
+                                <Button onClick={this.handleCloseCriminals}>Close</Button>
+                              </Modal.Footer>
+                        </Modal>
+                    </Well>
                     </div>
                 </div>
             </div>

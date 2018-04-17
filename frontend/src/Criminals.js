@@ -32,7 +32,7 @@ var divStyle = {
 var wellStyle = {
   padding: "10px",
   margin: "10px",
-  backgroundColor: '#40739e'
+  background: '#596275'
 }
 
 export default class Criminals extends Component {

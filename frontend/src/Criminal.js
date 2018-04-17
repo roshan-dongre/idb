@@ -11,17 +11,12 @@ var imageStyles = {
     height: '350px'
 }
 
-var style = {
-    width: '400px',
-    height: '350px'
-}
-
 var textStyles = {
     color: 'black'
 }
 
 var wellStyles = {
-    backgroundColor: '#7f8fa6'
+    background: '#7f8fa6'
 }
 
 export default class Criminal extends Component {

@@ -12,7 +12,7 @@ export default class Header extends Component {
           <Navbar className="navbar-default" inverse collapseOnSelect>
             <Navbar.Header>
               <Navbar.Brand>
-                <a href="/">On The Run</a>
+              <a href="/"><img src="https://static.spin.com/files/TOOTHY_21B.jpg" height="50" width="70" class="inline-block"/> On The Run</a>
               </Navbar.Brand>
               <Navbar.Toggle />
             </Navbar.Header>

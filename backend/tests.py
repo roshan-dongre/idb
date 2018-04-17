@@ -190,7 +190,7 @@ class DBTest(unittest.TestCase):
 class StateTest(unittest.TestCase):
   
   def setUp(self):
-    self.url = "http://api.ontherun.me:5000/states"
+    self.url = "http://api.ontherun.me/states"
     # self.url = "http://18.219.198.152/states"
 
   def test_1(self):
@@ -220,7 +220,7 @@ class StateTest(unittest.TestCase):
 class CriminalTest(unittest.TestCase):
   
   def setUp(self):
-  	self.url = "http://api.ontherun.me:5000/criminals"
+  	self.url = "http://api.ontherun.me/criminals"
     # self.url = "http://18.219.198.152/criminals"
     
   def test_1(self):
@@ -235,12 +235,12 @@ class CriminalTest(unittest.TestCase):
   def test_2(self):
     response = requests.get(self.url + "/64")
     data = json.loads(response.content)
-    self.assertEqual(data["name"], "STEPHEN MARCUS GILBERT")
+    self.assertEqual(data["name"], "ROBERT WILLIAM ZENY")
     
 class CrimeTest(unittest.TestCase):
 
   def setUp(self):
-  	self.url = "http://api.ontherun.me:5000/crimes"
+  	self.url = "http://api.ontherun.me/crimes"
     # self.url = "http://18.219.198.152/crimes"
     
   def test_1(self):
@@ -264,7 +264,7 @@ class CrimeTest(unittest.TestCase):
 class CrimesToState(unittest.TestCase):
   
   def setUp(self):
-  	self.url = "http://api.ontherun.me:5000/crimestostate"
+  	self.url = "http://api.ontherun.me/crimestostate"
     # self.url = "http://18.219.198.152/crimestostate"
     
   def test_1(self):
@@ -284,7 +284,7 @@ class CrimesToState(unittest.TestCase):
 class CriminalsToState(unittest.TestCase):
   
   def setUp(self):
-  	self.url = "http://api.ontherun.me:5000/criminalstostate"
+  	self.url = "http://api.ontherun.me/criminalstostate"
     # self.url = "http://18.219.198.152/criminalstostate"
     
   def test_1(self):

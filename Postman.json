@@ -88,14 +88,13 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://api.ontherun.me:5000/states",
+					"raw": "http://api.ontherun.me/states",
 					"protocol": "http",
 					"host": [
 						"api",
 						"ontherun",
 						"me"
 					],
-					"port": "5000",
 					"path": [
 						"states"
 					]
@@ -160,14 +159,13 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://api.ontherun.me:5000/states/AL",
+					"raw": "http://api.ontherun.me/states/AL",
 					"protocol": "http",
 					"host": [
 						"api",
 						"ontherun",
 						"me"
 					],
-					"port": "5000",
 					"path": [
 						"states",
 						"AL"
@@ -233,14 +231,13 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://api.ontherun.me:5000/states/24",
+					"raw": "http://api.ontherun.me/states/24",
 					"protocol": "http",
 					"host": [
 						"api",
 						"ontherun",
 						"me"
 					],
-					"port": "5000",
 					"path": [
 						"states",
 						"24"
@@ -339,14 +336,13 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://api.ontherun.me:5000/criminals",
+					"raw": "http://api.ontherun.me/criminals",
 					"protocol": "http",
 					"host": [
 						"api",
 						"ontherun",
 						"me"
 					],
-					"port": "5000",
 					"path": [
 						"criminals"
 					]
@@ -436,14 +432,13 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://api.ontherun.me:5000/criminals/2",
+					"raw": "http://api.ontherun.me/criminals/2",
 					"protocol": "http",
 					"host": [
 						"api",
 						"ontherun",
 						"me"
 					],
-					"port": "5000",
 					"path": [
 						"criminals",
 						"2"
@@ -516,13 +511,12 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "api.ontherun.me:5000/crimes",
+					"raw": "api.ontherun.me/crimes",
 					"host": [
 						"api",
 						"ontherun",
 						"me"
 					],
-					"port": "5000",
 					"path": [
 						"crimes"
 					]
@@ -596,14 +590,13 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://api.ontherun.me:5000/crimes/2",
+					"raw": "http://api.ontherun.me/crimes/2",
 					"protocol": "http",
 					"host": [
 						"api",
 						"ontherun",
 						"me"
 					],
-					"port": "5000",
 					"path": [
 						"crimes",
 						"2"
@@ -665,14 +658,13 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://api.ontherun.me:5000/crimestostate",
+					"raw": "http://api.ontherun.me/crimestostate",
 					"protocol": "http",
 					"host": [
 						"api",
 						"ontherun",
 						"me"
 					],
-					"port": "5000",
 					"path": [
 						"crimestostate"
 					]
@@ -733,14 +725,13 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://api.ontherun.me:5000/crimestostate/4",
+					"raw": "http://api.ontherun.me/crimestostate/4",
 					"protocol": "http",
 					"host": [
 						"api",
 						"ontherun",
 						"me"
 					],
-					"port": "5000",
 					"path": [
 						"crimestostate",
 						"4"
@@ -831,14 +822,13 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://api.ontherun.me:5000/crimestocriminals",
+					"raw": "http://api.ontherun.me/crimestocriminals",
 					"protocol": "http",
 					"host": [
 						"api",
 						"ontherun",
 						"me"
 					],
-					"port": "5000",
 					"path": [
 						"crimestocriminals"
 					]
@@ -929,14 +919,13 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://api.ontherun.me:5000/crimetocriminals/1",
+					"raw": "http://api.ontherun.me/crimetocriminals/1",
 					"protocol": "http",
 					"host": [
 						"api",
 						"ontherun",
 						"me"
 					],
-					"port": "5000",
 					"path": [
 						"crimetocriminals",
 						"1"
@@ -1028,14 +1017,13 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://api.ontherun.me:5000/criminaltocrimes/1",
+					"raw": "http://api.ontherun.me/criminaltocrimes/1",
 					"protocol": "http",
 					"host": [
 						"api",
 						"ontherun",
 						"me"
 					],
-					"port": "5000",
 					"path": [
 						"criminaltocrimes",
 						"1"
@@ -1100,14 +1088,13 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://api.ontherun.me:5000/criminalstostate",
+					"raw": "http://api.ontherun.me/criminalstostate",
 					"protocol": "http",
 					"host": [
 						"api",
 						"ontherun",
 						"me"
 					],
-					"port": "5000",
 					"path": [
 						"criminalstostate"
 					]
@@ -1304,14 +1291,13 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://api.ontherun.me:5000/criminalstostate/AR",
+					"raw": "http://api.ontherun.me/criminalstostate/AR",
 					"protocol": "http",
 					"host": [
 						"api",
 						"ontherun",
 						"me"
 					],
-					"port": "5000",
 					"path": [
 						"criminalstostate",
 						"AR"
@@ -1412,14 +1398,13 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://api.ontherun.me:5000/crimestostate/AR",
+					"raw": "http://api.ontherun.me/crimestostate/AR",
 					"protocol": "http",
 					"host": [
 						"api",
 						"ontherun",
 						"me"
 					],
-					"port": "5000",
 					"path": [
 						"crimestostate",
 						"AR"
@@ -1520,14 +1505,13 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://api.ontherun.me:5000/crimes/state/4",
+					"raw": "http://api.ontherun.me/crimes/state/4",
 					"protocol": "http",
 					"host": [
 						"api",
 						"ontherun",
 						"me"
 					],
-					"port": "5000",
 					"path": [
 						"crimes",
 						"state",
@@ -1720,14 +1704,13 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://api.ontherun.me:5000/states?area_min=70000&area_max=100000",
+					"raw": "http://api.ontherun.me/states?area_min=70000&area_max=100000",
 					"protocol": "http",
 					"host": [
 						"api",
 						"ontherun",
 						"me"
 					],
-					"port": "5000",
 					"path": [
 						"states"
 					],
@@ -1929,14 +1912,13 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://api.ontherun.me:5000/states?population_min=200000&population_max=1000000",
+					"raw": "http://api.ontherun.me/states?population_min=200000&population_max=1000000",
 					"protocol": "http",
 					"host": [
 						"api",
 						"ontherun",
 						"me"
 					],
-					"port": "5000",
 					"path": [
 						"states"
 					],
@@ -2138,14 +2120,13 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://api.ontherun.me:5000/states?region=Northeast",
+					"raw": "http://api.ontherun.me/states?region=Northeast",
 					"protocol": "http",
 					"host": [
 						"api",
 						"ontherun",
 						"me"
 					],
-					"port": "5000",
 					"path": [
 						"states"
 					],
@@ -2234,14 +2215,13 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://api.ontherun.me:5000/crimes?count_min=200000&count_max=1000000",
+					"raw": "http://api.ontherun.me/crimes?count_min=200000&count_max=1000000",
 					"protocol": "http",
 					"host": [
 						"api",
 						"ontherun",
 						"me"
 					],
-					"port": "5000",
 					"path": [
 						"crimes"
 					],
@@ -2335,14 +2315,13 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://api.ontherun.me:5000/crimes?offenders_min=200000&offenders_max=1000000",
+					"raw": "http://api.ontherun.me/crimes?offenders_min=200000&offenders_max=1000000",
 					"protocol": "http",
 					"host": [
 						"api",
 						"ontherun",
 						"me"
 					],
-					"port": "5000",
 					"path": [
 						"crimes"
 					],
@@ -2436,14 +2415,13 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://api.ontherun.me:5000/crimes?victims_min=200000&victims_max=1000000",
+					"raw": "http://api.ontherun.me/crimes?victims_min=200000&victims_max=1000000",
 					"protocol": "http",
 					"host": [
 						"api",
 						"ontherun",
 						"me"
 					],
-					"port": "5000",
 					"path": [
 						"crimes"
 					],
@@ -2537,14 +2515,13 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://api.ontherun.me:5000/criminals?height_min=58&height_max=62",
+					"raw": "http://api.ontherun.me/criminals?height_min=58&height_max=62",
 					"protocol": "http",
 					"host": [
 						"api",
 						"ontherun",
 						"me"
 					],
-					"port": "5000",
 					"path": [
 						"criminals"
 					],
@@ -2638,14 +2615,13 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://api.ontherun.me:5000/criminals?sex=Female",
+					"raw": "http://api.ontherun.me/criminals?sex=Female",
 					"protocol": "http",
 					"host": [
 						"api",
 						"ontherun",
 						"me"
 					],
-					"port": "5000",
 					"path": [
 						"criminals"
 					],
@@ -2734,14 +2710,13 @@
 				"header": [],
 				"body": {},
 				"url": {
-					"raw": "http://api.ontherun.me:5000/criminals?race=Black",
+					"raw": "http://api.ontherun.me/criminals?race=Black",
 					"protocol": "http",
 					"host": [
 						"api",
 						"ontherun",
 						"me"
 					],
-					"port": "5000",
 					"path": [
 						"criminals"
 					],

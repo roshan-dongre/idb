@@ -85,3 +85,11 @@ background-color: #070605;
 margin-bottom: 0px;
 font-size: large;
 }
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+.navbar-brand>img {
+  padding: 7px 14px;
+}

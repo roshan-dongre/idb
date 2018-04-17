@@ -66,7 +66,7 @@ export default class Criminal extends Component {
     }
 
     getStates() {
-        let url = "http://api.ontherun.me:5000/criminalstostate/" + this.state.item.id
+        let url = "http://api.ontherun.me/criminalstostate/" + this.state.item.id
         let self = this
         axios.get(url)
             .then((res) => {
@@ -79,7 +79,7 @@ export default class Criminal extends Component {
 
     getCrimes() {
         if (this.state.item.id !== undefined) {
-        let url = "http://api.ontherun.me:5000/criminaltocrimes/" + this.state.item.id 
+        let url = "http://api.ontherun.me/criminaltocrimes/" + this.state.item.id 
         let self = this
         axios.get(url)
             .then((res) => {
@@ -94,9 +94,9 @@ export default class Criminal extends Component {
     callAPI() {
         let url
         if (this.props.location !== undefined && this.props.location.state.selectedId !== undefined) {
-            url = "http://api.ontherun.me:5000/criminals/"+this.props.location.state.selectedId
+            url = "http://api.ontherun.me/criminals/"+this.props.location.state.selectedId
         } else {
-            url = "http://api.ontherun.me:5000/criminals/"+this.state.item.id
+            url = "http://api.ontherun.me/criminals/"+this.state.item.id
         }
         let self = this
         axios.get(url)

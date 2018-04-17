@@ -81,7 +81,7 @@ export default class Crimes extends Component {
         let limit = this.state.pgSize
         let offset = this.state.page
         let limOff = "?limit="+limit+"&offset="+offset
-        let url = "http://api.ontherun.me:5000/crimes" + limOff
+        let url = "http://api.ontherun.me/crimes" + limOff
 
         if (this.state.sortBy !== "") {
             url += "&sort="+this.state.sortBy

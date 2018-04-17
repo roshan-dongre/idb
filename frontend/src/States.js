@@ -87,7 +87,7 @@ export default class States extends Component {
         let limit = this.state.pgSize
         let offset = this.state.page
         let limOff = "?limit="+limit+"&offset="+offset
-        let url = "http://api.ontherun.me:5000/states" + limOff
+        let url = "http://api.ontherun.me/states" + limOff
         //let url = "http://18.219.198.152/states" + limOff
 
         if (this.state.sortBy !== "") {

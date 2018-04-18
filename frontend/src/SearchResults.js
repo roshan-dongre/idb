@@ -6,6 +6,20 @@ import Pagination from './Pagination';
 
 import Highlighter from 'react-highlight-words'
 
+var centerStyle = {
+    margin: 'auto'
+}
+
+var divStyle = {
+    justifyContent: 'center'
+}
+
+var tableStyle = {
+    width: '70%',
+    justifyContent: 'center',
+    margin: 'auto'
+}
+
 class SearchResults extends Component {
     constructor (props) {
         super (props);
@@ -104,8 +118,8 @@ class SearchResults extends Component {
         })
         return (
             <div className="container sub-container">
-                <div className="row">
-                    <div className="col-xs-12">
+                <div className="row text-center">
+                    <div className="col-xs-12" style={divStyle}>
                         <h2 className="sub-header">Search Results</h2>
                         <div>
                             <h4 style={{display: 'inline'}}>Showing:</h4>
@@ -113,7 +127,7 @@ class SearchResults extends Component {
                                 <strong>{this.state.page*this.state.pgSize + 10 < this.state.totalResults ? this.state.page*this.state.pgSize + 10 : this.state.totalResults}</strong> of
                                 <strong> {this.state.totalResults}</strong> results
                         </div>
-                        <table className="table table-responsive text-left" style={{maxWidth: '60%'}}>
+                        <table className="table table-responsive text-left" style={tableStyle}>
                             <tbody>
                             {resultRows}
                             </tbody>

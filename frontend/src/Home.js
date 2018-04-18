@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
-import {Carousel, Container, Slide} from 'react-bootstrap'
+import {Carousel, Container, Slide, Popover, OverlayTrigger} from 'react-bootstrap'
 import $ from 'jquery'
 import './Home.css'
+import HomeOverlay from './HomeOverlay.js'
 
 var imageStyles = {
     height: "575px",
@@ -17,6 +18,11 @@ class Home extends React.Component {
 
   constructor(props) {
     super(props);
+    let item="";
+    item = ["https://images.pexels.com/photos/597909/pexels-photo-597909.jpeg?auto=compress&cs=tinysrgb&h=350",
+            "https://i.ytimg.com/vi/xjmBQJlmEqg/maxresdefault.jpg",
+            "https://thecrimereport.org/wp-content/uploads/2016/02/police_line.jpg"
+            ];
   }
 
     render() {
@@ -96,40 +102,64 @@ class Home extends React.Component {
     </div>
 
     <div class="container">
+
+
       <div class="journal-block">
         <div class="row">
 
           <div class="col-lg-4 col-md-6">
+          
+          <OverlayTrigger trigger="hover" placement="right" overlay= {
+          <Popover 
+            id="popover-basic"
+            placement="right"
+            >
+            <h4>Click to see Crime Reporting Statistics</h4>
+            </Popover>}>
+
             <div class="journal-info">
 
               <a href="https://ucr.fbi.gov/"><img src="https://images.pexels.com/photos/597909/pexels-photo-597909.jpeg?auto=compress&cs=tinysrgb&h=350" class="img-responsive" alt="img" style = {linkStyles}/></a>
-              <div class="journal-txt text-center text-white">
-                <h4><a>Crime Reporting Statistics</a></h4>
-              </div>
+              
             </div>
+
+            </OverlayTrigger>
+
           </div>
 
           <div class="col-lg-4 col-md-6">
+
+          <OverlayTrigger trigger="hover" placement="right" overlay= {
+          <Popover 
+            id="popover-basic"
+            placement="right"
+            >
+            <h4>Click to see The Ten Most Wanted</h4>
+            </Popover>}>
+
             <div class="journal-info">
 
               <a href="https://www.fbi.gov/wanted/topten"><img src="https://i.ytimg.com/vi/xjmBQJlmEqg/maxresdefault.jpg" class="img-responsive" alt="img" style = {linkStyles}/></a>
-              <div class="journal-txt text-center text-white">
-                <h4><a>Ten Most Wanted</a></h4>
-              </div>
+              
             </div>
+            </OverlayTrigger>
           </div>
 
           <div class="col-lg-4 col-md-6">
-            <div className ="journal-info">
+            <OverlayTrigger trigger="hover" placement="left" overlay= {
+            <Popover 
+              id="popover-basic"
+              placement="left"
+              >
+              <h4>Click to see the Sex Offender Registry</h4>
+              </Popover>}>
 
-              <a href="https://records.txdps.state.tx.us/SexOffenderRegistry">
-              <img src="https://thecrimereport.org/wp-content/uploads/2016/02/police_line.jpg" class="img-responsive" alt="img" style = {linkStyles}/>
-              </a>
-              <div class="journal-txt text-center text-white">
-                <h4><a>Sex Offender Registry</a></h4>
-              </div>
-
-            </div>
+              <div className ="journal-info">
+                <a href="https://records.txdps.state.tx.us/SexOffenderRegistry"> <img src="https://thecrimereport.org/wp-content/uploads/2016/02/police_line.jpg" class="img-responsive" alt="img" style = {linkStyles}/>
+                </a>
+                
+                </div>
+                </OverlayTrigger>
           </div>
 
         </div>

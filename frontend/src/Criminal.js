@@ -252,7 +252,7 @@ export default class Criminal extends Component {
                             </tr>
                             <tr>
                                 <td><strong>Page:</strong></td>
-                                <td><a href={this.state.item.fbi == null ? this.state.unknown : this.state.item.fbi} style={{ color: '#FFF' }}>{this.state.item.fbi == null ? this.state.unknown : this.state.item.fbi}</a></td>
+                                <td><strong><a href={this.state.item.fbi == null ? this.state.unknown : this.state.item.fbi} style={{ color: '#000' }}>{this.state.item.fbi == null ? this.state.unknown : this.state.item.fbi}</a></strong></td>
                             </tr>
                             <tr>
                                 <td><strong>State:</strong></td>

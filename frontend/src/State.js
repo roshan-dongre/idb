@@ -23,6 +23,15 @@ var wellStyles = {
     background: '#7f8fa6'
 }
 
+var wellSecond = {
+    background: '#8C4A51'
+}
+
+var button = {
+    background: '#2d3436',
+    borderColor: '#2d3436'
+}
+
 export default class State extends Component {
     constructor (props) {
         super (props);
@@ -233,7 +242,7 @@ export default class State extends Component {
                             </GoogleMapReact>
                         </div>
                     </div>
-                    <div className="col-md-8">
+                    <div className="col-md-8" style={textStyles}>
                         <Well style= {wellStyles}>
                         <h2 className="sub-header">{this.state.item.name}</h2>
                         <table className="table table-responsive text-left">
@@ -268,17 +277,29 @@ export default class State extends Component {
                             </tr>
                             <tr>
                                 <td><strong>Wiki Link:</strong></td>
-                                <td><a href={this.state.item.wiki == null ? this.state.unknown : this.state.item.wiki}>{this.state.item.wiki == null ? this.state.unknown : this.state.item.wiki}</a></td>
+                                <td><strong><a href={this.state.item.wiki == null ? this.state.unknown : this.state.item.wiki} style={{ color: '#000' }}>{this.state.item.wiki == null ? this.state.unknown : this.state.item.wiki}</a></strong></td>
                             </tr>
                             </tbody>
                         </table>
 
+                    </Well>
+
+                        <Well style={wellSecond}>    
+                        <div class="row">
                         <div class="col-sm-6">
-                        <h3 className="sub-header" style = {textStyles}>Crimes In This State</h3>
-                            <Button bsStyle="primary" bsSize="large" onClick={this.handleShowCrimes}>
+                            <Button bsStyle="primary" bsSize="large" style = {button} onClick={this.handleShowCrimes}>
                                 See Crimes in this State!
                             </Button>
                         </div>
+
+                        <div class="col-sm-6">
+                            <Button bsStyle="primary" bsSize="large" style = {button} onClick={this.handleShowCriminals}>
+                                See Criminals in this State!
+                            </Button>
+                        </div>
+                        </div>
+                        </Well>
+
 
                         <Modal show={this.state.showCrimes} onHide={this.handleCloseCrimes} style = {textStyles}>
                             <Modal.Header closeButton>
@@ -296,13 +317,6 @@ export default class State extends Component {
                               </Modal.Footer>
                         </Modal>
 
-                        <div class="col-sm-6">
-                        <h3 className="sub-header" style = {textStyles}>Criminals In This State</h3>
-                            <Button bsStyle="primary" bsSize="large" onClick={this.handleShowCriminals}>
-                                See Criminals in this State!
-                            </Button>
-                        </div>
-
                         <Modal show={this.state.showCriminals} onHide={this.handleCloseCriminals} style = {textStyles}>
                             <Modal.Header closeButton>
                                 <Modal.Title>Criminals in This State</Modal.Title>
@@ -318,7 +332,7 @@ export default class State extends Component {
                                 <Button onClick={this.handleCloseCriminals}>Close</Button>
                               </Modal.Footer>
                         </Modal>
-                    </Well>
+
                     </div>
                 </div>
             </div>

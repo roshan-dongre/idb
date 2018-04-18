@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
 import {Redirect} from 'react-router-dom';
 import Highlighter from 'react-highlight-words';
-import {Row, Col, Panel, Button, Modal, Well} from 'react-bootstrap'
+import {Row, Col, Panel, Button, Modal, Well} from 'react-bootstrap';
+import Styles from './Highlighter.css'
 
 
 var bgStyles = {
     background: '#ededed',
     color: '#000000'
+}
+
+var highlighterStyle = {
+    backgroundColor: '#ffd54f',
+    color: '#FFFF00'
+
 }
 
 export default class SearchItem extends Component {

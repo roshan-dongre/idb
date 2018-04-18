@@ -55,6 +55,7 @@ export default class CrimeOverlay extends Component {
                             <h3 style={headerStyle}>{_.startCase(_.camelCase(this.state.item.name))}</h3>
                             <h4 style={textStyle}>Description: {this.state.item.description}</h4>
                             <h4 style={textStyle}>Crimes: {this.state.item.count}</h4>
+                            <h4 style={textStyle}>Offenders: {this.state.item.offenders}</h4>
                             </div>
                         </div>
                     </div>

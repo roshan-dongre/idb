@@ -38,7 +38,7 @@ class Home extends React.Component {
                              style = {imageStyles}/>
                         <Carousel.Caption>
                             <h2>A Life of Crime</h2>
-                            <p>The FBI's Most Wanted Criminals</p>
+                            <p>Scroll Down For More Info</p>
                         </Carousel.Caption>
                     </Carousel.Item>
                     <Carousel.Item>
@@ -47,7 +47,7 @@ class Home extends React.Component {
                              style = {imageStyles}/>
                         <Carousel.Caption>
                             <h2>A Life of Crime</h2>
-                            <p>The FBI's Most Wanted Criminals</p>
+                            <p>Criminal, State, and Crime Database</p>
                         </Carousel.Caption>
                     </Carousel.Item>
                 </Carousel>

@@ -224,13 +224,13 @@ export default class Crime extends Component {
                              <div class="row">
                             <div class="col-sm-6">
                                 <Button bsStyle="primary" bsSize="large" style = {button} onClick={this.handleShowStates}>
-                                See States With This Crime!
+                                See States with this Crime!
                                 </Button>
                             </div>
 
                             <div class="col-sm-6">
                                 <Button bsStyle="primary" bsSize="large" style = {button} onClick={this.handleShowCriminals}>
-                                See Criminals in this State!
+                                See Criminals with this Crime!
                                 </Button>
                             </div>
                             </div>
@@ -254,7 +254,7 @@ export default class Crime extends Component {
 
                             <Modal show={this.state.showCriminals} onHide={this.handleCloseCriminals} style = {textStyles}>
                                 <Modal.Header closeButton>
-                                    <Modal.Title>Criminals in This State</Modal.Title>
+                                    <Modal.Title>Criminals Committing This Crime</Modal.Title>
                                   </Modal.Header>
                                   <Modal.Body>
                                     <table className="table table-responsive table-hover text-left">

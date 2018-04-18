@@ -12,7 +12,6 @@ jobs:
           - printenv | sort
       script:
           - date
-          - sh run_tests.sh
           - python backend/tests.py
 
     - stage: Postman

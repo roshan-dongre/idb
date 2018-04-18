@@ -2,16 +2,37 @@ import React, { Component } from 'react';
 import {Redirect} from 'react-router-dom';
 import axios from 'axios';
 import 'lodash'
-
+import {Row, Col, Panel, Button, Modal, Well} from 'react-bootstrap'
 
 var imageStyles = {
     width: '400px',
     height: '350px'
 }
 
+var textStyles = {
+    color: 'black'
+}
+
+var wellStyles = {
+    background: '#7f8fa6'
+}
+
+var wellSecond = {
+    background: '#8C4A51'
+}
+
+var button = {
+    background: '#2d3436',
+    borderColor: '#2d3436'
+}
+
 export default class Crime extends Component {
     constructor (props) {
         super (props);
+        this.handleShowStates = this.handleShowStates.bind(this);
+        this.handleCloseStates = this.handleCloseStates.bind(this);
+        this.handleShowCriminals = this.handleShowCriminals.bind(this);
+        this.handleCloseCriminals = this.handleCloseCriminals.bind(this);
         let item = "";
         if ('location' in this.props  && this.props.location.state.item !== undefined) {
             item = this.props.location.state.item
@@ -27,7 +48,25 @@ export default class Crime extends Component {
             criminals: [],    
             criminalUnavailable: "No criminals available",
             stateUnavailable: "No states available",
+            showStates: false,
+            showCriminals: false
         }
+    }
+
+    handleCloseStates() {
+        this.setState({ showStates: false });
+    }
+
+    handleShowStates() {
+        this.setState({ showStates: true });
+    }
+
+    handleCloseCriminals() {
+        this.setState({ showCriminals: false });
+    }
+
+    handleShowCriminals() {
+        this.setState({ showCriminals: true });
     }
 
     componentDidMount() {
@@ -151,7 +190,8 @@ export default class Crime extends Component {
                                 <img className="img-thumbnail img-thumbnail-sm" src={this.state.item.image === undefined ? this.state.item.images : this.state.item.image} alt={this.state.item.name} style = {imageStyles}/>
                             </div>
                         </div>
-                        <div className="col-md-8">
+                        <div className="col-md-8" style={textStyles}>
+                            <Well style= {wellStyles}>
                             <h2 className="sub-header text-center">{this.state.item.name}</h2>
                             <table className="table table-responsive text-left">
                                 <tbody>
@@ -173,28 +213,62 @@ export default class Crime extends Component {
                                 </tr>
                                 <tr>
                                     <td><strong>FBI Info:</strong></td>
-                                    <td><a href={this.state.item.info == null ? this.state.unknown : this.state.item.info}>{this.state.item.info == null ? this.state.unknown : this.state.item.info}</a></td>
+                                    <td><strong><a href={this.state.item.info == null ? this.state.unknown : this.state.item.info} style={{ color: '#000' }}>{this.state.item.info == null ? this.state.unknown : this.state.item.info}</a></strong></td>
                                 </tr>
                                 </tbody>
                             </table>
 
+                            </Well>
+
+                            <Well style={wellSecond}> 
+                             <div class="row">
                             <div class="col-sm-6">
-                            <h3 className="sub-header">States With This Crime</h3>
-                            <table className="table table-responsive table-hover text-left">
-                                <tbody>
-                                {stateList}
-                                </tbody>
-                            </table>
+                                <Button bsStyle="primary" bsSize="large" style = {button} onClick={this.handleShowStates}>
+                                See States With This Crime!
+                                </Button>
                             </div>
 
                             <div class="col-sm-6">
-                             <h3 className="sub-header">Criminals Guilty of This Crime</h3>
-                            <table className="table table-responsive table-hover text-left">
-                                <tbody>
-                                {criminalList}
-                                </tbody>
-                            </table>
+                                <Button bsStyle="primary" bsSize="large" style = {button} onClick={this.handleShowCriminals}>
+                                See Criminals in this State!
+                                </Button>
                             </div>
+                            </div>
+                            </Well>
+
+                            <Modal show={this.state.showStates} onHide={this.handleCloseStates} style = {textStyles}>
+                            <Modal.Header closeButton>
+                                <Modal.Title>States With This Crime</Modal.Title>
+                              </Modal.Header>
+                              <Modal.Body>
+                                  <table className="table table-responsive table-hover text-left">
+                                    <tbody>
+                                    {stateList}
+                                    </tbody>
+                                  </table>
+                              </Modal.Body>
+                              <Modal.Footer>
+                                <Button onClick={this.handleCloseStates}>Close</Button>
+                              </Modal.Footer>
+                            </Modal>
+
+                            <Modal show={this.state.showCriminals} onHide={this.handleCloseCriminals} style = {textStyles}>
+                                <Modal.Header closeButton>
+                                    <Modal.Title>Criminals in This State</Modal.Title>
+                                  </Modal.Header>
+                                  <Modal.Body>
+                                    <table className="table table-responsive table-hover text-left">
+                                        <tbody>
+                                        {criminalList}
+                                        </tbody>
+                                      </table>
+                                  </Modal.Body>
+                                  <Modal.Footer>
+                                    <Button onClick={this.handleCloseCriminals}>Close</Button>
+                                  </Modal.Footer>
+                            </Modal>
+
+
                         </div>
                     </div>
                 </div>

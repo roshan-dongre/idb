@@ -9,7 +9,16 @@ var imageStyles = {
     height: '250px'
 }
 
-export default class ModelOverlay extends Component {
+var headerStyle = {
+    fontSize: '27px',
+    fontStyle: 'bold'
+}
+
+var textStyle = {
+    fontSize: '15px'
+}
+
+export default class StateOverlay extends Component {
     constructor (props) {
         super (props);
             this.state = {
@@ -42,7 +51,12 @@ export default class ModelOverlay extends Component {
                     <div onClick={() => this.setState({navigate: true})}>
                         <img className="img-thumbnail" src={this.state.item.image} alt={this.state.item.name} title={this.state.item.name} style = {imageStyles}/>
                         <div className="overlay">
-                            <div className="text">{_.startCase(_.camelCase(this.state.item.name))}</div>
+                        <div className="text">
+                            <h3 style={headerStyle}>{_.startCase(_.camelCase(this.state.item.name))}</h3>
+
+                            <h4 style={textStyle}>Capital: {this.state.item.capital}</h4>
+                            <h4 style={textStyle}>Region: {this.state.item.region}</h4>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import chunk from 'lodash.chunk';
 import axios from 'axios';
-import ModelOverlay from './ModelOverlay';
+import CriminalOverlay from './CriminalOverlay';
 import Pagination from './Pagination';
 import './font/css/font-awesome.min.css'
 import Select from 'react-select';
@@ -166,7 +166,7 @@ export default class Criminals extends Component {
             // Create an array of X components with 1 for each beer gathered from API call
             criminalComponents = this.state.criminals.map((criminal) => {
                 return (
-                    <ModelOverlay item={criminal} navigateTo="/Criminal"/>
+                    <CriminalOverlay item={criminal} navigateTo="/Criminal"/>
                 );
             })
         }

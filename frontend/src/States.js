@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import chunk from 'lodash.chunk';
 import axios from 'axios';
-import ModelOverlay from './ModelOverlay';
+import StateOverlay from './StateOverlay';
 import Pagination from './Pagination';
 import './font/css/font-awesome.min.css'
 import Select from 'react-select';
@@ -182,7 +182,7 @@ export default class States extends Component {
             // Create an array of X components with 1 for each beer gathered from API call
             stateComponents = this.state.states.map((state) => {
                 return (
-                    <ModelOverlay item={state} navigateTo="/State"/>
+                    <StateOverlay item={state} navigateTo="/State"/>
                 );
             })
         }

@@ -44,7 +44,8 @@ export default class Criminal extends Component {
             center: {
                 lat: 0,
                 lng: 0
-            }
+            },
+            reload: false 
         }
     }
 
@@ -62,6 +63,7 @@ export default class Criminal extends Component {
             this.getCrimes()
             this.changeValues()
             this.getCoor()
+           
         }
     }
 
@@ -75,20 +77,22 @@ export default class Criminal extends Component {
             .catch((error) => {
                 console.log(error)
             });
+      
+
     }
 
     getCrimes() {
         if (this.state.item.id !== undefined) {
-        let url = "http://api.ontherun.me/criminaltocrimes/" + this.state.item.id 
-        let self = this
-        axios.get(url)
-            .then((res) => {
-                self.setState({data_crimes: res.data});
-            })
-            .catch((error) => {
-                console.log(error)
-            });
-        }
+            let url = "http://api.ontherun.me/criminaltocrimes/" + this.state.item.id 
+            let self = this
+            axios.get(url)
+                .then((res) => {
+                    self.setState({data_crimes: res.data});
+                })
+                .catch((error) => {
+                    console.log(error)
+                });
+            }
     }
 
     callAPI() {
@@ -132,6 +136,7 @@ export default class Criminal extends Component {
         this.state.item.crime = striptags(this.state.item.crime)
         this.state.item.eyes = this.state.item.eyes.slice(0,1).toUpperCase() + this.state.item.eyes.slice(1, this.state.item.eyes.length)
         this.state.item.hair = this.state.item.hair.slice(0,1).toUpperCase() + this.state.item.hair.slice(1, this.state.item.hair.length)
+        
     }
 
     getCoor() {
@@ -145,19 +150,28 @@ export default class Criminal extends Component {
             console.error(error);
           }
         );
+
     }
 
     /* More information about the React.Component lifecycle here: https://reactjs.org/docs/react-component.html */
 
     render() {
 
-        if (this.state.item != "")
+        if (this.state.item != "") {
             this.changeValues()
-
+        }
+        
         this.getCoor()
 
+        if (this.state.reload === true) {
+            window.location.reload()
+        }
+
+        //in get Coor set the state 
+        
+
         if (this.state.navigate) {
-            return <Redirect to={{pathname: this.state.navigateTo, state: {selectedId: this.state.selectedId}}} push={true} />;
+            return <Redirect to={{pathname: this.state.navigateTo, state: {selectedId: this.state.selectedId, reload: true}}} push={true} />;
         }
         
         let stateList

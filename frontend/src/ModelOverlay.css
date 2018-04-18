@@ -7,14 +7,14 @@
   height: 100%;
   width: 100%;
   opacity: 0;
-  background-color: #000;
+  background-color: #FFFFFF;
   z-index: 1;
   color: rgba(130, 130, 130, 0.5);
   box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
 }
 
 .container-thumbnail:hover .overlay {
-  opacity: 0.5;
+  opacity: 0.80;
   position: absolute;
   display: inline-block;
   top: 0;
@@ -27,7 +27,7 @@
 }
 
 .text {
-  color: white;
+  color: black;
   font-size: 20px;
   position: absolute;
   top: 50%;

@@ -41,7 +41,7 @@ export default class States extends Component {
             pgSize: 16,
             sortBy: "",
             region: "",
-            population: {min: 0, max: 400},
+            population: "default",
             area: {min: 0, max: 300},
             pathname: "/States",
             loading: true
@@ -78,6 +78,12 @@ export default class States extends Component {
         }
     }
 
+    handlePopulation = (e) => {
+        if (e != null) {
+            this.setState({population: e.value})
+        }
+    }
+
     sort(order) {
         this.setState({sortBy: order})
     }
@@ -98,21 +104,35 @@ export default class States extends Component {
             url += "&region=" + this.state.region
         }
 
-        if (this.state.population.min !== 0 || this.state.population.max !== 400) {
-            url += "&population_min=" + (this.state.population.min * 100000) + "&population_max=" + (this.state.population.max * 100000)
+        if (this.state.population !== "default") {
+            var min = 0
+            var max = 100000000
+            if (this.state.population === "tiny") {
+                max = 999999
+            }
+            if (this.state.population === "small") {
+                min = 1000000
+                max = 2999999
+            }
+            if (this.state.population === "medium") {
+                min = 3000000
+                max = 4999999
+            }
+            if (this.state.population === "large") {
+                min = 5000000
+                max = 9999999
+            }
+            if (this.state.population === "giant") {
+                min = 10000000
+            }
+
+            url += "&population_min=" + min + "&population_max=" + max
         }
 
         if (this.state.area.min !== 0 || this.state.area.max !== 300) {
             url += "&area_min=" + (this.state.area.min * 1000) + "&area_max=" + (this.state.area.max * 1000)
         }
 
-        /*if (this.state.population !== 0) {
-            url += "&population=" + this.state.population
-        }
-
-        if (this.state.area !== 0) {
-            url += "&area=" + this.state.area
-        }*/
 
         let self = this
         axios.get(url)
@@ -216,24 +236,24 @@ export default class States extends Component {
                                 options={[ {value: 'All', label: 'All'}, { value: 'Northeast', label: 'Northeast' }, { value: 'Midwest', label: 'Midwest'}, { value: 'South', label: 'South'}, { value: 'West', label: 'West'},]}/>
                             </div>
                         </div> 
-                        {/*<div className="col-md-3">
+                        <div className="col-md-3">
                             <div className = "text-left" style = {blackStyles}>
                                 <Select name="form-field-name" value={this.state.population} onChange={this.handlePopulation} placeholder = "Filter by Population"
-                                options={[ { value: 500000, label: '>500,000 People' }, { value: 1000000, label: '>1,000,000 People'}, { value: 2000000, label: '>2,000,000 People'}, { value: 5000000, label: '>5,000,000 People'},{ value: 10000000, label: '>10,000,000 People'},]}/>
+                                options={[ { value: 'all', label: 'All' },{ value: 'tiny', label: 'Tiny Population' }, { value: 'small', label: 'Small Population'}, { value: 'medium', label: 'Medium Population'}, { value: 'large', label: 'Large Population'},{ value: 'giant', label: 'Giant Population'},]}/>
                             </div>
                         </div> 
-                        <div className="col-md-3">
+                        {/*<div className="col-md-3">
                             <div className = "text-left" style = {blackStyles}>
                                 <Select name="form-field-name" value={this.state.area} onChange={this.handleArea} placeholder = "Filter by Area"
                                 options={[ { value: 50, label: '>50 Square Miles' }, { value: 5000, label: '>5,000 Square Miles'}, { value: 25000, label: '>25,000 Square Miles'}, { value: 50000, label: '>50,000 Square Miles'},{ value: 100000, label: '>100,000 Square Miles'},]}/>
                             </div>
                         </div>*/}
-                        <div className="col-md-3">
+                        {/* <div className="col-md-3">
                             <div className = "text-center" style = {whiteStyles}>
                                 <label> <strong> Filter by Population (MM People): </strong> </label>
                                 <InputRange maxValue={400} minValue={0} value={this.state.population} onChange={population => this.setState({ population })} />
                             </div>
-                        </div>
+                        </div>*/}
                         <div className="col-md-3">
                             <div className = "text-center" style = {whiteStyles}>
                                 <label> <strong> Filter by Area (MM Sq. Miles): </strong> </label>

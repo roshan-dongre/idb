@@ -46,6 +46,8 @@ def get_crime(crim_id):
 
 @app.route('/crimestostate', methods=['GET'])#, subdomain="api")
 def get_crimetostate():
+    if (catch_id=="undefined"):
+        return redirect("https://roshan-dongre.gitbooks.io/api/")
     return jsonify(ast.literal_eval(str(CrimesState.query.all())))
 
 @app.route('/crimestostate/<string:id_val>', methods=['GET'])#, subdomain="api")
@@ -66,7 +68,7 @@ def get_criminalstostate(id_val):
         return jsonify(ast.literal_eval(str(CriminalState.query.filter_by(criminal_id=id_val).all())))
     if len(id_val) == 2:
         return jsonify(ast.literal_eval(str(CriminalState.query.filter_by(state_name=id_val).all())))
-    return "undefined"
+    return redirect("https://roshan-dongre.gitbooks.io/api/")
 
 @app.route('/crimestocriminals', methods=['GET'])#, subdomain="api")
 def get_crimestocriminals():
@@ -75,13 +77,13 @@ def get_crimestocriminals():
 @app.route('/crimetocriminals/<int:catch_id>', methods=['GET'])#, subdomain="api")
 def get_crimetocriminals(catch_id):
     if (catch_id=="undefined"):
-        return "undefined"
+        return redirect("https://roshan-dongre.gitbooks.io/api/")
     return jsonify(ast.literal_eval(str(CrimesCriminal.query.filter_by(crime_id=catch_id).all())))
 
 @app.route('/criminaltocrimes/<int:catch_id>', methods=['GET'])#, subdomain="api")
 def get_criminalstocrime(catch_id):
     if (catch_id=="undefined"):
-        return "undefined"
+        return redirect("https://roshan-dongre.gitbooks.io/api/")
     return jsonify(ast.literal_eval(str(CrimesCriminal.query.filter_by(criminal_id=catch_id).all())))
 
 #404 handling for api 

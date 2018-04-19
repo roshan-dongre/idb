@@ -1,15 +1,15 @@
-GithubID = kasrasadeghi
+GithubID = roshan-dongre
 RepoName = idb
 SHA      = c2387c9e85467deb5b1e88d2bf647bad09e3fdcf
 
 githubid:
-	@echo "roshan-dongre"
+	@echo "${GithubID}"
 
 reponame:
-	@echo "idb"
+	@echo "${RepoName}"
 
 sha:
-	@echo "FILL IN SHA HERE"
+	@echo "${SHA}"
 
 # make github   - prints link to github repo
 github:
@@ -21,7 +21,7 @@ issues:
 
 # make stories  - prints link to current phase's stories
 stories:
-	@echo "PUT LINK TO CURRENT PHASE STORIES HERE"
+	@echo "NEED GIT SHA TO DO THIS"
 
 # make uml      - prints link to uml diagram
 uml:

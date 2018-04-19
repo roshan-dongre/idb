@@ -3,7 +3,6 @@ import {withRouter} from 'react-router-dom';
 import chunk from 'lodash.chunk';
 import SearchItem from './SearchItem';
 import Pagination from './Pagination';
-
 import Highlighter from 'react-highlight-words'
 
 var centerStyle = {

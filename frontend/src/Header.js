@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import { Link } from 'react-router-dom'
 import { Navbar, NavItem, Button, Container, Nav, MenuItem, NavDropdown, FormGroup, FormControl } from 'react-bootstrap'
 import {LinkContainer} from 'react-router-bootstrap'
-import './Header.css'
 import Search from './Search'
 
 export default class Header extends Component {

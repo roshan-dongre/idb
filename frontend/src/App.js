@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './App.css';
 import 'react-bootstrap';
 import { Switch, Route } from 'react-router-dom';
 import axios from 'axios';

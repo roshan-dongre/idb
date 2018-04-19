@@ -1,6 +1,5 @@
 import React from 'react'
 import {Row, Col, Panel, Button, Modal, Well} from 'react-bootstrap'
-import './About.css'
 import axios from 'axios';
 
 var imageStyles = {

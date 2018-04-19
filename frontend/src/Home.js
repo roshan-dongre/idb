@@ -1,7 +1,5 @@
 import React, {Component} from 'react'
 import {Carousel, Container, Slide, Popover, OverlayTrigger} from 'react-bootstrap'
-import $ from 'jquery'
-import './Home.css'
 
 var imageStyles = {
     height: "575px",

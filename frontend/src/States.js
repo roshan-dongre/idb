@@ -46,7 +46,6 @@ export default class States extends Component {
             pathname: "/States",
             loading: true
         }
-        //this.apiUrl = 'http://api.ontherun.me/states';
     }
 
     componentDidMount () {
@@ -72,6 +71,12 @@ export default class States extends Component {
         }
     }
 
+    handleSort = (e) => {
+         if (e != null) {
+            this.setState({sortBy: e.value})
+        }
+    }
+
     handleRegion = (e) => {
         if (e != null) {
             this.setState({region: e.value})
@@ -84,10 +89,6 @@ export default class States extends Component {
         }
     }
 
-    sort(order) {
-        this.setState({sortBy: order})
-    }
-
     callAPI() {
 
         let limit = this.state.pgSize
@@ -97,9 +98,21 @@ export default class States extends Component {
         //let url = "http://18.219.198.152/states" + limOff
 
         if (this.state.sortBy !== "") {
-            url += "&sort_name="+this.state.sortBy
+            if (this.state.sortBy === 'name-asc' || this.state.sortBy === 'name-desc'){
+                if (this.state.sortBy === 'name-asc') {
+                    url += "&sort_name="+"ASC"
+                } else {
+                    url += "&sort_name="+"DESC"
+                }
+            }
+            if (this.state.sortBy === 'area-asc' || this.state.sortBy === 'area-desc'){
+                if (this.state.sortBy === 'area-asc') {
+                    url += "&sort_area="+"ASC"
+                } else {
+                    url += "&sort_area="+"DESC"
+                }
+            }
         }
-        //sort_area
 
         if (this.state.region !== "" && this.state.region !== "All") {
             url += "&region=" + this.state.region
@@ -177,16 +190,7 @@ export default class States extends Component {
         }
     }
 
-
-    /* Unmounting
-        This method is called when a component is being removed from the DOM:
-            * componentWillUnmount()
-     */
-
-    /* More information about the React.Component lifecycle here: https://reactjs.org/docs/react-component.html */
-
     render() {
-
 
     if (this.state.loading) {
         return (
@@ -217,19 +221,10 @@ export default class States extends Component {
                 <Well style = {wellStyle}>
                     <div className="row row-m-b">
                         <div className="col-md-3">
-                            {/*<div className= "text-center">
-                            <label>
-                                <strong style = {whiteStyles}>Sort by Name:  &nbsp;&nbsp;</strong>
-                            </label><span> </span>
-                            <div className="button btn-group">
-                                <button type="button"
-                                      className={this.state.order === "ASC" ? "btn btn-default active" : "btn btn-default"}
-                                      onClick={(e) => this.sort("ASC", e)}><i className="fa fa-sort-alpha-asc" aria-hidden="true"/></button>
-                                <button type="button"
-                                      className={this.state.order === "DESC" ? "btn btn-default active" : "btn btn-default"}
-                                      onClick={(e) => this.sort("DESC", e)}><i className="fa fa-sort-alpha-desc" aria-hidden="true"/></button>
+                            <div className = "text-left" style = {blackStyles}>
+                                <Select name="form-field-name" value={this.state.sortBy} onChange={this.handleSort} placeholder= "Sort by Name or Area"
+                                options={[ {value: 'name-asc', label: 'Sort by Name (ASC)'}, { value: 'name-desc', label: 'Sort by Name (DESC)' }, { value: 'area-asc', label: 'Sort by Area (ASC)'},{ value: 'area-desc', label: 'Sort by Area (DESC)'},]}/>
                             </div>
-                            </div>*/}
                         </div>
                         <div className="col-md-3">
                             <div className = "text-left" style = {blackStyles}>
@@ -242,19 +237,7 @@ export default class States extends Component {
                                 <Select name="form-field-name" value={this.state.population} onChange={this.handlePopulation} placeholder = "Filter by Population"
                                 options={[ { value: 'all', label: 'All' },{ value: 'tiny', label: 'Tiny Population' }, { value: 'small', label: 'Small Population'}, { value: 'medium', label: 'Medium Population'}, { value: 'large', label: 'Large Population'},{ value: 'giant', label: 'Giant Population'},]}/>
                             </div>
-                        </div> 
-                        {/*<div className="col-md-3">
-                            <div className = "text-left" style = {blackStyles}>
-                                <Select name="form-field-name" value={this.state.area} onChange={this.handleArea} placeholder = "Filter by Area"
-                                options={[ { value: 50, label: '>50 Square Miles' }, { value: 5000, label: '>5,000 Square Miles'}, { value: 25000, label: '>25,000 Square Miles'}, { value: 50000, label: '>50,000 Square Miles'},{ value: 100000, label: '>100,000 Square Miles'},]}/>
-                            </div>
-                        </div>*/}
-                        {/* <div className="col-md-3">
-                            <div className = "text-center" style = {whiteStyles}>
-                                <label> <strong> Filter by Population (MM People): </strong> </label>
-                                <InputRange maxValue={400} minValue={0} value={this.state.population} onChange={population => this.setState({ population })} />
-                            </div>
-                        </div>*/}
+                        </div>
                         <div className="col-md-3">
                             <div className = "text-center" style = {whiteStyles}>
                                 <label> <strong> Filter by Area (MM Sq. Miles): </strong> </label>

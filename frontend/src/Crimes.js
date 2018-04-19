@@ -72,8 +72,10 @@ export default class Crimes extends Component {
         }
     }
 
-    sort(order) {
-        this.setState({sortBy: order})
+    handleSort = (e) => {
+         if (e != null) {
+            this.setState({sortBy: e.value})
+        }
     }
 
     callAPI() {
@@ -84,7 +86,20 @@ export default class Crimes extends Component {
         let url = "http://api.ontherun.me/crimes" + limOff
 
         if (this.state.sortBy !== "") {
-            url += "&sort_name="+this.state.sortBy
+            if (this.state.sortBy === 'name-asc' || this.state.sortBy === 'name-desc'){
+                if (this.state.sortBy === 'name-asc') {
+                    url += "&sort_name="+"ASC"
+                } else {
+                    url += "&sort_name="+"DESC"
+                }
+            }
+            if (this.state.sortBy === 'count-asc' || this.state.sortBy === 'count-desc'){
+                if (this.state.sortBy === 'count-asc') {
+                    url += "&sort_count="+"ASC"
+                } else {
+                    url += "&sort_count="+"DESC"
+                }
+            }
         }
 
         if (this.state.count.min !== 0 || this.state.count.max !== 750) {
@@ -169,18 +184,9 @@ export default class Crimes extends Component {
                     <Well style = {wellStyle}>
                         <div className="row row-m-b">
                                 <div className="col-md-3">
-                                    <div className= "text-center">
-                                    <label>
-                                        <strong style = {whiteStyles}>Sort by Name:  &nbsp;&nbsp;</strong>
-                                    </label><span> </span>
-                                    <div className="button btn-group">
-                                        <button type="button"
-                                              className={this.state.order === "ASC" ? "btn btn-default active" : "btn btn-default"}
-                                              onClick={(e) => this.sort("ASC", e)}><i className="fa fa-sort-alpha-asc" aria-hidden="true"/></button>
-                                        <button type="button"
-                                              className={this.state.order === "DESC" ? "btn btn-default active" : "btn btn-default"}
-                                              onClick={(e) => this.sort("DESC", e)}><i className="fa fa-sort-alpha-desc" aria-hidden="true"/></button>
-                                    </div>
+                                    <div className = "text-left" style = {blackStyles}>
+                                        <Select name="form-field-name" value={this.state.sortBy} onChange={this.handleSort} placeholder= "Sort by Name or Crime Count"
+                                        options={[ {value: 'name-asc', label: 'Sort by Name (ASC)'}, { value: 'name-desc', label: 'Sort by Name (DESC)' }, { value: 'count-asc', label: 'Sort by Crime Count (ASC)'},{ value: 'count-desc', label: 'Sort by Crime Count (DESC)'},]}/>
                                     </div>
                                 </div>
                                 <div className="col-md-3">

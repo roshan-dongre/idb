@@ -107,7 +107,6 @@ export default class Criminals extends Component {
         let url = "http://api.ontherun.me/criminals" + limOff
         
         if (this.state.sortBy !== "") {
-            console.log(this.state.sortBy)
             if (this.state.sortBy === 'name-asc' || this.state.sortBy === 'name-desc'){
                 if (this.state.sortBy === 'name-asc') {
                     url += "&sort_name="+"ASC"
@@ -192,19 +191,6 @@ export default class Criminals extends Component {
                 <Well style = {wellStyle}>
                 <div className="row row-m-b">
                     <div className="col-md-3">
-                        {/*<div className= "text-center">
-                        <label>
-                                <strong style = {whiteStyles}>Sort by Name:  &nbsp;&nbsp;</strong>
-                            </label><span> </span>
-                        <div className="button btn-group">
-                            <button type="button"
-                                  className={this.state.order === "ASC" ? "btn btn-default active" : "btn btn-default"}
-                                  onClick={(e) => this.sort("ASC", e)}><i className="fa fa-sort-alpha-asc" aria-hidden="true"/></button>
-                            <button type="button"
-                                  className={this.state.order === "DESC" ? "btn btn-default active" : "btn btn-default"}
-                                  onClick={(e) => this.sort("DESC", e)}><i className="fa fa-sort-alpha-desc" aria-hidden="true"/></button>
-                        </div>
-                        </div>*/}
                         <div className = "text-left" style = {blackStyles}>
                         <Select name="form-field-name" value={this.state.sortBy} onChange={this.handleSort} placeholder= "Sort by Name or Height"
                         options={[ {value: 'name-asc', label: 'Sort by Name (ASC)'}, { value: 'name-desc', label: 'Sort by Name (DESC)' }, { value: 'height-asc', label: 'Sort by Height (ASC)'},{ value: 'height-desc', label: 'Sort by Height (DESC)'},]}/>

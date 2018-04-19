@@ -77,6 +77,12 @@ export default class Criminals extends Component {
         }
     }
 
+    handleSort = (e) => {
+         if (e != null) {
+            this.setState({sortBy: e.value})
+        }
+    }
+
     handleSex = (e) => {
         if (e != null) {
             this.setState({sex: e.value})
@@ -91,11 +97,7 @@ export default class Criminals extends Component {
         this.setState({
           height_min: value
         })
-    }
-
-    sort(order) {
-        this.setState({sortBy: order})
-    }
+    }  
 
     callAPI() {
 
@@ -105,7 +107,21 @@ export default class Criminals extends Component {
         let url = "http://api.ontherun.me/criminals" + limOff
         
         if (this.state.sortBy !== "") {
-            url += "&sort_name="+this.state.sortBy
+            console.log(this.state.sortBy)
+            if (this.state.sortBy === 'name-asc' || this.state.sortBy === 'name-desc'){
+                if (this.state.sortBy === 'name-asc') {
+                    url += "&sort_name="+"ASC"
+                } else {
+                    url += "&sort_name="+"DESC"
+                }
+            }
+            if (this.state.sortBy === 'height-asc' || this.state.sortBy === 'height-desc'){
+                if (this.state.sortBy === 'height-asc') {
+                    url += "&sort_height="+"ASC"
+                } else {
+                    url += "&sort_height="+"DESC"
+                }
+            }
         }
         if (this.state.sex !== "" && this.state.sex !== "All") {
             url += "&sex=" + this.state.sex
@@ -176,7 +192,7 @@ export default class Criminals extends Component {
                 <Well style = {wellStyle}>
                 <div className="row row-m-b">
                     <div className="col-md-3">
-                        <div className= "text-center">
+                        {/*<div className= "text-center">
                         <label>
                                 <strong style = {whiteStyles}>Sort by Name:  &nbsp;&nbsp;</strong>
                             </label><span> </span>
@@ -188,6 +204,10 @@ export default class Criminals extends Component {
                                   className={this.state.order === "DESC" ? "btn btn-default active" : "btn btn-default"}
                                   onClick={(e) => this.sort("DESC", e)}><i className="fa fa-sort-alpha-desc" aria-hidden="true"/></button>
                         </div>
+                        </div>*/}
+                        <div className = "text-left" style = {blackStyles}>
+                        <Select name="form-field-name" value={this.state.sortBy} onChange={this.handleSort} placeholder= "Sort by Name or Height"
+                        options={[ {value: 'name-asc', label: 'Sort by Name (ASC)'}, { value: 'name-desc', label: 'Sort by Name (DESC)' }, { value: 'height-asc', label: 'Sort by Height (ASC)'},{ value: 'height-desc', label: 'Sort by Height (DESC)'},]}/>
                         </div>
                     </div>
                     <div className="col-md-3">

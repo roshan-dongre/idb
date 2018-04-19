@@ -99,6 +99,7 @@ export default class States extends Component {
         if (this.state.sortBy !== "") {
             url += "&sort_name="+this.state.sortBy
         }
+        //sort_area
 
         if (this.state.region !== "" && this.state.region !== "All") {
             url += "&region=" + this.state.region
@@ -216,7 +217,7 @@ export default class States extends Component {
                 <Well style = {wellStyle}>
                     <div className="row row-m-b">
                         <div className="col-md-3">
-                            <div className= "text-center">
+                            {/*<div className= "text-center">
                             <label>
                                 <strong style = {whiteStyles}>Sort by Name:  &nbsp;&nbsp;</strong>
                             </label><span> </span>
@@ -228,7 +229,7 @@ export default class States extends Component {
                                       className={this.state.order === "DESC" ? "btn btn-default active" : "btn btn-default"}
                                       onClick={(e) => this.sort("DESC", e)}><i className="fa fa-sort-alpha-desc" aria-hidden="true"/></button>
                             </div>
-                            </div>
+                            </div>*/}
                         </div>
                         <div className="col-md-3">
                             <div className = "text-left" style = {blackStyles}>

@@ -40,7 +40,8 @@ def get_states():
     filt_region = request.args.get('region','')
     filt_area_min = request.args.get('area_min','')
     filt_area_max = request.args.get('area_max','')
-    sort_name = request.args.get('sort','')
+    sort_name = request.args.get('sort_name','')
+    sort_area = request.args.get('sort_area','')
     my_query = {}
     my_query['totalCount'] = db.session.query(State)
     my_query['results'] = State.query
@@ -63,6 +64,10 @@ def get_states():
         my_query['results'] = my_query['results'].order_by(asc(State.name))
     elif sort_name == "DESC":
         my_query['results'] = my_query['results'].order_by(desc(State.name))
+    if sort_area == "ASC":
+        my_query['results'] = my_query['results'].order_by(asc(State.area))
+    elif sort_area == "DESC":
+        my_query['results'] = my_query['results'].order_by(desc(State.area))
     my_query['totalCount'] = my_query['totalCount'].count()
     my_query['results'] = ast.literal_eval(str(my_query['results'].offset(page_res['off']).limit(page_res['lim']).all()))
     return jsonify(my_query)
@@ -83,7 +88,8 @@ def get_criminals():
     filt_height_min = request.args.get('height_min', '')
     filt_height_max = request.args.get('height_max', '')
     filt_race = request.args.get('race','')
-    sort_name = request.args.get('sort','')
+    sort_name = request.args.get('sort_name','')
+    sort_height = request.args.get('sort_height','')
     my_query = {}
     my_query['totalCount'] = db.session.query(Criminal)
     my_query['results'] = Criminal.query
@@ -103,6 +109,10 @@ def get_criminals():
         my_query['results'] = my_query['results'].order_by(asc(Criminal.name))
     elif sort_name == "DESC":
         my_query['results'] = my_query['results'].order_by(desc(Criminal.name))
+    if sort_height == "ASC":
+        my_query['results'] = my_query['results'].order_by(asc(Criminal.height))
+    elif sort_height == "DESC":
+        my_query['results'] = my_query['results'].order_by(desc(Criminal.height))
     my_query['totalCount'] = my_query['totalCount'].count()
     my_query['results'] = ast.literal_eval(str(my_query['results'].offset(page_res['off']).limit(page_res['lim']).all()))
     return jsonify(my_query)
@@ -120,7 +130,8 @@ def get_crimes():
     filt_offen_max = request.args.get('offenders_max','')
     filt_vict_min = request.args.get('victims_min', '')
     filt_vict_max = request.args.get('victims_max', '')
-    sort_name = request.args.get('sort','')
+    sort_name = request.args.get('sort_name','')
+    sort_count = request.args.get('sort_count','')
     my_query = {}
     my_query['totalCount'] = db.session.query(Crime)
     my_query['results'] = Crime.query
@@ -146,6 +157,10 @@ def get_crimes():
         my_query['results'] = my_query['results'].order_by(asc(Crime.name))
     elif sort_name == "DESC":
         my_query['results'] = my_query['results'].order_by(desc(Crime.name))
+    if sort_count == "ASC":
+        my_query['results'] = my_query['results'].order_by(asc(Crime.count))
+    elif sort_count == "DESC":
+        my_query['results'] = my_query['results'].order_by(desc(Crime.count))
     my_query['totalCount'] = my_query['totalCount'].count()
     my_query['results'] = ast.literal_eval(str(my_query['results'].offset(page_res['off']).limit(page_res['lim']).all()))
     return jsonify(my_query)

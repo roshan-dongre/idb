@@ -278,7 +278,7 @@ def mainFunc():
             NewCount = data[i-1]['count']
             i += 1
             NewDesc = strLine[2]
-            NewCrime = Crime(name=strLine[2].strip(),
+            NewCrime = Crime(name=strLine[1].strip(),
                             image=NewImage,
                             description=NewDesc.strip(),
                             victims=NewVictims,

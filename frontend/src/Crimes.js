@@ -178,7 +178,7 @@ export default class Crimes extends Component {
         return (
                 <div className="container sub-container">
                 <Alert bsStyle="warning">
-                  <strong>Note!</strong> M stands for thousands, and MM stands for millions!
+                  <strong>Note!</strong> M stands for thousands!
                 </Alert>
                     <Well style = {wellStyle}>
                         <div className="row row-m-b">

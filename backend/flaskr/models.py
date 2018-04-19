@@ -31,7 +31,7 @@ class State(db.Model):
     lng = db.Column(db.Float)
 
     def __repr__(self):
-        return "{'center': \{'lat': %r, 'lng': %r \}'wiki': %r, 'type': %r, 'flower': %r, 'bird': %r, 'region': %r, 'density': %r, 'area': %r, 'capital': %r, 'name': %r, 'image': %r, 'abbreviation': %r, 'population': %r, 'id': %r}" % (self.lat, self.lng, self.wiki, self.type, self.flower, self.bird, self.region, self.density, self.area, self.capital, self.name, self.image, self.abbreviation, self.population, self.id)
+        return "{'center': {'lat': %r, 'lng': %r }, 'wiki': %r, 'type': %r, 'flower': %r, 'bird': %r, 'region': %r, 'density': %r, 'area': %r, 'capital': %r, 'name': %r, 'image': %r, 'abbreviation': %r, 'population': %r, 'id': %r}" % (self.lat, self.lng, self.wiki, self.type, self.flower, self.bird, self.region, self.density, self.area, self.capital, self.name, self.image, self.abbreviation, self.population, self.id)
 
 class Criminal(db.Model):
     __tablename__ = 'criminals'

@@ -174,6 +174,8 @@ def mainFunc():
                         flower= file_state['flower'],
                         bird= file_state['bird'],
                         type="state",
+                        lat = file_state['lat'],
+                        lng = file_state['long'],
                         wiki="http://wikipedia.org/wiki/"+file_state['name'].replace(" ", "_"))
         db.session.add(NewState)
 

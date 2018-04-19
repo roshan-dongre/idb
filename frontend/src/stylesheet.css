@@ -1,0 +1,340 @@
+/*About Page styling */
+.row {
+  margin-bottom: 15px;
+  margin-top: 20px;
+}
+
+.bg-first {
+  background-color: #212529 !important;
+}
+
+.bg-second {
+  background-color: #2C3A47 !important;
+}
+
+.bg-third {
+  background-color: #353b48 !important;
+}
+
+.bg-last {
+  background-color: grey !important;
+}
+
+/*Loader image styling */
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/*Crimes Page Styling */
+#actor-panel:hover * {
+    background: #43484f;
+}
+
+.Highlight {
+    background-color: #ffd54f;
+}
+
+.bg-crimes {
+  background-color: #8C4646 !important;
+}
+
+/*Criminals Page Styling */
+.row {
+  margin-bottom: 15px;
+}
+
+/*Navbar styling */
+
+body {
+  height: 100%;
+  color: #ffffff;
+  font-style: bold;
+  font-weight: 400;
+  background-repeat: no-repeat;
+  background: gray;
+}
+
+.panel > .panel-body > .img-responsive{
+    border: 0px solid;
+    border-color: #a59696;
+}
+.panel {
+    color: #cccccc;
+    border-radius: 0;
+    background-color: #2b2b2b;
+    border-color: #cccccc;
+    border: 2px solid;
+}
+
+.panel > .panel-body {
+    padding: 0px;
+    border-color: #cccccc;
+}
+
+.panel > .panel-heading{
+    font-size:150%;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    text-align: center;
+}
+
+.dropdownbutton > .button {
+    color: red;
+}
+
+.pagination>li>a,
+.pagination>li.active>a,
+.pagination>li>span {
+    background: #2b2b2b;
+    color: white;
+    border-color: black; 
+}
+
+.pagination>li.active>a:hover {
+    border-color: red;
+    background-color: black;
+}
+
+.pagination>li.active>a:focus,
+.pagination>li.active>a {
+    border-color: red;
+    background-color: #2b2b2b;
+}
+
+.pagination>li.disabled>a {
+    background-color: #2b2b2b;
+    border-color: black;
+}
+
+.pagination>li>a:hover {
+    background-color: black;
+    color: white;
+    border-color: black;
+}
+.popover{
+    background-color: black;
+    color: #bcbcbc;
+}
+
+.popover > .arrow{
+    color: black;
+}
+
+.navbar-default {
+background-image: none;
+background-color: #070605;
+margin-bottom: 0px;
+font-size: large;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+.navbar-brand>img {
+  padding: 7px 14px;
+}
+
+/*Highlighter Styling */
+.mark, mark {
+	padding: 0;
+	background-color: #ff0;
+}
+
+/*Home Page Styling */
+body,
+html {
+  width: 100%;
+  height: 100%;
+  background: url(https://img00.deviantart.net/8c61/i/2014/156/c/0/the_walking_dead_wallpaper___prison_neutral_by_atomicxmario-d7l56eb.jpg);
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+body {
+  font-family: 'Merriweather', 'Helvetica Neue', Arial, sans-serif;
+}
+
+hr {
+  border-color: #F05F40;
+}
+
+a {
+  color: #F05F40;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.bg-primary {
+  background-color: black !important;
+}
+
+.bg-dark {
+  background-color: #212529 !important;
+}
+
+.bg-secondary {
+  background-color: #1a1300 !important;
+}
+
+section {
+  padding: 6rem 0;
+}
+
+.section-heading {
+  margin-top: 0;
+}
+
+.text-primary {
+  color: #F05F40 !important;
+}
+
+/* Home Page- Journal */
+
+#journal,  #journal-blog {
+  height: auto;
+  width: 100%;
+  background: #f7f7f7;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  position: relative;
+}
+
+#journal-blog {
+  background: #fff;
+  padding-bottom: 30px;
+}
+
+#journal .journal-block {
+  display: inline-block;
+  height: auto;
+  width: 100%;
+}
+
+#journal .journal-block .journal-info {
+  position: relative;
+}
+
+.journal-block .journal-info img {
+  max-width: 100%;
+}
+
+.journal-block .journal-info .journal-txt {
+  padding: 25px px;
+  position: relative;
+}
+
+.journal-block .journal-info .journal-txt h4 a {
+  display: block;
+  font-size: 19px;
+  line-height: 24px;
+  margin: 0 0 13px 0;
+  font-weight: 500;
+  color: #b8a07e;
+  -moz-transition: all 0.5s ease-in-out 0s;
+  -ms-transition: all 0.5s ease-in-out 0s;
+  -o-transition: all 0.5s ease-in-out 0s;
+  -webkit-transition: all 0.5s ease-in-out 0s;
+  transition: all 0.5s ease-in-out 0s;
+}
+
+.journal-block .journal-info .journal-txt h4 a:hover {
+  color: #b8a07e;
+  -moz-transition: all 0.5s ease-in-out 0s;
+  -ms-transition: all 0.5s ease-in-out 0s;
+  -o-transition: all 0.5s ease-in-out 0s;
+  -webkit-transition: all 0.5s ease-in-out 0s;
+  transition: all 0.5s ease-in-out 0s;
+}
+
+.journal-block .journal-info .journal-txt p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+/* Model Overlay Styling */
+.overlay {
+  display: inline-block;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  background-color: #FFFFFF;
+  z-index: 1;
+  color: rgba(130, 130, 130, 0.5);
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+}
+
+.container-thumbnail:hover .overlay {
+  opacity: 0.80;
+  position: absolute;
+  display: inline-block;
+  top: 0;
+  bottom: 0;
+  left: 7.5%;
+  right: 0;
+  height: 250px;
+  width: 250px;
+  transition: .5s ease;
+}
+
+.text {
+  color: black;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+
+.row-m-b{
+  margin-bottom : 20px;
+}
+
+.Select-clear-zone {
+display: none !important;
+}

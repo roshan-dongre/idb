@@ -97,7 +97,7 @@ export default class States extends Component {
         let url = "http://api.ontherun.me/states" + limOff
         //let url = "http://18.219.198.152/states" + limOff
 
-        if (this.state.sortBy !== "") {
+        if (this.state.sortBy !== "" && this.state.sortBy !== "all") {
             if (this.state.sortBy === 'name-asc' || this.state.sortBy === 'name-desc'){
                 if (this.state.sortBy === 'name-asc') {
                     url += "&sort_name="+"ASC"
@@ -223,7 +223,7 @@ export default class States extends Component {
                         <div className="col-md-3">
                             <div className = "text-left" style = {blackStyles}>
                                 <Select name="form-field-name" value={this.state.sortBy} onChange={this.handleSort} placeholder= "Sort by Name or Area"
-                                options={[ {value: 'name-asc', label: 'Sort by Name (ASC)'}, { value: 'name-desc', label: 'Sort by Name (DESC)' }, { value: 'area-asc', label: 'Sort by Area (ASC)'},{ value: 'area-desc', label: 'Sort by Area (DESC)'},]}/>
+                                options={[ {value: 'all', label: 'No Sorting'}, {value: 'name-asc', label: 'Sort by Name (ASC)'}, { value: 'name-desc', label: 'Sort by Name (DESC)' }, { value: 'area-asc', label: 'Sort by Area (ASC)'},{ value: 'area-desc', label: 'Sort by Area (DESC)'},]}/>
                             </div>
                         </div>
                         <div className="col-md-3">

@@ -85,7 +85,7 @@ export default class Crimes extends Component {
         let limOff = "?limit="+limit+"&offset="+offset
         let url = "http://api.ontherun.me/crimes" + limOff
 
-        if (this.state.sortBy !== "") {
+        if (this.state.sortBy !== "" && this.state.sortBy !== "all") {
             if (this.state.sortBy === 'name-asc' || this.state.sortBy === 'name-desc'){
                 if (this.state.sortBy === 'name-asc') {
                     url += "&sort_name="+"ASC"
@@ -186,7 +186,7 @@ export default class Crimes extends Component {
                                 <div className="col-md-3">
                                     <div className = "text-left" style = {blackStyles}>
                                         <Select name="form-field-name" value={this.state.sortBy} onChange={this.handleSort} placeholder= "Sort by Name or Crime Count"
-                                        options={[ {value: 'name-asc', label: 'Sort by Name (ASC)'}, { value: 'name-desc', label: 'Sort by Name (DESC)' }, { value: 'count-asc', label: 'Sort by Crime Count (ASC)'},{ value: 'count-desc', label: 'Sort by Crime Count (DESC)'},]}/>
+                                        options={[ {value: 'all', label: 'No Sorting'}, {value: 'name-asc', label: 'Sort by Name (ASC)'}, { value: 'name-desc', label: 'Sort by Name (DESC)' }, { value: 'count-asc', label: 'Sort by Crime Count (ASC)'},{ value: 'count-desc', label: 'Sort by Crime Count (DESC)'},]}/>
                                     </div>
                                 </div>
                                 <div className="col-md-3">

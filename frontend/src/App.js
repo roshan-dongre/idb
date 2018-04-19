@@ -3,7 +3,6 @@ import logo from './logo.svg';
 import 'react-bootstrap';
 import { Switch, Route } from 'react-router-dom';
 import axios from 'axios';
-
 import Header from './Header';
 import Home from './Home';
 import NotFound from './NotFound';
@@ -18,6 +17,7 @@ import SearchResults from './SearchResults';
 import Result from './Result';
 
 export default class App extends Component {
+    
     constructor(props) {
         super(props)
         this.state = {
@@ -46,6 +46,8 @@ export default class App extends Component {
                 console.log(error)
             });
     }
+
+/*Routing for each page done here */
 
   render() {
     return (

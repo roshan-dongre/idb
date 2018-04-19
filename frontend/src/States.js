@@ -242,7 +242,7 @@ export default class States extends Component {
         return (
             <div className="container sub-container">
                 <Alert bsStyle="warning">
-                  <strong>Note!</strong> M stands for thousands, and MM stands for millions!
+                  <strong>Note!</strong> K stands for thousands, and M stands for millions!
                 </Alert>
                 <Well style = {wellStyle}>
                     <div className="row row-m-b">
@@ -261,13 +261,13 @@ export default class States extends Component {
                         <div className="col-md-3">
                             <div className = "text-left" style = {blackStyles}>
                                 <Select name="form-field-name" value={this.state.population} onChange={this.handlePopulation} placeholder = "Filter by Population"
-                                options={[ { value: 'all', label: 'All' },{ value: 'tiny', label: 'Tiny Population' }, { value: 'small', label: 'Small Population'}, { value: 'medium', label: 'Medium Population'}, { value: 'large', label: 'Large Population'},{ value: 'giant', label: 'Giant Population'},]}/>
+                                options={[ { value: 'all', label: 'All' },{ value: 'tiny', label: 'Tiny Population (P < 1M)' }, { value: 'small', label: 'Small Population (1M <= P < 3M)'}, { value: 'medium', label: 'Medium Population (3M <= P < 5M)'}, { value: 'large', label: 'Large Population (5M <= P < 10M)'},{ value: 'giant', label: 'Giant Population (P >= 10M)'},]}/>
                             </div>
                         </div>
                         <div className="col-md-3">
                             <div className = "text-left" style = {blackStyles}>
-                                <Select name="form-field-name" value={this.state.area} onChange={this.handleArea} placeholder = "Filter by Area"
-                                options={[ { value: 'all', label: 'All' },{ value: 'tiny', label: 'Tiny Area' }, { value: 'small', label: 'Small Area'}, { value: 'medium', label: 'Medium Area'}, { value: 'large', label: 'Large Area'},{ value: 'giant', label: 'Giant Area'},]}/>
+                                <Select name="form-field-name" value={this.state.area} onChange={this.handleArea} placeholder = "Filter by Area (Sq. Miles)"
+                                options={[ { value: 'all', label: 'All' },{ value: 'tiny', label: 'Tiny Area (A < 10K)' }, { value: 'small', label: 'Small Area (10K <= A < 50K)'}, { value: 'medium', label: 'Medium Area (50K <= A < 70K)'}, { value: 'large', label: 'Large Area (70K <= A < 100K)'},{ value: 'giant', label: 'Giant Area (A >= 100K)'},]}/>
                             </div>
                         </div>   
                     

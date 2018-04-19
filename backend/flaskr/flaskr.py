@@ -278,8 +278,6 @@ def mainFunc():
             NewCount = data[i-1]['count']
             i += 1
             NewDesc = strLine[2]
-            if(isinstance(NewDesc,str)):
-            	NewDesc = unicode(NewDesc, "utf-8")
             NewCrime = Crime(name=strLine[2].strip(),
                             image=NewImage,
                             description=NewDesc.strip(),

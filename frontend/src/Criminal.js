@@ -134,8 +134,12 @@ export default class Criminal extends Component {
         console.log(this.state)
         var striptags = require('striptags');
         this.state.item.crime = striptags(this.state.item.crime)
-        this.state.item.eyes = this.state.item.eyes.slice(0,1).toUpperCase() + this.state.item.eyes.slice(1, this.state.item.eyes.length)
-        this.state.item.hair = this.state.item.hair.slice(0,1).toUpperCase() + this.state.item.hair.slice(1, this.state.item.hair.length)
+        if (this.state.item.eyes !== null) {
+            this.state.item.eyes = this.state.item.eyes.slice(0,1).toUpperCase() + this.state.item.eyes.slice(1, this.state.item.eyes.length)
+        }
+        if (this.state.item.hair !== null) {
+            this.state.item.hair = this.state.item.hair.slice(0,1).toUpperCase() + this.state.item.hair.slice(1, this.state.item.hair.length)
+        }
         
     }
 

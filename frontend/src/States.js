@@ -97,7 +97,7 @@ export default class States extends Component {
         //let url = "http://18.219.198.152/states" + limOff
 
         if (this.state.sortBy !== "") {
-            url += "&sort="+this.state.sortBy
+            url += "&sort_name="+this.state.sortBy
         }
 
         if (this.state.region !== "" && this.state.region !== "All") {

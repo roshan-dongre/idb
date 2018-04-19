@@ -105,7 +105,7 @@ export default class Criminals extends Component {
         let url = "http://api.ontherun.me/criminals" + limOff
         
         if (this.state.sortBy !== "") {
-            url += "&sort="+this.state.sortBy
+            url += "&sort_name="+this.state.sortBy
         }
         if (this.state.sex !== "" && this.state.sex !== "All") {
             url += "&sex=" + this.state.sex

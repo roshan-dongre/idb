@@ -84,7 +84,7 @@ export default class Crimes extends Component {
         let url = "http://api.ontherun.me/crimes" + limOff
 
         if (this.state.sortBy !== "") {
-            url += "&sort="+this.state.sortBy
+            url += "&sort_name="+this.state.sortBy
         }
 
         if (this.state.count.min !== 0 || this.state.count.max !== 750) {

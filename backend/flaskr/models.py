@@ -27,9 +27,11 @@ class State(db.Model):
     bird = db.Column(db.String(600))
     type = db.Column(db.String(600))
     wiki= db.Column(db.String(600))
+    lat = db.Column(db.Float)
+    lng = db.Column(db.Float)
 
     def __repr__(self):
-        return "{'wiki': %r, 'type': %r, 'flower': %r, 'bird': %r, 'region': %r, 'density': %r, 'area': %r, 'capital': %r, 'name': %r, 'image': %r, 'abbreviation': %r, 'population': %r, 'id': %r}" % (self.wiki, self.type, self.flower, self.bird, self.region, self.density, self.area, self.capital, self.name, self.image, self.abbreviation, self.population, self.id)
+        return "{'center': \{'lat': %r, 'lng': %r \}'wiki': %r, 'type': %r, 'flower': %r, 'bird': %r, 'region': %r, 'density': %r, 'area': %r, 'capital': %r, 'name': %r, 'image': %r, 'abbreviation': %r, 'population': %r, 'id': %r}" % (self.lat, self.lng, self.wiki, self.type, self.flower, self.bird, self.region, self.density, self.area, self.capital, self.name, self.image, self.abbreviation, self.population, self.id)
 
 class Criminal(db.Model):
     __tablename__ = 'criminals'

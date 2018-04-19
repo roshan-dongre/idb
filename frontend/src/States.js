@@ -42,7 +42,7 @@ export default class States extends Component {
             sortBy: "",
             region: "",
             population: "default",
-            area: {min: 0, max: 300},
+            area: "default",
             pathname: "/States",
             loading: true
         }
@@ -86,6 +86,12 @@ export default class States extends Component {
     handlePopulation = (e) => {
         if (e != null) {
             this.setState({population: e.value})
+        }
+    }
+
+    handleArea = (e) => {
+        if (e != null) {
+            this.setState({area: e.value})
         }
     }
 
@@ -143,10 +149,30 @@ export default class States extends Component {
             url += "&population_min=" + min + "&population_max=" + max
         }
 
-        if (this.state.area.min !== 0 || this.state.area.max !== 300) {
-            url += "&area_min=" + (this.state.area.min * 1000) + "&area_max=" + (this.state.area.max * 1000)
-        }
+        if (this.state.area !== "default") {
+            var min = 0
+            var max = 700000
+            if (this.state.area === "tiny") {
+                max = 9999
+            }
+            if (this.state.area === "small") {
+                min = 10000
+                max = 49999
+            }
+            if (this.state.area === "medium") {
+                min = 50000
+                max = 69999
+            }
+            if (this.state.area === "large") {
+                min = 70000
+                max = 99999
+            }
+            if (this.state.area === "giant") {
+                min = 100000
+            }
 
+            url += "&area_min=" + min + "&area_max=" + max
+        }
 
         let self = this
         axios.get(url)
@@ -239,9 +265,9 @@ export default class States extends Component {
                             </div>
                         </div>
                         <div className="col-md-3">
-                            <div className = "text-center" style = {whiteStyles}>
-                                <label> <strong> Filter by Area (MM Sq. Miles): </strong> </label>
-                                <InputRange maxValue={300} minValue={0} value={this.state.area} onChange={area => this.setState({ area })} />
+                            <div className = "text-left" style = {blackStyles}>
+                                <Select name="form-field-name" value={this.state.area} onChange={this.handleArea} placeholder = "Filter by Area"
+                                options={[ { value: 'all', label: 'All' },{ value: 'tiny', label: 'Tiny Area' }, { value: 'small', label: 'Small Area'}, { value: 'medium', label: 'Medium Area'}, { value: 'large', label: 'Large Area'},{ value: 'giant', label: 'Giant Area'},]}/>
                             </div>
                         </div>   
                     

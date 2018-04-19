@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {Redirect} from 'react-router-dom';
 import Highlighter from 'react-highlight-words';
 import {Row, Col, Panel, Button, Modal, Well} from 'react-bootstrap';
-import Styles from './Highlighter.css'
 
 
 var bgStyles = {

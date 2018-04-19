@@ -8,7 +8,6 @@ import 'react-select/dist/react-select.css';
 import InputRange from 'react-input-range';
 import 'react-input-range/lib/css/index.css';
 import { Circle } from 'better-react-spinkit'
-import './Crimes.css'
 import {Row, Col, Panel, Button, Modal, Well, Alert} from 'react-bootstrap'
 
 var blackStyles = {

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {Redirect} from 'react-router-dom';
 import {Thumbnail, Button} from 'react-bootstrap'
-import './ModelOverlay.css'
 import 'lodash'
 
 var imageStyles = {

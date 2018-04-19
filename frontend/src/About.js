@@ -1,6 +1,5 @@
 import React from 'react'
 import {Row, Col, Panel, Button, Modal, Well} from 'react-bootstrap'
-import './About.css'
 import axios from 'axios';
 
 var imageStyles = {
@@ -228,7 +227,7 @@ render () {
                                     </p>
                                     <hr />
                                     <h4>Responsibilities and Commit Info</h4>
-                                    <p>Responsibilities: Front-end development including filtering, searching, and all the pages. AWS/Namecheap.</p>
+                                    <p>Responsibilities: Large part of front-end development including filtering, searching, and styling of all pages. AWS/Namecheap.</p>
                                     <p>Number of commits: {this.state.roshanCommits}</p>
                                     <p>Number of issues: {this.state.roshanIssues}</p>
                                     <p>Number of unit tests: 0</p>
@@ -257,7 +256,7 @@ render () {
                                     </p>
                                     <hr />
                                     <h4>Responsibilities and Commit Info</h4>
-                                    <p>Responsibilities: Focused on designing the front end for the website, including the grid pages and 9 models.</p>
+                                    <p>Responsibilities: Focused on designing the front end for the website, including search, maps, and overlays.</p>
                                     <p>Number of commits: {this.state.zaraCommits}</p>
                                     <p>Number of issues: {this.state.zaraIssues}</p>
                                     <p>Number of unit tests: 10</p>
@@ -292,7 +291,7 @@ render () {
                                     </p>
                                     <hr />
                                     <h4>Responsibilities and Commit Info</h4>
-                                    <p>Responsibilities: Data Management: scraping, aggregating, and data modeling. Testing.</p>
+                                    <p>Responsibilities: Data Management: scraping, aggregating, and data modeling. Also worked on testing.</p>
                                     <p>Number of commits: {this.state.ramonCommits}</p>
                                     <p>Number of issues: {this.state.ramonIssues}</p>
                                     <p>Number of unit tests: 15</p>
@@ -357,6 +356,7 @@ render () {
                                             <li className="text-left"><h4>Postman</h4></li>
                                             <li className="text-left"><h4>Travis CI</h4></li>
                                             <li className="text-left"><h4>Fuse.js</h4></li>
+                                            <li className="text-left"><h4>React-Highlighter</h4></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -379,6 +379,7 @@ render () {
                                         <p><strong>FBI Crime Stats API:</strong> Provided crime stats through GET Requests</p>
                                         <p><strong>FBI Most Wanted API:</strong> Provided information on most wanted criminals</p>
                                         <p><strong>Google Maps API:</strong> Provided maps for the model pages</p>
+                                        <p><strong>Geocode API:</strong> Provided pictures and latitude/longitude</p>
                                     </div>
                                 </div>
                                 <div className="col-md-2 container data-thumbnail">
@@ -405,11 +406,11 @@ render () {
                                             <li className="text-left"><h4><strong>Purpose: </strong>To provide information linking criminals, their crimes, and the states they committed crimes in</h4></li>
                                             <li className="text-left"><h4><strong>Intended Users: </strong> Anyone interested in learning about crime/criminals</h4></li>
                                             <li className="text-left"><h4><strong>Explanation: </strong> This integration of disparate data allows people to not only see specfic information about each criminal, but also a macro look at crime in the states in which they committed their crimes</h4></li>
-                                            <li className="text-left"><h4><strong>Scraping: </strong> We used the requests module to scrape the two FBI apis, and used React to request from the Google Maps API</h4></li>
+                                            <li className="text-left"><h4><strong>Scraping: </strong> We used the requests module to scrape the two FBI apis, and used React to request from the Geocode/Maps API's</h4></li>
                                             <li className="text-left"><h4><strong>Tools: </strong> We used Slack to communicate, Flask handles the API data requests and acts as an interface that communicates with the front-end, React for the 
                                             dynamic front-end, Postman for the API testing, Travis CI for the build logs, Mocha for the front-end tests, Selenium for the acceptance tests, and unnitest for the backend tests. SQLAlchemy
                                             and MySQL are used for the database and GitHub is used to store our code. Fuse.js was used for the searching and was done on the front-end. React-Select and React-Input-Range were 
-                                            used for the front-end filters that are shown on the grid pages.</h4></li>
+                                            used for the front-end filters that are shown on the grid pages. React-Highlighter was used for highlighting. </h4></li>
                                         </ul>
                                         </Well>
                                     </div>

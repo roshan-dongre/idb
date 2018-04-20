@@ -3,7 +3,6 @@ import chunk from 'lodash.chunk';
 import axios from 'axios';
 import StateOverlay from './StateOverlay';
 import Pagination from './Pagination';
-import './font/css/font-awesome.min.css'
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 import InputRange from 'react-input-range';

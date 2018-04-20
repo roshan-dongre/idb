@@ -58,8 +58,8 @@ export default class State extends Component {
             crimeUnavailable: "No crimes available",
             criminalUnavailable: "No criminals available",
             center: {
-                lat: 0,
-                lng: 0
+                lat: 37.0902,
+                lng: -95.7129
             },
             crimes: [],
             criminals: [],
@@ -86,6 +86,7 @@ export default class State extends Component {
 
     componentDidMount () {
         this.callAPI()
+        this.getCoor()
         this.getCrimes()
         this.getCriminals()
     }
@@ -95,16 +96,16 @@ export default class State extends Component {
         {
             this.getCrimes()
             this.getCriminals()
+            this.getCoor()
         }
     }
 
     getCrimes() {
-        //let url = "http://18.219.198.152/crimestostate/" + this.state.item.abbreviation
         let url = "http://api.ontherun.me/crimestostate/" + this.state.item.abbreviation
         let self = this
         axios.get(url)
             .then((res) => {
-                // Set state with result
+                /* Set state with result */
                 self.setState({crimes: res.data});
             })
             .catch((error) => {
@@ -114,11 +115,10 @@ export default class State extends Component {
 
     getCriminals() {
         let url = "http://api.ontherun.me/criminalstostate/" + this.state.item.abbreviation
-        //let url = "http://18.219.198.152/criminalstostate/" + this.state.item.abbreviation
         let self = this
         axios.get(url)
             .then((res) => {
-                // Set state with result
+                /* Set state with result */
                 self.setState({criminals: res.data});
             })
             .catch((error) => {
@@ -137,7 +137,7 @@ export default class State extends Component {
         let self = this
         axios.get(url)
             .then((res) => {
-                // Set state with result
+                /* Set state with result */
                 self.setState({item: res.data});
             })
             .catch((error) => {
@@ -170,23 +170,21 @@ export default class State extends Component {
         if (temp == "Georgia") {
             temp = "Georgia USA"
         }
-    }
+        }
 
+        Geocode.fromAddress(temp).then(
+          response => {
+            const { lat, lng } = response.results[0].geometry.location;
+            console.log("Lat: " + lat)
+            console.log("Long: " + lng)
+            //self.setState({lat: lat, lng: lng})
+            self.setState({center: {lat: lat, lng: lng}})
+          },
+          error => {
+            console.error(error);
+          }
+        );
         
-
-        // Geocode.fromAddress(temp).then(
-        //   response => {
-        //     const { lat, lng } = response.results[0].geometry.location;
-        //     console.log("Lat: " + lat)
-        //     console.log("Long: " + lng)
-        //     //self.setState({lat: lat, lng: lng})
-        //     self.setState({center: {lat: lat, lng: lng}})
-        //   },
-        //   error => {
-        //     console.error(error);
-        //   }
-        // );
-        // }
     }
 
     render() {
@@ -196,24 +194,10 @@ export default class State extends Component {
         if (this.state.navigate) {
             return <Redirect to={{pathname: this.state.navigateTo, state: {selectedId: this.state.selectedId}}} push={true} />;
         }
-        var lat = 0;
-        var lng = 0;
-        // Get latitude and longitude of the state for Google Maps
-        if (this.state.item.center) {
-            lat = this.state.item.center.lat
-            lng = this.state.item.center.lng
-        }
-        else {
-            // this.setState({item: item})
-            // lat = this.state.item.center.lat
-            // lng = this.state.item.center.lng
-            lat = 37.0902
-            lng = -95.7129
-        }
-
+        
         let crimeList
         let self = this
-        // Get each crime committed in that state
+        {/* Get each crime committed in that state */}
         crimeList = this.state.crimes.map((crime) => {
             return (
                 <tr className="clickable-row" onClick={(e) => self.handleCrimeNavigation(crime.crime_id, e)}>
@@ -225,7 +209,7 @@ export default class State extends Component {
             crimeList = this.state.crimeUnavailable
         }
 
-        // Get each criminal in this state
+        {/* Get each criminal in this state */}
         let criminalList
         criminalList = this.state.criminals.map((criminal) => {
             return (
@@ -247,19 +231,19 @@ export default class State extends Component {
                        <div className="text-center" style={{ height: '300px', width: '350px' }}>
                             <img className=" img-thumbnail img-thumbnail-sm" src={this.state.item.image === undefined ? this.state.item.images : this.state.item.image} alt={this.state.item.name} style = {imageStyles}/>
                             
-
-                            // Renders the map of this state 
+                            <div>{this.getCoor()}</div>
+                            {/* Renders the map of this state */}
                             <text> State Map </text>
                             <GoogleMapReact
                               bootstrapURLKeys={{ key: "AIzaSyDkRhH7iB4iZW9dDa-FY7HYb8vpjj19Vsc"}}
-                              defaultCenter= {[lat, lng]}
+                              defaultCenter= {this.state.center}
                               defaultZoom={this.state.zoom}
                             >
                             </GoogleMapReact>
                         </div>
                     </div>
 
-                    // Renders the information for this state
+                    {/* Renders the information for this state */}
                     <div className="col-md-8" style={textStyles}>
                         <Well style= {wellStyles}>
                         <h2 className="sub-header">{this.state.item.name}</h2>
@@ -321,7 +305,7 @@ export default class State extends Component {
                         </div>
                         </Well>
 
-                        // Show the crimes that took place in this state
+                         {/*Show the crimes that took place in this state*/}
                         <Modal show={this.state.showCrimes} onHide={this.handleCloseCrimes} style = {textStyles}>
                             <Modal.Header closeButton>
                                 <Modal.Title>Crimes in This State</Modal.Title>
@@ -338,7 +322,7 @@ export default class State extends Component {
                               </Modal.Footer>
                         </Modal>
 
-                        // Show the criminals from this state 
+                        {/* Show the criminals from this state */}
                         <Modal show={this.state.showCriminals} onHide={this.handleCloseCriminals} style = {textStyles}>
                             <Modal.Header closeButton>
                                 <Modal.Title>Criminals in This State</Modal.Title>

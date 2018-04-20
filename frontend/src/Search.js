@@ -26,6 +26,7 @@ class Search extends Component {
         this.allKeys = criminalKeys.concat(stateKeys).concat(crimeKeys)
     }
 
+    /* Function to handle searching*/
     handleSearch = (e) => {
         e.preventDefault()
         this.setState({ searchTerm: this.input.value});
@@ -57,7 +58,6 @@ class Search extends Component {
             result = fuse.search(searchTerm);
         }
         this.setState({ results: result, navigate: true, loading: false });
-
     }
 
     render() {

@@ -38,12 +38,11 @@ export default class CriminalOverlay extends Component {
     }
 
     render() {
-
         var _ = require('lodash');
-
         if (this.state.navigate) {
             return <Redirect to={{pathname: this.state.navigateTo, state: {item: this.state.item}}} push={true} />;
         }
+        {/* Renders the overlay for the criminal grid pages */}
         return (
             <div className="col-md-3 container-thumbnail">
                 <div className="text-center">

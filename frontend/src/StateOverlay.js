@@ -38,12 +38,11 @@ export default class StateOverlay extends Component {
     }
 
     render() {
-
         var _ = require('lodash');
-
         if (this.state.navigate) {
             return <Redirect to={{pathname: this.state.navigateTo, state: {item: this.state.item}}} push={true} />;
         }
+        {/*Renders an overlay for the state grid pages*/}
         return (
             <div className="col-md-3 container-thumbnail">
                 <div className="text-center">
@@ -52,7 +51,6 @@ export default class StateOverlay extends Component {
                         <div className="overlay">
                         <div className="text">
                             <h3 style={headerStyle}>{_.startCase(_.camelCase(this.state.item.name))}</h3>
-
                             <h4 style={textStyle}>Capital: {this.state.item.capital}</h4>
                             <h4 style={textStyle}>Region: {this.state.item.region}</h4>
                             </div>

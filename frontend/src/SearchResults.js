@@ -40,7 +40,6 @@ class SearchResults extends Component {
 
     handlePageChange = (page, e) => {
         e.preventDefault()
-        //return <Redirect to={{pathname: this.state.pathname, state: {page: page}}} push={true} />;
         this.setState({page: page})
     }
 
@@ -85,6 +84,7 @@ class SearchResults extends Component {
     render() {
        
         if (this.state.results.length === 0) {
+        {/* Handles search errors*/}
             return (<div className="container sub-container" style={{height: 100}}>
                         <div className="mh-50">
                             <div className="col-12">
@@ -97,6 +97,7 @@ class SearchResults extends Component {
                         </div>
                     </div>);
         } else if (this.state.results === "Error") {
+        {/* Handles Search errors*/}
             return (<div className="container sub-container" style={{height: 100}}>
                 <div className="mh-50">
                     <div className="col-12">
@@ -109,6 +110,8 @@ class SearchResults extends Component {
                 </div>
             </div>);
         }
+
+        {/*Renders each result of the search*/}
         let searchTerm = this.state.searchTerm
         let resultRows = this.state.results[this.state.page].map((result) => {
             return (

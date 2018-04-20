@@ -39,8 +39,6 @@ export default class SearchItem extends Component {
         })
     }
 
-
-
     changeStateValues = () => {
         this.state.item.type = this.state.item.type.slice(0,1).toUpperCase() + this.state.item.type.slice(1, this.state.item.type.length)
     }
@@ -55,7 +53,6 @@ export default class SearchItem extends Component {
         if(this.state.item.hair != null) {
             this.state.item.hair = this.state.item.hair.slice(0,1).toUpperCase() + this.state.item.hair.slice(1, this.state.item.hair.length)
         }
-        //date of birth, eyes, field office, hair, nationality, race, sex    
 
     }
 
@@ -68,8 +65,8 @@ export default class SearchItem extends Component {
         let attributes = {}
         let name
 
+        {/* Prints out the attributes of each of the search results, based on model */}
         if (this.state.item.type === "criminal") {            
-            
             this.changeCriminalValues()
             name = this.state.item.name
             attributes = {
@@ -83,8 +80,8 @@ export default class SearchItem extends Component {
                 Nationality: this.state.item.nationality,
                 Crime: this.state.item.crime
             }
-        } else if (this.state.item.type === "state") {    
-            //this.changeStateValues()
+        } 
+        else if (this.state.item.type === "state") {    
             name = this.state.item.name
             attributes = {
                 Name: this.state.item.name,
@@ -97,8 +94,8 @@ export default class SearchItem extends Component {
                 Density: this.state.item.density,
                 Region: this.state.item.region  
             }
-        } else if (this.state.item.type === "crime") {    
-           //this.changeStateValues()
+        } 
+        else if (this.state.item.type === "crime") {    
             name = this.state.item.name
             attributes = {
                 Name: this.state.item.name,
@@ -108,7 +105,7 @@ export default class SearchItem extends Component {
                 Victims: this.state.item.victims
             }
         }
-
+        {/*Renders each of the search results*/}
         let self = this
         let searchRows = Object.keys(attributes).map(function(key) {
             if (attributes[key] !== null && attributes[key] !== undefined) {
@@ -119,9 +116,8 @@ export default class SearchItem extends Component {
                 </tr>
             );
             }
-
         })
-
+        {/*Renders the panels showing the search results*/}
         return (
             <Panel style={bgStyles}>
             <Panel.Heading>

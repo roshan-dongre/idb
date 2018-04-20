@@ -32,12 +32,13 @@ selenium:
 	python frontend/guitests.py
 
 # make frontend - runs frontend tests
-frontend: mocha_results.txt
+frontend: install
 	echo "Results will be stored in mocha_results.txt"
 	cd frontend && npm test | tee ../mocha_results.txt
 
 # creating file to output mocha results
-mocha_results.txt:
+install:
+	npm install
 	touch mocha_results.txt
 
 # make backend  - runs backend tests

@@ -26,12 +26,12 @@ class Search extends Component {
         this.allKeys = criminalKeys.concat(stateKeys).concat(crimeKeys)
     }
 
+    /* Function to handle searching*/
     handleSearch = (e) => {
         e.preventDefault()
         this.setState({ searchTerm: this.input.value});
         this.searchData(this.input.value)
         this.setState({reload: true})
-        //location.window.reload()
     }
 
     componentWillReceiveProps(nextProps) {
@@ -58,19 +58,18 @@ class Search extends Component {
             result = fuse.search(searchTerm);
         }
         this.setState({ results: result, navigate: true, loading: false });
-
     }
 
     render() {
         if (this.state.reload === true) {
             window.location.reload()
         }
-        //window.location.reload()
+        {/*Navigation to one of the search results*/}
         if (this.state.navigate) {
             this.setState({navigate: false})
             return <Redirect to={{pathname: '/SearchResults', state: {results: this.state.results, searchTerm: this.state.searchTerm}}} push={true} />;
         }
-        //window.location.reload()
+        {/*Handles when users search on the website*/}
         return (
             <form className="navbar-form navbar-right" onSubmit={this.handleSearch}>
                 <div className="form-group search-bar">

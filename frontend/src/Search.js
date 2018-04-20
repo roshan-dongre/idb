@@ -20,13 +20,14 @@ class Search extends Component {
             reload: false
         }
         this.apiUrl = 'http://api.ontherun.me/';
+        /* Creates search results by concatenating all model keys*/
         let criminalKeys = ["name", "dob", "sex", "eyes", "hair", "height", "race", "nationality", "crime"]
         let stateKeys = ["name", "abbreviation", "capital", "flower", "field_offices", "area", "population", "density", "region"]
         let crimeKeys = ["name", "description", "count", "offenders", "victims"]
         this.allKeys = criminalKeys.concat(stateKeys).concat(crimeKeys)
     }
 
-    /* Function to handle searching*/
+    /* Function to handle searching */
     handleSearch = (e) => {
         e.preventDefault()
         this.setState({ searchTerm: this.input.value});
@@ -42,6 +43,7 @@ class Search extends Component {
         }
     }
 
+    /* Gets the results of a search */
     searchData = (searchTerm) => {
         let result
         let options = {

@@ -1,6 +1,6 @@
 GithubID = roshan-dongre
 RepoName = idb
-SHA      = c2387c9e85467deb5b1e88d2bf647bad09e3fdcf
+SHA      = 784193b883103f22594217fa916a13a6b6ebddde
 
 githubid:
 	@echo "${GithubID}"
@@ -21,7 +21,7 @@ issues:
 
 # make stories  - prints link to current phase's stories
 stories:
-	@echo "http://www.github.com/roshan-dongre/idb/blob/${SHA}/stories.txt"
+	@echo "https://github.com/roshan-dongre/idb/projects/7"
 
 # make uml      - prints link to uml diagram
 uml:
@@ -29,6 +29,7 @@ uml:
 
 # make selenium - runs selenium tests
 selenium:
+	pip install selenium
 	python frontend/guitests.py
 
 # make frontend - runs frontend tests

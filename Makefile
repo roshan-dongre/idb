@@ -17,15 +17,15 @@ github:
 
 # make issues   - prints link to current phase's issues
 issues:
-	@echo "http://www.github.com/roshan-dongre/idb/issues"
+	@echo "http://www.github.com/${GithubID}/${RepoName}/issues"
 
 # make stories  - prints link to current phase's stories
 stories:
-	@echo "NEED GIT SHA TO DO THIS"
+	@echo "http://www.github.com/roshan-dongre/idb/blob/${SHA}/stories.txt"
 
 # make uml      - prints link to uml diagram
 uml:
-	@echo "NEED GIT SHA TO DO THIS"
+	@echo "http://www.github.com/${GithubID}/${RepoName}/blob/${SHA}/uml.png"
 
 # make selenium - runs selenium tests
 selenium:

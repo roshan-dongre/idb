@@ -42,8 +42,8 @@ export default class Criminal extends Component {
             crimeUnavailable: "No crimes available",
             stateUnavailable: "No states available",
             center: {
-                lat: 0,
-                lng: 0
+                lat: 37.0902,
+                lng: -95.7129
             },
             reload: false 
         }
@@ -145,6 +145,9 @@ export default class Criminal extends Component {
 
     getCoor() {
         let self = this
+        // self.setState({center: {lat: this.state.item.latitude, lng: this.state.item.longitude}})
+        
+
         Geocode.fromAddress(this.state.item.field_office).then(
           response => {
             const { lat, lng } = response.results[0].geometry.location;

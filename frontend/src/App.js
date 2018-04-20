@@ -30,6 +30,8 @@ export default class App extends Component {
         this.callAPI()
     }
 
+    /*Gets the API info for the search bar */
+    
     callAPI(){
         let self = this
         axios.all([

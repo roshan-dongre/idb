@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-
+/*Handles the Pagination for the frontend grid pages */
 export default class Pagination extends Component {
     constructor(props) {
         super(props);
@@ -10,23 +10,7 @@ export default class Pagination extends Component {
         }
     }
 
-    /* Mounting
-     These methods are called when an instance of a component is being created and inserted into the DOM:
-     * constructor()
-     * componentWillMount()
-     * render()
-     * componentDidMount()
-     */
-
-    /* Updating
-     An update can be caused by changes to props or state. These methods are called when a component is being re-rendered:
-     * componentWillReceiveProps()
-     * shouldComponentUpdate()
-     * componentWillUpdate()
-     * render()
-     * componentDidUpdate()
-     */
-
+    /*Props method for updating pages */
     componentWillReceiveProps() {
         if (this.props.currentPage < this.state.minPage) {
             this.setState({minPage: this.state.minPage - 5, maxPage: this.state.maxPage - 5})
@@ -36,15 +20,12 @@ export default class Pagination extends Component {
         }
     }
 
-    /* Unmounting
-     This method is called when a component is being removed from the DOM:
-     * componentWillUnmount()
-     */
-
+    /*Creates the ellipisis */
     handleEllipsis(min, max) {
         this.setState({minPage: min, maxPage: max});
     }
-    /* More information about the React.Component lifecycle here: https://reactjs.org/docs/react-component.html */
+
+    /*Render actually showing the pagination bar */
 
     render() {
         let pageNumbers = []
@@ -73,8 +54,6 @@ export default class Pagination extends Component {
         pageCount = this.props.numPages === 0 ?
                     <div>No pages available</div> :
                     <div>Page {this.props.currentPage + 1} of {this.props.numPages} pages</div>
-
-
 
         return (
             <div className="row">

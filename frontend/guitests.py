@@ -61,110 +61,111 @@ class SeleniumTesting(unittest.TestCase):
 
 		# Get the instance by xpath.
 		# instance = driver.find_element_by_xpath('//*[@id="root"]/div/main/div/div[2]/div[1]/div')
-		instance = driver.find_element_by_xpath('//*[@id="root"]/div/div/div/div[2]/div[1]/div/div')
+		# instance = driver.find_element_by_xpath('//*[@id="root"]/div/main/div/div[2]/div[1]/div')
+		instance = driver.find_element_by_xpath('//*[@id="root"]/div/div/div/div[3]/div[1]/div/div')
 		instance.click()
 		self.assertEqual(driver.current_url, self.base_url + "/State")
 		pass
 
 
-	# # Check the Criminals page and a Criminal instance.
-	# def test_criminals(self):
-	# 	# Create copy of driver with base URL.
-	# 	driver = self.wdriver
-	# 	driver.get(self.base_url)
+	# Check the Criminals page and a Criminal instance.
+	def test_criminals(self):
+		# Create copy of driver with base URL.
+		driver = self.wdriver
+		driver.get(self.base_url)
 
-	# 	# Wait a little bit.
-	# 	#time.sleep(5)(5)
+		# Wait a little bit.
+		#time.sleep(5)(5)
 
-	# 	# Click on the states page and check its URL.
-	# 	driver.find_element_by_link_text("Criminals").click()
-	# 	self.assertEqual(driver.current_url, self.base_url + "/criminals")
+		# Click on the states page and check its URL.
+		driver.find_element_by_link_text("Criminals").click()
+		self.assertEqual(driver.current_url, self.base_url + "/criminals")
+		pass
+
+	def test_Criminal(self):
+		# Testing an instance of criminal.
+		# Check that we make it to criminals page.
+		driver = self.wdriver
+		driver.get(self.base_url)
+
+		# Wait a little bit.
+		#time.sleep(5)(5)
+
+		driver.find_element_by_link_text("Criminals").click()
+		self.assertEqual(driver.current_url, self.base_url + "/criminals")
+
+		# Wait a little bit.
+		#time.sleep(5)(5)
+
+		# Get the instance by xpath.
+		instance = driver.find_element_by_xpath('//*[@id="root"]/div/div/div/div[3]/div[1]/div/div')
+		instance.click()
+		self.assertEqual(driver.current_url, self.base_url + "/Criminal")
+		pass
+
+	# Check the Crimes page and a Crime instance.
+	def test_crimes(self):
+		# Create copy of driver with base URL.
+		driver = self.wdriver
+		driver.get(self.base_url)
+
+		# Wait a little bit.
+		#time.sleep(5)(5)
+
+		# Click on the states page and check its URL.
+		driver.find_element_by_link_text("Crimes").click()
+		self.assertEqual(driver.current_url, self.base_url + "/crimes")
+		pass
+
+	def test_Crime(self):
+		# Testing an instance of criminal.
+		# Check that we make it to criminals page.
+		driver = self.wdriver
+		driver.get(self.base_url)
+		driver.find_element_by_link_text("Crimes").click()
+		self.assertEqual(driver.current_url, self.base_url + "/crimes")
+
+		# Wait a little bit.
+		#time.sleep(5)(5)
+
+		# Get the instance by xpath.
+		instance = driver.find_element_by_xpath('//*[@id="root"]/div/div/div/div[3]/div[1]/div/div')
+		instance.click()
+		self.assertEqual(driver.current_url, self.base_url + "/Crime")
+		pass
+
+	# Test the navbar from every page.
+	def test_nav(self):
+		driver = self.wdriver
+
+		all_page_paths = ["", "/about", "/criminals", "/states", "/crimes"]
+		# navbar_link_text = ["About", "Criminals", "States", "Crimes"]
+
+		for app in all_page_paths:
+			driver.get(self.base_url + app)
+			driver.find_element_by_link_text("About").click()
+			self.assertEqual(driver.current_url, self.base_url + "/about")
+			#time.sleep(5)(5)
+
+			driver.get(self.base_url + app)
+			driver.find_element_by_link_text("Criminals").click()
+			self.assertEqual(driver.current_url, self.base_url + "/criminals")
+			#time.sleep(5)(5)
+
+			driver.get(self.base_url + app)
+			driver.find_element_by_link_text("States").click()
+			self.assertEqual(driver.current_url, self.base_url + "/states")
+			#time.sleep(5)(5)
+
+			driver.get(self.base_url + app)
+			driver.find_element_by_link_text("Crimes").click()
+			self.assertEqual(driver.current_url, self.base_url + "/crimes")
+			#time.sleep(5)(5)
+
+		pass
+
+	# def test_criminal_gender_filter(self):
 	# 	pass
-
-	# def test_Criminal(self):
-	# 	# Testing an instance of criminal.
-	# 	# Check that we make it to criminals page.
-	# 	driver = self.wdriver
-	# 	driver.get(self.base_url)
-
-	# 	# Wait a little bit.
-	# 	#time.sleep(5)(5)
-
-	# 	driver.find_element_by_link_text("Criminals").click()
-	# 	self.assertEqual(driver.current_url, self.base_url + "/criminals")
-
-	# 	# Wait a little bit.
-	# 	#time.sleep(5)(5)
-
-	# 	# Get the instance by xpath.
-	# 	instance = driver.find_element_by_xpath('//*[@id="root"]/div/main/div/div[2]/div[1]/div')
-	# 	instance.click()
-	# 	self.assertEqual(driver.current_url, self.base_url + "/Criminal")
-	# 	pass
-
-	# # Check the Crimes page and a Crime instance.
-	# def test_crimes(self):
-	# 	# Create copy of driver with base URL.
-	# 	driver = self.wdriver
-	# 	driver.get(self.base_url)
-
-	# 	# Wait a little bit.
-	# 	#time.sleep(5)(5)
-
-	# 	# Click on the states page and check its URL.
-	# 	driver.find_element_by_link_text("Crimes").click()
-	# 	self.assertEqual(driver.current_url, self.base_url + "/crimes")
-	# 	pass
-
-	# def test_Crime(self):
-	# 	# Testing an instance of criminal.
-	# 	# Check that we make it to criminals page.
-	# 	driver = self.wdriver
-	# 	driver.get(self.base_url)
-	# 	driver.find_element_by_link_text("Crimes").click()
-	# 	self.assertEqual(driver.current_url, self.base_url + "/crimes")
-
-	# 	# Wait a little bit.
-	# 	#time.sleep(5)(5)
-
-	# 	# Get the instance by xpath.
-	# 	instance = driver.find_element_by_xpath('//*[@id="root"]/div/main/div/div[2]/div[1]/div')
-	# 	instance.click()
-	# 	self.assertEqual(driver.current_url, self.base_url + "/Crime")
-	# 	pass
-
-	# # Test the navbar from every page.
-	# def test_nav(self):
-	# 	driver = self.wdriver
-
-	# 	all_page_paths = ["", "/about", "/criminals", "/states", "/crimes"]
-	# 	# navbar_link_text = ["About", "Criminals", "States", "Crimes"]
-
-	# 	for app in all_page_paths:
-	# 		driver.get(self.base_url + app)
-	# 		driver.find_element_by_link_text("About").click()
-	# 		self.assertEqual(driver.current_url, self.base_url + "/about")
-	# 		#time.sleep(5)(5)
-
-	# 		driver.get(self.base_url + app)
-	# 		driver.find_element_by_link_text("Criminals").click()
-	# 		self.assertEqual(driver.current_url, self.base_url + "/criminals")
-	# 		#time.sleep(5)(5)
-
-	# 		driver.get(self.base_url + app)
-	# 		driver.find_element_by_link_text("States").click()
-	# 		self.assertEqual(driver.current_url, self.base_url + "/states")
-	# 		#time.sleep(5)(5)
-
-	# 		driver.get(self.base_url + app)
-	# 		driver.find_element_by_link_text("Crimes").click()
-	# 		self.assertEqual(driver.current_url, self.base_url + "/crimes")
-	# 		#time.sleep(5)(5)
-
-	# 	pass
-
-	# # def test_criminal_gender_filter(self):
-	# # 	pass
 
 	# def test_criminal_alphabet_sort_az(self):
 	# 	driver = self.wdriver

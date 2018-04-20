@@ -92,7 +92,7 @@ describe('<Pagination/>', () => {
     it('should have pagination', function () {
         const pagination = wrapper.find('.pagination');
         expect(pagination).to.have.length(1);
-        expect(wrapper.state().minPage).to.be.defined;
-        expect(wrapper.state().maxPage).to.be.defined;
+        expect(wrapper.state().minPage).to.equal(0);
+        expect(wrapper.state().maxPage).to.equal(5);
     })
 });

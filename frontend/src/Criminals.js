@@ -50,7 +50,6 @@ export default class Criminals extends Component {
             height: {min: 50, max: 80},
             loading: true
         }
-        //this.apiUrl = 'http://api.ontherun.me/criminals';
     }
 
     componentDidMount () {
@@ -99,7 +98,6 @@ export default class Criminals extends Component {
     }  
 
     callAPI() {
-
         let limit = this.state.pgSize
         let offset = this.state.page
         let limOff = "?limit="+limit+"&offset="+offset
@@ -134,7 +132,7 @@ export default class Criminals extends Component {
         let self = this
         axios.get(url)
             .then((res) => {
-                // Set state with result
+                /* Set state with result */
                 self.setState({criminals: res.data.results, totalCount: res.data.totalCount, numPages: Math.ceil(res.data.totalCount/self.state.pgSize)});
                 self.setState({loading: false})
                 console.log(self.state.criminals)
@@ -164,74 +162,72 @@ export default class Criminals extends Component {
     }
 
     render() {
-
-    
-    if (this.state.loading) {
-        return (
-            <div className="container sub-container" style={divStyle}>
-                <Circle size={250} color= "red"/>
-            </div>)
-    }
-    else {
-
-        let criminalComponents = []
-        let styleMenu = []
-        if (this.state.criminals !== undefined) {
-            // Create an array of X components with 1 for each beer gathered from API call
-            criminalComponents = this.state.criminals.map((criminal) => {
-                return (
-                    <CriminalOverlay item={criminal} navigateTo="/Criminal"/>
-                );
-            })
+        if (this.state.loading) {
+            return (
+                <div className="container sub-container" style={divStyle}>
+                    <Circle size={250} color= "red"/>
+                </div>)
         }
+        else {
 
-        return (
-            <div className="container sub-container">
-                <Well style = {wellStyle}>
-                <div className="row row-m-b">
-                    <div className="col-md-3">
-                        <div className = "text-left" style = {blackStyles}>
-                        <Select name="form-field-name" value={this.state.sortBy} onChange={this.handleSort} placeholder= "Sort by Name or Height"
-                        options={[ {value: 'all', label: 'No Sorting'}, {value: 'name-asc', label: 'Sort by Name (ASC)'}, { value: 'name-desc', label: 'Sort by Name (DESC)' }, { value: 'height-asc', label: 'Sort by Height (ASC)'},{ value: 'height-desc', label: 'Sort by Height (DESC)'},]}/>
-                        </div>
-                    </div>
-                    <div className="col-md-3">
-                        <div className = "text-left" style = {blackStyles}>
-                        <Select name="form-field-name" value={this.state.sex} onChange={this.handleSex} placeholder= "Filter by Gender"
-                        options={[ {value: 'All', label: 'All'}, { value: 'Male', label: 'Male' }, { value: 'Female', label: 'Female'},]}/>
-                        </div>
-                    </div> 
-                    <div className="col-md-3">
-                        <div className = "text-left" style = {blackStyles}>
-                        <Select name="form-field-name" value={this.state.race} onChange={this.handleRace} placeholder = "Filter by Race"
-                        options={[ {value: 'All', label: 'All'}, { value: 'White', label: 'White' }, { value: 'Black', label: 'Black'}, { value: 'White (Hispanic)', label: 'White (Hispanic)'}, { value: 'Asian', label: 'Asian'}, 
-                        { value: 'White (Central Asian)', label: 'White (Central Asian)'}, { value: 'Black (Hispanic)', label: 'Black (Hispanic)'}, { value: 'White (Middle Eastern)', label: 'White (Middle Eastern)'}, ]}/>
-                        </div>
-                    </div>    
-                    <div className="col-md-3">
-                        <div className = "text-center" style = {whiteStyles}>
-                        <label> <strong> Filter by Height (Inches): </strong> </label>
-                        <InputRange maxValue={80} minValue={50} value={this.state.height} onChange={height => this.setState({ height })} />
-                        </div>
-                    </div>
-                </div>
-                </Well>
-                {/* Break array into separate arrays and wrap each array containing 3 components in a row div */}
-                { chunk(criminalComponents, 4).map((row) => {
+            let criminalComponents = []
+            let styleMenu = []
+            if (this.state.criminals !== undefined) {
+                // Create an array of X components with 1 for each beer gathered from API call
+                criminalComponents = this.state.criminals.map((criminal) => {
                     return (
-                        <div className="row">
-                            { row }
+                        <CriminalOverlay item={criminal} navigateTo="/Criminal"/>
+                    );
+                })
+            }
+            {/* Handles sorting and filtering of the criminals grid page */}
+            return (
+                <div className="container sub-container">
+                    <Well style = {wellStyle}>
+                    <div className="row row-m-b">
+                        <div className="col-md-3">
+                            <div className = "text-left" style = {blackStyles}>
+                            <Select name="form-field-name" value={this.state.sortBy} onChange={this.handleSort} placeholder= "Sort by Name or Height"
+                            options={[ {value: 'all', label: 'No Sorting'}, {value: 'name-asc', label: 'Sort by Name (ASC)'}, { value: 'name-desc', label: 'Sort by Name (DESC)' }, { value: 'height-asc', label: 'Sort by Height (ASC)'},{ value: 'height-desc', label: 'Sort by Height (DESC)'},]}/>
+                            </div>
                         </div>
-                    )
-                })}
-                {<Pagination handlePageChange={this.handlePageChange}
-                              handlePrev={this.handlePrev}
-                              handleNext={this.handleNext}
-                              numPages={this.state.numPages}
-                              currentPage={this.state.page}
-                              navigateTo="/Criminals"/>}
-            </div>
-      );
-    }
+                        <div className="col-md-3">
+                            <div className = "text-left" style = {blackStyles}>
+                            <Select name="form-field-name" value={this.state.sex} onChange={this.handleSex} placeholder= "Filter by Gender"
+                            options={[ {value: 'All', label: 'All'}, { value: 'Male', label: 'Male' }, { value: 'Female', label: 'Female'},]}/>
+                            </div>
+                        </div> 
+                        <div className="col-md-3">
+                            <div className = "text-left" style = {blackStyles}>
+                            <Select name="form-field-name" value={this.state.race} onChange={this.handleRace} placeholder = "Filter by Race"
+                            options={[ {value: 'All', label: 'All'}, { value: 'White', label: 'White' }, { value: 'Black', label: 'Black'}, { value: 'White (Hispanic)', label: 'White (Hispanic)'}, { value: 'Asian', label: 'Asian'}, 
+                            { value: 'White (Central Asian)', label: 'White (Central Asian)'}, { value: 'Black (Hispanic)', label: 'Black (Hispanic)'}, { value: 'White (Middle Eastern)', label: 'White (Middle Eastern)'}, ]}/>
+                            </div>
+                        </div>    
+                        <div className="col-md-3">
+                            <div className = "text-center" style = {whiteStyles}>
+                            <label> <strong> Filter by Height (Inches): </strong> </label>
+                            <InputRange maxValue={80} minValue={50} value={this.state.height} onChange={height => this.setState({ height })} />
+                            </div>
+                        </div>
+                    </div>
+                    </Well>
+                    {/* Break array into separate arrays and wrap each array containing 3 components in a row div */}
+                    { chunk(criminalComponents, 4).map((row) => {
+                        return (
+                            <div className="row">
+                                { row }
+                            </div>
+                        )
+                    })}
+                    {<Pagination handlePageChange={this.handlePageChange}
+                                  handlePrev={this.handlePrev}
+                                  handleNext={this.handleNext}
+                                  numPages={this.state.numPages}
+                                  currentPage={this.state.page}
+                                  navigateTo="/Criminals"/>}
+                </div>
+          );
+        }
     }
 }

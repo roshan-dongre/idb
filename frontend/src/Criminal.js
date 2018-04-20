@@ -5,7 +5,7 @@ import GoogleMapReact from 'google-map-react';
 import Geocode from "react-geocode";
 import {Row, Col, Panel, Button, Modal, Well} from 'react-bootstrap'
 
-
+/*Inline styles for the components */
 var imageStyles = {
     width: '400px',
     height: '350px'
@@ -23,11 +23,14 @@ export default class Criminal extends Component {
     constructor (props) {
         super (props);
         let item = "";
+
+        /*Constructor to get the correct item */
         if ('location' in this.props  && this.props.location.state.item !== undefined) {
             item = this.props.location.state.item
         } else if (this.props.item !== undefined) {
             item = this.props.item
         }
+
         this.state = {
             item: item,
             crimes: [],
@@ -56,17 +59,18 @@ export default class Criminal extends Component {
         this.getCrimes()
     }
 
+    /*Called when the component updates */
     componentDidUpdate(prevProps, prevState) {
         if (prevState.item.name !== this.state.item.name)
         {
             this.getStates()
             this.getCrimes()
             this.changeValues()
-            this.getCoor()
-           
+            this.getCoor()    
         }
     }
 
+    /*Gets the state list from the API */
     getStates() {
         let url = "http://api.ontherun.me/criminalstostate/" + this.state.item.id
         let self = this
@@ -76,11 +80,10 @@ export default class Criminal extends Component {
             })
             .catch((error) => {
                 console.log(error)
-            });
-      
-
+            });   
     }
 
+    /*Gets the crime list from the API */
     getCrimes() {
         if (this.state.item.id !== undefined) {
             let url = "http://api.ontherun.me/criminaltocrimes/" + this.state.item.id 
@@ -95,6 +98,7 @@ export default class Criminal extends Component {
             }
     }
 
+    /*API call that has get the information needed */
     callAPI() {
         let url
         if (this.props.location !== undefined && this.props.location.state.selectedId !== undefined) {
@@ -111,6 +115,8 @@ export default class Criminal extends Component {
                 console.log(error)
             });
     }
+
+    /*Navigation to the other instances */
 
     handleStateNavigation(stateId, e) {
         e.preventDefault()
@@ -130,6 +136,7 @@ export default class Criminal extends Component {
         })
     }
 
+    /*Cleaning up for the crime information from the API */
     changeValues() {
         console.log(this.state)
         var striptags = require('striptags');
@@ -139,15 +146,12 @@ export default class Criminal extends Component {
         }
         if (this.state.item.hair !== null) {
             this.state.item.hair = this.state.item.hair.slice(0,1).toUpperCase() + this.state.item.hair.slice(1, this.state.item.hair.length)
-        }
-        
+        }   
     }
 
+    /*Gets the coordinates used for the google maps API */
     getCoor() {
         let self = this
-        // self.setState({center: {lat: this.state.item.latitude, lng: this.state.item.longitude}})
-        
-
         Geocode.fromAddress(this.state.item.field_office).then(
           response => {
             const { lat, lng } = response.results[0].geometry.location;
@@ -157,11 +161,9 @@ export default class Criminal extends Component {
             console.error(error);
           }
         );
-
     }
 
-    /* More information about the React.Component lifecycle here: https://reactjs.org/docs/react-component.html */
-
+    /*Render method to show the website information */
     render() {
 
         if (this.state.item != "") {
@@ -174,15 +176,14 @@ export default class Criminal extends Component {
             window.location.reload()
         }
 
-        //in get Coor set the state 
-        
-
         if (this.state.navigate) {
             return <Redirect to={{pathname: this.state.navigateTo, state: {selectedId: this.state.selectedId, reload: true}}} push={true} />;
         }
         
         let stateList
         let self = this
+
+        /*Gets the list of states and list of crimes */
 
         stateList = this.state.data_states.map((state) => {
 
@@ -209,6 +210,7 @@ export default class Criminal extends Component {
             crimeList = this.state.crimeUnavailable
         }
 
+        /*Rendering with the information */
         return (
             <div className="container sub-container">
                 <div className="row">
@@ -283,10 +285,3 @@ export default class Criminal extends Component {
         );
     }
 }
-
-export const truncate = (str, length = 100, ending = '...') => {
-    if (str.length > length) {
-        return str.substring(0, length - ending.length) + ending;
-    }
-    return str;
-};

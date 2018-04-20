@@ -208,7 +208,7 @@ render () {
                             <p>Responsibilities: Set up the database and a large part of the backend.</p>
                             <p>Number of commits: {this.state.ricardoCommits}</p>
                             <p>Number of issues: {this.state.ricardoIssues}</p>
-                            <p>Number of unit tests: 0</p>
+                            <p>Number of unit tests: 8</p>
                           </Modal.Body>
                           <Modal.Footer>
                             <Button onClick={this.handleCloseRicardo}>Close</Button>
@@ -331,7 +331,7 @@ render () {
                             <p>Responsibilities: API Documentation, Most of Testing Code, Technical Report, Travis CI</p>
                             <p>Number of commits: {this.state.krishnaCommits}</p>
                             <p>Number of issues: {this.state.krishnaIssues}</p>
-                            <p>Number of unit tests: 21</p>
+                            <p>Number of unit tests: 62</p>
                           </Modal.Body>
                           <Modal.Footer>
                             <Button onClick={this.handleCloseKrishna}>Close</Button>
@@ -348,8 +348,8 @@ render () {
                                 <h1><u>Stats</u></h1>
                                 <ul>
                                     <li className="text-left"><h4><strong>total no. of commits: {this.state.totalCommits}</strong></h4></li>
-                                    <li className="text-left"><h4><strong>total no. of issues:</strong> {this.state.totalIssues}</h4></li>
-                                    <li className="text-left"><h4><strong>total no. of unit tests:</strong> 45</h4></li>
+                                    <li className="text-left"><h4><strong>total no. of issues:</strong> 47</h4></li>
+                                    <li className="text-left"><h4><strong>total no. of unit tests:</strong> 95</h4></li>
                                 </ul>
                             </div>
                         </div>

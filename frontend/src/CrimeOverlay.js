@@ -44,6 +44,7 @@ export default class CrimeOverlay extends Component {
         if (this.state.navigate) {
             return <Redirect to={{pathname: this.state.navigateTo, state: {item: this.state.item}}} push={true} />;
         }
+        {/* Renders an overlay for the criminal grid pages */}
         return (
             <div className="col-md-3 container-thumbnail">
                 <div className="text-center">

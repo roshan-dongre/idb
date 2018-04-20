@@ -25,7 +25,7 @@ stories:
 
 # make uml      - prints link to uml diagram
 uml:
-	@echo "http://www.github.com/${GithubID}/${RepoName}/blob/${SHA}/uml.png"
+	@echo "http://www.github.com/${GithubID}/${RepoName}/blob/${SHA}/UML.png"
 
 # make selenium - runs selenium tests
 selenium:

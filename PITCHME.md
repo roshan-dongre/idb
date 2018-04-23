@@ -8,19 +8,11 @@
 
 <br>
 
-<br>
-<div class="left">
-    <i class="fa fa-user-secret fa-5x" aria-hidden="true"> </i><br>
-</div>
-<div class="right">
-    <ul>
-        <li>Ricardo Riveron: Backend development and database setup</li>
-        <li>Roshan Dongre: Frontend development on all the pages</li>
-        <li>Zara Louis: Frontend development for search, overlays, and maps</li>
-        <li>Ramon Perez: Data aggregation and consolidation for all the models as well as testing</li>
-        <li>Krishna Ramdeep: Bulk of the testing for the various components</li>
-    </ul>
-</div>
+Ricardo Riveron: Backend development and database setup
+Roshan Dongre: Frontend development on all the pages
+Zara Louis: Frontend development for search, overlays, and maps
+Ramon Perez: Data aggregation and consolidation for all the models as well as testing
+Krishna Ramdeep: Bulk of the testing for the various components
 
 ---
 

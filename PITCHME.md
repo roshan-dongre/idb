@@ -22,6 +22,7 @@
 
 ---?image=assets/image/mugshot.png&size=90% 90%
 
+---
 
 @title[JavaScript Block]
 

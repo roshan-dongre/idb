@@ -10,9 +10,9 @@
 
 - Ricardo Riveron: Backend and database setup |
 - Roshan Dongre: Frontend on all the pages |
-- Zara Louis: Frontend for search, overlays, and maps |
+- Zara Louis: Frontend for search/overlays/maps |
 - Ramon Perez: Data aggregation as well as testing |
-- Krishna Ramdeep: Testing the various components |
+- Krishna Ramdeep: Testing frontend/backend |
 
 ---
 

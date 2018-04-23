@@ -22,7 +22,7 @@
 
 ---
 
-![](assets/mugshot.png)
+![](assets/image/mugshot.png)
 
 ---
 

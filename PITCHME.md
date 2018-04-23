@@ -1,20 +1,30 @@
-# Black
+# On The Run
 
-### A GitPitch Presentation Template
+### The FBI Most Wanted List
 
 ---
 
-## Tips!
+## Meet the Team!
 
 <br>
 
-@fa[arrows gp-tip](Press F to go Fullscreen)
-
-@fa[microphone gp-tip](Press S for Speaker Notes)
+<br>
+<div class="left">
+    <i class="fa fa-user-secret fa-5x" aria-hidden="true"> </i><br>
+</div>
+<div class="right">
+    <ul>
+        <li>Ricardo Riveron: Backend development and database setup</li>
+        <li>Roshan Dongre: Frontend development on all the pages</li>
+        <li>Zara Louis: Frontend development for search, overlays, and maps</li>
+        <li>Ramon Perez: Data aggregation and consolidation for all the models as well as testing</li>
+        <li>Krishna Ramdeep: Bulk of the testing for the various components</li>
+    </ul>
+</div>
 
 ---
 
-## Template Features
+## Meet Luis
 
 - Code Presenting |
 - Repo Source, Static Blocks, GIST |
@@ -99,22 +109,7 @@ http.createServer(function (request, response) {
     </ul>
 </div>
 
----
-
-### Questions?
-
-<br>
-
-@fa[twitter gp-contact](@gitpitch)
-
-@fa[github gp-contact](gitpitch)
-
-@fa[medium gp-contact](@gitpitch)
-
 ---?image=assets/image/gitpitch-audience.jpg&opacity=100
 
-@title[Download this Template!]
-
-### Get your presentation started!
-### [Download this template @fa[external-link gp-download]](https://gitpitch.com/template/download/black)
+@title[Any Questions?]
 

@@ -8,11 +8,11 @@
 
 <br>
 
-Ricardo Riveron: Backend development and database setup
-Roshan Dongre: Frontend development on all the pages
-Zara Louis: Frontend development for search, overlays, and maps
-Ramon Perez: Data aggregation and consolidation for all the models as well as testing
-Krishna Ramdeep: Bulk of the testing for the various components
+-Ricardo Riveron: Backend and database setup |
+-Roshan Dongre: Frontend on all the pages |
+-Zara Louis: Frontend for search, overlays, and maps |
+-Ramon Perez: Data aggregation as well as testing |
+-Krishna Ramdeep: Testing the various components |
 
 ---
 

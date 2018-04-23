@@ -4,7 +4,7 @@
 
 ---
 
-## Meet the Team!
+## The Team!
 
 <br>
 
@@ -18,18 +18,11 @@
 
 ## Meet Luis
 
-- Code Presenting |
-- Repo Source, Static Blocks, GIST |
-- Custom CSS Styling |
-- Slideshow Background Image |
-- Slide-specific Background Images |
-- Custom Logo, TOC, and Footnotes |
+![](https://www.fbi.gov/wanted/cac/luis-tejada/@@images/image/preview)
 
----?code=sample/go/server.go&lang=golang&title=Golang File
+---
 
-@[1,3-6](Present code found within any repo source file.)
-@[8-18](Without ever leaving your slideshow.)
-@[19-28](Using GitPitch code-presenting with (optional) annotations.)
+![](assets/mugshot.png)
 
 ---
 

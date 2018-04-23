@@ -20,7 +20,7 @@
 
 ![](https://www.fbi.gov/wanted/cac/luis-tejada/@@images/image/preview)
 
----?image=assets/image/mugshot.png&size=90% 90%
+---?image=assets/image/mugshot.png&size=contain
 
 ---
 

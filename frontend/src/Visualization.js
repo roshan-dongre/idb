@@ -28,24 +28,35 @@ export default class Visualization extends Component {
 
         let low = 823 
         let high = 1071
-        let url = "http://api.canitstreamto.me/v1/country/900"
+        let url = "./canitstream/countryData.txt"
+        // let url = "http://api.canitstreamto.me/v1/country/[id]/streaming"
+        // let url = "http://api.canitstreamto.me/v1/country/[id]/movie"
         // let url = "http://api.ontherun.me/states"
-        
+
         let self = this
 
         // for (var i = low; i <= high; i++) {
-          axios.get(url)
-            .then((res) => {
-                // Set state with result
-                // self.setState({states: res.data.results, totalCount: res.data.totalCount, numPages: Math.ceil(res.data.totalCount/self.state.pgSize)});
-                // self.setState({loading: false})
-                console.log(res.data)
-            })
-            .catch((error) => {
-                console.log(error)
-                console.log(error.request)
-            });
+          // axios.get(url)
+          //   .then((res) => {
+          //       // Set state with result
+          //       // self.setState({states: res.data.results, totalCount: res.data.totalCount, numPages: Math.ceil(res.data.totalCount/self.state.pgSize)});
+          //       // self.setState({loading: false})
+          //       console.log(res.data)
+          //   })
+          //   .catch((error) => {
+          //       console.log(error)
+          //       console.log(error.request)
+          //   });
         // }
+        axios({
+          method:'get',
+          url:'./canitstream/countryData.txt',
+          responseType:'json',
+          crossdomain: true
+        })
+          .then(function(response) {
+            console.log(response.data)
+        });
     }
 
     componentDidUpdate(prevProps, prevState) {

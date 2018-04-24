@@ -15,6 +15,7 @@ import Crime from './Crime';
 import About from './About';
 import SearchResults from './SearchResults';
 import Result from './Result';
+import Visualization from './Visualization';
 
 export default class App extends Component {
     
@@ -67,6 +68,7 @@ export default class App extends Component {
                       <Route exact path="/Crime" component={Crime} />
                       <Route exact path="/SearchResults" component={SearchResults} />
                       <Route exact path="/Result" component={Result} />
+                      <Route exact path="/Visualization" component={Visualization} />
                       <Route component={NotFound} />
                   </Switch>
               </div>

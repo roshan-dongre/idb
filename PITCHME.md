@@ -24,9 +24,9 @@
 
 ---
 
-## Demo!
+# Demo!
 
-<a href="https://github.com" target="_blank">Click Here!</a>
+<a href="http://ontherun.com" target="_blank">Click Here!</a>
 
 ---
 
@@ -34,18 +34,7 @@
 
 ---
 
-## Template Help
-
-- [Code Presenting](https://github.com/gitpitch/gitpitch/wiki/Code-Presenting)
-  + [Repo Source](https://github.com/gitpitch/gitpitch/wiki/Code-Delimiter-Slides), [Static Blocks](https://github.com/gitpitch/gitpitch/wiki/Code-Slides), [GIST](https://github.com/gitpitch/gitpitch/wiki/GIST-Slides) 
-- [Custom CSS Styling](https://github.com/gitpitch/gitpitch/wiki/Slideshow-Custom-CSS)
-- [Slideshow Background Image](https://github.com/gitpitch/gitpitch/wiki/Background-Setting)
-- [Slide-specific Background Images](https://github.com/gitpitch/gitpitch/wiki/Image-Slides#background)
-- [Custom Logo](https://github.com/gitpitch/gitpitch/wiki/Logo-Setting) [TOC](https://github.com/gitpitch/gitpitch/wiki/Table-of-Contents) [Footnotes](https://github.com/gitpitch/gitpitch/wiki/Footnote-Setting)
-
----
-
-## Go GitPitch Pro!
+## Tech Stack
 
 <br>
 <div class="left">
@@ -55,13 +44,28 @@
 </div>
 <div class="right">
     <ul>
-        <li>Private Repos</li>
-        <li>Private URLs</li>
-        <li>Password-Protection</li>
-        <li>Image Opacity</li>
-        <li>SVG Image Support</li>
+        <li>Filtering: React-Select, React-Input-Range</li>
+        <li>Search: Fuse.js</li>
+        <li>Database: SQLAlchemy</li>
+        <li>Data: FBI/Google Maps</li>
     </ul>
 </div>
+
+---
+
+# Visualization!
+
+<a href="http://ontherun.com" target="_blank">Click Here!</a>
+
+---
+
+## Self-Critique
+
+---
+
+## Other-Critique
+
+---
 
 ---?image=assets/image/gitpitch-audience.jpg&opacity=100
 

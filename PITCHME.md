@@ -107,7 +107,6 @@
 
   - How to add tooltips
 
-
 ---
 
 ## Other-Critique
@@ -121,9 +120,11 @@
 - What puzzles us about their API/website?
 
   - Looking at the API how they connected the various model pages
-  
+
 
 ---?image=assets/image/gitpitch-audience.jpg&opacity=100
 
 @title[Any Questions?]
+
+---
 

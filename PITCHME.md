@@ -63,13 +63,33 @@
 
 - What did we do well?
 
-  - See if this works
+  - API/Search/UI Elements
 
 - What did we learn?
+  
+  - Testing Tools/Travis Integration
+
+  - React methods/states/props
+
+  - SQLAlchemy
+
+---
+
+## Self-Critique
 
 - What can we do better?
 
+  - Google Maps
+
+  - Pair Programming
+
+  - Frameworks outside of react-bootstrap
+
 - What puzzles us?
+
+  - Race Conditions in React
+
+  - Why our database keeps going down
 
 ---
 
@@ -77,13 +97,31 @@
 
 - What did the other group do well?
 
+  - Images and grid pages look sleek
+
+  - Model pages are very user friendly
+
 - What did we learn from their API/website?
+
+  - Interesting info on streaming in countries
+
+  - How to add tooltips
+
+
+---
+
+## Other-Critique
 
 - What can they do better?
 
+  - Add more data with streaming services/films
+
+  - Clean up streaming services grid page
+
 - What puzzles us about their API/website?
 
----
+  - Looking at the API how they connected the various model pages
+  
 
 ---?image=assets/image/gitpitch-audience.jpg&opacity=100
 

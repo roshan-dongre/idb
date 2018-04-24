@@ -53,12 +53,6 @@
 
 ---
 
-# Visualization
-
-<a href="http://ontherun.me" target="_blank">Click Here!</a>
-
----
-
 ## Self-Critique
 
 - What did we do well?
@@ -90,6 +84,12 @@
   - Race Conditions in React
 
   - Why our database keeps going down
+
+---
+
+# Visualization
+
+<a href="http://ontherun.me" target="_blank">Click Here!</a>
 
 ---
 

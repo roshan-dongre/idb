@@ -39,8 +39,8 @@
 <br>
 <div class="left">
     <i class="fa fa-user-secret fa-5x" aria-hidden="true"> </i><br>
-    <a href="https://gitpitch.com/pro-features" class="pro-link">
-    More details here.</a>
+    <a href="https://roshan-dongre.gitbooks.io/report/" class="pro-link">
+    Technical Report</a>
 </div>
 <div class="right">
     <ul>
@@ -53,17 +53,35 @@
 
 ---
 
-# Visualization!
+# Visualization
 
-<a href="http://ontherun.com" target="_blank">Click Here!</a>
+<a href="http://ontherun.me" target="_blank">Click Here!</a>
 
 ---
 
 ## Self-Critique
 
+- What did we do well?
+
+  - See if this works
+
+- What did we learn?
+
+- What can we do better?
+
+- What puzzles us?
+
 ---
 
 ## Other-Critique
+
+- What did the other group do well?
+
+- What did we learn from their API/website?
+
+- What can they do better?
+
+- What puzzles us about their API/website?
 
 ---
 

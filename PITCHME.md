@@ -124,7 +124,4 @@
 
 ---?image=assets/image/gitpitch-audience.jpg&opacity=100
 
-@title[Any Questions?]
-
----
-
+## Any Questions?

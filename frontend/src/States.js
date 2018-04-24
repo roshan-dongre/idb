@@ -179,7 +179,7 @@ export default class States extends Component {
                 // Set state with result
                 self.setState({states: res.data.results, totalCount: res.data.totalCount, numPages: Math.ceil(res.data.totalCount/self.state.pgSize)});
                 self.setState({loading: false})
-                console.log(res.data.states.length)
+                // console.log(res.data.states.length)
             })
             .catch((error) => {
                 console.log(error)

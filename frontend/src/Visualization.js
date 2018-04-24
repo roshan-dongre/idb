@@ -1,6 +1,7 @@
 import { ComposableMap, ZoomableGroup, Geographies, Geography, Markers, Marker} from "react-simple-maps"
 import React, { Component } from 'react';
 import axios from 'axios';
+import visData from './canitstream/countryData.json';
 
 const wrapperStyles = {
   width: "100%",
@@ -14,9 +15,7 @@ export default class Visualization extends Component {
 	constructor (props) {
 		super(props)
     this.state = {
-            countries: [],
-            streams:[],
-            movies:[]
+            countries: []
         }
 	}
 
@@ -26,37 +25,13 @@ export default class Visualization extends Component {
 
   callAPI() {
 
-        let low = 823 
-        let high = 1071
-        let url = "./canitstream/countryData.txt"
-        // let url = "http://api.canitstreamto.me/v1/country/[id]/streaming"
-        // let url = "http://api.canitstreamto.me/v1/country/[id]/movie"
-        // let url = "http://api.ontherun.me/states"
-
+        let low = 0 
+        let high = 141
         let self = this
-
-        // for (var i = low; i <= high; i++) {
-          // axios.get(url)
-          //   .then((res) => {
-          //       // Set state with result
-          //       // self.setState({states: res.data.results, totalCount: res.data.totalCount, numPages: Math.ceil(res.data.totalCount/self.state.pgSize)});
-          //       // self.setState({loading: false})
-          //       console.log(res.data)
-          //   })
-          //   .catch((error) => {
-          //       console.log(error)
-          //       console.log(error.request)
-          //   });
-        // }
-        axios({
-          method:'get',
-          url:'./canitstream/countryData.txt',
-          responseType:'json',
-          crossdomain: true
-        })
-          .then(function(response) {
-            console.log(response.data)
-        });
+        for (var i = low; i < high; i++) {
+          this.state.countries[i] = visData.data[i]
+        }
+        console.log(this.state.countries) //This contains all countries with top 5 streaming services and top 5 movies.
     }
 
     componentDidUpdate(prevProps, prevState) {

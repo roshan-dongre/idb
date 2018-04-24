@@ -41,7 +41,7 @@ export default class App extends Component {
             axios.get(self.state.apiUrl+"/crimes")
         ])
             .then(axios.spread((criminals, states, crimes) => {
-                console.log(criminals)
+                // console.log(criminals)
                 let allRecords = criminals.data.results.concat(states.data.results).concat(crimes.data.results)
                 this.setState({allData: allRecords})
             }))

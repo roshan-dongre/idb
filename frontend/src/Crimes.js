@@ -115,8 +115,8 @@ export default class Crimes extends Component {
         axios.get(url)
             .then((res) => {
                 // Set state with result
-                console.log(res.data)
-                console.log(res.data.totalCount)
+                // console.log(res.data)
+                // console.log(res.data.totalCount)
                 self.setState({crimes: res.data.results, totalCount: res.data.totalCount, numPages: Math.ceil(res.data.totalCount/self.state.pgSize)});
                 self.setState({loading: false})
             })

@@ -1,50 +1,59 @@
-import { ComposableMap, ZoomableGroup, Geographies, Geography, Markers, Marker} from "react-simple-maps"
-import React, { Component } from 'react';
-import axios from 'axios';
-import visData from './canitstream/countryData.json';
+import React, { Component } from "react"
+import {
+  ComposableMap,
+  ZoomableGroup,
+  Geographies,
+  Geography,
+} from "react-simple-maps"
+import ReactTooltip from "react-tooltip"
+import axios from 'axios'
+import visData from './canitstream/countryData.json'
 
 const wrapperStyles = {
   width: "100%",
   maxWidth: 980,
   margin: "0 auto",
-  background: '#487eb0'
 }
 
-export default class Visualization extends Component {
+class Visualization extends Component {
 
-	constructor (props) {
-		super(props)
+  constructor(props) {
+    super(props)
     this.state = {
-            countries: []
-        }
-	}
-
-  componentDidMount () {
-        this.callAPI()
+      countries: []
     }
+  }
+
+  componentDidMount() {
+    // ReactTooltip.rebuild()
+    this.callAPI()
+    setTimeout(() => {
+      ReactTooltip.rebuild()
+    }, 100)
+  }
+
+  componentDidUpdate() {
+    this.callAPI()
+    ReactTooltip.rebuild()
+  }
+
 
   callAPI() {
-
-        let low = 0 
-        let high = 141
-        let self = this
-        for (var i = low; i < high; i++) {
-          this.state.countries[i] = visData.data[i]
-        }
+    let low = 0 
+    let high = 141
+    let self = this
+    for (var i = low; i < high; i++) {
+      this.state.countries[i] = visData.data[i]
+    }
         console.log(this.state.countries) //This contains all countries with top 5 streaming services and top 5 movies.
-    }
+  }
 
-    componentDidUpdate(prevProps, prevState) {
-      this.callAPI()
-    }
-
-	render() {
+  render() {
     return (
       <div style={wrapperStyles}>
         <ComposableMap
           projectionConfig={{
             scale: 205,
-            rotation: [-11,0,0],
           }}
           width={980}
           height={551}
@@ -58,6 +67,7 @@ export default class Visualization extends Component {
               {(geographies, projection) => geographies.map((geography, i) => geography.id !== "ATA" && (
                 <Geography
                   key={i}
+                  data-tip={geography.properties.name}
                   geography={geography}
                   projection={projection}
                   style={{
@@ -85,7 +95,10 @@ export default class Visualization extends Component {
             </Geographies>
           </ZoomableGroup>
         </ComposableMap>
+        <ReactTooltip />
       </div>
     )
   }
 }
+
+export default Visualization

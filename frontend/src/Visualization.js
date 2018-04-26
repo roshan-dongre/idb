@@ -77,6 +77,7 @@ class Visualization extends Component {
     }
     return (
       <div className= "container" style={{"margin-top": "30px", "margin-right": "0px", "color": "black"}}>
+      <h1 style={{marginRight: '90px', textShadow: '0 0 3px #FFF'}}> Data Visualization for canitstreamto.me </h1>
       <BarChart width={1000} height={500} data={data}
             margin={{top: 10, right: 30, left: 20, bottom: 5}} style= {{background: "#C7E7EB"}}>
        <CartesianGrid strokeDasharray="3"/>

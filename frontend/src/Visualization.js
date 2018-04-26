@@ -85,7 +85,7 @@ class Visualization extends Component {
        <YAxis/>
        <Tooltip content={<CustomTooltip/>}/>
        <Legend />
-       <Bar dataKey="population" fill="#8884d8">
+       <Bar name="Population" dataKey="population" fill="#8884d8">
          {
             data.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={colors[index % 20]}/>

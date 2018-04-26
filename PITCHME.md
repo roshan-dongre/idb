@@ -26,13 +26,13 @@
 
 # Demo!
 
-<a href="http://ontherun.com" target="_blank">Click Here!</a>
+<a href="http://ontherun.me" target="_blank">Click Here!</a>
 
 ---
 
 ## Unit Tests!
 
-![](./assets/video.mp4)
+![](https://github.com/roshan-dongre/idb/blob/master/assets/video.mp4)
 
 ---
 

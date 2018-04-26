@@ -32,7 +32,7 @@
 
 ## Unit Tests!
 
-![](idb/assets/video.mp4)
+![](./assets/video.mp4)
 
 ---
 

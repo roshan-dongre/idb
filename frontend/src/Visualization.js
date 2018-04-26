@@ -47,7 +47,8 @@ class CustomTooltip extends Component
     if (active) {
       const { payload, label } = this.props;
       return (
-        <div className="custom-tooltip">
+        <div className="custom-tooltip" style={{background: '#dfe6e9', borderStyle: 'solid', borderColor: '#2d3436', borderWidth: '2px', padding: '2px', borderRadius: '10px'}}>
+          <p className="title">{label}</p>
           <p className="intro">{this.getTopMovie(label)}</p>
           <p className="desc">{this.getTopStream(label)}</p>
         </div>

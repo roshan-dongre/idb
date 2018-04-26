@@ -396,6 +396,7 @@ render () {
                                 <a href="https://roshan-dongre.gitbooks.io/report/" style = {linkStyles}><h4><u>Technical Report</u></h4></a>
                                 <a href="https://github.com/roshan-dongre/idb" style = {linkStyles}><h4><u>GitHub Repository</u></h4></a>
                                 <a href="https://travis-ci.org/roshan-dongre/idb" style = {linkStyles}><h4><u>Travis CI Log</u></h4></a>
+                                <a href="http://ontherun.me/visualization" style = {linkStyles}><h4><u>Visualization</u></h4></a>
                             </div>
                         </div>
                     </div>

@@ -46,6 +46,7 @@
     "react-spinkit": "^3.0.0",
     "react-stylesheet": "^2.2.2",
     "reactstrap": "^5.0.0",
+    "recharts": "^1.0.0-beta.10",
     "redux": "^4.0.0",
     "redux-tooltip": "^0.7.2",
     "sinon": "^4.5.0",

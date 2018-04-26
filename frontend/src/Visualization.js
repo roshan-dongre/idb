@@ -1,19 +1,63 @@
 import React, { Component } from "react"
-import {
-  ComposableMap,
-  ZoomableGroup,
-  Geographies,
-  Geography,
-} from "react-simple-maps"
-import ReactTooltip from "react-tooltip"
-import axios from 'axios'
+import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from "recharts"
 import visData from './canitstream/countryData.json'
 
-const wrapperStyles = {
-  width: "100%",
-  maxWidth: 980,
-  margin: "0 auto",
+class CustomTooltip extends Component 
+{
+  propTypes: {
+    type: "",
+    payload: [],
+    label: "",
+  }
+
+  getTopMovie(label) {
+    for (var i = 0; i < 141; i++) {
+      if (visData.data[i].country == label) {
+        var topMovie      
+        if (data[i].movies[0] == undefined) {
+          topMovie = "Unavailable"
+        }
+        else {
+          topMovie = data[i].movies[0].name
+        }   
+        return "Top Movie " + topMovie
+      }
+    }
+  }
+
+  getTopStream(label) {
+    for (var i = 0; i < 141; i++) {
+      if (visData.data[i].country == label) {
+        var topStream
+        if (data[i].streams[0] == undefined) {
+          topStream = "Unavailable"
+        }
+        else {
+          topStream = data[i].streams[0].name
+        }     
+        return "Top Streaming Service " + topStream
+      }
+    }
+  }
+
+
+  render() {
+    const { active } = this.props;
+
+    if (active) {
+      const { payload, label } = this.props;
+      return (
+        <div className="custom-tooltip">
+          <p className="intro">{this.getTopMovie(label)}</p>
+          <p className="desc">{this.getTopStream(label)}</p>
+        </div>
+      );
+    }
+    return null;
+  }
 }
+
+var data = [ ];
 
 class Visualization extends Component {
 
@@ -24,81 +68,27 @@ class Visualization extends Component {
     }
   }
 
-  componentDidMount() {
-    // ReactTooltip.rebuild()
-    this.callAPI()
-    setTimeout(() => {
-      ReactTooltip.rebuild()
-    }, 100)
-  }
-
-  componentDidUpdate() {
-    this.callAPI()
-    ReactTooltip.rebuild()
-  }
-
-
-  callAPI() {
-    let low = 0 
-    let high = 141
-    let self = this
-    for (var i = low; i < high; i++) {
-      this.state.countries[i] = visData.data[i]
+  render () {
+    for (var i = 0; i < 141; i++) {
+      if (visData.data[i].country !== "India" && visData.data[i].country !== "China") {
+        data[i] = visData.data[i]
+      }
     }
-        console.log(this.state.countries) //This contains all countries with top 5 streaming services and top 5 movies.
+    return (
+      <div className= "container" style={{"margin-top": "30px", "margin-right": "0px", "color": "black"}}>
+      <BarChart width={1000} height={500} data={data}
+            margin={{top: 10, right: 30, left: 20, bottom: 5}} style= {{background: "white"}}>
+       <CartesianGrid strokeDasharray="3 3"/>
+       <XAxis dataKey="country"/>
+       <YAxis/>
+       <Tooltip content={<CustomTooltip/>}/>
+       <Legend />
+       <Bar dataKey="population" fill="#82ca9d" />
+      </BarChart>
+      </div>
+    );
   }
 
-  render() {
-    return (
-      <div style={wrapperStyles}>
-        <ComposableMap
-          projectionConfig={{
-            scale: 205,
-          }}
-          width={980}
-          height={551}
-          style={{
-            width: "100%",
-            height: "auto",
-          }}
-          >
-          <ZoomableGroup center={[0,20]} disablePanning>
-            <Geographies geography="https://raw.githubusercontent.com/zcreativelabs/react-simple-maps/master/examples/basic-map/static/world-50m.json">
-              {(geographies, projection) => geographies.map((geography, i) => geography.id !== "ATA" && (
-                <Geography
-                  key={i}
-                  data-tip={geography.properties.name}
-                  geography={geography}
-                  projection={projection}
-                  style={{
-                    default: {
-                      fill: "#ECEFF1",
-                      stroke: "#607D8B",
-                      strokeWidth: 0.75,
-                      outline: "none",
-                    },
-                    hover: {
-                      fill: "#607D8B",
-                      stroke: "#607D8B",
-                      strokeWidth: 0.75,
-                      outline: "none",
-                    },
-                    pressed: {
-                      fill: "#FF5722",
-                      stroke: "#607D8B",
-                      strokeWidth: 0.75,
-                      outline: "none",
-                    },
-                  }}
-                />
-              ))}
-            </Geographies>
-          </ZoomableGroup>
-        </ComposableMap>
-        <ReactTooltip />
-      </div>
-    )
-  }
 }
 
 export default Visualization

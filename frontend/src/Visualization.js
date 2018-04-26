@@ -94,7 +94,7 @@ class Visualization extends Component {
     }
     return (
       <div className= "container" style={{"margin-top": "10px", "margin-right": "0px", "margin-bottom": "50px", "color": "black"}}>
-      <h1 style={{marginRight: '90px', textShadow: '0 0 3px #FFF'}}> Data Visualization for canitstreamto.me </h1>
+      <h1 style={{marginRight: '90px', textShadow: '0 0 3px #FFF'}}> Data Visualization for canitstreamto.me</h1>
       <h4 style={{marginRight: '90px', textShadow: '0 0 3px #FFF'}}> Visualization showing the top movie and streaming service for each country along with its population </h4>
       <BarChart width={1000} height={500} data={data}
             margin={{top: 10, right: 30, left: 20, bottom: 5}} style= {{background: "#C7E7EB"}}>
@@ -103,7 +103,7 @@ class Visualization extends Component {
        <YAxis/>
        <Tooltip content={<CustomTooltip/>}/>
        <Legend />
-       <Bar name="Population (Hundreds of Thousands)" dataKey="population" fill="#8884d8">
+       <Bar name="Population (Hundreds of Thousands) - Excludes China and India" dataKey="population" fill="#8884d8">
          {
             data.map((entry, index) => (
               <Cell key={`cell-${index}`} fill={colors[index % 20]}/>

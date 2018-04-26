@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from "recharts"
+import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Cell} from "recharts"
 import visData from './canitstream/countryData.json'
 
 class CustomTooltip extends Component 
@@ -57,7 +57,8 @@ class CustomTooltip extends Component
   }
 }
 
-var data = [ ];
+var data = [ ]
+const colors = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"]
 
 class Visualization extends Component {
 
@@ -77,13 +78,19 @@ class Visualization extends Component {
     return (
       <div className= "container" style={{"margin-top": "30px", "margin-right": "0px", "color": "black"}}>
       <BarChart width={1000} height={500} data={data}
-            margin={{top: 10, right: 30, left: 20, bottom: 5}} style= {{background: "white"}}>
-       <CartesianGrid strokeDasharray="3 3"/>
+            margin={{top: 10, right: 30, left: 20, bottom: 5}} style= {{background: "#C7E7EB"}}>
+       <CartesianGrid strokeDasharray="3"/>
        <XAxis dataKey="country"/>
        <YAxis/>
        <Tooltip content={<CustomTooltip/>}/>
        <Legend />
-       <Bar dataKey="population" fill="#82ca9d" />
+       <Bar dataKey="population" fill="#8884d8">
+         {
+            data.map((entry, index) => (
+              <Cell key={`cell-${index}`} fill={colors[index % 20]}/>
+            ))
+          }
+       </Bar>
       </BarChart>
       </div>
     );

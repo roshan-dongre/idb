@@ -40,7 +40,7 @@ def write_data(result,outfile):
     	if len(stream)>0:
             mymovie += stream.encode('ascii', 'ignore')
             break
-    outfile.write("{\"population\": \""+country_pop+"\", \"longitude\": \""+country_lng+"\", \"latitude\": \""+country_lat+"\", \"country\": \""+country_name+"\", \"streams\": ["+mystream+"], \"movies\": ["+mymovie+"]},")
+    outfile.write("{\"population\": "+country_pop+", \"longitude\": \""+country_lng+"\", \"latitude\": \""+country_lat+"\", \"country\": \""+country_name+"\", \"streams\": ["+mystream+"], \"movies\": ["+mymovie+"]},")
     success = True
     return success
 

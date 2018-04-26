@@ -91,7 +91,7 @@
 
 # Visualization
 
-<a href="http://ontherun.me" target="_blank">Click Here!</a>
+<a href="http://ontherun.me/visualization" target="_blank">Click Here!</a>
 
 ---
 

@@ -124,7 +124,6 @@
 
 <a href="http://ontherun.me/visualization" target="_blank">Click Here!</a>
 
----
-?image=assets/image/gitpitch-audience.jpg&opacity=100
+---?image=assets/image/gitpitch-audience.jpg&opacity=100
 
 ## Any Questions?

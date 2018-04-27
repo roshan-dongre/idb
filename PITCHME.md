@@ -32,7 +32,7 @@
 
 ## Unit Tests!
 
-![](https://github.com/roshan-dongre/idb/blob/master/assets/video.mp4)
+<a href="https://vimeo.com/266789106" target="_blank">Click Here!</a>
 
 ---
 
@@ -87,11 +87,6 @@
 
   - Why our database keeps going down
 
----
-
-# Visualization
-
-<a href="http://ontherun.me/visualization" target="_blank">Click Here!</a>
 
 ---
 
@@ -123,7 +118,13 @@
 
   - Looking at the API how they connected the various model pages
 
+---
 
----?image=assets/image/gitpitch-audience.jpg&opacity=100
+# Visualization
+
+<a href="http://ontherun.me/visualization" target="_blank">Click Here!</a>
+
+---
+?image=assets/image/gitpitch-audience.jpg&opacity=100
 
 ## Any Questions?

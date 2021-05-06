@@ -20,7 +20,7 @@
     "jsdom": "^11.9.0",
     "jsdom-global": "^3.0.2",
     "json5": "^1.0.1",
-    "lodash": "^4.17.5",
+    "lodash": "^4.17.21",
     "lodash.chunk": "^4.2.0",
     "mocha": "^5.1.0",
     "mock-local-storage": "^1.0.5",

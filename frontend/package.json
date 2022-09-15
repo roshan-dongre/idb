@@ -6,7 +6,7 @@
     "axios": "^0.18.0",
     "babel-preset-airbnb": "^2.4.0",
     "better-react-spinkit": "^2.0.4",
-    "bootstrap": "^3.3.7",
+    "bootstrap": "^3.4.1",
     "bootstrap-select": "^1.13.1",
     "chai": "^4.1.2",
     "enzyme": "^3.3.0",
